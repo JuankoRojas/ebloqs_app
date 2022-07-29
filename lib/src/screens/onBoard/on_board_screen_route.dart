@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ebloqs_app/src/screens/onBoard/on_board_1_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_2_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_3_screen.dart';
@@ -54,27 +56,33 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    // Timer(const Duration(seconds: 3), () {
-    //   final navegacionOnBoard =
-    //       Provider.of<_NavegacionOnBoard>(context, listen: false);
-    //   switch (index) {
-    //     case 0:
-    //       navegacionOnBoard.paginaActual = 1;
-    //       break;
-    //     case 1:
-    //       navegacionOnBoard.paginaActual = 2;
-    //       break;
-    //     case 2:
-    //       navegacionOnBoard.paginaActual = 3;
-    //       break;
-    //     case 3:
-    //       navegacionOnBoard.paginaActual = 3;
-    //       break;
-    //     default:
-    //       navegacionOnBoard.paginaActual = 0;
-    //       break;
-    //   }
-    // });
+    Timer(const Duration(seconds: 2), () {
+      final navegacionOnBoard =
+          Provider.of<_NavegacionOnBoard>(context, listen: false);
+      switch (index) {
+        case 0:
+          navegacionOnBoard.paginaActual = 1;
+          break;
+        case 1:
+          navegacionOnBoard.paginaActual = 2;
+          break;
+        case 2:
+          navegacionOnBoard.paginaActual = 3;
+          break;
+        case 3:
+          navegacionOnBoard.paginaActual = 4;
+          break;
+        case 4:
+          navegacionOnBoard.paginaActual = 5;
+          break;
+        case 5:
+          navegacionOnBoard.paginaActual = 5;
+          break;
+        default:
+          navegacionOnBoard.paginaActual = 0;
+          break;
+      }
+    });
 
     final navegacionOnBoard = Provider.of<_NavegacionOnBoard>(context);
     navegacionOnBoard.pageController.addListener(() {

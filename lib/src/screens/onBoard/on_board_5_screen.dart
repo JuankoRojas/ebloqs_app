@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,7 +32,10 @@ class Onboard5Screen extends StatelessWidget {
                       height: 45,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            RegistroRedesScreen.routeName, (route) => false);
+                      },
                       child: const Text(
                         'Salir',
                         style:
@@ -50,9 +54,9 @@ class Onboard5Screen extends StatelessWidget {
               width: 296,
               height: 128,
               child: Text(
-                '''Adquiere tu moneda EBL,
-para invertir, comprar o
-hacer trading.''',
+                '''También puedes invertir en
+nuestro token de utilidad
+ebloqs (EBL)''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: Color(0xff170658),

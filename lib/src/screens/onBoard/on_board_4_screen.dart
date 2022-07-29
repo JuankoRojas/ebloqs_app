@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -31,7 +32,10 @@ class Onboard4Screen extends StatelessWidget {
                       height: 45,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            RegistroRedesScreen.routeName, (route) => false);
+                      },
                       child: const Text(
                         'Salir',
                         style:

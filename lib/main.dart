@@ -1,5 +1,5 @@
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
-import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
+import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: OnBoardPageRoute.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: getApplicationRoutes(),
     );
   }
