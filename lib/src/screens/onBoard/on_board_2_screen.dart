@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/screens/onBoard/on_board_3_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +39,12 @@ class Onboard2Screen extends StatelessWidget {
                       },
                       child: const Text(
                         'Salir',
-                        style:
-                            TextStyle(color: Color(0xffffffff), fontSize: 15),
+                        style: TextStyle(
+                          color: Color(0xffffffff),
+                          fontSize: 15,
+                          fontFamily: "Archivo",
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                   ],
@@ -61,6 +66,8 @@ propiedad o servicio.''',
                 style: TextStyle(
                   color: Color(0xffffffff),
                   fontSize: 25,
+                  fontFamily: "Archivo",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
@@ -131,7 +138,14 @@ propiedad o servicio.''',
             right: 27,
             top: 738,
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Onboard3Screen(),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   CupertinoIcons.arrow_right,
                   color: Color(0xff8966F0),

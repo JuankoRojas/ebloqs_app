@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ebloqs</string>
+    <string name="facebook_app_id">416301780466437</string>
+    <string name="fb_login_protocol_scheme">fb416301780466437</string>
+    <string name="facebook_client_token">de53f18d6f00b471c9d0b87426b43dca</string>
+</resources>

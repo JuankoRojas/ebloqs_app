@@ -39,8 +39,44 @@ class HomeScreen extends StatelessWidget {
         'apartamentos': '36',
         'rentabilidad': '12.01'
       },
+      {
+        'imagen': 'assets/Imagenes/quito1.png',
+        'inversion': 'Heráldica',
+        'sector': 'Av . Gonzalez Suarez y Av. Pinzon. Es 94',
+        'precio': '100',
+        'pisos': '6',
+        'apartamentos': '36',
+        'rentabilidad': '13.25'
+      },
+      {
+        'imagen': 'assets/Imagenes/quito2.png',
+        'inversion': 'Dinámica II',
+        'sector': 'Av . Gonzalez Suarez y Av. Pinzon. Es 94',
+        'precio': '120',
+        'pisos': '6',
+        'apartamentos': '36',
+        'rentabilidad': '12.01'
+      },
     ];
     List<Map<String, dynamic>> inversionesGuayaquil = [
+      {
+        'imagen': 'assets/Imagenes/guayaquil1.png',
+        'inversion': 'SOHO 360 Smart Office',
+        'sector': 'Home Office - Consultorios · Puerto Santa Ana',
+        'precio': '98',
+        'pisos': '6',
+        'apartamentos': '36',
+        'rentabilidad': '13.25'
+      },
+      {
+        'imagen': 'assets/Imagenes/guayaquil2.png',
+        'inversion': 'Ágora Ciudad Médica',
+        'sector': 'Av. Joaquín Orrantia y la Av. Abel Romeo Castillo',
+        'precio': '103',
+        'pisos': '6',
+        'apartamentos': '36',
+        'rentabilidad': '12.01'
+      },
       {
         'imagen': 'assets/Imagenes/guayaquil1.png',
         'inversion': 'SOHO 360 Smart Office',

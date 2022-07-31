@@ -1,3 +1,5 @@
+import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -24,6 +26,9 @@ class RegistroRedesScreen extends StatelessWidget {
                 'Regístrate',
                 style: TextStyle(
                   color: Color(0xff170658),
+                  fontSize: 17,
+                  fontFamily: "Archivo",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
@@ -31,6 +36,9 @@ class RegistroRedesScreen extends StatelessWidget {
               'Inicia sesión en ebloqs con tu cuenta favorita',
               style: TextStyle(
                 color: Color(0xff170658),
+                fontSize: 13,
+                fontFamily: "Archivo",
+                fontWeight: FontWeight.w400,
               ),
             ),
             Padding(
@@ -54,6 +62,9 @@ class RegistroRedesScreen extends StatelessWidget {
                           'Facebook',
                           style: TextStyle(
                             color: Color(0xff170658),
+                            fontSize: 11.26,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
@@ -75,6 +86,9 @@ class RegistroRedesScreen extends StatelessWidget {
                           'Google',
                           style: TextStyle(
                             color: Color(0xff170658),
+                            fontSize: 11.26,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
@@ -96,6 +110,9 @@ class RegistroRedesScreen extends StatelessWidget {
                           'Apple',
                           style: TextStyle(
                             color: Color(0xff170658),
+                            fontSize: 11.26,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
@@ -107,7 +124,10 @@ class RegistroRedesScreen extends StatelessWidget {
                     children: [
                       IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamedAndRemoveUntil(context,
+                              RegistroCorreoScreen.routeName, (route) => false);
+                        },
                         icon: SvgPicture.asset(
                             'assets/Vectores/Iconos/Group2148.svg'),
                       ),
@@ -117,6 +137,9 @@ class RegistroRedesScreen extends StatelessWidget {
                           'Correo',
                           style: TextStyle(
                             color: Color(0xff170658),
+                            fontSize: 11.26,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),

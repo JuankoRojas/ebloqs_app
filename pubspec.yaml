@@ -32,11 +32,15 @@ dependencies:
   device_apps: ^2.2.0
   flutter:
     sdk: flutter
+  flutter_facebook_auth: ^4.4.0+1
   flutter_svg: ^1.1.1+1
+  http: ^0.13.4
   outline_search_bar: ^2.3.0
   provider: ^6.0.3
+  shared_preferences: ^2.0.15
   smooth_page_indicator: ^1.0.0+2
   url_launcher: ^6.1.5
+  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_lints: ^2.0.1
@@ -69,10 +73,15 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Archivo
+      fonts:
+        - asset: fonts/Archivo-Bold.ttf
+          weight: 700
+        - asset: fonts/Archivo-Regular.ttf
+          weight: 400
+          style: normal
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

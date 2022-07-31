@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/screens/onBoard/on_board_2_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +39,12 @@ class Onboard1Screen extends StatelessWidget {
                       },
                       child: const Text(
                         'Salir',
-                        style:
-                            TextStyle(color: Color(0xffffffff), fontSize: 15),
+                        style: TextStyle(
+                          color: Color(0xffffffff),
+                          fontSize: 15,
+                          fontFamily: "Archivo",
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                   ],
@@ -47,13 +52,13 @@ class Onboard1Screen extends StatelessWidget {
               ),
             ],
           ),
-          Positioned(
-            top: 75,
-            left: 141,
-            right: 133,
-            child:
-                Image.asset('assets/png/ebcoin.png', width: 101, height: 105),
-          ),
+          // Positioned(
+          //   top: 75,
+          //   left: 141,
+          //   right: 133,
+          //   child:
+          //       Image.asset('assets/png/ebcoin.png', width: 101, height: 105),
+          // ),
           const Positioned(
             top: 508,
             left: 31,
@@ -69,6 +74,8 @@ servicios''',
                 style: TextStyle(
                   color: Color(0xffffffff),
                   fontSize: 25,
+                  fontFamily: "Archivo",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
@@ -139,7 +146,14 @@ servicios''',
             right: 27,
             top: 738,
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Onboard2Screen(),
+                    ),
+                  );
+                },
                 icon: const Icon(
                   CupertinoIcons.arrow_right,
                   color: Color(0xff8966F0),

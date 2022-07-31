@@ -38,8 +38,12 @@ class Onboard5Screen extends StatelessWidget {
                       },
                       child: const Text(
                         'Salir',
-                        style:
-                            TextStyle(color: Color(0xffffffff), fontSize: 15),
+                        style: TextStyle(
+                          color: Color(0xffffffff),
+                          fontSize: 15,
+                          fontFamily: "Archivo",
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                   ],
@@ -51,7 +55,7 @@ class Onboard5Screen extends StatelessWidget {
             top: 508,
             left: 31,
             child: SizedBox(
-              width: 296,
+              width: 320,
               height: 128,
               child: Text(
                 '''También puedes invertir en
@@ -61,6 +65,8 @@ ebloqs (EBL)''',
                 style: TextStyle(
                   color: Color(0xff170658),
                   fontSize: 25,
+                  fontFamily: "Archivo",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
@@ -131,7 +137,10 @@ ebloqs (EBL)''',
             right: 27,
             top: 738,
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, RegistroRedesScreen.routeName, (route) => false);
+                },
                 icon: const Icon(
                   CupertinoIcons.arrow_right,
                   color: Color(0xff8966F0),
