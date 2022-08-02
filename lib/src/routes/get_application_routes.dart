@@ -15,6 +15,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     RegistroCorreoScreen.routeName: (BuildContext context) =>
         RegistroCorreoScreen(),
     RegistroLinkScreen.routeName: (BuildContext context) =>
-        const RegistroLinkScreen(),
+        RegistroLinkScreen(),
   };
 }

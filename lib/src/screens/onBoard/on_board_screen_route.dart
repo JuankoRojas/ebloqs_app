@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ebloqs_app/src/screens/onBoard/on_board_1_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_2_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_3_screen.dart';
@@ -32,7 +34,7 @@ class _NavegacionOnBoard with ChangeNotifier {
   set paginaActual(int valor) {
     _paginaOnBoardActual = valor;
     _pageOnBoardController.animateToPage(valor,
-        duration: const Duration(milliseconds: 300), curve: Curves.easeOut);
+        duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
 
     notifyListeners();
   }
@@ -53,36 +55,38 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final navegacionOnBoard = Provider.of<_NavegacionOnBoard>(
+      context,
+    );
 
-    // Timer(const Duration(seconds: 2), () {
-    //   final navegacionOnBoard =
-    //       Provider.of<_NavegacionOnBoard>(context, listen: false);
-    //   switch (index) {
-    //     case 0:
-    //       navegacionOnBoard.paginaActual = 1;
-    //       break;
-    //     case 1:
-    //       navegacionOnBoard.paginaActual = 2;
-    //       break;
-    //     case 2:
-    //       navegacionOnBoard.paginaActual = 3;
-    //       break;
-    //     case 3:
-    //       navegacionOnBoard.paginaActual = 4;
-    //       break;
-    //     case 4:
-    //       navegacionOnBoard.paginaActual = 4;
-    //       break;
-    //     // case 5:
-    //     //   navegacionOnBoard.paginaActual = 5;
-    //     //   break;
-    //     default:
-    //       navegacionOnBoard.paginaActual = 0;
-    //       break;
-    //   }
-    // });
+    Timer(const Duration(seconds: 2), () {
+      switch (index) {
+        case 0:
+          Future.delayed(const Duration(milliseconds: 1000))
+              .then((_) => navegacionOnBoard.paginaActual = 1);
+          break;
+        case 1:
+          navegacionOnBoard.paginaActual = 2;
+          break;
+        case 2:
+          navegacionOnBoard.paginaActual = 3;
+          break;
+        case 3:
+          navegacionOnBoard.paginaActual = 4;
+          break;
+        case 4:
+          navegacionOnBoard.paginaActual = 4;
+          break;
+        // case 5:
+        //   navegacionOnBoard.paginaActual = 5;
+        //   break;
+        default:
+          navegacionOnBoard.paginaActual = 0;
+          break;
+      }
+    });
 
-    final navegacionOnBoard = Provider.of<_NavegacionOnBoard>(context);
+    // final navegacionOnBoard = Provider.of<_NavegacionOnBoard>(context);
     navegacionOnBoard.pageController.addListener(() {
       setState(() {
         index = navegacionOnBoard.pageController.page!.toInt();
@@ -101,21 +105,24 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
           ],
         ),
         Positioned(
-            top: 750,
+            top: size.height * 0.943,
             left: 35,
-            child: Center(
-                child: SmoothPageIndicator(
+            child: SmoothPageIndicator(
               controller: navegacionOnBoard.pageController,
               count: 5,
-              effect: const ExpandingDotsEffect(
+              effect: ExpandingDotsEffect(
                 dotHeight: 8.0,
                 dotWidth: 8,
                 spacing: 16,
-                activeDotColor: Color(0xff8966F0),
-                dotColor: Color(0xffffffff),
+                activeDotColor: const Color(0xff8966F0),
+                dotColor: (navegacionOnBoard.paginaActual == 2 ||
+                        navegacionOnBoard.paginaActual == 3 ||
+                        navegacionOnBoard.paginaActual == 4)
+                    ? const Color(0xffEAE4FC)
+                    : const Color(0xffffffff),
                 expansionFactor: 1.1,
               ),
-            ))),
+            )),
       ],
     );
   }

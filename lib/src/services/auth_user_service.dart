@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AuthUserService with ChangeNotifier {
-  Uri url = Uri.parse('http://10.0.2.2:3000/auth/register');
+  Uri url = Uri.parse('https://agile-beach-41948.herokuapp.com/auth/register');
   Future registerUser(
       {required String email,
       required String deviceID,
@@ -25,7 +25,9 @@ class AuthUserService with ChangeNotifier {
 
       switch (response.statusCode) {
         case 201:
-          return response.body;
+          var jsonResponse =
+              convert.jsonDecode(response.body) as Map<String, dynamic>;
+          return jsonResponse;
       }
     } catch (e) {
       print(e);

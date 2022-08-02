@@ -1,16 +1,27 @@
+import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/register/registro_link_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
-class RegistroCorreoScreen extends StatelessWidget {
+class RegistroCorreoScreen extends StatefulWidget {
   static const routeName = 'RegistroCorreoScreen';
-  RegistroCorreoScreen({Key? key}) : super(key: key);
+  const RegistroCorreoScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RegistroCorreoScreen> createState() => _RegistroCorreoScreenState();
+}
+
+class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final TextEditingController emailController = TextEditingController();
+
   final uuid = const Uuid();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,8 +121,14 @@ class RegistroCorreoScreen extends StatelessWidget {
                         email: emailController.text,
                         deviceID: uuid.v4(),
                         type_acount: 'email');
-                    if (register['"access_token"'] != null) {
-                      Preferences.token = register['"access_token"'];
+
+                    if (register["access_token"] != null) {
+                      setState(() {
+                        Preferences.token = register['access_token'];
+                        Provider.of<UserInfoProvider>(context, listen: false)
+                            .emailset(emailController.text);
+                      });
+
                       Future.delayed(Duration.zero).then(
                         (_) => Navigator.pushNamedAndRemoveUntil(context,
                             RegistroLinkScreen.routeName, (route) => false),

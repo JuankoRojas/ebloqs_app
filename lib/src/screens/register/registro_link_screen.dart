@@ -1,14 +1,23 @@
 import 'package:device_apps/device_apps.dart';
+import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class RegistroLinkScreen extends StatelessWidget {
+class RegistroLinkScreen extends StatefulWidget {
   static const routeName = 'RegistroLinkScreen';
   const RegistroLinkScreen({Key? key}) : super(key: key);
 
   @override
+  State<RegistroLinkScreen> createState() => _RegistroLinkScreenState();
+}
+
+class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
+  @override
   Widget build(BuildContext context) {
+    String? email = Provider.of<UserInfoProvider>(context).emailget;
+    print(email);
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 130),
@@ -35,12 +44,12 @@ class RegistroLinkScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 20.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
               child: Center(
                 child: Text(
-                  "jcervant_02@hotmail.com",
-                  style: TextStyle(
+                  email ?? '',
+                  style: const TextStyle(
                     color: Color(0xff170658),
                     fontSize: 15,
                   ),

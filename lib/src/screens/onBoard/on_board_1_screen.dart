@@ -1,21 +1,35 @@
 import 'package:ebloqs_app/src/screens/onBoard/on_board_2_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Onboard1Screen extends StatelessWidget {
+class Onboard1Screen extends StatefulWidget {
   const Onboard1Screen({Key? key}) : super(key: key);
+
+  @override
+  State<Onboard1Screen> createState() => _Onboard1ScreenState();
+}
+
+class _Onboard1ScreenState extends State<Onboard1Screen> {
+  String? svg;
+  @override
+  void initState() {
+    svg = 'assets/png/onboard1.png';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final dpi = MediaQuery.of(context).devicePixelRatio;
+    // print(dpi);
     return Scaffold(
       extendBodyBehindAppBar: true,
+      backgroundColor: const Color(0xff170658),
       body: Stack(
         children: [
           Image.asset(
-            'assets/png/onboard1.png',
+            svg!,
             height: size.height,
             width: size.width,
             fit: BoxFit.cover,
@@ -23,7 +37,10 @@ class Onboard1Screen extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 52.0, left: 33, right: 17),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.066,
+                    left: size.width * 0.087,
+                    right: size.width * 0.042),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -32,11 +49,7 @@ class Onboard1Screen extends StatelessWidget {
                       width: 54,
                       height: 45,
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            RegistroRedesScreen.routeName, (route) => false);
-                      },
+                    GestureDetector(
                       child: const Text(
                         'Salir',
                         style: TextStyle(
@@ -46,7 +59,11 @@ class Onboard1Screen extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                    ),
+                      onTap: () {
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            RegistroRedesScreen.routeName, (route) => false);
+                      },
+                    )
                   ],
                 ),
               ),
@@ -59,13 +76,13 @@ class Onboard1Screen extends StatelessWidget {
           //   child:
           //       Image.asset('assets/png/ebcoin.png', width: 101, height: 105),
           // ),
-          const Positioned(
-            top: 508,
-            left: 31,
+          Positioned(
+            top: size.height * 0.63,
+            left: size.width * 0.084,
             child: SizedBox(
-              width: 296,
-              height: 128,
-              child: Text(
+              width: size.width * 0.79,
+              height: size.height * 0.162,
+              child: const Text(
                 '''ebloqs® ecosistema
 de economía de
 tokens para bienes y
@@ -81,61 +98,91 @@ servicios''',
             ),
           ),
           Positioned(
-            top: 666,
-            left: 23,
+            top: size.height * 0.56,
+            left: size.width * 0.078,
+            child: const Text(
+              '01',
+              style: TextStyle(
+                color: Color(0xffffffff),
+                fontSize: 14,
+                fontFamily: "Archivo",
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.58,
+            left: size.width * 0.05,
+            child: Opacity(
+              opacity: 0.35,
+              child: Transform.rotate(
+                angle: -1.01,
+                child: Container(
+                  width: 60.21,
+                  height: 1,
+                  color: const Color(0xffffffff),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.582,
+            left: size.width * 0.15,
+            child: const Text(
+              '05',
+              style: TextStyle(
+                color: Color(0xffffffff),
+                fontSize: 14,
+                fontFamily: "Archivo",
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.836,
             child: SizedBox(
-              width: 127,
-              height: 43,
+              height: size.height * 0.06,
+              width: size.width * 0.41,
               child: Stack(
                 children: [
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        width: 43,
-                        height: 43,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: const FlutterLogo(size: 43),
-                      ),
-                    ),
-                  ),
                   Positioned(
-                    left: 28,
-                    top: 0,
+                    left: size.width * 0.06,
                     child: Container(
-                      width: 43,
-                      height: 43,
+                      width: size.width * 0.115,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: const FlutterLogo(size: 43),
+                      child: Image.asset('assets/avatares/2x/profile-1-2x.png'),
                     ),
                   ),
                   Positioned(
-                    left: 56,
-                    top: 0,
+                    left: size.width * 0.133,
                     child: Container(
-                      width: 43,
-                      height: 43,
+                      width: size.width * 0.115,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: const FlutterLogo(size: 43),
+                      child: Image.asset('assets/avatares/2x/profile-2-2x.png'),
                     ),
                   ),
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        width: 43,
-                        height: 43,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: const FlutterLogo(size: 43),
+                  Positioned(
+                    left: size.width * 0.21,
+                    child: Container(
+                      width: size.width * 0.115,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
                       ),
+                      child: Image.asset('assets/avatares/2x/profile-3-2x.png'),
+                    ),
+                  ),
+                  Positioned(
+                    left: size.width * 0.286,
+                    child: Container(
+                      width: size.width * 0.115,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.asset('assets/avatares/2x/profile-4-2x.png'),
                     ),
                   ),
                 ],
@@ -143,10 +190,14 @@ servicios''',
             ),
           ),
           Positioned(
-            right: 27,
-            top: 738,
-            child: IconButton(
-                onPressed: () {
+              top: size.height * 0.935,
+              right: size.width * 0.074,
+              child: GestureDetector(
+                child: SvgPicture.asset(
+                  alignment: Alignment.topCenter,
+                  'assets/Vectores/Iconos/Frame.svg',
+                ),
+                onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -154,11 +205,7 @@ servicios''',
                     ),
                   );
                 },
-                icon: const Icon(
-                  CupertinoIcons.arrow_right,
-                  color: Color(0xff8966F0),
-                )),
-          )
+              ))
         ],
       ),
     );

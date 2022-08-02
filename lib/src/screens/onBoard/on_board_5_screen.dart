@@ -1,5 +1,4 @@
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -22,7 +21,10 @@ class Onboard5Screen extends StatelessWidget {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 52.0, left: 33, right: 17),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.066,
+                    left: size.width * 0.087,
+                    right: size.width * 0.042),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -31,11 +33,7 @@ class Onboard5Screen extends StatelessWidget {
                       width: 54,
                       height: 45,
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            RegistroRedesScreen.routeName, (route) => false);
-                      },
+                    GestureDetector(
                       child: const Text(
                         'Salir',
                         style: TextStyle(
@@ -45,19 +43,23 @@ class Onboard5Screen extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                    ),
+                      onTap: () {
+                        Navigator.pushNamedAndRemoveUntil(context,
+                            RegistroRedesScreen.routeName, (route) => false);
+                      },
+                    )
                   ],
                 ),
               ),
             ],
           ),
-          const Positioned(
-            top: 508,
-            left: 31,
+          Positioned(
+            top: size.height * 0.628,
+            left: size.width * 0.084,
             child: SizedBox(
-              width: 320,
-              height: 128,
-              child: Text(
+              width: size.width * 0.87,
+              height: size.height * 0.162,
+              child: const Text(
                 '''También puedes invertir en
 nuestro token de utilidad
 ebloqs (EBL)''',
@@ -72,61 +74,91 @@ ebloqs (EBL)''',
             ),
           ),
           Positioned(
-            top: 666,
-            left: 23,
+            top: size.height * 0.56,
+            left: size.width * 0.078,
+            child: const Text(
+              '05',
+              style: TextStyle(
+                color: Color(0xff170658),
+                fontSize: 14,
+                fontFamily: "Archivo",
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.58,
+            left: size.width * 0.05,
+            child: Opacity(
+              opacity: 0.35,
+              child: Transform.rotate(
+                angle: -1.01,
+                child: Container(
+                  width: 60.21,
+                  height: 1,
+                  color: const Color(0xff170658),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.582,
+            left: size.width * 0.15,
+            child: const Text(
+              '05',
+              style: TextStyle(
+                color: Color(0xff170658),
+                fontSize: 14,
+                fontFamily: "Archivo",
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          Positioned(
+            top: size.height * 0.836,
             child: SizedBox(
-              width: 127,
-              height: 43,
+              height: size.height * 0.06,
+              width: size.width * 0.45,
               child: Stack(
                 children: [
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        width: 43,
-                        height: 43,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: const FlutterLogo(size: 43),
-                      ),
-                    ),
-                  ),
                   Positioned(
-                    left: 28,
-                    top: 0,
+                    left: size.width * 0.06,
                     child: Container(
-                      width: 43,
-                      height: 43,
+                      width: size.width * 0.115,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: const FlutterLogo(size: 43),
+                      child: Image.asset('assets/avatares/2x/profile-1-2x.png'),
                     ),
                   ),
                   Positioned(
-                    left: 56,
-                    top: 0,
+                    left: size.width * 0.133,
                     child: Container(
-                      width: 43,
-                      height: 43,
+                      width: size.width * 0.115,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: const FlutterLogo(size: 43),
+                      child: Image.asset('assets/avatares/2x/profile-2-2x.png'),
                     ),
                   ),
-                  Positioned.fill(
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        width: 43,
-                        height: 43,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                        ),
-                        child: const FlutterLogo(size: 43),
+                  Positioned(
+                    left: size.width * 0.21,
+                    child: Container(
+                      width: size.width * 0.115,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
                       ),
+                      child: Image.asset('assets/avatares/2x/profile-3-2x.png'),
+                    ),
+                  ),
+                  Positioned(
+                    left: size.width * 0.286,
+                    child: Container(
+                      width: size.width * 0.115,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                      ),
+                      child: Image.asset('assets/avatares/2x/profile-4-2x.png'),
                     ),
                   ),
                 ],
@@ -134,18 +166,22 @@ ebloqs (EBL)''',
             ),
           ),
           Positioned(
-            right: 27,
-            top: 738,
-            child: IconButton(
-                onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, RegistroRedesScreen.routeName, (route) => false);
+              top: size.height * 0.935,
+              right: size.width * 0.074,
+              child: GestureDetector(
+                child: SvgPicture.asset(
+                  alignment: Alignment.topCenter,
+                  'assets/Vectores/Iconos/Frame.svg',
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegistroRedesScreen(),
+                    ),
+                  );
                 },
-                icon: const Icon(
-                  CupertinoIcons.arrow_right,
-                  color: Color(0xff8966F0),
-                )),
-          )
+              ))
         ],
       ),
     );

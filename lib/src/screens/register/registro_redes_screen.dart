@@ -1,4 +1,5 @@
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
+import 'package:ebloqs_app/src/services/google_signin_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -76,7 +77,9 @@ class RegistroRedesScreen extends StatelessWidget {
                     children: [
                       IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {},
+                        onPressed: () {
+                          GoogleSignInService.signInWithGoogle();
+                        },
                         icon: SvgPicture.asset(
                             'assets/Vectores/Iconos/Group2145.svg'),
                       ),
