@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "626609172905",
+    "project_id": "ebloqs-signin",
+    "storage_bucket": "ebloqs-signin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626609172905:android:a8418b5c049945f754d4b8",
+        "android_client_info": {
+          "package_name": "com.ebloqs.app.ebloqs_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626609172905-biud55sm6995p6r8n00ukgalhinr7kel.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.app.ebloqs_app",
+            "certificate_hash": "4bbfb67ff3205866739b0d3f9bd70e1e3b7d78e1"
+          }
+        },
+        {
+          "client_id": "626609172905-af7n23be4fhtdl5qdj2d849nbbb3v38o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWak-s1If9Di_8zm2AYmvPOl3LgUH2HWU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626609172905-af7n23be4fhtdl5qdj2d849nbbb3v38o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
