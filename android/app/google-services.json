@@ -1,42 +1,85 @@
 {
   "project_info": {
-    "project_number": "626609172905",
-    "project_id": "ebloqs-signin",
-    "storage_bucket": "ebloqs-signin.appspot.com"
+    "project_number": "479067570571",
+    "project_id": "ebloqs-38c12",
+    "storage_bucket": "ebloqs-38c12.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:626609172905:android:a8418b5c049945f754d4b8",
+        "mobilesdk_app_id": "1:479067570571:android:64a885db16fbb13cb62f8e",
         "android_client_info": {
-          "package_name": "com.ebloqs.app.ebloqs_app"
+          "package_name": "com.ebloqs"
         }
       },
       "oauth_client": [
         {
-          "client_id": "626609172905-biud55sm6995p6r8n00ukgalhinr7kel.apps.googleusercontent.com",
+          "client_id": "479067570571-ekpn066msaeq4usbnb7dfomru3dot9t1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.ebloqs.app.ebloqs_app",
+            "package_name": "com.ebloqs",
             "certificate_hash": "4bbfb67ff3205866739b0d3f9bd70e1e3b7d78e1"
           }
         },
         {
-          "client_id": "626609172905-af7n23be4fhtdl5qdj2d849nbbb3v38o.apps.googleusercontent.com",
+          "client_id": "479067570571-hgf1n8gviocln18q7kmgrmptsa3oic1r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDWak-s1If9Di_8zm2AYmvPOl3LgUH2HWU"
+          "current_key": "AIzaSyB0L-sSNR5QzCHcd9Zo2vjYenu2aka2_0k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "626609172905-af7n23be4fhtdl5qdj2d849nbbb3v38o.apps.googleusercontent.com",
+              "client_id": "479067570571-hgf1n8gviocln18q7kmgrmptsa3oic1r.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "479067570571-gaqoc7ijhth1laommrtkkho2npbtd7iv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ebloqs"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479067570571:android:a1a7d672cf4cfe5cb62f8e",
+        "android_client_info": {
+          "package_name": "com.ebloqs.app.ebloqs_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479067570571-hgf1n8gviocln18q7kmgrmptsa3oic1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0L-sSNR5QzCHcd9Zo2vjYenu2aka2_0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479067570571-hgf1n8gviocln18q7kmgrmptsa3oic1r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "479067570571-gaqoc7ijhth1laommrtkkho2npbtd7iv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ebloqs"
+              }
             }
           ]
         }

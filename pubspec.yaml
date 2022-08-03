@@ -39,6 +39,7 @@ dependencies:
   outline_search_bar: ^2.3.0
   provider: ^6.0.3
   shared_preferences: ^2.0.15
+  sign_in_with_apple: ^4.1.0
   smooth_page_indicator: ^1.0.0+2
   url_launcher: ^6.1.5
   uuid: ^3.0.6
