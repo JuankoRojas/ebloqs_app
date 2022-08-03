@@ -1,4 +1,4 @@
-package com.ebloqs.app.ebloqs_app
+package com.ebloqs
 
 import io.flutter.embedding.android.FlutterActivity
 
