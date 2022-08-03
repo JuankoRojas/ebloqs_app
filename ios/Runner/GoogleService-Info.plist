@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>479067570571-gaqoc7ijhth1laommrtkkho2npbtd7iv.apps.googleusercontent.com</string>
+	<string>479067570571-cnpu8vbkiqfaou5modgft4nb9kdkdfar.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.479067570571-gaqoc7ijhth1laommrtkkho2npbtd7iv</string>
+	<string>com.googleusercontent.apps.479067570571-cnpu8vbkiqfaou5modgft4nb9kdkdfar</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>479067570571-ekpn066msaeq4usbnb7dfomru3dot9t1.apps.googleusercontent.com</string>
+	<string>479067570571-627s7o27lpsgbih9l3pbmque50uvh5gi.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCQZA_z93LZSG9EZMmLUOa6iviQz-OcAcQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ebloqs</string>
+	<string>com.ebloqs.application</string>
 	<key>PROJECT_ID</key>
 	<string>ebloqs-38c12</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:479067570571:ios:26d0b22016781037b62f8e</string>
+	<string>1:479067570571:ios:a8a4385907a86e46b62f8e</string>
 </dict>
 </plist>
