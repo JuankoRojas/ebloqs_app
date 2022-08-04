@@ -26,7 +26,6 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 130),
@@ -36,7 +35,7 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
             children: [
               Center(
                 child: SvgPicture.asset(
-                    'assets/Vectores/Ilustraciones/Group1825.svg'),
+                    'assets/Vectores/Ilustraciones/Group1825.svg',),
               ),
               const Padding(
                 padding: EdgeInsets.only(top: 93.0, bottom: 5),
