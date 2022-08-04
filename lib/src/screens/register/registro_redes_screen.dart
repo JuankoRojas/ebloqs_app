@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
 import 'package:ebloqs_app/src/services/apple_signin_service.dart';
 import 'package:ebloqs_app/src/services/google_signin_service.dart';
@@ -108,10 +110,12 @@ class RegistroRedesScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const IconButton(
+                      IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: AppleSigninService.signIn,
-                        icon: Icon(
+                        onPressed: (Platform.isIOS)
+                            ? AppleSigninService.signInIOS
+                            : AppleSigninService.signInAndroid,
+                        icon: const Icon(
                           Icons.apple,
                           color: Color(0xff000000),
                         ),

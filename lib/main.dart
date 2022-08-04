@@ -9,7 +9,8 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   SystemChrome.setSystemUIOverlayStyle(systemBarDark);
+  SystemChrome.setSystemUIOverlayStyle(systemBarLight);
+
   await Preferences.init();
   runApp(const MyApp());
 }

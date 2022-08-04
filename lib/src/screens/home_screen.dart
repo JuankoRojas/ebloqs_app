@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/utilitis/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -127,6 +128,12 @@ class HomeScreen extends StatelessWidget {
       },
     ];
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        systemOverlayStyle: systemBarDark,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 55),
@@ -167,6 +174,82 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              //Banner
+              Container(
+                width: 359,
+                height: 164,
+                decoration: BoxDecoration(
+                  image: const DecorationImage(
+                    image: AssetImage('assets/Imagenes/Mask group.png'),
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    Column(
+                      children: [
+                        const Text(
+                          "BALANCE DISPONIBLE",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11.59,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: const [
+                            Text(
+                              "0",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 36,
+                              ),
+                            ),
+                            SizedBox(width: 13),
+                            Text(
+                              "EBL",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18.55,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: const Color(0xff170658),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                "0 USD",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 13,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
               // Inversión Inmobiliarias
               const Text(
@@ -251,7 +334,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 Expanded(child: Container()),
                                 Container(
-                                  width: 143,
+                                  width: 150,
                                   height: 49,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 7),
@@ -265,7 +348,7 @@ class HomeScreen extends StatelessWidget {
                                     children: [
                                       Text(
                                         "Precio x Token \$${inversiones[index]['precio']}",
-                                        textAlign: TextAlign.right,
+                                        textAlign: TextAlign.center,
                                         style: const TextStyle(
                                           color: Color(0xff2504ca),
                                           fontSize: 13,
