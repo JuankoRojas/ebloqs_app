@@ -60,8 +60,8 @@ class _Onboard1ScreenState extends State<Onboard1Screen> {
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            RegistroRedesScreen.routeName, (route) => false);
+                        Navigator.pushNamed(
+                            context, RegistroRedesScreen.routeName);
                       },
                     )
                   ],

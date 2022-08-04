@@ -46,8 +46,8 @@ class Onboard2Screen extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(context,
-                            RegistroRedesScreen.routeName, (route) => false);
+                        Navigator.pushNamed(
+                            context, RegistroRedesScreen.routeName);
                       },
                     )
                   ],

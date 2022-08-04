@@ -103,6 +103,7 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
       children: [
         PageView(
           controller: navegacionOnBoard.pageController,
+          physics: const NeverScrollableScrollPhysics(),
           children: const <Widget>[
             Onboard1Screen(),
             Onboard2Screen(),
