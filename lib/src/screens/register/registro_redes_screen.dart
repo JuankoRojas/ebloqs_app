@@ -108,18 +108,20 @@ class RegistroRedesScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      IconButton(
+                      const IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: AppleSigninService.signIn,
-                        icon: SvgPicture.asset(
-                            'assets/Vectores/Iconos/Group2147.svg'),
+                        icon: Icon(
+                          Icons.apple,
+                          color: Color(0xff000000),
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: size.height * 0.016),
                         child: const Text(
                           'Apple',
                           style: TextStyle(
-                            color: Color(0xff170658),
+                            color: Color(0xff000000),
                             fontSize: 11.26,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
