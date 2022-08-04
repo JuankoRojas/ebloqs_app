@@ -11,9 +11,14 @@ class RegistroRedesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 145),
+        padding: EdgeInsets.only(
+          left: size.width * 0.052,
+          top: size.height * 0.184,
+          right: size.width * 0.052,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,9 +27,10 @@ class RegistroRedesScreen extends StatelessWidget {
               child: SvgPicture.asset(
                   'assets/Vectores/Ilustraciones/Group1825.svg'),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 93.0, bottom: 5),
-              child: Text(
+            Padding(
+              padding: EdgeInsets.only(
+                  top: size.height * 0.118, bottom: size.height * 0.005),
+              child: const Text(
                 'Regístrate',
                 style: TextStyle(
                   color: Color(0xff170658),
@@ -44,7 +50,7 @@ class RegistroRedesScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 27.0),
+              padding: EdgeInsets.only(top: size.height * 0.034),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -58,9 +64,9 @@ class RegistroRedesScreen extends StatelessWidget {
                         icon: SvgPicture.asset(
                             'assets/Vectores/Iconos/Group2144.svg'),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 12.0),
-                        child: Text(
+                      Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.016),
+                        child: const Text(
                           'Facebook',
                           style: TextStyle(
                             color: Color(0xff170658),
@@ -84,9 +90,9 @@ class RegistroRedesScreen extends StatelessWidget {
                         icon: SvgPicture.asset(
                             'assets/Vectores/Iconos/Group2145.svg'),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 12.0),
-                        child: Text(
+                      Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.016),
+                        child: const Text(
                           'Google',
                           style: TextStyle(
                             color: Color(0xff170658),
@@ -108,9 +114,9 @@ class RegistroRedesScreen extends StatelessWidget {
                         icon: SvgPicture.asset(
                             'assets/Vectores/Iconos/Group2147.svg'),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 12.0),
-                        child: Text(
+                      Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.016),
+                        child: const Text(
                           'Apple',
                           style: TextStyle(
                             color: Color(0xff170658),
@@ -135,9 +141,9 @@ class RegistroRedesScreen extends StatelessWidget {
                         icon: SvgPicture.asset(
                             'assets/Vectores/Iconos/Group2148.svg'),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 12.0),
-                        child: Text(
+                      Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.016),
+                        child: const Text(
                           'Correo',
                           style: TextStyle(
                             color: Color(0xff170658),

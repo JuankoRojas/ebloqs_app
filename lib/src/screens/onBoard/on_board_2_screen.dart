@@ -120,7 +120,7 @@ propiedad o servicio.''',
           Positioned(
             top: size.height * 0.836,
             child: SizedBox(
-              height: size.height * 0.06,
+              height: size.height * 0.07,
               width: size.width * 0.41,
               child: Stack(
                 children: [

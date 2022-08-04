@@ -40,6 +40,12 @@ class _NavegacionOnBoard with ChangeNotifier {
   }
 
   PageController get pageController => _pageOnBoardController;
+
+  @override
+  void dispose() {
+    _pageOnBoardController.dispose();
+    super.dispose();
+  }
 }
 
 class _PaginasOnBoard extends StatefulWidget {
@@ -92,6 +98,7 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
         index = navegacionOnBoard.pageController.page!.toInt();
       });
     });
+
     return Stack(
       children: [
         PageView(
