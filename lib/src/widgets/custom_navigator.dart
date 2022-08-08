@@ -12,7 +12,7 @@ class CustomNavigator extends StatelessWidget {
       ),
       child: Container(
         padding:
-            const EdgeInsets.only(top: 10, bottom: 18, left: 33, right: 33),
+            const EdgeInsets.only(top: 10, bottom: 18, left: 13, right: 13),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
