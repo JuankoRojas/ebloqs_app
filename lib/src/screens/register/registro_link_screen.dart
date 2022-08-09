@@ -1,9 +1,8 @@
-import 'package:device_apps/device_apps.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
+import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class RegistroLinkScreen extends StatefulWidget {
   static const routeName = 'RegistroLinkScreen';
@@ -172,24 +171,26 @@ continuar el proceso de registro en Ebloqs''',
                                   ],
                                 ),
                                 onTap: () async {
-                                  bool isInstalled =
-                                      await DeviceApps.isAppInstalled(
-                                          'com.google.android.gm');
-                                  print(isInstalled);
-                                  if (isInstalled != false) {
-                                    // AndroidIntent intent = const AndroidIntent(
-                                    //     action: 'action_view', data: '');
-                                    // await intent.launch();
-                                    DeviceApps.openApp('com.google.android.gm');
-                                  } else {
-                                    String url =
-                                        'https://play.google.com/store/apps/details?id=com.google.android.gm&gl=US';
-                                    if (await canLaunchUrl(Uri.parse(url))) {
-                                      await launchUrl(Uri.parse(url));
-                                    } else {
-                                      throw 'Could not launch $url';
-                                    }
-                                  }
+                                  // bool isInstalled =
+                                  //     await DeviceApps.isAppInstalled(
+                                  //         'com.google.android.gm');
+                                  // print(isInstalled);
+                                  // if (isInstalled != false) {
+                                  //   // AndroidIntent intent = const AndroidIntent(
+                                  //   //     action: 'action_view', data: '');
+                                  //   // await intent.launch();
+                                  //   DeviceApps.openApp('com.google.android.gm');
+                                  // } else {
+                                  //   String url =
+                                  //       'https://play.google.com/store/apps/details?id=com.google.android.gm&gl=US';
+                                  //   if (await canLaunchUrl(Uri.parse(url))) {
+                                  //     await launchUrl(Uri.parse(url));
+                                  //   } else {
+                                  //     throw 'Could not launch $url';
+                                  //   }
+                                  // }
+                                  Navigator.pushNamed(
+                                      context, HomeScreen.routeName);
                                 },
                               ),
                             ),
@@ -227,25 +228,27 @@ continuar el proceso de registro en Ebloqs''',
                                   ],
                                 ),
                                 onTap: () async {
-                                  bool isInstalled =
-                                      await DeviceApps.isAppInstalled(
-                                          'com.microsoft.office.outlook');
-                                  print(isInstalled);
-                                  if (isInstalled != false) {
-                                    // AndroidIntent intent = const AndroidIntent(
-                                    //     action: 'action_view', data: '');
-                                    // await intent.launch();
-                                    DeviceApps.openApp(
-                                        'com.microsoft.office.outlook');
-                                  } else {
-                                    String url =
-                                        'https://play.google.com/store/apps/details?id=com.microsoft.office.outlook&gl=US';
-                                    if (await canLaunchUrl(Uri.parse(url))) {
-                                      await launchUrl(Uri.parse(url));
-                                    } else {
-                                      throw 'Could not launch $url';
-                                    }
-                                  }
+                                  // bool isInstalled =
+                                  //     await DeviceApps.isAppInstalled(
+                                  //         'com.microsoft.office.outlook');
+                                  // print(isInstalled);
+                                  // if (isInstalled != false) {
+                                  //   // AndroidIntent intent = const AndroidIntent(
+                                  //   //     action: 'action_view', data: '');
+                                  //   // await intent.launch();
+                                  //   DeviceApps.openApp(
+                                  //       'com.microsoft.office.outlook');
+                                  // } else {
+                                  //   String url =
+                                  //       'https://play.google.com/store/apps/details?id=com.microsoft.office.outlook&gl=US';
+                                  //   if (await canLaunchUrl(Uri.parse(url))) {
+                                  //     await launchUrl(Uri.parse(url));
+                                  //   } else {
+                                  //     throw 'Could not launch $url';
+                                  //   }
+                                  // }
+                                  Navigator.pushNamed(
+                                      context, HomeScreen.routeName);
                                 },
                               ),
                             ),
@@ -282,7 +285,10 @@ continuar el proceso de registro en Ebloqs''',
                                     ),
                                   ],
                                 ),
-                                onTap: () async {},
+                                onTap: () async {
+                                  Navigator.pushNamed(
+                                      context, HomeScreen.routeName);
+                                },
                               ),
                             )
                           ],

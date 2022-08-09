@@ -182,23 +182,24 @@ class HomeScreen extends StatelessWidget {
 
                   /// Auto scroll interval.
                   /// Do not auto scroll with null or 0.
-                  // autoPlayInterval: 3000,
+                  autoPlayInterval: 3000,
 
                   /// Loops back to first slide.
-                  // isLoop: true,
+                  isLoop: true,
 
                   /// The color to paint the indicator.
                   indicatorColor: Colors.transparent,
 
                   /// The color to paint behind th indicator.
                   indicatorBackgroundColor: Colors.transparent,
+                  height: size.height * 0.25,
                   children: [
                     //tarjeta 1
                     Padding(
                       padding: EdgeInsets.only(
                           top: size.height * 0.02, bottom: size.height * 0.03),
                       child: Container(
-                        width: size.width * 0.9,
+                        width: size.width * 0.95,
                         height: size.height * 0.1,
                         padding: EdgeInsets.only(
                             top: size.height * 0.043,
