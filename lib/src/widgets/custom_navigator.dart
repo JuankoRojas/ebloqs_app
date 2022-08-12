@@ -6,6 +6,7 @@ class CustomNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String? currentPath = ModalRoute.of(context)!.settings.name;
+    print('currentPath: $currentPath');
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -24,11 +25,24 @@ class CustomNavigator extends StatelessWidget {
                   IconButton(
                       visualDensity: VisualDensity.compact,
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      icon:
-                          SvgPicture.asset('assets/Vectores/Iconos/home.svg')),
-                  const Text(
+                      onPressed: () {
+                        Navigator.pushNamed(context, HomeScreen.routeName);
+                      },
+                      icon: SvgPicture.asset(
+                        'assets/Vectores/Iconos/home.svg',
+                        color: (currentPath == 'HomeScreen')
+                            ? const Color(0xff2504CA)
+                            : const Color(0xff170658),
+                      )),
+                  Text(
                     'Principal',
+                    style: TextStyle(
+                        color: (currentPath == 'HomeScreen')
+                            ? const Color(0xff2504CA)
+                            : const Color(0xff170658),
+                        fontSize: 10,
+                        fontFamily: 'Archivo',
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -47,6 +61,11 @@ class CustomNavigator extends StatelessWidget {
                           'assets/Vectores/Iconos/inversiones.svg')),
                   const Text(
                     'Inversiones',
+                    style: TextStyle(
+                        color: Color(0xff170658),
+                        fontSize: 10,
+                        fontFamily: 'Archivo',
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -60,11 +79,24 @@ class CustomNavigator extends StatelessWidget {
                   IconButton(
                       visualDensity: VisualDensity.compact,
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, WalletScreen.routeName);
+                      },
                       icon: SvgPicture.asset(
-                          'assets/Vectores/Iconos/wallet.svg')),
-                  const Text(
+                        'assets/Vectores/Iconos/wallet.svg',
+                        color: (currentPath == 'WalletScreen')
+                            ? const Color(0xff2504CA)
+                            : const Color(0xff170658),
+                      )),
+                  Text(
                     'Billetera',
+                    style: TextStyle(
+                        color: (currentPath == 'WalletScreen')
+                            ? const Color(0xff2504CA)
+                            : const Color(0xff170658),
+                        fontSize: 10,
+                        fontFamily: 'Archivo',
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -83,6 +115,11 @@ class CustomNavigator extends StatelessWidget {
                           'assets/Vectores/Iconos/mercado.svg')),
                   const Text(
                     'Mercado',
+                    style: TextStyle(
+                        color: Color(0xff170658),
+                        fontSize: 10,
+                        fontFamily: 'Archivo',
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
               ),
@@ -101,6 +138,11 @@ class CustomNavigator extends StatelessWidget {
                           'assets/Vectores/Iconos/referidos(2).svg')),
                   const Text(
                     'Referidos',
+                    style: TextStyle(
+                        color: Color(0xff170658),
+                        fontSize: 10,
+                        fontFamily: 'Archivo',
+                        fontWeight: FontWeight.w400),
                   ),
                 ],
               ),

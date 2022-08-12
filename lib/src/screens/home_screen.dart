@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
 import 'package:ebloqs_app/src/utilitis/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
@@ -461,270 +462,279 @@ class HomeScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        width: size.width * 0.95,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: const Color(0xffeae4fc),
-                            width: 0.88,
+                      return GestureDetector(
+                        child: Container(
+                          width: size.width * 0.95,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: const Color(0xffeae4fc),
+                              width: 0.88,
+                            ),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x0f000000),
+                                blurRadius: 17.62,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                            color: Colors.white,
                           ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x0f000000),
-                              blurRadius: 17.62,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                Image.asset(inversiones[index]['imagen']),
-                                Positioned(
-                                    top: size.height * 0.015,
-                                    right: size.width * 0.03,
-                                    child: SvgPicture.asset(
-                                        'assets/Vectores/Iconos/Hearth.svg'))
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.017,
-                                  left: size.width * 0.032,
-                                  right: size.width * 0.032),
-                              child: Row(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Stack(
                                 children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        inversiones[index]['inversion'],
-                                        style: const TextStyle(
-                                          color: Color(0xff170658),
-                                          fontSize: 15,
-                                          fontFamily: "Archivo",
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: size.width * 0.37,
-                                        child: Text(
-                                          inversiones[index]['sector'],
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 2,
-                                          style: const TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Expanded(child: Container()),
-                                  Container(
-                                    width: size.width * 0.4,
-                                    height: size.height * 0.063,
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.025,
-                                        vertical: size.height * 0.009),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4.40),
-                                      color: const Color(0xfff9f9fa),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
+                                  Image.asset(inversiones[index]['imagen']),
+                                  Positioned(
+                                      top: size.height * 0.015,
+                                      right: size.width * 0.03,
+                                      child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Hearth.svg'))
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.017,
+                                    left: size.width * 0.032,
+                                    right: size.width * 0.032),
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.end,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Precio x Token \$${inversiones[index]['precio']}",
-                                          textAlign: TextAlign.center,
+                                          inversiones[index]['inversion'],
                                           style: const TextStyle(
-                                            color: Color(0xff2504ca),
-                                            fontSize: 13,
+                                            color: Color(0xff170658),
+                                            fontSize: 15,
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                        const Text(
-                                          "1 EBL",
-                                          textAlign: TextAlign.right,
-                                          style: TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 13,
+                                        SizedBox(
+                                          width: size.width * 0.37,
+                                          child: Text(
+                                            inversiones[index]['sector'],
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                            style: const TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 13,
+                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.032,
-                                  vertical: size.height * 0.015),
-                              child: Center(
-                                child: Container(
-                                  width: size.width * 0.9,
-                                  height: size.height * 0.001,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xff170658),
-                                      width: 0.12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.032,
-                              ),
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Building.svg'),
-                                  Text(
-                                    "${inversiones[index]['pisos']} Pisos ",
-                                    style: const TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  Expanded(child: Container()),
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Plus.svg'),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.032,
-                                  vertical: size.height * 0.015),
-                              child: Center(
-                                child: Container(
-                                  width: size.width * 0.9,
-                                  height: size.height * 0.001,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xff170658),
-                                      width: 0.12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.032,
-                              ),
-                              child: Text(
-                                "Rentabilidad acumulada promedio ${inversiones[index]['rentabilidad']}%",
-                                style: const TextStyle(
-                                    fontSize: 12, color: Color(0xff170658)),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.032,
-                                  vertical: size.height * 0.0152),
-                              child: Center(
-                                child: Container(
-                                  width: size.width * 0.9,
-                                  height: size.height * 0.001,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xff170658),
-                                      width: 0.12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  bottom: size.height * 0.04,
-                                  left: size.width * 0.032,
-                                  right: size.width * 0.032),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: size.width * 0.2,
-                                    height: size.height * 0.03,
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          width: size.width * 0.065,
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Image.asset(
-                                              'assets/avatares/2x/profile-1-2x.png'),
-                                        ),
-                                        Positioned(
-                                          left: size.width * 0.045,
-                                          child: Container(
-                                            width: size.width * 0.065,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
+                                    Expanded(child: Container()),
+                                    Container(
+                                      width: size.width * 0.4,
+                                      height: size.height * 0.063,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: size.width * 0.025,
+                                          vertical: size.height * 0.009),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(4.40),
+                                        color: const Color(0xfff9f9fa),
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            "Precio x Token \$${inversiones[index]['precio']}",
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                              color: Color(0xff2504ca),
+                                              fontSize: 13,
+                                              fontFamily: "Archivo",
+                                              fontWeight: FontWeight.w600,
                                             ),
-                                            child: Image.asset(
-                                                'assets/avatares/2x/profile-2-2x.png'),
                                           ),
-                                        ),
-                                        Positioned(
-                                          left: size.width * 0.09,
-                                          child: Container(
-                                            width: size.width * 0.065,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
+                                          const Text(
+                                            "1 EBL",
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 13,
                                             ),
-                                            child: Image.asset(
-                                                'assets/avatares/2x/profile-3-2x.png'),
                                           ),
-                                        ),
-                                        Positioned(
-                                          left: size.width * 0.13,
-                                          child: Container(
-                                            width: size.width * 0.065,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.asset(
-                                                'assets/avatares/2x/profile-4-2x.png'),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.03),
-                                    child: SizedBox(
-                                      width: size.width * 0.57,
-                                      child: const Text(
-                                        '''+ 100 personas ya compraron
-tokens en esta propiedad.''',
-                                        style: TextStyle(
-                                          color: Color(0xff170658),
-                                          fontSize: 12,
-                                        ),
+                                        ],
                                       ),
                                     ),
-                                  )
-                                ],
+                                  ],
+                                ),
                               ),
-                            )
-                          ],
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.032,
+                                    vertical: size.height * 0.015),
+                                child: Center(
+                                  child: Container(
+                                    width: size.width * 0.9,
+                                    height: size.height * 0.001,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: const Color(0xff170658),
+                                        width: 0.12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.032,
+                                ),
+                                child: Row(
+                                  children: [
+                                    SvgPicture.asset(
+                                        'assets/Vectores/Iconos/Building.svg'),
+                                    Text(
+                                      "${inversiones[index]['pisos']} Pisos ",
+                                      style: const TextStyle(
+                                        color: Color(0xff170658),
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                    Expanded(child: Container()),
+                                    SvgPicture.asset(
+                                        'assets/Vectores/Iconos/Plus.svg'),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.032,
+                                    vertical: size.height * 0.015),
+                                child: Center(
+                                  child: Container(
+                                    width: size.width * 0.9,
+                                    height: size.height * 0.001,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: const Color(0xff170658),
+                                        width: 0.12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.032,
+                                ),
+                                child: Text(
+                                  "Rentabilidad acumulada promedio ${inversiones[index]['rentabilidad']}%",
+                                  style: const TextStyle(
+                                      fontSize: 12, color: Color(0xff170658)),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.032,
+                                    vertical: size.height * 0.0152),
+                                child: Center(
+                                  child: Container(
+                                    width: size.width * 0.9,
+                                    height: size.height * 0.001,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: const Color(0xff170658),
+                                        width: 0.12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: size.height * 0.04,
+                                    left: size.width * 0.032,
+                                    right: size.width * 0.032),
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: size.width * 0.2,
+                                      height: size.height * 0.03,
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            width: size.width * 0.065,
+                                            decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.asset(
+                                                'assets/avatares/2x/profile-1-2x.png'),
+                                          ),
+                                          Positioned(
+                                            left: size.width * 0.045,
+                                            child: Container(
+                                              width: size.width * 0.065,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.asset(
+                                                  'assets/avatares/2x/profile-2-2x.png'),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            left: size.width * 0.09,
+                                            child: Container(
+                                              width: size.width * 0.065,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.asset(
+                                                  'assets/avatares/2x/profile-3-2x.png'),
+                                            ),
+                                          ),
+                                          Positioned(
+                                            left: size.width * 0.13,
+                                            child: Container(
+                                              width: size.width * 0.065,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.asset(
+                                                  'assets/avatares/2x/profile-4-2x.png'),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.03),
+                                      child: SizedBox(
+                                        width: size.width * 0.57,
+                                        child: const Text(
+                                          '''+ 100 personas ya compraron
+                      tokens en esta propiedad.''',
+                                          style: TextStyle(
+                                            color: Color(0xff170658),
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, ProjectViewScreen.routeName);
+                        },
                       );
                     },
                   ),

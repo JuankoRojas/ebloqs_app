@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/utilitis/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -300,7 +301,9 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                             )
                           ],
                         ),
-                        onTap: () async {},
+                        onTap: () async {
+                          Navigator.pushNamed(context, ComprarScreen.routeName);
+                        },
                       ),
                     ),
                   ],

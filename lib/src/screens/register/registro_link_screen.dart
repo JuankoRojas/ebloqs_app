@@ -1,5 +1,5 @@
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
-import 'package:ebloqs_app/src/screens/home_screen.dart';
+import 'package:ebloqs_app/src/screens/wallet/create_wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -190,7 +190,7 @@ continuar el proceso de registro en Ebloqs''',
                                   //   }
                                   // }
                                   Navigator.pushNamed(
-                                      context, HomeScreen.routeName);
+                                      context, CreateWalletScreen.routeName);
                                 },
                               ),
                             ),
@@ -248,7 +248,7 @@ continuar el proceso de registro en Ebloqs''',
                                   //   }
                                   // }
                                   Navigator.pushNamed(
-                                      context, HomeScreen.routeName);
+                                      context, CreateWalletScreen.routeName);
                                 },
                               ),
                             ),
@@ -287,7 +287,7 @@ continuar el proceso de registro en Ebloqs''',
                                 ),
                                 onTap: () async {
                                   Navigator.pushNamed(
-                                      context, HomeScreen.routeName);
+                                      context, CreateWalletScreen.routeName);
                                 },
                               ),
                             )
