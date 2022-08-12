@@ -1,16 +1,27 @@
 import 'dart:io';
 
+import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
+import 'package:ebloqs_app/src/screens/register/registro_link_screen.dart';
 import 'package:ebloqs_app/src/services/apple_signin_service.dart';
+import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/services/google_signin_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
-class RegistroRedesScreen extends StatelessWidget {
+class RegistroRedesScreen extends StatefulWidget {
   static const routeName = 'RegistroRedesScreen';
   const RegistroRedesScreen({Key? key}) : super(key: key);
 
+  @override
+  State<RegistroRedesScreen> createState() => _RegistroRedesScreenState();
+}
+
+class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -86,8 +97,34 @@ class RegistroRedesScreen extends StatelessWidget {
                     children: [
                       IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {
-                          GoogleSignInService.signInWithGoogle();
+                        onPressed: () async {
+                          final GoogleSignInAccount response =
+                              await GoogleSignInService.signInWithGoogle();
+                          if (response.email.isNotEmpty) {
+                            final register = await AuthUserService()
+                                .registerUser(
+                                    email: response.email,
+                                    deviceID: response.id,
+                                    type_acount: 'google');
+
+                            if (register["access_token"] != null) {
+                              setState(() {
+                                Preferences.token = register['access_token'];
+                                Provider.of<UserInfoProvider>(context,
+                                        listen: false)
+                                    .emailset(response.email);
+                              });
+
+                              Future.delayed(Duration.zero).then(
+                                (_) => Navigator.pushNamedAndRemoveUntil(
+                                    context,
+                                    RegistroLinkScreen.routeName,
+                                    (route) => false),
+                              );
+                            } else {
+                              print(register);
+                            }
+                          }
                         },
                         icon: SvgPicture.asset(
                             'assets/Vectores/Iconos/Group2145.svg'),
