@@ -1,8 +1,10 @@
 import 'dart:ui';
 
-import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
+import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utilitis/tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CreateWalletScreen extends StatefulWidget {
@@ -176,9 +178,9 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                           SizedBox(
                             width: 277,
                             child: (visible == true)
-                                ? const Text(
-                                    "carry theory shiver isolate erosion clog man agent photo upper manual tide",
-                                    style: TextStyle(
+                                ? Text(
+                                    Preferences.mnemonic!,
+                                    style: const TextStyle(
                                       color: Color(0xff170658),
                                       fontSize: 14,
                                     ),
@@ -187,9 +189,9 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                                     imageFilter: ImageFilter.blur(
                                         sigmaX: (visible == true) ? 0 : 5,
                                         sigmaY: (visible == true) ? 0 : 5),
-                                    child: const Text(
-                                      "carry theory shiver isolate erosion clog man agent photo upper manual tide",
-                                      style: TextStyle(
+                                    child: Text(
+                                      Preferences.mnemonic!,
+                                      style: const TextStyle(
                                         color: Color(0xff170658),
                                         fontSize: 14,
                                       ),
@@ -228,20 +230,26 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 25.0),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset('assets/Vectores/Iconos/Copy 2.svg'),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 9.0),
-                          child: Text(
-                            "COPIAR",
-                            style: TextStyle(
-                              color: Color(0xff2504ca),
-                              fontSize: 11.59,
+                    child: GestureDetector(
+                      child: Row(
+                        children: [
+                          SvgPicture.asset('assets/Vectores/Iconos/Copy 2.svg'),
+                          const Padding(
+                            padding: EdgeInsets.only(left: 9.0),
+                            child: Text(
+                              "COPIAR",
+                              style: TextStyle(
+                                color: Color(0xff2504ca),
+                                fontSize: 11.59,
+                              ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
+                      onTap: () {
+                        Clipboard.setData(
+                            ClipboardData(text: Preferences.mnemonic));
+                      },
                     ),
                   ),
                   Padding(
@@ -282,8 +290,7 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                         ],
                       ),
                       onTap: () async {
-                        Navigator.pushNamed(
-                            context, CreateWalletPassScreen.routeName);
+                        Navigator.pushNamed(context, ComprarScreen.routeName);
                       },
                     ),
                   ),

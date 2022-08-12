@@ -1,5 +1,7 @@
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/register/registro_link_screen.dart';
+import 'package:ebloqs_app/src/services/auth_user_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -116,25 +118,25 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                     ],
                   ),
                   onTap: () async {
-                    // final register = await AuthUserService().registerUser(
-                    //     email: emailController.text,
-                    //     deviceID: uuid.v4(),
-                    //     type_acount: 'email');
+                    final register = await AuthUserService().registerUser(
+                        email: emailController.text,
+                        deviceID: uuid.v4(),
+                        type_acount: 'email');
 
-                    // if (register["access_token"] != null) {
-                    //   setState(() {
-                    //     Preferences.token = register['access_token'];
-                    Provider.of<UserInfoProvider>(context, listen: false)
-                        .emailset(emailController.text);
-                    //   });
+                    if (register["access_token"] != null) {
+                      setState(() {
+                        Preferences.token = register['access_token'];
+                        Provider.of<UserInfoProvider>(context, listen: false)
+                            .emailset(emailController.text);
+                      });
 
-                    Future.delayed(Duration.zero).then(
-                      (_) => Navigator.pushNamedAndRemoveUntil(context,
-                          RegistroLinkScreen.routeName, (route) => false),
-                    );
-                    // } else {
-                    //   print(register);
-                    // }
+                      Future.delayed(Duration.zero).then(
+                        (_) => Navigator.pushNamedAndRemoveUntil(context,
+                            RegistroLinkScreen.routeName, (route) => false),
+                      );
+                    } else {
+                      print(register);
+                    }
                   },
                 ),
               ),

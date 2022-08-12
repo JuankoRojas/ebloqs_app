@@ -1,4 +1,6 @@
-import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
+import 'package:ebloqs_app/src/screens/wallet/create_wallet_screen.dart';
+import 'package:ebloqs_app/src/services/create_wallet_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utilitis/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,8 +15,8 @@ class CreateWalletPassScreen extends StatefulWidget {
 
 class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
   bool visible = false;
-  bool _showPassword = false;
-  bool _showConfirmPassword = false;
+  bool _showPassword = true;
+  bool _showConfirmPassword = true;
   final GlobalKey<FormState> formKey3 = GlobalKey<FormState>();
 
   final TextEditingController passController = TextEditingController();
@@ -302,7 +304,23 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                           ],
                         ),
                         onTap: () async {
-                          Navigator.pushNamed(context, ComprarScreen.routeName);
+                          if (passController.text ==
+                              passConfirmController.text) {
+                            try {
+                              final Map response = await CreateWallet()
+                                  .createWallet(pass: passController.text);
+                              print(response);
+                              if (response.isNotEmpty) {
+                                Preferences.id_wallet = response['id_wallet'];
+                                Preferences.mnemonic = response['mnemonic'];
+                                Future.delayed(Duration.zero).then((_) =>
+                                    Navigator.pushNamed(
+                                        context, CreateWalletScreen.routeName));
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
+                          }
                         },
                       ),
                     ),

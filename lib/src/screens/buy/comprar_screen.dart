@@ -195,10 +195,10 @@ class _ComprarScreenState extends State<ComprarScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             width: 20,
                             height: 20,
-                            child: FlutterLogo(size: 20),
+                            child: Image.asset('assets/Imagenes/eblcoin.png'),
                           ),
                           const SizedBox(width: 10),
                           Expanded(

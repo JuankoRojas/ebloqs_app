@@ -1,5 +1,5 @@
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
-import 'package:ebloqs_app/src/screens/wallet/create_wallet_screen.dart';
+import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -189,8 +189,8 @@ continuar el proceso de registro en Ebloqs''',
                                   //     throw 'Could not launch $url';
                                   //   }
                                   // }
-                                  Navigator.pushNamed(
-                                      context, CreateWalletScreen.routeName);
+                                  Navigator.pushNamed(context,
+                                      CreateWalletPassScreen.routeName);
                                 },
                               ),
                             ),
@@ -247,8 +247,8 @@ continuar el proceso de registro en Ebloqs''',
                                   //     throw 'Could not launch $url';
                                   //   }
                                   // }
-                                  Navigator.pushNamed(
-                                      context, CreateWalletScreen.routeName);
+                                  Navigator.pushNamed(context,
+                                      CreateWalletPassScreen.routeName);
                                 },
                               ),
                             ),
@@ -286,8 +286,8 @@ continuar el proceso de registro en Ebloqs''',
                                   ],
                                 ),
                                 onTap: () async {
-                                  Navigator.pushNamed(
-                                      context, CreateWalletScreen.routeName);
+                                  Navigator.pushNamed(context,
+                                      CreateWalletPassScreen.routeName);
                                 },
                               ),
                             )
