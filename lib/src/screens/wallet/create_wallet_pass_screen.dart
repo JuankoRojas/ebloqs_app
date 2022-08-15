@@ -1,7 +1,6 @@
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_screen.dart';
 import 'package:ebloqs_app/src/services/create_wallet_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
-import 'package:ebloqs_app/src/utilitis/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -27,12 +26,12 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          systemOverlayStyle: systemBarDark,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-        ),
+        // appBar: AppBar(
+        //   systemOverlayStyle: systemBarDark,
+        //   backgroundColor: Colors.transparent,
+        //   elevation: 0,
+        //   automaticallyImplyLeading: false,
+        // ),
         body: SingleChildScrollView(
           child: Stack(
             children: [
@@ -49,7 +48,7 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.canPop(context);
+                            Navigator.pop(context);
                           },
                           child: SvgPicture.asset(
                               'assets/Vectores/Iconos/Arrow left.svg'),
@@ -221,26 +220,37 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                   EdgeInsets.only(top: size.height * 0.035),
                               child: Row(
                                 children: [
-                                  Container(
-                                    width: size.width * 0.065,
-                                    height: size.width * 0.065,
-                                    padding: EdgeInsets.only(
-                                        top: size.height * 0.006,
-                                        bottom: size.height * 0.006,
-                                        left: size.width * 0.0097,
-                                        right: size.width * 0.0077),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: const Color(0xffeae4fc),
-                                        width: 1,
+                                  GestureDetector(
+                                    child: Container(
+                                      width: size.width * 0.065,
+                                      height: size.width * 0.065,
+                                      padding: EdgeInsets.only(
+                                          top: size.height * 0.006,
+                                          bottom: size.height * 0.006,
+                                          left: size.width * 0.0097,
+                                          right: size.width * 0.0077),
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xffeae4fc),
+                                          width: 1,
+                                        ),
+                                        color: const Color(0xfff6f4fd),
                                       ),
-                                      color: const Color(0xfff6f4fd),
+                                      child: (visible == true)
+                                          ? SvgPicture.asset(
+                                              'assets/Vectores/Iconos/Checktherm.svg',
+                                            )
+                                          : Container(),
                                     ),
-                                    child: (visible == true)
-                                        ? SvgPicture.asset(
-                                            'assets/Vectores/Iconos/Checktherm.svg',
-                                          )
-                                        : Container(),
+                                    onTap: () {
+                                      setState(() {
+                                        if (visible == false) {
+                                          visible = true;
+                                        } else {
+                                          visible = false;
+                                        }
+                                      });
+                                    },
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
@@ -255,15 +265,6 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
-                                      onTap: () {
-                                        setState(() {
-                                          if (visible == false) {
-                                            visible = true;
-                                          } else {
-                                            visible = false;
-                                          }
-                                        });
-                                      },
                                     ),
                                   )
                                 ],

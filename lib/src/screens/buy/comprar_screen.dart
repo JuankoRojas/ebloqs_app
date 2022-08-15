@@ -1,6 +1,5 @@
 import 'package:country_list_pick/country_list_pick.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_transferencia_screen.dart';
-import 'package:ebloqs_app/src/utilitis/tabbar.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,19 +15,29 @@ class ComprarScreen extends StatefulWidget {
 
 class _ComprarScreenState extends State<ComprarScreen> {
   String text = '';
+  double ingr = 0.0;
+  double total = 0.0;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
     String? isoCountryCode = systemLocales.first.countryCode;
+    print(isoCountryCode);
+
+    if (text != '') {
+      ingr = double.parse(text);
+      total = ingr * 0.05;
+    }
+
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        systemOverlayStyle: systemBarDark,
-        automaticallyImplyLeading: false,
-      ),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   backgroundColor: Colors.transparent,
+      //   systemOverlayStyle: systemBarDark,
+      //   automaticallyImplyLeading: false,
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
@@ -46,7 +55,8 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     child: SvgPicture.asset(
                         'assets/Vectores/Iconos/Arrow left.svg'),
                     onTap: () {
-                      Navigator.canPop(context);
+                      print('pop');
+                      Navigator.pop(context);
                     },
                   ),
                   Expanded(child: Container()),
@@ -209,7 +219,8 @@ class _ComprarScreenState extends State<ComprarScreen> {
                           SizedBox(
                             width: size.width * (20 / size.width),
                             height: size.height * (20 / size.height),
-                            child: Image.asset('assets/Imagenes/eblcoin.png'),
+                            child: SvgPicture.asset(
+                                'assets/Vectores/Iconos/ebloqscoinb.svg'),
                           ),
                           SizedBox(width: size.width * (10 / size.width)),
                           Expanded(
@@ -246,15 +257,15 @@ class _ComprarScreenState extends State<ComprarScreen> {
                             ),
                           ),
                           SizedBox(width: size.width * (10 / size.width)),
-                          Container(
-                            width: size.width * (20 / size.width),
-                            height: size.height * (20 / size.height),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: SvgPicture.asset(
-                                'assets/Vectores/Iconos/dwon chevron.svg'),
-                          ),
+                          // Container(
+                          //   width: size.width * (20 / size.width),
+                          //   height: size.height * (20 / size.height),
+                          //   decoration: BoxDecoration(
+                          //     borderRadius: BorderRadius.circular(8),
+                          //   ),
+                          //   child: SvgPicture.asset(
+                          //       'assets/Vectores/Iconos/dwon chevron.svg'),
+                          // ),
                         ],
                       ),
                     ),
@@ -346,15 +357,15 @@ class _ComprarScreenState extends State<ComprarScreen> {
                       SizedBox(
                         width: size.width * (10 / size.width),
                       ),
-                      Container(
-                        width: size.width * (20 / size.width),
-                        height: size.height * (20 / size.height),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: SvgPicture.asset(
-                            'assets/Vectores/Iconos/dwon chevron.svg'),
-                      ),
+                      // Container(
+                      //   width: size.width * (20 / size.width),
+                      //   height: size.height * (20 / size.height),
+                      //   decoration: BoxDecoration(
+                      //     borderRadius: BorderRadius.circular(8),
+                      //   ),
+                      //   child: SvgPicture.asset(
+                      //       'assets/Vectores/Iconos/dwon chevron.svg'),
+                      // ),
                     ],
                   ),
                 ),
@@ -419,11 +430,11 @@ class _ComprarScreenState extends State<ComprarScreen> {
                       SizedBox(
                         width: size.width * (10 / size.width),
                       ),
-                      const Expanded(
+                      Expanded(
                         child: SizedBox(
                           child: Text(
-                            "10.000",
-                            style: TextStyle(
+                            total.toString(),
+                            style: const TextStyle(
                               color: Color(0xff383346),
                               fontSize: 14,
                             ),
@@ -660,8 +671,8 @@ class _ComprarScreenState extends State<ComprarScreen> {
                         ),
                       ),
                       Expanded(child: Container()),
-                      SvgPicture.asset(
-                          'assets/Vectores/Iconos/chevronright.svg'),
+                      // SvgPicture.asset(
+                      //     'assets/Vectores/Iconos/chevronright.svg'),
                     ],
                   ),
                 ),
@@ -717,8 +728,8 @@ class _ComprarScreenState extends State<ComprarScreen> {
                         ),
                       ),
                       Expanded(child: Container()),
-                      SvgPicture.asset(
-                          'assets/Vectores/Iconos/chevronright.svg'),
+                      // SvgPicture.asset(
+                      //     'assets/Vectores/Iconos/chevronright.svg'),
                     ],
                   ),
                 ),

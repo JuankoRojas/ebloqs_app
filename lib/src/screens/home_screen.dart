@@ -298,6 +298,7 @@ class HomeScreen extends StatelessWidget {
                                   Container(
                                     width: size.width * 0.15,
                                     height: size.width * 0.15,
+                                    padding: EdgeInsets.all(size.width * 0.02),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
                                       gradient: LinearGradient(
@@ -309,6 +310,8 @@ class HomeScreen extends StatelessWidget {
                                         ],
                                       ),
                                     ),
+                                    child: SvgPicture.asset(
+                                        'assets/Vectores/Iconos/ebloqscoinb.svg'),
                                   ),
                                   SvgPicture.asset(
                                     'assets/Vectores/Iconos/chevronright.svg',
@@ -1204,7 +1207,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: size.height * 0.35,
+                height: size.height * 0.37,
                 child: ListView.builder(
                   itemCount: inversionesVehiculos.length,
                   scrollDirection: Axis.horizontal,

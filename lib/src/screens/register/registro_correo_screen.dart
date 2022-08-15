@@ -123,6 +123,7 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                   onTap: () async {
                     final register = await AuthUserService().registerUser(
                         email: emailController.text,
+                        name: emailController.text.split('@').first,
                         deviceID: uuid.v4(),
                         type_acount: 'email');
 
@@ -134,8 +135,10 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                       });
 
                       Future.delayed(Duration.zero).then(
-                        (_) => Navigator.pushNamedAndRemoveUntil(context,
-                            RegistroLinkScreen.routeName, (route) => false),
+                        (_) => Navigator.pushNamed(
+                          context,
+                          RegistroLinkScreen.routeName,
+                        ),
                       );
                     } else {
                       print(register);

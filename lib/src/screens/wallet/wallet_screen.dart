@@ -1,5 +1,7 @@
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -151,6 +153,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           Container(
                             width: size.width * 0.15,
                             height: size.width * 0.15,
+                            padding: EdgeInsets.all(size.width * 0.02),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
                               gradient: LinearGradient(
@@ -162,6 +165,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                 ],
                               ),
                             ),
+                            child: SvgPicture.asset(
+                                'assets/Vectores/Iconos/ebloqscoinb.svg'),
                           ),
                           Padding(
                             padding: EdgeInsets.only(
@@ -429,24 +434,30 @@ class _WalletScreenState extends State<WalletScreen> {
                                     },
                                   ),
                                 ),
-                                Container(
-                                  width: size.width * (36 / size.width),
-                                  height: size.height * (36 / size.height),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Colors.white.withOpacity(0.7),
-                                        const Color(0x00ffffff)
-                                      ],
+                                GestureDetector(
+                                  child: Container(
+                                    width: size.width * (36 / size.width),
+                                    height: size.height * (36 / size.height),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Colors.white.withOpacity(0.7),
+                                          const Color(0x00ffffff)
+                                        ],
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/copy2.svg'),
                                     ),
                                   ),
-                                  child: Center(
-                                    child: SvgPicture.asset(
-                                        'assets/Vectores/Iconos/copy2.svg'),
-                                  ),
+                                  onTap: () {
+                                    Clipboard.setData(ClipboardData(
+                                        text: Preferences.id_wallet));
+                                  },
                                 ),
                               ],
                             ),

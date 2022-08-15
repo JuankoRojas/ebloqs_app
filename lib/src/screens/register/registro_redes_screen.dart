@@ -105,6 +105,8 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                 .registerUser(
                                     email: response.email,
                                     deviceID: response.id,
+                                    name: response.displayName ??
+                                        response.email.split('@').first,
                                     type_acount: 'google');
 
                             if (register["access_token"] != null) {

@@ -33,12 +33,14 @@ dependencies:
   crypto: ^3.0.2
   cupertino_icons: ^1.0.5
   device_apps: ^2.2.0
+
   extended_image: ^6.2.1
   flutter:
     sdk: flutter
   flutter_facebook_auth: ^4.4.0+1
   flutter_image_slideshow: ^0.1.2
   flutter_svg: ^1.1.1+1
+  geolocator: ^9.0.1
   google_sign_in: ^5.4.0
   http: ^0.13.4
   numeric_keyboard: ^1.1.0

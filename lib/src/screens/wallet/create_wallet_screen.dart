@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
-import 'package:ebloqs_app/src/utilitis/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,12 +24,12 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
     print(size.height);
     return Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          systemOverlayStyle: systemBarDark,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          automaticallyImplyLeading: false,
-        ),
+        // appBar: AppBar(
+        //   systemOverlayStyle: systemBarDark,
+        //   backgroundColor: Colors.transparent,
+        //   elevation: 0,
+        //   automaticallyImplyLeading: false,
+        // ),
         body: Stack(
           children: [
             Image.asset('assets/png/02 1.png'),
@@ -45,7 +44,9 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
                         child: SvgPicture.asset(
                             'assets/Vectores/Iconos/Arrow left.svg'),
                       ),

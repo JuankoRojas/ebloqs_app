@@ -1,6 +1,8 @@
+import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class TransferirEbloqsScreen extends StatefulWidget {
   static const routeName = 'TransferirEbloqsScreen';
@@ -14,7 +16,8 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    String cuenta = '307714257896005';
+    String cuenta =
+        Provider.of<AccountInfoProvider>(context).numeroCuenta.toString();
     String subCuenta = cuenta.substring(0, 4);
 
     String subCuenta2 = cuenta.substring(cuenta.length - 4);

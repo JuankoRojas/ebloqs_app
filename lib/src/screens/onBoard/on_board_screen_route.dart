@@ -28,24 +28,18 @@ class OnBoardPageRoute extends StatelessWidget {
 
 class _NavegacionOnBoard with ChangeNotifier {
   int _paginaOnBoardActual = 0;
-  final PageController _pageOnBoardController = PageController();
 
   int get paginaActual => _paginaOnBoardActual;
 
-  set paginaActual(int valor) {
-    _paginaOnBoardActual = valor;
-    _pageOnBoardController.animateToPage(valor,
+  void animationController(PageController controller, int value) {
+    controller.animateToPage(value,
         duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
-
-    notifyListeners();
   }
 
-  PageController get pageController => _pageOnBoardController;
-
-  @override
-  void dispose() {
-    _pageOnBoardController.dispose();
-    super.dispose();
+  void setPageIndex(PageController controller, int index) {
+    _paginaOnBoardActual = index;
+    animationController(controller, index);
+    notifyListeners();
   }
 }
 
@@ -58,66 +52,126 @@ class _PaginasOnBoard extends StatefulWidget {
 
 class __PaginasOnBoardState extends State<_PaginasOnBoard> {
   int index = 0;
+  final navegacionOnBoard = _NavegacionOnBoard();
+  final PageController _pageOnBoardController = PageController();
+
+  @override
+  void initState() {
+    _pageOnBoardController.addListener(() {
+      index = _pageOnBoardController.page!.toInt();
+    });
+    pagination();
+    super.initState();
+  }
+
+  pagination() {
+    Timer.periodic(const Duration(seconds: 3), (timer) {
+      print(index);
+      navegacionOnBoard.setPageIndex(_pageOnBoardController, index);
+      if (index < 4) {
+        index++;
+      } else {
+        timer.cancel();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final navegacionOnBoard = Provider.of<_NavegacionOnBoard>(
-      context,
-    );
 
-    Timer(const Duration(seconds: 2), () {
-      switch (index) {
-        case 0:
-          Future.delayed(const Duration(milliseconds: 1000))
-              .then((_) => navegacionOnBoard.paginaActual = 1);
-          break;
-        case 1:
-          navegacionOnBoard.paginaActual = 2;
-          break;
-        case 2:
-          navegacionOnBoard.paginaActual = 3;
-          break;
-        case 3:
-          navegacionOnBoard.paginaActual = 4;
-          break;
-        case 4:
-          navegacionOnBoard.paginaActual = 4;
-          break;
-        // case 5:
-        //   navegacionOnBoard.paginaActual = 5;
-        //   break;
-        default:
-          navegacionOnBoard.paginaActual = 0;
-          break;
-      }
-    });
+    // Timer(const Duration(seconds: 2), () {
+    //   switch (index) {
+    //     case 0:
+    //       Future.delayed(const Duration(milliseconds: 1000))
+    //           .then((_) => navegacionOnBoard.paginaActual = 1);
+    //       break;
+    //     case 1:
+    //       navegacionOnBoard.paginaActual = 2;
+    //       break;
+    //     case 2:
+    //       navegacionOnBoard.paginaActual = 3;
+    //       break;
+    //     case 3:
+    //       navegacionOnBoard.paginaActual = 4;
+    //       break;
+    //     case 4:
+    //       navegacionOnBoard.paginaActual = 4;
+    //       break;
+    //     // case 5:
+    //     //   navegacionOnBoard.paginaActual = 5;
+    //     //   break;
+    //     default:
+    //       navegacionOnBoard.paginaActual = 0;
+    //       break;
+    //   }
+    // });
 
     // final navegacionOnBoard = Provider.of<_NavegacionOnBoard>(context);
-    navegacionOnBoard.pageController.addListener(() {
-      setState(() {
-        index = navegacionOnBoard.pageController.page!.toInt();
-      });
-    });
 
     return Stack(
       children: [
         PageView(
-          controller: navegacionOnBoard.pageController,
+          controller: _pageOnBoardController,
           physics: const NeverScrollableScrollPhysics(),
-          children: const <Widget>[
-            Onboard1Screen(),
-            Onboard2Screen(),
-            Onboard3Screen(),
-            Onboard4Screen(),
-            Onboard5Screen(),
+          children: <Widget>[
+            GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dx < 0) {
+                    navegacionOnBoard.setPageIndex(
+                        _pageOnBoardController, index + 1);
+                  }
+                },
+                child: const Onboard1Screen()),
+            GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dx < 0) {
+                    navegacionOnBoard.setPageIndex(
+                        _pageOnBoardController, index + 1);
+                  } else {
+                    navegacionOnBoard.setPageIndex(
+                        _pageOnBoardController, index - 1);
+                  }
+                },
+                child: const Onboard2Screen()),
+            GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dx < 0) {
+                    navegacionOnBoard.setPageIndex(
+                        _pageOnBoardController, index + 1);
+                  } else {
+                    navegacionOnBoard.setPageIndex(
+                        _pageOnBoardController, index - 1);
+                  }
+                },
+                child: const Onboard3Screen()),
+            GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dx < 0) {
+                    navegacionOnBoard.setPageIndex(
+                        _pageOnBoardController, index + 1);
+                  } else {
+                    navegacionOnBoard.setPageIndex(
+                        _pageOnBoardController, index - 1);
+                  }
+                },
+                child: const Onboard4Screen()),
+            GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dx < 0) {
+                  } else {
+                    navegacionOnBoard.setPageIndex(
+                        _pageOnBoardController, index - 1);
+                  }
+                },
+                child: const Onboard5Screen()),
           ],
         ),
         Positioned(
             top: size.height * 0.943,
             left: 35,
             child: SmoothPageIndicator(
-              controller: navegacionOnBoard.pageController,
+              controller: _pageOnBoardController,
               count: 5,
               effect: ExpandingDotsEffect(
                 dotHeight: 8.0,

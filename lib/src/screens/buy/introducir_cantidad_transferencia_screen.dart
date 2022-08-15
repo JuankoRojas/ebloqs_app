@@ -1,7 +1,8 @@
+import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/transferir_ebloqs_screen.dart';
-import 'package:ebloqs_app/src/utilitis/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class IntroducirCantidadTransferenciaScreen extends StatefulWidget {
   static const String routeName = 'IntroducirCantidadTransferenciaScreen';
@@ -22,26 +23,38 @@ class _IntroducirCantidadTransferenciaScreenState
   final TextEditingController quantityController = TextEditingController();
 
   PageController controller = PageController();
-  String nombreTitular = '';
-  String nombreBanco = '';
-  String numeroTarjeta = '';
 
   int _current = 0;
+  double comision = 50.00;
+  double? cantidad;
+  double? recibes;
+  @override
+  void initState() {
+    quantityController.text = widget.cantidadTransferencia!;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    print(size.height);
-    quantityController.text = widget.cantidadTransferencia!;
+    // print(size.height);
+
     print(_current);
+    if (widget.cantidadTransferencia!.isNotEmpty &&
+        quantityController.text == widget.cantidadTransferencia) {
+      cantidad = double.parse(widget.cantidadTransferencia!);
+      recibes = cantidad! - comision;
+      print(cantidad);
+      print(recibes);
+    }
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        systemOverlayStyle: systemBarDark,
-        automaticallyImplyLeading: false,
-      ),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   backgroundColor: Colors.transparent,
+      //   systemOverlayStyle: systemBarDark,
+      //   automaticallyImplyLeading: false,
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
@@ -58,7 +71,9 @@ class _IntroducirCantidadTransferenciaScreenState
                   GestureDetector(
                     child: SvgPicture.asset(
                         'assets/Vectores/Iconos/Arrow left.svg'),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    },
                   ),
                   Expanded(child: Container()),
                   const Text(
@@ -99,7 +114,7 @@ class _IntroducirCantidadTransferenciaScreenState
                   key: formKey9,
                   child: TextFormField(
                     controller: quantityController,
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       suffixIcon: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -138,6 +153,19 @@ class _IntroducirCantidadTransferenciaScreenState
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
+                    // onEditingComplete: () {
+                    //   setState(() {
+                    //     cantidad = double.parse(quantityController.text);
+                    //   });
+                    // },
+                    onChanged: (value) {
+                      setState(() {
+                        if (value.isNotEmpty) {
+                          cantidad = double.parse(value);
+                          recibes = cantidad! - comision;
+                        }
+                      });
+                    },
                   ),
                 ),
               ),
@@ -159,18 +187,18 @@ class _IntroducirCantidadTransferenciaScreenState
                   top: size.height * (6 / size.height),
                 ),
                 child: Row(
-                  children: const [
+                  children: [
                     Text(
-                      "50.00 ",
-                      style: TextStyle(
+                      recibes.toString(),
+                      style: const TextStyle(
                         color: Color(0xff2504ca),
                         fontSize: 28,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Text(
-                      "EUR",
+                    const Text(
+                      " USD",
                       style: TextStyle(
                         color: Color(0xff2504ca),
                         fontSize: 28,
@@ -214,8 +242,8 @@ class _IntroducirCantidadTransferenciaScreenState
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "Comisión transacción:",
                       style: TextStyle(
                         color: Color(0xff170658),
@@ -223,9 +251,9 @@ class _IntroducirCantidadTransferenciaScreenState
                       ),
                     ),
                     Text(
-                      "50.00 EUR",
+                      "${comision.toString()} USD",
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xff170658),
                         fontSize: 14,
                         fontFamily: "Archivo",
@@ -241,7 +269,7 @@ class _IntroducirCantidadTransferenciaScreenState
                 ),
                 child: SizedBox(
                   width: size.width,
-                  height: size.height * (400 / size.height),
+                  height: size.height * (410 / size.height),
                   child: PageView(
                     controller: controller,
                     scrollDirection: Axis.horizontal,
@@ -255,14 +283,8 @@ class _IntroducirCantidadTransferenciaScreenState
                       ),
                       PageForm(
                         controller: controller,
-                        name: nombreTitular,
-                        bankName: nombreBanco,
-                        accountNumber: numeroTarjeta,
                       ),
-                      PageConfirm(
-                          name: nombreTitular,
-                          bankName: nombreBanco,
-                          accountNumber: numeroTarjeta),
+                      const PageConfirm(),
                     ],
                     onPageChanged: (page) {
                       setState(() {
@@ -337,16 +359,11 @@ class _IntroducirCantidadTransferenciaScreenState
 
 class PageForm extends StatefulWidget {
   final PageController controller;
-  String? name;
-  String? bankName;
-  String? accountNumber;
-  PageForm(
-      {Key? key,
-      required this.controller,
-      required this.name,
-      required this.bankName,
-      required this.accountNumber})
-      : super(key: key);
+
+  const PageForm({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   State<PageForm> createState() => _PageFormState();
@@ -361,9 +378,6 @@ class _PageFormState extends State<PageForm> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    widget.name = nameController.text;
-    widget.bankName = bankNameController.text;
-    widget.accountNumber = accountNumberController.text;
 
     return Container(
       width: size.width,
@@ -445,6 +459,12 @@ class _PageFormState extends State<PageForm> {
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        Provider.of<AccountInfoProvider>(context, listen: false)
+                            .nombreTitular = value;
+                      });
+                    },
                   ),
                 ),
                 Padding(
@@ -479,6 +499,12 @@ class _PageFormState extends State<PageForm> {
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        Provider.of<AccountInfoProvider>(context, listen: false)
+                            .nombreBanco = value;
+                      });
+                    },
                   ),
                 ),
                 Padding(
@@ -513,6 +539,12 @@ class _PageFormState extends State<PageForm> {
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        Provider.of<AccountInfoProvider>(context, listen: false)
+                            .numeroCuenta = int.parse(value);
+                      });
+                    },
                   ),
                 ),
               ],
@@ -525,15 +557,9 @@ class _PageFormState extends State<PageForm> {
 }
 
 class PageConfirm extends StatefulWidget {
-  final String name;
-  final String bankName;
-  final String accountNumber;
-  const PageConfirm(
-      {Key? key,
-      required this.name,
-      required this.bankName,
-      required this.accountNumber})
-      : super(key: key);
+  const PageConfirm({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PageConfirm> createState() => _PageConfirmState();
@@ -545,9 +571,13 @@ class _PageConfirmState extends State<PageConfirm> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    String? nombreTitular =
+        Provider.of<AccountInfoProvider>(context).nombreTitular;
+    String? nombreBanco = Provider.of<AccountInfoProvider>(context).nombreBanco;
+    int? numeroCuenta = Provider.of<AccountInfoProvider>(context).numeroCuenta;
     return Container(
       width: size.width,
-      height: size.height * (421 / size.height),
+      height: size.height * (430 / size.height),
       padding: EdgeInsets.only(
         top: size.height * (24 / size.height),
         right: size.width * (13 / size.width),
@@ -604,9 +634,9 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (3 / size.height),
             ),
-            child: const Text(
-              "Jorge Ramirez",
-              style: TextStyle(
+            child: Text(
+              nombreTitular ?? '',
+              style: const TextStyle(
                 color: Color(0xff170658),
                 fontSize: 13,
               ),
@@ -630,9 +660,9 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (3 / size.height),
             ),
-            child: const Text(
-              "Banco Pichincha",
-              style: TextStyle(
+            child: Text(
+              nombreBanco ?? '',
+              style: const TextStyle(
                 color: Color(0xff170658),
                 fontSize: 13,
               ),
@@ -656,9 +686,9 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (3 / size.height),
             ),
-            child: const Text(
-              "307712005",
-              style: TextStyle(
+            child: Text(
+              numeroCuenta.toString(),
+              style: const TextStyle(
                 color: Color(0xff170658),
                 fontSize: 13,
               ),
