@@ -24,10 +24,12 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 130),
+          padding: EdgeInsets.symmetric(
+              horizontal: size.width * 0.05, vertical: size.height * 0.16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,9 +39,10 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                   'assets/Vectores/Ilustraciones/Group1825.svg',
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 93.0, bottom: 5),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(
+                    top: size.height * 0.115, bottom: size.height * 0.007),
+                child: const Text(
                   'Regístrate',
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -59,7 +62,7 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 30),
+                padding: EdgeInsets.only(top: size.height * 0.038),
                 child: Form(
                   key: formKey,
                   child: TextFormField(
@@ -81,7 +84,7 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16.0),
+                padding: EdgeInsets.only(top: size.height * 0.02),
                 child: GestureDetector(
                   child: Stack(
                     alignment: AlignmentDirectional.center,

@@ -20,18 +20,23 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    print(size.width);
+    print(size.height);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           systemOverlayStyle: systemBarDark,
           backgroundColor: Colors.transparent,
           elevation: 0,
+          automaticallyImplyLeading: false,
         ),
         body: Stack(
           children: [
             Image.asset('assets/png/02 1.png'),
             Padding(
-              padding: const EdgeInsets.only(top: 62.0, left: 15),
+              padding: EdgeInsets.only(
+                  top: size.height * 0.075, left: size.width * 0.037),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,9 +67,9 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                       Expanded(child: Container()),
                     ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 45.0),
-                    child: Text(
+                  Padding(
+                    padding: EdgeInsets.only(top: size.height * 0.055),
+                    child: const Text(
                       "Respalda tu billetera",
                       style: TextStyle(
                         color: Color(0xff170658),
@@ -74,11 +79,11 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0),
+                  Padding(
+                    padding: EdgeInsets.only(top: size.height * 0.013),
                     child: SizedBox(
-                      width: 345,
-                      child: Text(
+                      width: size.width * 0.91,
+                      child: const Text(
                         "Su frase de recuperación secreta se usa para  recuperar su cripto si pierde su teléfono o cambia a una billetera diferente.",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -88,18 +93,18 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 17.0),
+                    padding: EdgeInsets.only(top: size.height * 0.02),
                     child: SizedBox(
-                      width: 345,
-                      height: 84,
+                      width: size.width * 0.92,
+                      height: size.height * 0.105,
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            width: 345,
-                            height: 84,
+                            width: size.width * 0.92,
+                            height: size.height * 0.105,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               border: Border.all(
@@ -108,11 +113,11 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                               ),
                               color: const Color(0xfff9f9fa),
                             ),
-                            padding: const EdgeInsets.only(
-                              left: 13,
-                              right: 8,
-                              top: 14,
-                              bottom: 16,
+                            padding: EdgeInsets.only(
+                              left: size.width * 0.033,
+                              right: size.width * 0.028,
+                              top: size.height * 0.017,
+                              bottom: size.height * 0.019,
                             ),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
@@ -120,18 +125,18 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
-                                  width: 24,
-                                  height: 24,
+                                  width: size.width * 0.065,
+                                  height: size.width * 0.065,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: SvgPicture.asset(
                                       'assets/Vectores/Iconos/candado.svg'),
                                 ),
-                                const SizedBox(width: 17),
-                                const SizedBox(
-                                  width: 280,
-                                  child: Text(
+                                SizedBox(width: size.width * 0.043),
+                                SizedBox(
+                                  width: size.width * 0.745,
+                                  child: const Text(
                                     "Guarde estas 12 palabras en un lugar seguro, \ncomo un administrador de contraseñas, y \nnunca lo comparta con nadie.",
                                     style: TextStyle(
                                       color: Color(0xff170658),
@@ -146,9 +151,9 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 28.0),
-                    child: Text(
+                  Padding(
+                    padding: EdgeInsets.only(top: size.height * 0.036),
+                    child: const Text(
                       "Tu Frase",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -160,10 +165,10 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: EdgeInsets.only(top: size.height * 0.009),
                     child: Container(
-                      width: 345,
-                      height: 84,
+                      width: size.width * 0.91,
+                      height: size.height * 0.105,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(4),
                         border: Border.all(
@@ -176,7 +181,7 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SizedBox(
-                            width: 277,
+                            width: size.width * 0.74,
                             child: (visible == true)
                                 ? Text(
                                     Preferences.mnemonic!,
@@ -212,8 +217,8 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                               });
                             },
                             child: Container(
-                              width: 24,
-                              height: 24,
+                              width: size.width * 0.065,
+                              height: size.height * 0.032,
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
@@ -229,14 +234,14 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 25.0),
+                    padding: EdgeInsets.only(top: size.height * 0.0307),
                     child: GestureDetector(
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/Vectores/Iconos/Copy 2.svg'),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 9.0),
-                            child: Text(
+                          Padding(
+                            padding: EdgeInsets.only(left: size.width * 0.023),
+                            child: const Text(
                               "COPIAR",
                               style: TextStyle(
                                 color: Color(0xff2504ca),
@@ -253,13 +258,14 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 204.0, right: 15),
+                    padding: EdgeInsets.only(
+                        top: size.height * 0.25, right: size.width * 0.039),
                     child: GestureDetector(
                       child: Stack(
                         alignment: AlignmentDirectional.center,
                         children: [
                           Container(
-                            height: 52,
+                            height: size.height * 0.064,
                             width: double.infinity,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),

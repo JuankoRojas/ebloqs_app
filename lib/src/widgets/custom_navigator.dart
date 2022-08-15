@@ -7,13 +7,17 @@ class CustomNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     String? currentPath = ModalRoute.of(context)!.settings.name;
     print('currentPath: $currentPath');
+    final size = MediaQuery.of(context).size;
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
       ),
       child: Container(
-        padding:
-            const EdgeInsets.only(top: 10, bottom: 18, left: 13, right: 13),
+        padding: EdgeInsets.only(
+            top: size.height * (10 / size.height),
+            bottom: size.height * (18 / size.height),
+            left: size.width * (13 / size.width),
+            right: size.width * (13 / size.width)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

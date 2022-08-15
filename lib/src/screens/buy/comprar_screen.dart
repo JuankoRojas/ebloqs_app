@@ -27,10 +27,14 @@ class _ComprarScreenState extends State<ComprarScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: systemBarDark,
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 27, left: 16, right: 16),
+          padding: EdgeInsets.only(
+              top: size.height * (27 / size.height),
+              left: size.width * (16 / size.width),
+              right: size.width * (16 / size.width)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,9 +50,10 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     },
                   ),
                   Expanded(child: Container()),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 40.0),
-                    child: Text(
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: size.width * (40 / size.width)),
+                    child: const Text(
                       "Comprar",
                       style: TextStyle(
                         color: Color(0xff170658),
@@ -73,9 +78,10 @@ class _ComprarScreenState extends State<ComprarScreen> {
                           ),
                         ),
                         centerTitle: true,
-                        leadingWidth: 44,
+                        leadingWidth: size.width * (44 / size.width),
                         leading: Padding(
-                          padding: const EdgeInsets.only(left: 16),
+                          padding: EdgeInsets.only(
+                              left: size.width * (16 / size.width)),
                           child: GestureDetector(
                             onTap: () {
                               Navigator.pop(context);
@@ -89,10 +95,14 @@ class _ComprarScreenState extends State<ComprarScreen> {
 // if you need custom picker use this
                       pickerBuilder: (context, CountryCode? countryCode) {
                         return Container(
-                          width: 90,
-                          height: 41,
-                          padding: const EdgeInsets.only(
-                              top: 11, right: 6, bottom: 10, left: 7),
+                          width: size.width * (90 / size.width),
+                          height: size.height * (41 / size.height),
+                          padding: EdgeInsets.only(
+                            top: size.height * (11 / size.height),
+                            right: size.width * (6 / size.width),
+                            bottom: size.height * (10 / size.height),
+                            left: size.width * (7 / size.width),
+                          ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
                             border: Border.all(
@@ -116,12 +126,13 @@ class _ComprarScreenState extends State<ComprarScreen> {
                                 child: Image.asset(
                                   countryCode!.flagUri!,
                                   package: 'country_list_pick',
-                                  width: 24,
-                                  height: 20,
+                                  width: size.width * (24 / size.width),
+                                  height: size.height * (24 / size.height),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 4.0),
+                                padding: EdgeInsets.only(
+                                    left: size.width * (4 / size.width)),
                                 child: Text(
                                   countryCode.code!,
                                   style: const TextStyle(
@@ -163,9 +174,9 @@ class _ComprarScreenState extends State<ComprarScreen> {
                       useSafeArea: false),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 27.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (27 / size.height)),
+                child: const Text(
                   "Vas a comprar",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -176,9 +187,9 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 5.0),
+                padding: EdgeInsets.only(top: size.height * (5 / size.height)),
                 child: SizedBox(
-                  width: 343,
+                  width: size.width * (343 / size.width),
                   child: Material(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -196,11 +207,11 @@ class _ComprarScreenState extends State<ComprarScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SizedBox(
-                            width: 20,
-                            height: 20,
+                            width: size.width * (20 / size.width),
+                            height: size.height * (20 / size.height),
                             child: Image.asset('assets/Imagenes/eblcoin.png'),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: size.width * (10 / size.width)),
                           Expanded(
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
@@ -221,7 +232,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                               ],
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: size.width * (10 / size.width)),
                           const Expanded(
                             child: SizedBox(
                               child: Text(
@@ -234,10 +245,10 @@ class _ComprarScreenState extends State<ComprarScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 10),
+                          SizedBox(width: size.width * (10 / size.width)),
                           Container(
-                            width: 20,
-                            height: 20,
+                            width: size.width * (20 / size.width),
+                            height: size.height * (20 / size.height),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -250,9 +261,9 @@ class _ComprarScreenState extends State<ComprarScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 18.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (18 / size.height)),
+                child: const Text(
                   "Cantidad",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -263,9 +274,9 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: EdgeInsets.only(top: size.height * (8 / size.height)),
                 child: Container(
-                  width: 343,
+                  width: size.width * (343 / size.width),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     border: Border.all(
@@ -281,7 +292,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 44,
+                        width: size.width * (44 / size.width),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -303,7 +314,9 @@ class _ComprarScreenState extends State<ComprarScreen> {
                           ],
                         ),
                       ),
-                      const SizedBox(width: 10),
+                      SizedBox(
+                        width: size.width * (10 / size.width),
+                      ),
                       Expanded(
                         child: SizedBox(
                           child: Text(
@@ -315,7 +328,9 @@ class _ComprarScreenState extends State<ComprarScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 10),
+                      SizedBox(
+                        width: size.width * (10 / size.width),
+                      ),
                       const Expanded(
                         child: SizedBox(
                           child: Text(
@@ -328,10 +343,12 @@ class _ComprarScreenState extends State<ComprarScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 10),
+                      SizedBox(
+                        width: size.width * (10 / size.width),
+                      ),
                       Container(
-                        width: 20,
-                        height: 20,
+                        width: size.width * (20 / size.width),
+                        height: size.height * (20 / size.height),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -342,9 +359,11 @@ class _ComprarScreenState extends State<ComprarScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 18.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(
+                  top: size.height * (18 / size.height),
+                ),
+                child: const Text(
                   "Total EBL",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -355,9 +374,11 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (8 / size.height),
+                ),
                 child: Container(
-                  width: 343,
+                  width: size.width * (343 / size.width),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     border: Border.all(
@@ -373,7 +394,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 44,
+                        width: size.width * (44 / size.width),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -395,7 +416,9 @@ class _ComprarScreenState extends State<ComprarScreen> {
                           ],
                         ),
                       ),
-                      const SizedBox(width: 10),
+                      SizedBox(
+                        width: size.width * (10 / size.width),
+                      ),
                       const Expanded(
                         child: SizedBox(
                           child: Text(
@@ -412,13 +435,15 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 32.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (32 / size.height),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       child: Container(
-                        width: 79,
+                        width: size.width * (79 / size.width),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
@@ -446,7 +471,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     ),
                     GestureDetector(
                       child: Container(
-                        width: 79,
+                        width: size.width * (79 / size.width),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
@@ -474,7 +499,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     ),
                     GestureDetector(
                       child: Container(
-                        width: 79,
+                        width: size.width * (79 / size.width),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
@@ -502,7 +527,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     ),
                     GestureDetector(
                       child: Container(
-                        width: 79,
+                        width: size.width * (79 / size.width),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           border: Border.all(
@@ -532,9 +557,11 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 24.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (24 / size.height),
+                ),
                 child: Container(
-                  width: 341,
+                  width: size.width * (341 / size.width),
                   height: 1,
                   color: const Color(0xffD3D2D6),
                 ),
@@ -565,11 +592,13 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 ),
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 56.0),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: size.height * (56 / size.height),
+                ),
                 child: SizedBox(
-                  width: 342,
-                  child: Text(
+                  width: size.width * (342 / size.width),
+                  child: const Text(
                     "Método de Pago",
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -581,11 +610,16 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 15.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (15 / size.height),
+                ),
                 child: Container(
-                  width: 345,
-                  height: 78,
-                  padding: const EdgeInsets.only(left: 18, right: 18),
+                  width: size.width * (345 / size.width),
+                  height: size.height * (78 / size.height),
+                  padding: EdgeInsets.only(
+                    left: size.width * (18 / size.width),
+                    right: size.width * (18 / size.width),
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
@@ -599,7 +633,9 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     children: [
                       SvgPicture.asset('assets/Vectores/Iconos/bank.svg'),
                       Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
+                        padding: EdgeInsets.only(
+                          left: size.width * (16 / size.width),
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -631,11 +667,16 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (8 / size.height),
+                ),
                 child: Container(
-                  width: 345,
-                  height: 78,
-                  padding: const EdgeInsets.only(left: 18, right: 18),
+                  width: size.width * (345 / size.width),
+                  height: size.height * (78 / size.height),
+                  padding: EdgeInsets.only(
+                    left: size.width * (18 / size.width),
+                    right: size.width * (18 / size.width),
+                  ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
@@ -649,7 +690,9 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     children: [
                       SvgPicture.asset('assets/Vectores/Iconos/card.svg'),
                       Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
+                        padding: EdgeInsets.only(
+                          left: size.width * (16 / size.width),
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -681,15 +724,15 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 24.0,
+                padding: EdgeInsets.only(
+                  top: size.height * (24 / size.height),
                 ),
                 child: GestureDetector(
                   child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: [
                       Container(
-                        height: 52,
+                        height: size.height * (52 / size.height),
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),

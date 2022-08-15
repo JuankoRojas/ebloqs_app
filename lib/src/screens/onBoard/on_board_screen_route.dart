@@ -5,6 +5,7 @@ import 'package:ebloqs_app/src/screens/onBoard/on_board_2_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_3_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_4_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_5_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';

@@ -1,5 +1,6 @@
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -15,11 +16,13 @@ class RegistroLinkScreen extends StatefulWidget {
 class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     String? email = Provider.of<UserInfoProvider>(context).emailget;
     print(email);
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 130),
+        padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.05, vertical: size.height * 0.16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,22 +32,21 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
                 Center(
                   child: SvgPicture.asset(
                     'assets/Vectores/Iconos/Group2148.svg',
-                    width: 98,
-                    height: 98,
+                    width: size.width * 0.25,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 70.0, left: 205),
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.086, left: size.width * 0.545),
                   child: SvgPicture.asset(
                     'assets/Vectores/Iconos/checkcircle.svg',
-                    width: 27,
-                    height: 27,
+                    width: size.width * 0.07,
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+              padding: EdgeInsets.only(top: size.height * 0.025),
               child: Center(
                 child: Text(
                   email ?? '',
@@ -56,9 +58,9 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 29.0),
+              padding: EdgeInsets.only(top: size.height * 0.037),
               child: Container(
-                height: 78,
+                height: size.height * 0.095,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   border: Border.all(
@@ -80,13 +82,13 @@ continuar el proceso de registro en Ebloqs''',
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+              padding: EdgeInsets.only(top: size.height * 0.025),
               child: GestureDetector(
                 child: Stack(
                   alignment: AlignmentDirectional.center,
                   children: [
                     Container(
-                      height: 52,
+                      height: size.width * 0.135,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -138,8 +140,10 @@ continuar el proceso de registro en Ebloqs''',
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 31.0, left: 30, right: 30),
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.035,
+                                  left: size.width * 0.075,
+                                  right: size.width * 0.075),
                               child: GestureDetector(
                                 child: Row(
                                   mainAxisAlignment:
@@ -147,12 +151,12 @@ continuar el proceso de registro en Ebloqs''',
                                   children: [
                                     Image.asset(
                                       'assets/Imagenes/image2.png',
-                                      width: 43,
-                                      height: 43,
+                                      width: size.width * 0.12,
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 26.0),
-                                      child: Text(
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.07),
+                                      child: const Text(
                                         "Abrir Gmail",
                                         style: TextStyle(
                                           color: Color(0xff170658),
@@ -165,8 +169,7 @@ continuar el proceso de registro en Ebloqs''',
                                     Expanded(child: Container()),
                                     SvgPicture.asset(
                                       'assets/Vectores/Iconos/chevronright.svg',
-                                      width: 24,
-                                      height: 24,
+                                      width: size.width * 0.06,
                                     ),
                                   ],
                                 ),
@@ -195,8 +198,10 @@ continuar el proceso de registro en Ebloqs''',
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 31.0, left: 30, right: 30),
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.035,
+                                  left: size.width * 0.075,
+                                  right: size.width * 0.075),
                               child: GestureDetector(
                                 child: Row(
                                   mainAxisAlignment:
@@ -204,12 +209,12 @@ continuar el proceso de registro en Ebloqs''',
                                   children: [
                                     Image.asset(
                                       'assets/Imagenes/image1.png',
-                                      width: 43,
-                                      height: 43,
+                                      width: size.width * 0.12,
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 26.0),
-                                      child: Text(
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.07),
+                                      child: const Text(
                                         "Abrir Outlook",
                                         style: TextStyle(
                                           color: Color(0xff170658),
@@ -222,8 +227,7 @@ continuar el proceso de registro en Ebloqs''',
                                     Expanded(child: Container()),
                                     SvgPicture.asset(
                                       'assets/Vectores/Iconos/chevronright.svg',
-                                      width: 24,
-                                      height: 24,
+                                      width: size.width * 0.06,
                                     ),
                                   ],
                                 ),
@@ -253,8 +257,11 @@ continuar el proceso de registro en Ebloqs''',
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 31.0, left: 30, right: 30, bottom: 67),
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.035,
+                                  left: size.width * 0.075,
+                                  right: size.width * 0.075,
+                                  bottom: 67),
                               child: GestureDetector(
                                 child: Row(
                                   mainAxisAlignment:
@@ -265,9 +272,10 @@ continuar el proceso de registro en Ebloqs''',
                                       width: 43,
                                       height: 43,
                                     ),
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 26.0),
-                                      child: Text(
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.07),
+                                      child: const Text(
                                         "Abrir Apple Mail",
                                         style: TextStyle(
                                           color: Color(0xff170658),
@@ -280,8 +288,7 @@ continuar el proceso de registro en Ebloqs''',
                                     Expanded(child: Container()),
                                     SvgPicture.asset(
                                       'assets/Vectores/Iconos/chevronright.svg',
-                                      width: 24,
-                                      height: 24,
+                                      width: size.width * 0.06,
                                     ),
                                   ],
                                 ),
@@ -297,9 +304,9 @@ continuar el proceso de registro en Ebloqs''',
                 },
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 82.0),
-              child: Text(
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.1),
+              child: const Text(
                 "¿No recibiste el correo?",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -308,9 +315,9 @@ continuar el proceso de registro en Ebloqs''',
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 12.0),
-              child: Text(
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.015),
+              child: const Text(
                 "Envíalo otra vez",
                 textAlign: TextAlign.center,
                 style: TextStyle(

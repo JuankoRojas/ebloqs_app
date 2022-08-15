@@ -60,12 +60,15 @@ class _WalletScreenState extends State<WalletScreen> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16),
+                padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: Container(
-                  width: 359,
-                  height: 175,
-                  padding: const EdgeInsets.only(
-                      top: 24, right: 12, bottom: 10, left: 16),
+                  width: size.width * (359 / size.width),
+                  height: size.height * (175 / size.height),
+                  padding: EdgeInsets.only(
+                      top: size.height * (24 / size.height),
+                      right: size.width * (12 / size.width),
+                      bottom: size.height * (10 / size.height),
+                      left: size.width * (16 / size.width)),
                   decoration: BoxDecoration(
                     image: const DecorationImage(
                       image: AssetImage('assets/Imagenes/Mask group.png'),
@@ -88,7 +91,8 @@ class _WalletScreenState extends State<WalletScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 7.0),
+                            padding: EdgeInsets.only(
+                                top: size.height * (7 / size.height)),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
@@ -111,7 +115,8 @@ class _WalletScreenState extends State<WalletScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 6.0),
+                            padding: EdgeInsets.only(
+                                top: size.height * (6 / size.height)),
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(100),
@@ -159,7 +164,8 @@ class _WalletScreenState extends State<WalletScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 36.0),
+                            padding: EdgeInsets.only(
+                                top: size.height * (36 / size.height)),
                             child: Row(
                               children: [
                                 const Text(
@@ -172,12 +178,13 @@ class _WalletScreenState extends State<WalletScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 15.0, left: 17),
+                                  padding: EdgeInsets.only(
+                                      right: size.width * (15 / size.width),
+                                      left: size.width * (17 / size.width)),
                                   child: GestureDetector(
                                     child: Container(
-                                      width: 36,
-                                      height: 36,
+                                      width: size.width * (36 / size.width),
+                                      height: size.height * (36 / size.height),
                                       decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(100),
@@ -207,8 +214,10 @@ class _WalletScreenState extends State<WalletScreen> {
                                                     BorderRadius.circular(20.0),
                                               ),
                                               content: SizedBox(
-                                                width: 333,
-                                                height: 597,
+                                                width: size.width *
+                                                    (333 / size.width),
+                                                height: size.height *
+                                                    (597 / size.height),
                                                 child: Stack(
                                                   children: [
                                                     Image.asset(
@@ -234,10 +243,10 @@ class _WalletScreenState extends State<WalletScreen> {
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 7.0),
+                                                          padding: EdgeInsets.only(
+                                                              top: size.height *
+                                                                  (7 /
+                                                                      size.height)),
                                                           child: QrImage(
                                                             data:
                                                                 "0xbc1655182858764PxC90298",
@@ -246,11 +255,12 @@ class _WalletScreenState extends State<WalletScreen> {
                                                             size: 222.0,
                                                           ),
                                                         ),
-                                                        const Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 25.0),
-                                                          child: Text(
+                                                        Padding(
+                                                          padding: EdgeInsets.only(
+                                                              top: size.height *
+                                                                  (25 /
+                                                                      size.height)),
+                                                          child: const Text(
                                                             "0xbc1655182858764PxC90298",
                                                             style: TextStyle(
                                                               color:
@@ -260,13 +270,24 @@ class _WalletScreenState extends State<WalletScreen> {
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 35.0,
-                                                                  right: 16,
-                                                                  bottom: 8,
-                                                                  left: 16),
+                                                          padding: EdgeInsets.only(
+                                                              top: size.height *
+                                                                  (35 /
+                                                                      size
+                                                                          .height),
+                                                              right: size
+                                                                      .width *
+                                                                  (16 /
+                                                                      size
+                                                                          .width),
+                                                              bottom: size
+                                                                      .height *
+                                                                  (8 /
+                                                                      size
+                                                                          .height),
+                                                              left: size.width *
+                                                                  (16 /
+                                                                      size.width)),
                                                           child:
                                                               GestureDetector(
                                                             child: Stack(
@@ -275,8 +296,14 @@ class _WalletScreenState extends State<WalletScreen> {
                                                                       .center,
                                                               children: [
                                                                 Container(
-                                                                  height: 52,
-                                                                  width: 301,
+                                                                  height: size
+                                                                          .height *
+                                                                      (52 /
+                                                                          size.height),
+                                                                  width: size
+                                                                          .width *
+                                                                      (301 /
+                                                                          size.width),
                                                                   decoration:
                                                                       BoxDecoration(
                                                                     borderRadius:
@@ -302,10 +329,14 @@ class _WalletScreenState extends State<WalletScreen> {
                                                                     child: Image
                                                                         .asset(
                                                                       'assets/png/buttongradient.png',
-                                                                      width:
-                                                                          301,
-                                                                      height:
-                                                                          52,
+                                                                      width: size
+                                                                              .width *
+                                                                          (301 /
+                                                                              size.width),
+                                                                      height: size
+                                                                              .height *
+                                                                          (52 /
+                                                                              size.height),
                                                                       fit: BoxFit
                                                                           .cover,
                                                                     ),
@@ -334,16 +365,26 @@ class _WalletScreenState extends State<WalletScreen> {
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  right: 16,
-                                                                  left: 16),
+                                                          padding: EdgeInsets.only(
+                                                              right: size
+                                                                      .width *
+                                                                  (16 /
+                                                                      size
+                                                                          .width),
+                                                              left: size.width *
+                                                                  (16 /
+                                                                      size.width)),
                                                           child:
                                                               GestureDetector(
                                                             child: Container(
-                                                              width: 301,
-                                                              height: 52,
+                                                              width: size
+                                                                      .width *
+                                                                  (301 /
+                                                                      size.width),
+                                                              height: size
+                                                                      .height *
+                                                                  (52 /
+                                                                      size.height),
                                                               decoration:
                                                                   BoxDecoration(
                                                                 borderRadius:
@@ -389,8 +430,8 @@ class _WalletScreenState extends State<WalletScreen> {
                                   ),
                                 ),
                                 Container(
-                                  width: 36,
-                                  height: 36,
+                                  width: size.width * (36 / size.width),
+                                  height: size.height * (36 / size.height),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
                                     gradient: LinearGradient(
@@ -417,7 +458,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16.0),
+                padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -483,13 +524,14 @@ class _WalletScreenState extends State<WalletScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 37.25),
+                padding:
+                    EdgeInsets.only(top: size.height * (37.25 / size.height)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(
-                      width: 284,
-                      child: Text(
+                    SizedBox(
+                      width: size.width * (284 / size.width),
+                      child: const Text(
                         "Tu acreditación de criptos puede tardar de cinco minutos hasta una hora.",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -501,9 +543,9 @@ class _WalletScreenState extends State<WalletScreen> {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 21.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (21 / size.height)),
+                child: const Text(
                   "Saldos disponibles",
                   style: TextStyle(
                     color: Color(0xff2504ca),
@@ -520,10 +562,11 @@ class _WalletScreenState extends State<WalletScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        children: const [
+                        children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 12.0),
-                            child: Text(
+                            padding: EdgeInsets.only(
+                                top: size.height * (12 / size.height)),
+                            child: const Text(
                               "Tokens",
                               style: TextStyle(
                                 color: Color(0xff170658),
@@ -536,7 +579,8 @@ class _WalletScreenState extends State<WalletScreen> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
+                        padding: EdgeInsets.only(
+                            top: size.height * (8 / size.height)),
                         child: Row(
                           children: [
                             Image.asset(
@@ -545,7 +589,8 @@ class _WalletScreenState extends State<WalletScreen> {
                               height: 42,
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 12.0),
+                              padding: EdgeInsets.only(
+                                  left: size.width * (12 / size.width)),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: const [
@@ -590,9 +635,10 @@ class _WalletScreenState extends State<WalletScreen> {
                       Container(
                         height: 8,
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 21.0),
-                        child: Text(
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: size.height * (21 / size.height)),
+                        child: const Text(
                           "50",
                           textAlign: TextAlign.right,
                           style: TextStyle(
@@ -608,9 +654,9 @@ class _WalletScreenState extends State<WalletScreen> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16),
+                padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: Container(
-                  width: 376.50,
+                  width: size.width * (376.50 / size.width),
                   height: 0.50,
                   color: const Color(0xffc9d1d1),
                 ),
@@ -618,9 +664,10 @@ class _WalletScreenState extends State<WalletScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0),
-                    child: Text(
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: size.height * (16 / size.height)),
+                    child: const Text(
                       "Dinero",
                       style: TextStyle(
                         color: Color(0xff170658),
@@ -631,16 +678,18 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding:
+                        EdgeInsets.only(top: size.height * (8 / size.height)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                            width: 42,
-                            height: 42,
+                            width: size.width * (42 / size.width),
+                            height: size.height * (42 / size.height),
                             child: Image.asset('assets/Imagenes/Dolares.png')),
                         Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
+                          padding: EdgeInsets.only(
+                              left: size.width * (12 / size.width)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
@@ -680,16 +729,18 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
+                    padding:
+                        EdgeInsets.only(top: size.height * (16 / size.height)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                            width: 42,
-                            height: 42,
+                            width: size.width * (42 / size.width),
+                            height: size.height * (42 / size.height),
                             child: Image.asset('assets/Imagenes/Euros.png')),
                         Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
+                          padding: EdgeInsets.only(
+                              left: size.width * (12 / size.width)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
@@ -731,9 +782,9 @@ class _WalletScreenState extends State<WalletScreen> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16),
+                padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: Container(
-                  width: 376.50,
+                  width: size.width * (376.50 / size.width),
                   height: 0.50,
                   color: const Color(0xffc9d1d1),
                 ),
@@ -741,9 +792,10 @@ class _WalletScreenState extends State<WalletScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(top: 16.0),
-                    child: Text(
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: size.height * (16 / size.height)),
+                    child: const Text(
                       "Criptos",
                       style: TextStyle(
                         color: Color(0xff170658),
@@ -754,13 +806,14 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding:
+                        EdgeInsets.only(top: size.height * (8 / size.height)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                            width: 42,
-                            height: 42,
+                            width: size.width * (42 / size.width),
+                            height: size.height * (42 / size.height),
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               gradient: LinearGradient(
@@ -776,7 +829,8 @@ class _WalletScreenState extends State<WalletScreen> {
                             child: SvgPicture.asset(
                                 'assets/Vectores/Iconos/Group 1807.svg')),
                         Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
+                          padding: EdgeInsets.only(
+                              left: size.width * (12 / size.width)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
@@ -816,7 +870,8 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
+                    padding:
+                        EdgeInsets.only(top: size.height * (16 / size.height)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -825,7 +880,8 @@ class _WalletScreenState extends State<WalletScreen> {
                             height: 42,
                             child: Image.asset('assets/Imagenes/Bitcoin.png')),
                         Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
+                          padding: EdgeInsets.only(
+                              left: size.width * (12 / size.width)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
@@ -865,16 +921,18 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
+                    padding:
+                        EdgeInsets.only(top: size.height * (16 / size.height)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                            width: 42,
-                            height: 42,
+                            width: size.width * (42 / size.width),
+                            height: size.height * (42 / size.height),
                             child: Image.asset('assets/Imagenes/Ethereum.png')),
                         Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
+                          padding: EdgeInsets.only(
+                              left: size.width * (12 / size.width)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [

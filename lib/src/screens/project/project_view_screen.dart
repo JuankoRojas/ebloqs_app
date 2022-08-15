@@ -72,8 +72,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 178, right: 15.0, left: 15),
+                  padding: EdgeInsets.only(
+                      top: size.height * (178 / size.height),
+                      right: size.width * (15 / size.width),
+                      left: size.width * (15 / size.width)),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,9 +102,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, bottom: 7),
+                        padding: EdgeInsets.only(
+                            top: size.height * (10 / size.height),
+                            bottom: size.height * (7 / size.height)),
                         child: Container(
-                          width: 345.50,
+                          width: size.width * (345.5 / size.width),
                           height: 0.50,
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -134,9 +138,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, bottom: 7),
+                        padding: EdgeInsets.only(
+                            top: size.height * (10 / size.height),
+                            bottom: size.height * (7 / size.height)),
                         child: Container(
-                          width: 345.50,
+                          width: size.width * (345.5 / size.width),
                           height: 0.50,
                           decoration: BoxDecoration(
                             border: Border.all(
@@ -168,14 +174,15 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 24.0),
+                        padding: EdgeInsets.only(
+                            top: size.height * (24 / size.height)),
                         child: SizedBox(
                           width: size.width,
-                          height: 63,
+                          height: size.height * (63 / size.height),
                           child: Stack(
                             children: [
                               Container(
-                                width: 43,
+                                width: size.width * (43 / size.width),
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                 ),
@@ -183,9 +190,9 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                     'assets/avatares/2x/profile-1-2x.png'),
                               ),
                               Positioned(
-                                left: 25,
+                                left: size.width * (25 / size.width),
                                 child: Container(
-                                  width: 43,
+                                  width: size.width * (43 / size.width),
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
@@ -194,9 +201,9 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Positioned(
-                                left: 50,
+                                left: size.width * (50 / size.width),
                                 child: Container(
-                                  width: 43,
+                                  width: size.width * (43 / size.width),
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
@@ -205,9 +212,9 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Positioned(
-                                left: 75,
+                                left: size.width * (75 / size.width),
                                 child: Container(
-                                  width: 43,
+                                  width: size.width * (43 / size.width),
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
@@ -216,10 +223,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Positioned(
-                                left: 102,
+                                left: size.width * (102 / size.width),
                                 child: Container(
-                                  width: 22,
-                                  padding: const EdgeInsets.only(top: 25),
+                                  width: size.width * (22 / size.width),
+                                  padding: EdgeInsets.only(
+                                      top: size.height * (25 / size.height)),
                                   decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
                                   ),
@@ -227,11 +235,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                       Image.asset('assets/Imagenes/check.png'),
                                 ),
                               ),
-                              const Positioned(
-                                left: 134,
+                              Positioned(
+                                left: size.width * (134 / size.width),
                                 child: SizedBox(
-                                  width: 210,
-                                  child: Text(
+                                  width: size.width * (210 / size.width),
+                                  child: const Text(
                                     "Únete y sé dueño de las  mejores oportunidades  de inversión inmobiliarias",
                                     style: TextStyle(
                                       color: Color(0xff170658),
@@ -245,10 +253,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0),
+                        padding: EdgeInsets.only(
+                            top: size.height * (10 / size.height)),
                         child: Container(
-                          width: 345,
-                          height: 440,
+                          width: size.width * (345 / size.width),
+                          height: size.height * (440 / size.height),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
@@ -257,11 +266,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                             color: const Color(0xfff9f9fa),
                           ),
-                          padding: const EdgeInsets.only(
-                            left: 13,
-                            right: 18,
-                            top: 23,
-                            bottom: 34,
+                          padding: EdgeInsets.only(
+                            left: size.width * (13 / size.width),
+                            right: size.width * (18 / size.width),
+                            top: size.height * (23 / size.height),
+                            bottom: size.height * (34 / size.height),
                           ),
                           child: Column(
                             children: [
@@ -283,16 +292,17 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 33.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (33 / size.height),
                                 ),
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
                                         'assets/Vectores/Iconos/inversiones.svg'),
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * (8 / size.width)),
+                                      child: const Text(
                                         "Tipo de proyecto",
                                         style: TextStyle(
                                           color: Color(0xff170658),
@@ -306,8 +316,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 11.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (11 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -332,8 +342,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 9.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (9 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -358,8 +368,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 9.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (9 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -384,8 +394,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 9.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (9 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -410,8 +420,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 9.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (9 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -436,8 +446,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 9.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (9 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -462,16 +472,17 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 30.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (30 / size.height),
                                 ),
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
                                         'assets/Vectores/Iconos/PC.svg'),
-                                    const Padding(
-                                      padding: EdgeInsets.only(left: 8.0),
-                                      child: Text(
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * (8 / size.width)),
+                                      child: const Text(
                                         "Validación",
                                         style: TextStyle(
                                           color: Color(0xff170658),
@@ -485,8 +496,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 11.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (11 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -511,8 +522,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 9.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (9 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -537,8 +548,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 9.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (9 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -563,8 +574,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 9.0,
+                                padding: EdgeInsets.only(
+                                  top: size.height * (9 / size.height),
                                 ),
                                 child: Row(
                                   mainAxisAlignment:
@@ -593,10 +604,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 24.0),
+                        padding: EdgeInsets.only(
+                            top: size.height * (24 / size.height)),
                         child: Container(
-                          width: 345,
-                          height: 460,
+                          width: size.width * (345 / size.width),
+                          height: size.height * (460 / size.height),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
@@ -605,11 +617,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                             color: const Color(0xfff9f9fa),
                           ),
-                          padding: const EdgeInsets.only(
-                            left: 13,
-                            right: 18,
-                            top: 23,
-                            bottom: 34,
+                          padding: EdgeInsets.only(
+                            left: size.width * (13 / size.width),
+                            right: size.width * (18 / size.width),
+                            top: size.height * (23 / size.height),
+                            bottom: size.height * (34 / size.height),
                           ),
                           child: Column(
                             children: [
@@ -631,7 +643,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 30.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (30 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -655,13 +668,15 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 30.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (30 / size.height)),
                                 child: Row(children: [
                                   SvgPicture.asset(
                                       'assets/Vectores/Iconos/trending up.svg'),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 8.0),
-                                    child: Text(
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size.width * (8 / size.width)),
+                                    child: const Text(
                                       "Alquiler",
                                       style: TextStyle(
                                         color: Color(0xff170658),
@@ -674,7 +689,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ]),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 13.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (13 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -698,7 +714,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 3.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (3 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -722,7 +739,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 3.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (3 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -746,13 +764,15 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 33.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (33 / size.height)),
                                 child: Row(children: [
                                   SvgPicture.asset(
                                       'assets/Vectores/Iconos/trending up.svg'),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 8.0),
-                                    child: Text(
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size.width * (8 / size.width)),
+                                    child: const Text(
                                       "Rentabilidad estimada",
                                       style: TextStyle(
                                         color: Color(0xff170658),
@@ -765,7 +785,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ]),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 13.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (13 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -789,7 +810,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 3.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (3 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -813,7 +835,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 3.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (3 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -837,7 +860,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 3.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (3 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -860,11 +884,12 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                   ],
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.only(top: 30.0),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: size.height * (30 / size.height)),
                                 child: SizedBox(
-                                  width: 318,
-                                  child: Text(
+                                  width: size.width * (318 / size.width),
+                                  child: const Text(
                                     "*Los intereses son promedios, su naturaleza es especulativa, implican un grado de riesgo. El pago es trimestral, anual y al final de la inversión.",
                                     style: TextStyle(
                                       color: Color(0xff170658),
@@ -878,10 +903,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 24.0),
+                        padding: EdgeInsets.only(
+                            top: size.height * (24 / size.height)),
                         child: Container(
-                          width: 345,
-                          height: 545,
+                          width: size.width * (345 / size.width),
+                          height: size.height * (545 / size.height),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
@@ -890,11 +916,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                             color: const Color(0xfff9f9fa),
                           ),
-                          padding: const EdgeInsets.only(
-                            left: 13,
-                            right: 18,
-                            top: 23,
-                            bottom: 34,
+                          padding: EdgeInsets.only(
+                            left: size.width * (13 / size.width),
+                            right: size.width * (18 / size.width),
+                            top: size.height * (23 / size.height),
+                            bottom: size.height * (34 / size.height),
                           ),
                           child: Column(
                             children: [
@@ -916,13 +942,15 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 33.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (33 / size.height)),
                                 child: Row(children: [
                                   SvgPicture.asset(
                                       'assets/Vectores/Iconos/trending up.svg'),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 8.0),
-                                    child: Text(
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size.width * (8 / size.width)),
+                                    child: const Text(
                                       "Centros comerciales",
                                       style: TextStyle(
                                         color: Color(0xff170658),
@@ -935,7 +963,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ]),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 11.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (11 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -959,7 +988,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 6.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (6 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -983,7 +1013,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 6.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (6 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -1007,7 +1038,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 6.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (6 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -1031,13 +1063,15 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 33.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (33 / size.height)),
                                 child: Row(children: [
                                   SvgPicture.asset(
                                       'assets/Vectores/Iconos/trending up.svg'),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 8.0),
-                                    child: Text(
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size.width * (8 / size.width)),
+                                    child: const Text(
                                       "Supermercados",
                                       style: TextStyle(
                                         color: Color(0xff170658),
@@ -1050,7 +1084,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ]),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 11.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (11 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -1074,7 +1109,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 6.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (6 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -1098,7 +1134,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 6.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (6 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -1122,13 +1159,15 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 33.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (33 / size.height)),
                                 child: Row(children: [
                                   SvgPicture.asset(
                                       'assets/Vectores/Iconos/trending up.svg'),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 8.0),
-                                    child: Text(
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size.width * (8 / size.width)),
+                                    child: const Text(
                                       "Parques",
                                       style: TextStyle(
                                         color: Color(0xff170658),
@@ -1141,7 +1180,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ]),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 11.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (11 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -1165,7 +1205,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 6.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (6 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -1189,13 +1230,15 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 33.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (33 / size.height)),
                                 child: Row(children: [
                                   SvgPicture.asset(
                                       'assets/Vectores/Iconos/trending up.svg'),
-                                  const Padding(
-                                    padding: EdgeInsets.only(left: 8.0),
-                                    child: Text(
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: size.width * (8 / size.width)),
+                                    child: const Text(
                                       "Metrovía",
                                       style: TextStyle(
                                         color: Color(0xff170658),
@@ -1208,7 +1251,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ]),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 11.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * (11 / size.height)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -1236,10 +1280,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 24.0),
+                        padding: EdgeInsets.only(
+                            top: size.height * (24 / size.height)),
                         child: Container(
-                          width: 345,
-                          height: 204,
+                          width: size.width * (345 / size.width),
+                          height: size.height * (204 / size.height),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
@@ -1248,11 +1293,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                             color: const Color(0xfff9f9fa),
                           ),
-                          padding: const EdgeInsets.only(
-                            left: 13,
-                            right: 18,
-                            top: 23,
-                            bottom: 34,
+                          padding: EdgeInsets.only(
+                            left: size.width * (13 / size.width),
+                            right: size.width * (18 / size.width),
+                            top: size.height * (23 / size.height),
+                            bottom: size.height * (34 / size.height),
                           ),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1274,9 +1319,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                       'assets/Vectores/Iconos/Chevron.svg')
                                 ],
                               ),
-                              const Padding(
-                                padding: EdgeInsets.only(top: 34.0),
-                                child: Text(
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: size.height * (34 / size.height)),
+                                child: const Text(
                                   "MASCONSTRU SAS",
                                   style: TextStyle(
                                     color: Color(0xff170658),
@@ -1286,11 +1332,12 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                   ),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.only(top: 11.0),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: size.height * (11 / size.height)),
                                 child: SizedBox(
-                                  width: 308,
-                                  child: Text(
+                                  width: size.width * (308 / size.width),
+                                  child: const Text(
                                     "La constructora se ha caracterizado por ofrecer al mercado de Quito, proyectos de vanguardia con dinámica social, moderna y sostenible.",
                                     style: TextStyle(
                                       color: Color(0xff170658),
@@ -1309,12 +1356,12 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
               ],
             ),
             Positioned(
-              top: 410,
-              left: 15,
-              right: 15,
+              top: size.height * (410 / size.height),
+              left: size.width * (15 / size.width),
+              right: size.width * (15 / size.width),
               child: Container(
-                width: 345,
-                height: 176,
+                width: size.width * (345 / size.width),
+                height: size.height * (176 / size.height),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
@@ -1330,9 +1377,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 13.0, left: 13),
-                      child: Text(
+                    Padding(
+                      padding: EdgeInsets.only(
+                          top: size.height * (13 / size.height),
+                          left: size.width * (13 / size.width)),
+                      child: const Text(
                         "Proyecto",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -1342,9 +1391,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 13),
-                      child: Text(
+                    Padding(
+                      padding:
+                          EdgeInsets.only(left: size.width * (13 / size.width)),
+                      child: const Text(
                         "Heráldica",
                         style: TextStyle(
                           color: Color(0xff2504ca),
@@ -1355,16 +1405,18 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 13),
+                      padding:
+                          EdgeInsets.only(left: size.width * (13 / size.width)),
                       child: Row(
                         children: [
                           SvgPicture.asset(
                               'assets/Vectores/Iconos/location.svg'),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 11.57),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: size.width * (11.57 / size.width)),
                             child: SizedBox(
-                              width: 301,
-                              child: Text(
+                              width: size.width * (301 / size.width),
+                              child: const Text(
                                 "Sector González Suárez, pasaje Juan Pareja y Jiménez de la Espada.",
                                 style: TextStyle(
                                   color: Color(0xff170658),
@@ -1377,11 +1429,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(
-                        top: 6.0,
+                      padding: EdgeInsets.only(
+                        top: size.height * (6 / size.height),
                       ),
                       child: Container(
-                        width: 344.50,
+                        width: size.width * (344.50 / size.width),
                         height: 0.50,
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -1392,8 +1444,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       ),
                     ),
                     Container(
-                      width: 345,
-                      height: 89,
+                      width: size.width * (345 / size.width),
+                      height: size.height * (89 / size.height),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(0),
@@ -1415,10 +1467,12 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Padding(
-                                padding: EdgeInsets.only(top: 18.0, left: 13),
-                                child: Text(
+                                padding: EdgeInsets.only(
+                                    top: size.height * (18 / size.height),
+                                    left: size.width * (13 / size.width)),
+                                child: const Text(
                                   "USD \$500",
                                   style: TextStyle(
                                     color: Color(0xff2504ca),
@@ -1429,8 +1483,9 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 13),
-                                child: Text(
+                                padding: EdgeInsets.only(
+                                    left: size.width * (13 / size.width)),
+                                child: const Text(
                                   "Precio token",
                                   style: TextStyle(
                                     color: Color(0xff170658),
@@ -1441,8 +1496,9 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 13),
-                                child: Text(
+                                padding: EdgeInsets.only(
+                                    left: size.width * (13 / size.width)),
+                                child: const Text(
                                   "1 EBL-HERALD-01",
                                   style: TextStyle(
                                     color: Color(0xff170658),
@@ -1453,16 +1509,16 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
-                              right: 10.0,
+                            padding: EdgeInsets.only(
+                              right: size.width * (10 / size.width),
                             ),
                             child: GestureDetector(
                               child: Stack(
                                 alignment: AlignmentDirectional.center,
                                 children: [
                                   Container(
-                                    height: 52,
-                                    width: 139,
+                                    height: size.height * (52 / size.height),
+                                    width: size.width * (139 / size.width),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       boxShadow: const [
@@ -1505,8 +1561,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
               ),
             ),
             Positioned(
-              top: 44,
-              left: 13,
+              top: size.height * (44 / size.height),
+              left: size.width * (13 / size.width),
               child: GestureDetector(
                 child: SvgPicture.asset('assets/Vectores/Iconos/Group 199.svg'),
                 onTap: () {
@@ -1515,16 +1571,16 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
               ),
             ),
             Positioned(
-                top: 44,
-                right: 13,
+                top: size.height * (44 / size.height),
+                right: size.width * (13 / size.width),
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.black,
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: size.width * (8 / size.width),
+                    vertical: size.height * (4 / size.height),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -1544,8 +1600,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                   ),
                 )),
             Positioned(
-              top: 306,
-              right: 13,
+              top: size.height * (306 / size.height),
+              right: size.width * (13 / size.width),
               child: Column(
                 children: [
                   GestureDetector(
@@ -1554,7 +1610,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                     onTap: () {},
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 9.0),
+                    padding:
+                        EdgeInsets.only(top: size.height * (9 / size.height)),
                     child: GestureDetector(
                       child: SvgPicture.asset(
                           'assets/Vectores/Iconos/Group 198.svg'),

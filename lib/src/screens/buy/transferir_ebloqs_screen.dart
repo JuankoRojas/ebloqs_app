@@ -13,6 +13,7 @@ class TransferirEbloqsScreen extends StatefulWidget {
 class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     String cuenta = '307714257896005';
     String subCuenta = cuenta.substring(0, 4);
 
@@ -21,7 +22,10 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 27, left: 16, right: 16),
+          padding: EdgeInsets.only(
+              top: size.height * (27 / size.height),
+              left: size.width * (16 / size.width),
+              right: size.width * (16 / size.width)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +55,7 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 35.0),
+                padding: EdgeInsets.only(top: size.height * (35 / size.height)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -78,9 +82,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16.0),
+                padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: SizedBox(
-                  width: 340,
+                  width: size.width * (340 / size.width),
                   child: Text(
                     "Transfiere tus fondos  a la cuenta que indica a continuación desde tu cuenta bancaria: $subCuenta*******$subCuenta2",
                     style: const TextStyle(
@@ -90,9 +94,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 53.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (53 / size.height)),
+                child: const Text(
                   "Datos de la cuenta bancaria Ebloqs",
                   style: TextStyle(
                     color: Color(0xff2504ca),
@@ -103,12 +107,15 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 12.0),
+                padding: EdgeInsets.only(top: size.height * (12 / size.height)),
                 child: Container(
-                  width: 343,
-                  height: 64,
-                  padding: const EdgeInsets.only(
-                      top: 10.0, right: 19, bottom: 10, left: 12),
+                  width: size.width * (343 / size.width),
+                  height: size.height * (64 / size.height),
+                  padding: EdgeInsets.only(
+                      top: size.height * (10 / size.height),
+                      right: size.width * (19 / size.width),
+                      bottom: size.height * (10 / size.height),
+                      left: size.width * (12 / size.width)),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
@@ -151,11 +158,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 16.0),
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: SizedBox(
-                  width: 341,
-                  child: Text(
+                  width: size.width * (341 / size.width),
+                  child: const Text(
                     "Incluye tu código de referencia en los comentarios: La transacción sin código, o un código incorrecto será rechazada.",
                     style: TextStyle(
                       color: Colors.black,
@@ -164,9 +171,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 32.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (32 / size.height)),
+                child: const Text(
                   "Nombre del Beneficiario de la cuenta",
                   style: TextStyle(
                     color: Color(0xff92959e),
@@ -176,9 +183,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 3.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (3 / size.height)),
+                child: const Text(
                   "Key Vision Development",
                   style: TextStyle(
                     color: Color(0xff2c3e50),
@@ -186,9 +193,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 18.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (18 / size.height)),
+                child: const Text(
                   "Número de cuenta del beneficiario",
                   style: TextStyle(
                     color: Color(0xff92959e),
@@ -198,9 +205,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 3.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (3 / size.height)),
+                child: const Text(
                   "1504546221",
                   style: TextStyle(
                     color: Color(0xff2c3e50),
@@ -208,9 +215,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 18.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (18 / size.height)),
+                child: const Text(
                   "Dirección de Beneficiario",
                   style: TextStyle(
                     color: Color(0xff92959e),
@@ -220,9 +227,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 3.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (3 / size.height)),
+                child: const Text(
                   "1504546221",
                   style: TextStyle(
                     color: Color(0xff2c3e50),
@@ -230,9 +237,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 18.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (18 / size.height)),
+                child: const Text(
                   "Código SWITF",
                   style: TextStyle(
                     color: Color(0xff92959e),
@@ -242,9 +249,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 3.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (3 / size.height)),
+                child: const Text(
                   "SIGNNIIS33XXX",
                   style: TextStyle(
                     color: Color(0xff2c3e50),
@@ -252,9 +259,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 18.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (18 / size.height)),
+                child: const Text(
                   "Nombre del Banco receptor",
                   style: TextStyle(
                     color: Color(0xff92959e),
@@ -264,9 +271,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 3.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (3 / size.height)),
+                child: const Text(
                   "Signature Bank",
                   style: TextStyle(
                     color: Color(0xff2c3e50),
@@ -274,9 +281,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 18.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (18 / size.height)),
+                child: const Text(
                   "Dirección del Banco receptor",
                   style: TextStyle(
                     color: Color(0xff92959e),
@@ -286,9 +293,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 3.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(top: size.height * (3 / size.height)),
+                child: const Text(
                   "565 Fith Avenue New York ",
                   style: TextStyle(
                     color: Color(0xff2c3e50),
@@ -297,13 +304,15 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 42.0, bottom: 60),
+                padding: EdgeInsets.only(
+                    top: size.height * (42 / size.height),
+                    bottom: size.height * (60 / size.height)),
                 child: GestureDetector(
                   child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: [
                       Container(
-                        height: 52,
+                        height: size.height * (52 / size.height),
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),

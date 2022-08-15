@@ -24,19 +24,22 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           systemOverlayStyle: systemBarDark,
           backgroundColor: Colors.transparent,
           elevation: 0,
+          automaticallyImplyLeading: false,
         ),
         body: SingleChildScrollView(
           child: Stack(
             children: [
               Image.asset('assets/png/02 1.png'),
               Padding(
-                padding: const EdgeInsets.only(top: 62.0, left: 15),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.075, left: size.width * 0.037),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,9 +72,9 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                         Expanded(child: Container()),
                       ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 45.0),
-                      child: Text(
+                    Padding(
+                      padding: EdgeInsets.only(top: size.height * 0.055),
+                      child: const Text(
                         "Crear contraseña",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -81,12 +84,12 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                         ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 10.0),
+                    Padding(
+                      padding: EdgeInsets.only(top: size.height * 0.013),
                       child: SizedBox(
-                        width: 345,
-                        height: 76,
-                        child: Text(
+                        width: size.width * 0.91,
+                        height: size.height * 0.095,
+                        child: const Text(
                           "Establezca una contraseña para su copia de seguridad en la nube y guárdela en un lugar seguro. No podemos restablecer la contraseña por usted. No reutilices tu contraseña de la nube.",
                           style: TextStyle(
                               color: Color(0xff170658),
@@ -98,7 +101,8 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 30, right: 15),
+                      padding: EdgeInsets.only(
+                          top: size.height * 0.035, right: size.width * 0.037),
                       child: Form(
                         key: formKey3,
                         child: Column(
@@ -115,7 +119,8 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 4.0),
+                              padding:
+                                  EdgeInsets.only(top: size.height * 0.005),
                               child: TextFormField(
                                 controller: passController,
                                 obscureText: _showPassword,
@@ -139,8 +144,7 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                         });
                                       },
                                       child: Container(
-                                        width: 24,
-                                        height: 24,
+                                        width: size.width * 0.065,
                                         padding: const EdgeInsets.all(4),
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -156,9 +160,10 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                 ),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 27.0),
-                              child: Text(
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(top: size.height * 0.035),
+                              child: const Text(
                                 "Ingresa una vez más tu contraseña",
                                 style: TextStyle(
                                   color: Color(0xff170658),
@@ -169,7 +174,8 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 4.0),
+                              padding:
+                                  EdgeInsets.only(top: size.height * 0.005),
                               child: TextFormField(
                                 controller: passConfirmController,
                                 obscureText: _showConfirmPassword,
@@ -194,8 +200,7 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                         });
                                       },
                                       child: Container(
-                                        width: 24,
-                                        height: 24,
+                                        width: size.width * 0.065,
                                         padding: const EdgeInsets.all(4),
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -212,17 +217,18 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 27.0),
+                              padding:
+                                  EdgeInsets.only(top: size.height * 0.035),
                               child: Row(
                                 children: [
                                   Container(
-                                    width: 24,
-                                    height: 24,
-                                    padding: const EdgeInsets.only(
-                                        top: 5.67,
-                                        bottom: 5.67,
-                                        left: 4.33,
-                                        right: 3.67),
+                                    width: size.width * 0.065,
+                                    height: size.width * 0.065,
+                                    padding: EdgeInsets.only(
+                                        top: size.height * 0.006,
+                                        bottom: size.height * 0.006,
+                                        left: size.width * 0.0097,
+                                        right: size.width * 0.0077),
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                         color: const Color(0xffeae4fc),
@@ -237,7 +243,8 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                         : Container(),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 12.0),
+                                    padding: EdgeInsets.only(
+                                        left: size.width * 0.03),
                                     child: GestureDetector(
                                       child: const Text(
                                         "Acepto términos y condiciones ebloqs",
@@ -267,13 +274,14 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 204.0, right: 15),
+                      padding: EdgeInsets.only(
+                          top: size.height * 0.255, right: size.width * 0.037),
                       child: GestureDetector(
                         child: Stack(
                           alignment: AlignmentDirectional.center,
                           children: [
                             Container(
-                              height: 52,
+                              height: size.height * 0.062,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
