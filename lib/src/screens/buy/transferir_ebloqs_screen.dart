@@ -109,7 +109,7 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               Padding(
                 padding: EdgeInsets.only(top: size.height * (12 / size.height)),
                 child: Container(
-                  width: size.width * (343 / size.width),
+                  width: size.width,
                   height: size.height * (64 / size.height),
                   padding: EdgeInsets.only(
                       top: size.height * (10 / size.height),

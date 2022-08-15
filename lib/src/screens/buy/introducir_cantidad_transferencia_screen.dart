@@ -240,7 +240,7 @@ class _IntroducirCantidadTransferenciaScreenState
                   top: size.height * (48 / size.height),
                 ),
                 child: SizedBox(
-                  width: size.width * (345 / size.width),
+                  width: size.width,
                   height: size.height * (400 / size.height),
                   child: PageView(
                     controller: controller,
@@ -366,7 +366,7 @@ class _PageFormState extends State<PageForm> {
     widget.accountNumber = accountNumberController.text;
 
     return Container(
-      width: size.width * (345 / size.width),
+      width: size.width,
       height: size.height * (421 / size.height),
       padding: EdgeInsets.only(
         top: size.height * (24 / size.height),
@@ -546,7 +546,7 @@ class _PageConfirmState extends State<PageConfirm> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Container(
-      width: size.width * (345 / size.width),
+      width: size.width,
       height: size.height * (421 / size.height),
       padding: EdgeInsets.only(
         top: size.height * (24 / size.height),
@@ -669,7 +669,7 @@ class _PageConfirmState extends State<PageConfirm> {
               top: size.height * (26 / size.height),
             ),
             child: Container(
-              width: size.width * (306.11 / size.width),
+              width: size.width,
               height: 1,
               color: const Color(0xffCCC6DC),
             ),

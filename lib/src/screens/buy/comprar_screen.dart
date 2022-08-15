@@ -189,7 +189,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
               Padding(
                 padding: EdgeInsets.only(top: size.height * (5 / size.height)),
                 child: SizedBox(
-                  width: size.width * (343 / size.width),
+                  width: size.width,
                   child: Material(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
@@ -276,7 +276,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
               Padding(
                 padding: EdgeInsets.only(top: size.height * (8 / size.height)),
                 child: Container(
-                  width: size.width * (343 / size.width),
+                  width: size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     border: Border.all(
@@ -378,7 +378,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                   top: size.height * (8 / size.height),
                 ),
                 child: Container(
-                  width: size.width * (343 / size.width),
+                  width: size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     border: Border.all(
@@ -561,7 +561,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                   top: size.height * (24 / size.height),
                 ),
                 child: Container(
-                  width: size.width * (341 / size.width),
+                  width: size.width,
                   height: 1,
                   color: const Color(0xffD3D2D6),
                 ),
@@ -614,7 +614,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                   top: size.height * (15 / size.height),
                 ),
                 child: Container(
-                  width: size.width * (345 / size.width),
+                  width: size.width,
                   height: size.height * (78 / size.height),
                   padding: EdgeInsets.only(
                     left: size.width * (18 / size.width),
@@ -671,7 +671,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                   top: size.height * (8 / size.height),
                 ),
                 child: Container(
-                  width: size.width * (345 / size.width),
+                  width: size.width,
                   height: size.height * (78 / size.height),
                   padding: EdgeInsets.only(
                     left: size.width * (18 / size.width),

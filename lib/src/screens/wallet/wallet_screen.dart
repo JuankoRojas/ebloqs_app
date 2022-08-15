@@ -62,7 +62,7 @@ class _WalletScreenState extends State<WalletScreen> {
               Padding(
                 padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: Container(
-                  width: size.width * (359 / size.width),
+                  width: size.width,
                   height: size.height * (175 / size.height),
                   padding: EdgeInsets.only(
                       top: size.height * (24 / size.height),

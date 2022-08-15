@@ -256,7 +256,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         padding: EdgeInsets.only(
                             top: size.height * (10 / size.height)),
                         child: Container(
-                          width: size.width * (345 / size.width),
+                          width: size.width,
                           height: size.height * (440 / size.height),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -607,7 +607,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         padding: EdgeInsets.only(
                             top: size.height * (24 / size.height)),
                         child: Container(
-                          width: size.width * (345 / size.width),
+                          width: size.width,
                           height: size.height * (460 / size.height),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -906,7 +906,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         padding: EdgeInsets.only(
                             top: size.height * (24 / size.height)),
                         child: Container(
-                          width: size.width * (345 / size.width),
+                          width: size.width,
                           height: size.height * (545 / size.height),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -1283,7 +1283,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         padding: EdgeInsets.only(
                             top: size.height * (24 / size.height)),
                         child: Container(
-                          width: size.width * (345 / size.width),
+                          width: size.width,
                           height: size.height * (204 / size.height),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
