@@ -3,6 +3,7 @@ import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_tarjeta_screen.da
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_transferencia_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/transferir_ebloqs_screen.dart';
 import 'package:ebloqs_app/src/screens/home_screen.dart';
+import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
@@ -38,5 +39,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     WalletScreen.routeName: (BuildContext context) => const WalletScreen(),
     ProjectViewScreen.routeName: (BuildContext context) =>
         const ProjectViewScreen(),
+    LocalAuth.routeName: (BuildContext context) => const LocalAuth(),
   };
 }

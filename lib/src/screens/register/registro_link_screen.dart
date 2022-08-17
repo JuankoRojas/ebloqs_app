@@ -1,9 +1,11 @@
+import 'package:device_apps/device_apps.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RegistroLinkScreen extends StatefulWidget {
   static const routeName = 'RegistroLinkScreen';
@@ -13,12 +15,34 @@ class RegistroLinkScreen extends StatefulWidget {
   State<RegistroLinkScreen> createState() => _RegistroLinkScreenState();
 }
 
-class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
+class _RegistroLinkScreenState extends State<RegistroLinkScreen>
+    with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print('estado de la app :$state');
+    if (state.toString() == 'AppLifecycleState.resumed') {
+      //TODO:validar que si se verificó
+      Navigator.pushNamed(context, CreateWalletPassScreen.routeName);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     String? email = Provider.of<UserInfoProvider>(context).emailget;
-    print(email);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: Column(
@@ -205,26 +229,30 @@ continuar el proceso de registro en Ebloqs''',
                                       ],
                                     ),
                                     onTap: () async {
-                                      // bool isInstalled =
-                                      //     await DeviceApps.isAppInstalled(
-                                      //         'com.google.android.gm');
-                                      // print(isInstalled);
-                                      // if (isInstalled != false) {
-                                      //   // AndroidIntent intent = const AndroidIntent(
-                                      //   //     action: 'action_view', data: '');
-                                      //   // await intent.launch();
-                                      //   DeviceApps.openApp('com.google.android.gm');
-                                      // } else {
-                                      //   String url =
-                                      //       'https://play.google.com/store/apps/details?id=com.google.android.gm&gl=US';
-                                      //   if (await canLaunchUrl(Uri.parse(url))) {
-                                      //     await launchUrl(Uri.parse(url));
-                                      //   } else {
-                                      //     throw 'Could not launch $url';
-                                      //   }
-                                      // }
-                                      Navigator.pushNamed(context,
-                                          CreateWalletPassScreen.routeName);
+                                      bool isInstalled =
+                                          await DeviceApps.isAppInstalled(
+                                              'com.google.android.gm');
+                                      print(isInstalled);
+                                      if (isInstalled != false) {
+                                        // AndroidIntent intent = const AndroidIntent(
+                                        //     action: 'action_view', data: '');
+                                        // await intent.launch();
+                                        DeviceApps.openApp(
+                                            'com.google.android.gm');
+                                        Future.delayed(Duration.zero).then(
+                                            (_) => Navigator.pop(context));
+                                      } else {
+                                        String url =
+                                            'https://play.google.com/store/apps/details?id=com.google.android.gm&gl=US';
+                                        if (await canLaunchUrl(
+                                            Uri.parse(url))) {
+                                          await launchUrl(Uri.parse(url));
+                                        } else {
+                                          throw 'Could not launch $url';
+                                        }
+                                      }
+                                      // Navigator.pushNamed(context,
+                                      //     CreateWalletPassScreen.routeName);
                                     },
                                   ),
                                 ),

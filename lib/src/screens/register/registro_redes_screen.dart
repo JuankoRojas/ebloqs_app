@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
+import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
-import 'package:ebloqs_app/src/screens/register/registro_link_screen.dart';
 import 'package:ebloqs_app/src/services/apple_signin_service.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/services/google_signin_service.dart';
@@ -120,7 +120,7 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                               Future.delayed(Duration.zero).then(
                                 (_) => Navigator.pushNamedAndRemoveUntil(
                                     context,
-                                    RegistroLinkScreen.routeName,
+                                    LocalAuth.routeName,
                                     (route) => false),
                               );
                             } else {

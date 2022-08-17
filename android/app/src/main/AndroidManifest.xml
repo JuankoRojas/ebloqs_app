@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.ebloqs.application">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -27,8 +28,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="ebloqsurl" android:host="ebloqs-validate.netlify.app" />
-                <data android:scheme="signinwithapple" />
-                <data android:path="callback" />
+                <!-- <data android:scheme="signinwithapple" />
+                <data android:path="callback" /> -->
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
