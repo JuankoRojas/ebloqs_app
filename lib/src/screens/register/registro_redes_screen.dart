@@ -5,6 +5,7 @@ import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
 import 'package:ebloqs_app/src/services/apple_signin_service.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
+import 'package:ebloqs_app/src/services/facebook_sign_in_service.dart';
 import 'package:ebloqs_app/src/services/google_signin_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 
@@ -73,7 +74,39 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                     children: [
                       IconButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () {},
+                        onPressed: () async {
+                          final response =
+                              await FacebookSignInService.facebookLogin(
+                                  context);
+                          print(response);
+                          if (response['email'] != null) {
+                            final register = await AuthUserService()
+                                .registerUser(
+                                    email: response['email'],
+                                    deviceID: response['id'],
+                                    name: response['name'] ??
+                                        response.email.split('@').first,
+                                    type_acount: 'facebook');
+
+                            if (register["access_token"] != null) {
+                              setState(() {
+                                Preferences.token = register['access_token'];
+                                Provider.of<UserInfoProvider>(context,
+                                        listen: false)
+                                    .emailset(response['email']);
+                              });
+
+                              Future.delayed(Duration.zero).then(
+                                (_) => Navigator.pushNamedAndRemoveUntil(
+                                    context,
+                                    LocalAuth.routeName,
+                                    (route) => false),
+                              );
+                            } else {
+                              print(register);
+                            }
+                          }
+                        },
                         icon: SvgPicture.asset(
                             'assets/Vectores/Iconos/Group2144.svg'),
                       ),
