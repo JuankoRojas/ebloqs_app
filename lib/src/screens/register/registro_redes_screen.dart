@@ -178,34 +178,37 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       ),
                     ],
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: (Platform.isIOS)
-                            ? AppleSigninService.signInIOS
-                            : AppleSigninService.signInAndroid,
-                        icon: const Icon(
-                          Icons.apple,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.016),
-                        child: const Text(
-                          'Apple',
-                          style: TextStyle(
-                            color: Color(0xff000000),
-                            fontSize: 11.26,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  Platform.isIOS
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            IconButton(
+                              padding: EdgeInsets.zero,
+                              onPressed: (Platform.isIOS)
+                                  ? AppleSigninService.signInIOS
+                                  : AppleSigninService.signInAndroid,
+                              icon: const Icon(
+                                Icons.apple,
+                                color: Color(0xff000000),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(top: size.height * 0.016),
+                              child: const Text(
+                                'Apple',
+                                style: TextStyle(
+                                  color: Color(0xff000000),
+                                  fontSize: 11.26,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                          ],
+                        )
+                      : Container(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

@@ -37,17 +37,21 @@ class AppleSigninService {
 
   ///Android
   static void signInAndroid() async {
-    final credential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-        webAuthenticationOptions: WebAuthenticationOptions(
-            clientId: 'com.ebloqs.signinservice',
-            redirectUri: Uri.parse(
-                'https://agile-beach-41948.herokuapp.com/auth/callback/signinwithapple')));
+    try {
+      final credential = await SignInWithApple.getAppleIDCredential(
+          scopes: [
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+          webAuthenticationOptions: WebAuthenticationOptions(
+              clientId: 'com.ebloqs.signinservice',
+              redirectUri: Uri.parse(
+                  'https://agile-beach-41948.herokuapp.com/auth/callback/signinwithapple')));
 
-    print(credential);
-    print(credential.authorizationCode); //ID Token
+      print(credential);
+      print(credential.authorizationCode); //ID Token
+    } catch (e) {
+      print(e);
+    }
   }
 }

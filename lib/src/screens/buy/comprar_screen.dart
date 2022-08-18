@@ -27,7 +27,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
 
     if (text != '') {
       ingr = double.parse(text);
-      total = ingr * 0.05;
+      total = ingr / 0.05;
     }
 
     return Scaffold(

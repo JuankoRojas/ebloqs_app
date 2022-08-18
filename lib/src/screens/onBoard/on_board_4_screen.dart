@@ -63,7 +63,7 @@ class Onboard4Screen extends StatelessWidget {
               child: const Text(
                 '''Alta rentabilidad, con 
 el mejor ratio de
-dividendos del mercado''',
+dividendos del mercado.''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: Color(0xff170658),

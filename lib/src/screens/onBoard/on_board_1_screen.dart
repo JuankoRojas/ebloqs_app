@@ -86,7 +86,7 @@ class _Onboard1ScreenState extends State<Onboard1Screen> {
                 '''ebloqs® ecosistema
 de economía de
 tokens para bienes y
-servicios''',
+servicios.''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: Color(0xffffffff),

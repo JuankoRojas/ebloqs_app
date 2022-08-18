@@ -66,6 +66,8 @@ class _LocalAuthState extends State<LocalAuth> {
     });
     if (message == 'Authorized') {
       Navigator.of(context).pushNamed(CreateWalletPassScreen.routeName);
+      Future.delayed(const Duration(seconds: 1))
+          .then((_) => _cancelAuthentication());
     }
   }
 

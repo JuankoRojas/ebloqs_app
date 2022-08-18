@@ -57,12 +57,12 @@ class Onboard5Screen extends StatelessWidget {
             top: size.height * 0.628,
             left: size.width * 0.084,
             child: SizedBox(
-              width: size.width * 0.87,
+              width: size.width * 0.95,
               height: size.height * 0.162,
               child: const Text(
                 '''También puedes invertir en
 nuestro token de utilidad
-ebloqs (EBL)''',
+ebloqs (EBL).''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: Color(0xff170658),
