@@ -22,6 +22,13 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
 
   final uuid = const Uuid();
 
+  bool validarEstructuraEmail(String value) {
+    String patron =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regExp = RegExp(patron);
+    return regExp.hasMatch(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -80,6 +87,14 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Por favor ingresa un email';
+                      } else if (!validarEstructuraEmail(value)) {
+                        return 'Por favor ingresa un email válido';
+                      }
+                      return null;
+                    },
                   ),
                 ),
               ),

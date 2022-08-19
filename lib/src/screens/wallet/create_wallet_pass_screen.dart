@@ -21,6 +21,13 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
   final TextEditingController passController = TextEditingController();
   final TextEditingController passConfirmController = TextEditingController();
 
+  bool validarEstructuraContrasena(String value) {
+    String patron =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~_]).{8,10}$';
+    RegExp regExp = RegExp(patron);
+    return regExp.hasMatch(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -121,43 +128,51 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                               padding:
                                   EdgeInsets.only(top: size.height * 0.005),
                               child: TextFormField(
-                                controller: passController,
-                                obscureText: _showPassword,
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 16,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                keyboardType: TextInputType.visiblePassword,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
+                                  controller: passController,
+                                  obscureText: _showPassword,
+                                  style: const TextStyle(
+                                    color: Color(0xff170658),
+                                    fontSize: 16,
+                                    fontFamily: "Archivo",
+                                    fontWeight: FontWeight.w400,
                                   ),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.all(14.0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _showPassword = !_showPassword;
-                                        });
-                                      },
-                                      child: Container(
-                                        width: size.width * 0.065,
-                                        padding: const EdgeInsets.all(4),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          color: const Color(0xfff9f9fa),
-                                        ),
-                                        child: SvgPicture.asset(
-                                          'assets/Vectores/Iconos/eye.svg',
+                                  keyboardType: TextInputType.visiblePassword,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    suffixIcon: Padding(
+                                      padding: const EdgeInsets.all(14.0),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            _showPassword = !_showPassword;
+                                          });
+                                        },
+                                        child: Container(
+                                          width: size.width * 0.065,
+                                          padding: const EdgeInsets.all(4),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            color: const Color(0xfff9f9fa),
+                                          ),
+                                          child: SvgPicture.asset(
+                                            'assets/Vectores/Iconos/eye.svg',
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Por favor ingresa una contraseña';
+                                    } else if (!validarEstructuraContrasena(
+                                        value)) {
+                                      return 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial';
+                                    }
+                                    return null;
+                                  }),
                             ),
                             Padding(
                               padding:
@@ -176,44 +191,52 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                               padding:
                                   EdgeInsets.only(top: size.height * 0.005),
                               child: TextFormField(
-                                controller: passConfirmController,
-                                obscureText: _showConfirmPassword,
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 16,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                keyboardType: TextInputType.visiblePassword,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
+                                  controller: passConfirmController,
+                                  obscureText: _showConfirmPassword,
+                                  style: const TextStyle(
+                                    color: Color(0xff170658),
+                                    fontSize: 16,
+                                    fontFamily: "Archivo",
+                                    fontWeight: FontWeight.w400,
                                   ),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.all(14.0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _showConfirmPassword =
-                                              !_showConfirmPassword;
-                                        });
-                                      },
-                                      child: Container(
-                                        width: size.width * 0.065,
-                                        padding: const EdgeInsets.all(4),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          color: const Color(0xfff9f9fa),
-                                        ),
-                                        child: SvgPicture.asset(
-                                          'assets/Vectores/Iconos/eye.svg',
+                                  keyboardType: TextInputType.visiblePassword,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    suffixIcon: Padding(
+                                      padding: const EdgeInsets.all(14.0),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            _showConfirmPassword =
+                                                !_showConfirmPassword;
+                                          });
+                                        },
+                                        child: Container(
+                                          width: size.width * 0.065,
+                                          padding: const EdgeInsets.all(4),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(4),
+                                            color: const Color(0xfff9f9fa),
+                                          ),
+                                          child: SvgPicture.asset(
+                                            'assets/Vectores/Iconos/eye.svg',
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Por favor ingresa una contraseña';
+                                    } else if (!validarEstructuraContrasena(
+                                        value)) {
+                                      return 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial';
+                                    }
+                                    return null;
+                                  }),
                             ),
                             Padding(
                               padding:
