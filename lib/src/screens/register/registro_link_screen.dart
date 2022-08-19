@@ -1,6 +1,5 @@
 import 'package:device_apps/device_apps.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
-import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,33 +14,15 @@ class RegistroLinkScreen extends StatefulWidget {
   State<RegistroLinkScreen> createState() => _RegistroLinkScreenState();
 }
 
-class _RegistroLinkScreenState extends State<RegistroLinkScreen>
-    with WidgetsBindingObserver {
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print('estado de la app :$state');
-    if (state.toString() == 'AppLifecycleState.resumed') {
-      //TODO:validar que si se verificó
-      Navigator.pushNamed(context, CreateWalletPassScreen.routeName);
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
+class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
+  String splitEmail = '';
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     String? email = Provider.of<UserInfoProvider>(context).emailget;
+    if (email != '') {
+      splitEmail = email!.split('@')[1];
+    }
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -173,193 +154,71 @@ continuar el proceso de registro en Ebloqs''',
                         ),
                       ],
                     ),
-                    onTap: () {
-                      showModalBottomSheet(
-                          context: context,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          )),
-                          builder: (BuildContext context) {
-                            return Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: IconButton(
-                                    onPressed: () {},
-                                    icon: SvgPicture.asset(
-                                      'assets/svg/close.svg',
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      top: size.height * 0.035,
-                                      left: size.width * 0.075,
-                                      right: size.width * 0.075),
-                                  child: GestureDetector(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Image.asset(
-                                          'assets/Imagenes/image2.png',
-                                          width: size.width * 0.12,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.07),
-                                          child: const Text(
-                                            "Abrir Gmail",
-                                            style: TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 15,
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(child: Container()),
-                                        SvgPicture.asset(
-                                          'assets/Vectores/Iconos/chevronright.svg',
-                                          width: size.width * 0.06,
-                                        ),
-                                      ],
-                                    ),
-                                    onTap: () async {
-                                      bool isInstalled =
-                                          await DeviceApps.isAppInstalled(
-                                              'com.google.android.gm');
-                                      print(isInstalled);
-                                      if (isInstalled != false) {
-                                        // AndroidIntent intent = const AndroidIntent(
-                                        //     action: 'action_view', data: '');
-                                        // await intent.launch();
-                                        DeviceApps.openApp(
-                                            'com.google.android.gm');
-                                        Future.delayed(Duration.zero).then(
-                                            (_) => Navigator.pop(context));
-                                      } else {
-                                        String url =
-                                            'https://play.google.com/store/apps/details?id=com.google.android.gm&gl=US';
-                                        if (await canLaunchUrl(
-                                            Uri.parse(url))) {
-                                          await launchUrl(Uri.parse(url));
-                                        } else {
-                                          throw 'Could not launch $url';
-                                        }
-                                      }
-                                      // Navigator.pushNamed(context,
-                                      //     CreateWalletPassScreen.routeName);
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      top: size.height * 0.035,
-                                      left: size.width * 0.075,
-                                      right: size.width * 0.075),
-                                  child: GestureDetector(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Image.asset(
-                                          'assets/Imagenes/image1.png',
-                                          width: size.width * 0.12,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.07),
-                                          child: const Text(
-                                            "Abrir Outlook",
-                                            style: TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 15,
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(child: Container()),
-                                        SvgPicture.asset(
-                                          'assets/Vectores/Iconos/chevronright.svg',
-                                          width: size.width * 0.06,
-                                        ),
-                                      ],
-                                    ),
-                                    onTap: () async {
-                                      // bool isInstalled =
-                                      //     await DeviceApps.isAppInstalled(
-                                      //         'com.microsoft.office.outlook');
-                                      // print(isInstalled);
-                                      // if (isInstalled != false) {
-                                      //   // AndroidIntent intent = const AndroidIntent(
-                                      //   //     action: 'action_view', data: '');
-                                      //   // await intent.launch();
-                                      //   DeviceApps.openApp(
-                                      //       'com.microsoft.office.outlook');
-                                      // } else {
-                                      //   String url =
-                                      //       'https://play.google.com/store/apps/details?id=com.microsoft.office.outlook&gl=US';
-                                      //   if (await canLaunchUrl(Uri.parse(url))) {
-                                      //     await launchUrl(Uri.parse(url));
-                                      //   } else {
-                                      //     throw 'Could not launch $url';
-                                      //   }
-                                      // }
-                                      Navigator.pushNamed(context,
-                                          CreateWalletPassScreen.routeName);
-                                    },
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      top: size.height * 0.035,
-                                      left: size.width * 0.075,
-                                      right: size.width * 0.075,
-                                      bottom: 67),
-                                  child: GestureDetector(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Image.asset(
-                                          'assets/Imagenes/image3.png',
-                                          width: 43,
-                                          height: 43,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width * 0.07),
-                                          child: const Text(
-                                            "Abrir Apple Mail",
-                                            style: TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 15,
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(child: Container()),
-                                        SvgPicture.asset(
-                                          'assets/Vectores/Iconos/chevronright.svg',
-                                          width: size.width * 0.06,
-                                        ),
-                                      ],
-                                    ),
-                                    onTap: () async {
-                                      Navigator.pushNamed(context,
-                                          CreateWalletPassScreen.routeName);
-                                    },
-                                  ),
-                                )
-                              ],
-                            );
-                          });
+                    onTap: () async {
+                      if (splitEmail.contains('gmail')) {
+                        bool isInstalled = await DeviceApps.isAppInstalled(
+                            'com.google.android.gm');
+                        print(isInstalled);
+                        if (isInstalled != false) {
+                          DeviceApps.openApp('com.google.android.gm');
+                          Future.delayed(Duration.zero)
+                              .then((_) => Navigator.pop(context));
+                        } else {
+                          String url =
+                              'https://play.google.com/store/apps/details?id=com.google.android.gm&gl=US';
+                          if (await canLaunchUrl(Uri.parse(url))) {
+                            await launchUrl(Uri.parse(url));
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        }
+                      } else if (splitEmail.contains('gmail')) {
+                        bool isInstalled = await DeviceApps.isAppInstalled(
+                            'com.google.android.gm');
+                        print(isInstalled);
+                        if (isInstalled != false) {
+                          DeviceApps.openApp('com.google.android.gm');
+                          Future.delayed(Duration.zero)
+                              .then((_) => Navigator.pop(context));
+                        } else {
+                          String url = 'https://mail.google.com/';
+                          if (await canLaunchUrl(Uri.parse(url))) {
+                            await launchUrl(Uri.parse(url));
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        }
+                      } else if (splitEmail.contains('outlook')) {
+                        bool isInstalled = await DeviceApps.isAppInstalled(
+                            'com.microsoft.office.outlook');
+                        print(isInstalled);
+                        if (isInstalled != false) {
+                          DeviceApps.openApp('com.microsoft.office.outlook');
+                        } else {
+                          String url = 'https://outlook.live.com/';
+                          if (await canLaunchUrl(Uri.parse(url))) {
+                            await launchUrl(Uri.parse(url));
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        }
+                      } else if (splitEmail.contains('mail')) {
+                        bool isInstalled = await DeviceApps.isAppInstalled(
+                            'com.apple.mobilemail');
+                        print(isInstalled);
+                        if (isInstalled != false) {
+                          DeviceApps.openApp('com.apple.mobilemail');
+                        }
+                        //  else {
+                        //   String url =
+                        //       'https://play.google.com/store/apps/details?id=com.microsoft.office.outlook&gl=US';
+                        //   if (await canLaunchUrl(Uri.parse(url))) {
+                        //     await launchUrl(Uri.parse(url));
+                        //   } else {
+                        //     throw 'Could not launch $url';
+                        //   }
+                        // }
+                      }
                     },
                   ),
                 ),
