@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 class AuthUserService with ChangeNotifier {
   Uri url = Uri.parse('https://agile-beach-41948.herokuapp.com/auth/register');
+  Uri urlUser = Uri.parse('https://agile-beach-41948.herokuapp.com/user/me');
   Future registerUser({
     required String email,
     required String name,
@@ -34,6 +35,27 @@ class AuthUserService with ChangeNotifier {
       }
     } catch (e) {
       print(e);
+      throw Exception(e);
+    }
+  }
+
+  Future<bool> validateEmailResult(String? accesstoken) async {
+    try {
+      final response = await http.post(
+        urlUser,
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer $accesstoken',
+        },
+      );
+      print(response.statusCode);
+      if (response.statusCode == 201) {
+        var jsonRespon = await convert.jsonDecode(response.body);
+        return jsonRespon['email_verificated'];
+      } else {
+        return false;
+      }
+    } catch (e) {
       throw Exception(e);
     }
   }
