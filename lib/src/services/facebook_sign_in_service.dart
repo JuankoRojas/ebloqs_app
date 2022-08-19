@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class FacebookSignInService {
-  static Future facebookLogin(BuildContext context) async {
+  static Future facebookLogin() async {
     bool isLoggInFacebook = false;
     try {
       final LoginResult result = await FacebookAuth.instance.login(

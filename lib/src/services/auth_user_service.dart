@@ -5,11 +5,12 @@ import 'package:http/http.dart' as http;
 
 class AuthUserService with ChangeNotifier {
   Uri url = Uri.parse('https://agile-beach-41948.herokuapp.com/auth/register');
-  Future registerUser(
-      {required String email,
-      required String name,
-      required String deviceID,
-      required String type_acount}) async {
+  Future registerUser({
+    required String email,
+    required String name,
+    required String deviceID,
+    required String type_acount,
+  }) async {
     final userData = {
       'email': email,
       'name': name,
@@ -33,6 +34,7 @@ class AuthUserService with ChangeNotifier {
       }
     } catch (e) {
       print(e);
+      throw Exception(e);
     }
   }
 }

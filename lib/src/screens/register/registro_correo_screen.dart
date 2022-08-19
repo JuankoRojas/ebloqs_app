@@ -2,6 +2,7 @@ import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/register/registro_link_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,8 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
 
   final TextEditingController emailController = TextEditingController();
 
+  bool? isLoadLogin = false;
+
   final uuid = const Uuid();
 
   bool validarEstructuraEmail(String value) {
@@ -36,7 +39,9 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(
-              horizontal: size.width * 0.05, vertical: size.height * 0.16),
+            horizontal: size.width * 0.05,
+            vertical: size.height * 0.16,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +53,9 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: size.height * 0.115, bottom: size.height * 0.007),
+                  top: size.height * 0.115,
+                  bottom: size.height * 0.007,
+                ),
                 child: const Text(
                   'Regístrate',
                   style: TextStyle(
@@ -98,68 +105,52 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: size.height * 0.02),
-                child: GestureDetector(
-                  child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Container(
-                        height: 52,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x3f000000),
-                              blurRadius: 4,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Image.asset(
-                          'assets/png/buttongradient.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const Center(
-                        child: Text(
-                          "Enviar",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  onTap: () async {
-                    final register = await AuthUserService().registerUser(
+              ButtonPrimary(
+                title: 'Enviar',
+                onPressed: () async {
+                  try {
+                    if (emailController.text.isNotEmpty) {
+                      setState(() {
+                        isLoadLogin = true;
+                      });
+                      final register = await AuthUserService().registerUser(
                         email: emailController.text,
                         name: emailController.text.split('@').first,
                         deviceID: uuid.v4(),
-                        type_acount: 'email');
-
-                    if (register["access_token"] != null) {
-                      setState(() {
-                        Preferences.token = register['access_token'];
-                        Provider.of<UserInfoProvider>(context, listen: false)
-                            .emailset(emailController.text);
-                      });
-
-                      Future.delayed(Duration.zero).then(
-                        (_) => Navigator.pushNamed(
-                          context,
-                          RegistroLinkScreen.routeName,
-                        ),
+                        type_acount: 'email',
                       );
-                    } else {
-                      print(register);
+
+                      if (register["access_token"] != null) {
+                        setState(() {
+                          Preferences.token = register['access_token'];
+                          Provider.of<UserInfoProvider>(context, listen: false)
+                              .emailset(emailController.text);
+                          isLoadLogin = false;
+                        });
+
+                        Future.delayed(Duration.zero).then(
+                          (_) => Navigator.pushNamed(
+                            context,
+                            RegistroLinkScreen.routeName,
+                          ),
+                        );
+                      } else {
+                        print(register);
+                        setState(() {
+                          isLoadLogin = false;
+                        });
+                      }
                     }
-                  },
-                ),
+                  } catch (e) {
+                    setState(() {
+                      isLoadLogin = false;
+                    });
+
+                    throw Exception(e);
+                  }
+                },
+                load: isLoadLogin!,
+                disabled: isLoadLogin!,
               ),
             ],
           ),

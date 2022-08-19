@@ -43,7 +43,9 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  top: size.height * 0.118, bottom: size.height * 0.005),
+                top: size.height * 0.118,
+                bottom: size.height * 0.005,
+              ),
               child: const Text(
                 'Regístrate',
                 style: TextStyle(
@@ -66,7 +68,7 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.034),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -76,39 +78,41 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                         padding: EdgeInsets.zero,
                         onPressed: () async {
                           final response =
-                              await FacebookSignInService.facebookLogin(
-                                  context);
-                          print(response);
-                          if (response['email'] != null) {
-                            final register = await AuthUserService()
-                                .registerUser(
-                                    email: response['email'],
-                                    deviceID: response['id'],
-                                    name: response['name'] ??
-                                        response.email.split('@').first,
-                                    type_acount: 'facebook');
-
-                            if (register["access_token"] != null) {
-                              setState(() {
-                                Preferences.token = register['access_token'];
-                                Provider.of<UserInfoProvider>(context,
-                                        listen: false)
-                                    .emailset(response['email']);
-                              });
-
-                              Future.delayed(Duration.zero).then(
-                                (_) => Navigator.pushNamedAndRemoveUntil(
+                              await FacebookSignInService.facebookLogin();
+                          if (response != null) {
+                            if (response['email'] != null) {
+                              final register =
+                                  await AuthUserService().registerUser(
+                                email: response['email'],
+                                deviceID: response['id'],
+                                name: response['name'] ??
+                                    response.email.split('@').first,
+                                type_acount: 'facebook',
+                              );
+                              if (register["access_token"] != null) {
+                                setState(() {
+                                  Preferences.token = register['access_token'];
+                                  Provider.of<UserInfoProvider>(
+                                    context,
+                                    listen: false,
+                                  ).emailset(response['email']);
+                                });
+                                Future.delayed(Duration.zero).then(
+                                  (_) => Navigator.pushNamedAndRemoveUntil(
                                     context,
                                     LocalAuth.routeName,
-                                    (route) => false),
-                              );
-                            } else {
-                              print(register);
+                                    (route) => false,
+                                  ),
+                                );
+                              } else {
+                                print(register);
+                              }
                             }
                           }
                         },
                         icon: SvgPicture.asset(
-                            'assets/Vectores/Iconos/Group2144.svg'),
+                          'assets/Vectores/Iconos/Group2144.svg',
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: size.height * 0.016),
@@ -131,38 +135,59 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () async {
-                          final GoogleSignInAccount response =
-                              await GoogleSignInService.signInWithGoogle();
-                          if (response.email.isNotEmpty) {
-                            final register = await AuthUserService()
-                                .registerUser(
-                                    email: response.email,
-                                    deviceID: response.id,
-                                    name: response.displayName ??
-                                        response.email.split('@').first,
-                                    type_acount: 'google');
+                          try {
+                            final GoogleSignInAccount response =
+                                await GoogleSignInService.signInWithGoogle();
 
-                            if (register["access_token"] != null) {
-                              setState(() {
-                                Preferences.token = register['access_token'];
-                                Provider.of<UserInfoProvider>(context,
-                                        listen: false)
-                                    .emailset(response.email);
-                              });
+                            if (response.email.isNotEmpty) {
+                              final register =
+                                  await AuthUserService().registerUser(
+                                email: response.email,
+                                deviceID: response.id,
+                                name: response.displayName ??
+                                    response.email.split('@').first,
+                                type_acount: 'google',
+                              );
 
-                              Future.delayed(Duration.zero).then(
-                                (_) => Navigator.pushNamedAndRemoveUntil(
+                              if (register["access_token"] != null) {
+                                setState(() {
+                                  Preferences.token = register['access_token'];
+                                  Provider.of<UserInfoProvider>(
+                                    context,
+                                    listen: false,
+                                  ).emailset(response.email);
+                                });
+
+                                Future.delayed(Duration.zero).then(
+                                  (_) => Navigator.pushNamedAndRemoveUntil(
                                     context,
                                     LocalAuth.routeName,
-                                    (route) => false),
-                              );
-                            } else {
-                              print(register);
+                                    (route) => false,
+                                  ),
+                                );
+                              } else {
+                                print(register);
+                              }
                             }
+                          } catch (e) {
+                            print('============$e=============');
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: Colors.redAccent,
+                                duration: Duration(seconds: 3),
+                                content: Text(
+                                  'Hubo un error, intentalo nuevamente.',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            );
                           }
                         },
                         icon: SvgPicture.asset(
-                            'assets/Vectores/Iconos/Group2145.svg'),
+                          'assets/Vectores/Iconos/Group2145.svg',
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: size.height * 0.016),
@@ -178,37 +203,35 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       ),
                     ],
                   ),
-                  Platform.isIOS
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              padding: EdgeInsets.zero,
-                              onPressed: (Platform.isIOS)
-                                  ? AppleSigninService.signInIOS
-                                  : AppleSigninService.signInAndroid,
-                              icon: const Icon(
-                                Icons.apple,
-                                color: Color(0xff000000),
-                              ),
+                  if (Platform.isIOS)
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: (Platform.isIOS)
+                              ? AppleSigninService.signInIOS
+                              : AppleSigninService.signInAndroid,
+                          icon: const Icon(
+                            Icons.apple,
+                            color: Color(0xff000000),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: size.height * 0.016),
+                          child: const Text(
+                            'Apple',
+                            style: TextStyle(
+                              color: Color(0xff000000),
+                              fontSize: 11.26,
+                              fontFamily: "Archivo",
+                              fontWeight: FontWeight.w400,
                             ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(top: size.height * 0.016),
-                              child: const Text(
-                                'Apple',
-                                style: TextStyle(
-                                  color: Color(0xff000000),
-                                  fontSize: 11.26,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : Container(),
+                          ),
+                        ),
+                      ],
+                    ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -216,11 +239,15 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(context,
-                              RegistroCorreoScreen.routeName, (route) => false);
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            RegistroCorreoScreen.routeName,
+                            (route) => false,
+                          );
                         },
                         icon: SvgPicture.asset(
-                            'assets/Vectores/Iconos/Group2148.svg'),
+                          'assets/Vectores/Iconos/Group2148.svg',
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: size.height * 0.016),

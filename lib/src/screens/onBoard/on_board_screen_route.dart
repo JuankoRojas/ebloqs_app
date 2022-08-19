@@ -77,6 +77,12 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
   }
 
   @override
+  void dispose() {
+    _pageOnBoardController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
