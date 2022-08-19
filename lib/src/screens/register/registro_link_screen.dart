@@ -1,5 +1,8 @@
 import 'package:device_apps/device_apps.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
+import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
+import 'package:ebloqs_app/src/services/auth_user_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,6 +19,7 @@ class RegistroLinkScreen extends StatefulWidget {
 
 class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
   String splitEmail = '';
+  bool isValidated = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -161,29 +165,30 @@ continuar el proceso de registro en Ebloqs''',
                         print(isInstalled);
                         if (isInstalled != false) {
                           DeviceApps.openApp('com.google.android.gm');
-                          Future.delayed(Duration.zero)
-                              .then((_) => Navigator.pop(context));
-                        } else {
-                          String url =
-                              'https://play.google.com/store/apps/details?id=com.google.android.gm&gl=US';
-                          if (await canLaunchUrl(Uri.parse(url))) {
-                            await launchUrl(Uri.parse(url));
-                          } else {
-                            throw 'Could not launch $url';
-                          }
-                        }
-                      } else if (splitEmail.contains('gmail')) {
-                        bool isInstalled = await DeviceApps.isAppInstalled(
-                            'com.google.android.gm');
-                        print(isInstalled);
-                        if (isInstalled != false) {
-                          DeviceApps.openApp('com.google.android.gm');
-                          Future.delayed(Duration.zero)
-                              .then((_) => Navigator.pop(context));
+                          isValidated = true;
+                          Future.delayed(const Duration(seconds: 10))
+                              .then((_) async {
+                            print('delayed');
+                            print(Preferences.token);
+                            try {
+                              bool result = await AuthUserService()
+                                  .validateEmailResult(Preferences.token);
+                              print('result: $result');
+
+                              if (result) {
+                                Future.delayed(Duration.zero).then((_) =>
+                                    Navigator.pushNamed(context,
+                                        CreateWalletPassScreen.routeName));
+                              }
+                            } catch (e) {
+                              print(e);
+                            }
+                          });
                         } else {
                           String url = 'https://mail.google.com/';
                           if (await canLaunchUrl(Uri.parse(url))) {
                             await launchUrl(Uri.parse(url));
+                            isValidated = true;
                           } else {
                             throw 'Could not launch $url';
                           }
@@ -194,10 +199,12 @@ continuar el proceso de registro en Ebloqs''',
                         print(isInstalled);
                         if (isInstalled != false) {
                           DeviceApps.openApp('com.microsoft.office.outlook');
+                          isValidated = true;
                         } else {
                           String url = 'https://outlook.live.com/';
                           if (await canLaunchUrl(Uri.parse(url))) {
                             await launchUrl(Uri.parse(url));
+                            isValidated = true;
                           } else {
                             throw 'Could not launch $url';
                           }
@@ -218,6 +225,7 @@ continuar el proceso de registro en Ebloqs''',
                         //     throw 'Could not launch $url';
                         //   }
                         // }
+
                       }
                     },
                   ),

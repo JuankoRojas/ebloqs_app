@@ -42,12 +42,11 @@ class AuthUserService with ChangeNotifier {
   Future<bool> validateEmailResult(String? accesstoken) async {
     try {
       final response = await http.post(
-        urlUser,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': 'Bearer $accesstoken',
-        },
-      );
+          Uri.parse('https://agile-beach-41948.herokuapp.com/user/me'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer $accesstoken',
+          });
       print(response.statusCode);
       if (response.statusCode == 201) {
         var jsonRespon = await convert.jsonDecode(response.body);
