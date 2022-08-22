@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1+1"
-  apple_sign_in_safety:
-    dependency: "direct main"
-    description:
-      name: apple_sign_in_safety
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.6"
   archive:
     dependency: transitive
     description:
@@ -693,6 +686,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.9"
+  the_apple_sign_in:
+    dependency: "direct main"
+    description:
+      name: the_apple_sign_in
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   typed_data:
     dependency: transitive
     description:

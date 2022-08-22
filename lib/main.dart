@@ -1,4 +1,5 @@
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
+import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
@@ -16,7 +17,11 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(systemBarDark);
   await Firebase.initializeApp();
   await Preferences.init();
-  runApp(const MyApp());
+  final appleSignInAvailable = await AppleSignInAvailable.check();
+  runApp(Provider<AppleSignInAvailable>.value(
+    value: appleSignInAvailable,
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
