@@ -52,6 +52,7 @@ class _PaginasOnBoard extends StatefulWidget {
 
 class __PaginasOnBoardState extends State<_PaginasOnBoard> {
   int index = 0;
+  Timer? mytimer;
   final navegacionOnBoard = _NavegacionOnBoard();
   final PageController _pageOnBoardController = PageController();
 
@@ -65,7 +66,7 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
   }
 
   pagination() {
-    Timer.periodic(const Duration(seconds: 3), (timer) {
+    mytimer = Timer.periodic(const Duration(seconds: 3), (timer) {
       print(index);
       navegacionOnBoard.setPageIndex(_pageOnBoardController, index);
       if (index < 4) {
@@ -74,46 +75,19 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
         timer.cancel();
       }
     });
+    return mytimer;
   }
 
   @override
   void dispose() {
     _pageOnBoardController.dispose();
+    mytimer!.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    // Timer(const Duration(seconds: 2), () {
-    //   switch (index) {
-    //     case 0:
-    //       Future.delayed(const Duration(milliseconds: 1000))
-    //           .then((_) => navegacionOnBoard.paginaActual = 1);
-    //       break;
-    //     case 1:
-    //       navegacionOnBoard.paginaActual = 2;
-    //       break;
-    //     case 2:
-    //       navegacionOnBoard.paginaActual = 3;
-    //       break;
-    //     case 3:
-    //       navegacionOnBoard.paginaActual = 4;
-    //       break;
-    //     case 4:
-    //       navegacionOnBoard.paginaActual = 4;
-    //       break;
-    //     // case 5:
-    //     //   navegacionOnBoard.paginaActual = 5;
-    //     //   break;
-    //     default:
-    //       navegacionOnBoard.paginaActual = 0;
-    //       break;
-    //   }
-    // });
-
-    // final navegacionOnBoard = Provider.of<_NavegacionOnBoard>(context);
 
     return Stack(
       children: [
@@ -125,7 +99,9 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
                 onPanUpdate: (details) {
                   if (details.delta.dx < 0) {
                     navegacionOnBoard.setPageIndex(
-                        _pageOnBoardController, index + 1);
+                      _pageOnBoardController,
+                      index + 1,
+                    );
                   }
                 },
                 child: const Onboard1Screen()),
