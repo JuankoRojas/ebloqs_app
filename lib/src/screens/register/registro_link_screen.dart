@@ -33,7 +33,7 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 34, left: 22),
+            padding: const EdgeInsets.only(top: 10, left: 22),
             child: Row(
               children: [
                 IconButton(
@@ -168,17 +168,19 @@ continuar el proceso de registro en Ebloqs''',
                           isValidated = true;
                           Future.delayed(const Duration(seconds: 10))
                               .then((_) async {
-                            print('delayed');
-                            print(Preferences.token);
                             try {
-                              bool result = await AuthUserService()
-                                  .validateEmailResult(Preferences.token);
-                              print('result: $result');
+                              if (Preferences.token != null) {
+                                bool result = await AuthUserService()
+                                    .validateEmailResult(
+                                        accesstoken:
+                                            Preferences.token.toString());
+                                print('result: $result');
 
-                              if (result) {
-                                Future.delayed(Duration.zero).then((_) =>
-                                    Navigator.pushNamed(context,
-                                        CreateWalletPassScreen.routeName));
+                                if (result) {
+                                  Future.delayed(Duration.zero).then((_) =>
+                                      Navigator.pushNamed(context,
+                                          CreateWalletPassScreen.routeName));
+                                }
                               }
                             } catch (e) {
                               print(e);

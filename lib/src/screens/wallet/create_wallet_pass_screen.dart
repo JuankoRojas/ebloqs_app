@@ -167,9 +167,10 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Por favor ingresa una contraseña';
-                                    } else if (!validarEstructuraContrasena(
+                                    } else if (validarEstructuraContrasena(
                                         value)) {
-                                      return 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial';
+                                      return '''ingresar al menos 8 caracteres, una mayúscula,
+una minúscula, un número y un carácter especial''';
                                     }
                                     return null;
                                   }),
@@ -230,10 +231,14 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                   ),
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return 'Por favor ingresa una contraseña';
-                                    } else if (!validarEstructuraContrasena(
+                                      return 'Por favor de nuevo la contraseña';
+                                    } else if (passController.text !=
+                                        passConfirmController.text) {
+                                      return 'Las contraseñas no coinciden';
+                                    } else if (validarEstructuraContrasena(
                                         value)) {
-                                      return 'La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial';
+                                      return '''ingresar al menos 8 caracteres, una mayúscula,
+una minúscula, un número y un carácter especial''';
                                     }
                                     return null;
                                   }),
@@ -336,8 +341,10 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                           ],
                         ),
                         onTap: () async {
-                          if (passController.text ==
-                              passConfirmController.text) {
+                          if (formKey3.currentState!.validate() &&
+                              passController.text ==
+                                  passConfirmController.text &&
+                              visible == true) {
                             try {
                               final Map response = await CreateWallet()
                                   .createWallet(pass: passController.text);

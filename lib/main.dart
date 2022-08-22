@@ -3,12 +3,12 @@ import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
-import 'package:ebloqs_app/src/utilitis/tabbar.dart';
+import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

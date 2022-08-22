@@ -39,12 +39,13 @@ class AuthUserService with ChangeNotifier {
     }
   }
 
-  Future<bool> validateEmailResult(String? accesstoken) async {
+  Future<bool> validateEmailResult({required String accesstoken}) async {
     try {
       final response = await http.post(
           Uri.parse('https://agile-beach-41948.herokuapp.com/user/me'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
+            'Access-Control-Allow-Origin': '*',
             'Authorization': 'Bearer $accesstoken',
           });
       print(response.statusCode);

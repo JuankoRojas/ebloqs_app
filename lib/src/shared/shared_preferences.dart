@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Preferences {
   static late SharedPreferences _prefs;
   static String? _token;
+  static String? _uid;
   static String? _id_wallet;
   static String? _mnemonic;
 
@@ -14,6 +15,10 @@ class Preferences {
 
   static String? get token {
     return _prefs.getString('token') ?? _token;
+  }
+
+  static String? get uid {
+    return _prefs.getString('uid') ?? _uid;
   }
 
   static String? get id_wallet {
@@ -28,6 +33,11 @@ class Preferences {
   static set token(String? token) {
     _token = token;
     _prefs.setString('token', token!);
+  }
+
+  static set uid(String? uid) {
+    _uid = uid;
+    _prefs.setString('uid', uid!);
   }
 
   static set id_wallet(String? idWallet) {

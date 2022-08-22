@@ -1,5 +1,5 @@
 import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
-import 'package:ebloqs_app/src/utilitis/tabbar.dart';
+import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';

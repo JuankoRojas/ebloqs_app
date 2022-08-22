@@ -1,9 +1,10 @@
 import 'dart:io';
 
+import 'package:apple_sign_in_safety/apple_sign_in.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
-import 'package:ebloqs_app/src/services/apple_signin_service.dart';
+
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/services/facebook_sign_in_service.dart';
 import 'package:ebloqs_app/src/services/google_signin_service.dart';
@@ -23,6 +24,79 @@ class RegistroRedesScreen extends StatefulWidget {
 }
 
 class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
+  final Future<bool> _isAvailableFuture = AppleSignIn.isAvailable();
+  String? errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLoggedInState();
+
+    AppleSignIn.onCredentialRevoked?.listen((_) {
+      print("Credentials revoked");
+    });
+  }
+
+  void logIn() async {
+    final AuthorizationResult result = await AppleSignIn.performRequests([
+      const AppleIdRequest(requestedScopes: [Scope.email, Scope.fullName])
+    ]);
+
+    switch (result.status) {
+      case AuthorizationStatus.authorized:
+
+        // Store user ID
+        Preferences.uid = result.credential?.user;
+
+        //
+        print('Usuario logeado: ${result.status} ');
+        break;
+
+      case AuthorizationStatus.error:
+        print("Sign in failed: ${result.error?.localizedDescription}");
+        setState(() {
+          errorMessage = "Sign in failed 😿";
+        });
+        break;
+
+      case AuthorizationStatus.cancelled:
+        print('User cancelled');
+        break;
+    }
+  }
+
+  void checkLoggedInState() async {
+    final userId = Preferences.uid;
+    if (userId == null) {
+      print("No stored user ID");
+      return;
+    }
+
+    final credentialState = await AppleSignIn.getCredentialState(userId);
+    switch (credentialState.status) {
+      case CredentialStatus.authorized:
+        print("getCredentialState returned authorized");
+        break;
+
+      case CredentialStatus.error:
+        print(
+            "getCredentialState returned an error: ${credentialState.error?.localizedDescription}");
+        break;
+
+      case CredentialStatus.revoked:
+        print("getCredentialState returned revoked");
+        break;
+
+      case CredentialStatus.notFound:
+        print("getCredentialState returned not found");
+        break;
+
+      case CredentialStatus.transferred:
+        print("getCredentialState returned not transferred");
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -210,9 +284,7 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       children: [
                         IconButton(
                           padding: EdgeInsets.zero,
-                          onPressed: (Platform.isIOS)
-                              ? AppleSigninService.signInIOS
-                              : AppleSigninService.signInAndroid,
+                          onPressed: logIn,
                           icon: const Icon(
                             Icons.apple,
                             color: Color(0xff000000),

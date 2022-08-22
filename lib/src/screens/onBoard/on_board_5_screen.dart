@@ -14,9 +14,9 @@ class Onboard5Screen extends StatelessWidget {
         children: [
           Image.asset(
             'assets/Imagenes/onboard5.jpg',
-            height: size.height,
+            // height: size.height * 1.5,
             width: size.width,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
           Column(
             children: [
