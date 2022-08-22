@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class RegistroRedesScreen extends StatefulWidget {
   static const routeName = 'RegistroRedesScreen';
@@ -24,11 +26,38 @@ class RegistroRedesScreen extends StatefulWidget {
 }
 
 class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
+  final uuid = const Uuid();
   Future<void> _signInWithApple(BuildContext context) async {
     try {
       final authService = Provider.of<AuthAppleService>(context, listen: false);
       final user = await authService.signInWithApple();
       print('uid: ${user.uid}');
+      if (user.email != null) {
+        final register = await AuthUserService().registerUser(
+          email: user.email!,
+          deviceID: user.tenantId ?? uuid.v4(),
+          name: user.displayName ?? user.email!.split('@').first,
+          type_acount: 'facebook',
+        );
+        if (register["access_token"] != null) {
+          setState(() {
+            Preferences.token = register['access_token'];
+            Provider.of<UserInfoProvider>(
+              context,
+              listen: false,
+            ).emailset(user.email);
+          });
+          Future.delayed(Duration.zero).then(
+            (_) => Navigator.pushNamedAndRemoveUntil(
+              context,
+              LocalAuth.routeName,
+              (route) => false,
+            ),
+          );
+        } else {
+          print(register);
+        }
+      }
     } catch (e) {
       // TODO: Show alert here
       print(e);
@@ -38,17 +67,44 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final appleSignInAvailable =
+        Provider.of<AppleSignInAvailable>(context, listen: false);
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(
           left: size.width * 0.052,
-          top: size.height * 0.184,
+          top: 34,
           right: size.width * 0.052,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/Vectores/Iconos/Arrow left.svg',
+                    allowDrawingOutsideViewBox: true,
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 15.5),
+                  child: Text(
+                    'Regresar',
+                    style: TextStyle(
+                      color: Color(0xff170658),
+                      fontSize: 14,
+                      fontFamily: "Archivo",
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Center(
               child: SvgPicture.asset(
                   'assets/Vectores/Ilustraciones/Group1825.svg'),
@@ -215,7 +271,7 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       ),
                     ],
                   ),
-                  if (Platform.isIOS)
+                  if (Platform.isIOS && appleSignInAvailable.isAvailable)
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,

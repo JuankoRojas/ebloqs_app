@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:the_apple_sign_in/the_apple_sign_in.dart';
 
-class AuthAppleService {
+class AuthAppleService with ChangeNotifier {
   final _firebaseAuth = FirebaseAuth.instance;
 
   Future<User> signInWithApple({List<Scope> scopes = const []}) async {

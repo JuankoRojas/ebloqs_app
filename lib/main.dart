@@ -3,6 +3,7 @@ import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
+import 'package:ebloqs_app/src/services/apple_signin_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,6 +18,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(systemBarDark);
   await Firebase.initializeApp();
   await Preferences.init();
+  Provider.debugCheckInvalidValueType = null;
   final appleSignInAvailable = await AppleSignInAvailable.check();
   runApp(Provider<AppleSignInAvailable>.value(
     value: appleSignInAvailable,
@@ -53,6 +55,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (context) => UserInfoProvider()),
         ChangeNotifierProvider(create: (context) => AccountInfoProvider()),
+        ChangeNotifierProvider(create: (context) => AuthAppleService()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
