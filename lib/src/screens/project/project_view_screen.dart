@@ -44,9 +44,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         mode: ExtendedImageMode.gesture,
                         initGestureConfigHandler: (ExtendedImageState state) {
                           return GestureConfig(
-                              inPageView: true,
-                              initialScale: 1,
-                              cacheGesture: false);
+                            inPageView: true,
+                            initialScale: 1,
+                            cacheGesture: false,
+                          );
                         },
                       );
                       image = Container(

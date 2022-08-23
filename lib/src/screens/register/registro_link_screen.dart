@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:device_apps/device_apps.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/widgets/button_primary.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,6 +23,85 @@ class RegistroLinkScreen extends StatefulWidget {
 class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
   String splitEmail = '';
   bool isValidated = false;
+
+  Timer? _timer;
+  int _startCount = 60;
+
+  // variables para el control de validacion
+  bool? isValidateAgain = false;
+  bool? validating = false;
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) async {
+        if (_startCount == 0) {
+          setState(() {
+            timer.cancel();
+          });
+          validateFunctionEmail();
+        } else {
+          setState(() {
+            _startCount--;
+          });
+        }
+      },
+    );
+  }
+
+  void validateFunctionEmail() async {
+    if (Preferences.token != null) {
+      setState(() {
+        validating = true;
+      });
+      bool result = await AuthUserService()
+          .validateEmailResult(accesstoken: Preferences.token.toString());
+      print('result: $result');
+
+      if (result) {
+        Future.delayed(Duration.zero).then(
+          (_) => Navigator.pushNamed(
+            context,
+            CreateWalletPassScreen.routeName,
+          ),
+        );
+        setState(() {
+          validating = false;
+        });
+      } else {
+        setState(() {
+          validating = false;
+          isValidateAgain = true;
+        });
+      }
+    }
+  }
+
+  void tryAgainValidate() async {
+    setState(() {
+      isValidateAgain = false;
+    });
+    validateFunctionEmail();
+  }
+
+  void onlyCheckValidate() {
+    _timer!.cancel();
+    validateFunctionEmail();
+  }
+
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer!.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -62,7 +144,9 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
           ),
           Container(
             padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.05, vertical: size.height * 0.16),
+              horizontal: size.width * 0.05,
+              vertical: size.height * 0.16,
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,139 +205,166 @@ continuar el proceso de registro en Ebloqs''',
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.025),
-                  child: GestureDetector(
-                    child: Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: [
-                        Container(
-                          height: size.width * 0.135,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color(0x3f000000),
-                                blurRadius: 4,
-                                offset: Offset(0, 4),
+                ButtonPrimary(
+                  title: 'Abrir mi correo',
+                  onPressed: () async {
+                    if (splitEmail.contains('gmail')) {
+                      bool isInstalled = await DeviceApps.isAppInstalled(
+                          'com.google.android.gm');
+                      if (isInstalled != false) {
+                        DeviceApps.openApp('com.google.android.gm');
+                        isValidated = true;
+                        Future.delayed(const Duration(seconds: 10))
+                            .then((_) async {
+                          try {
+                            if (Preferences.token != null) {
+                              bool result = await AuthUserService()
+                                  .validateEmailResult(
+                                      accesstoken:
+                                          Preferences.token.toString());
+                              print('result: $result');
+
+                              if (result) {
+                                Future.delayed(Duration.zero).then((_) =>
+                                    Navigator.pushNamed(context,
+                                        CreateWalletPassScreen.routeName));
+                              }
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+                        });
+                      } else {
+                        String url = 'https://mail.google.com/';
+                        if (await canLaunchUrl(Uri.parse(url))) {
+                          await launchUrl(Uri.parse(url));
+                          isValidated = true;
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      }
+                    } else if (splitEmail.contains('outlook')) {
+                      bool isInstalled = await DeviceApps.isAppInstalled(
+                          'com.microsoft.office.outlook');
+                      print(isInstalled);
+                      if (isInstalled != false) {
+                        DeviceApps.openApp('com.microsoft.office.outlook');
+                        isValidated = true;
+                      } else {
+                        String url = 'https://outlook.live.com/';
+                        if (await canLaunchUrl(Uri.parse(url))) {
+                          await launchUrl(Uri.parse(url));
+                          isValidated = true;
+                        } else {
+                          throw 'Could not launch $url';
+                        }
+                      }
+                    } else if (splitEmail.contains('mail')) {
+                      bool isInstalled = await DeviceApps.isAppInstalled(
+                        'com.apple.mobilemail',
+                      );
+                      print(isInstalled);
+                      if (isInstalled != false) {
+                        DeviceApps.openApp('com.apple.mobilemail');
+                      }
+                    }
+                  },
+                  load: false,
+                ),
+                isValidateAgain!
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(top: size.height * 0.1),
+                                child: const Text(
+                                  "Correo no verificado",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Color(0xff170658),
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  tryAgainValidate();
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    top: size.height * 0.015,
+                                  ),
+                                  child: const Text(
+                                    "Reintentar",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xff2504ca),
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
-                          child: Image.asset(
-                            'assets/png/buttongradient.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        const Center(
-                          child: Text(
-                            "Abrir mi correo",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontFamily: "Archivo",
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    onTap: () async {
-                      if (splitEmail.contains('gmail')) {
-                        bool isInstalled = await DeviceApps.isAppInstalled(
-                            'com.google.android.gm');
-                        print(isInstalled);
-                        if (isInstalled != false) {
-                          DeviceApps.openApp('com.google.android.gm');
-                          isValidated = true;
-                          Future.delayed(const Duration(seconds: 10))
-                              .then((_) async {
-                            try {
-                              if (Preferences.token != null) {
-                                bool result = await AuthUserService()
-                                    .validateEmailResult(
-                                        accesstoken:
-                                            Preferences.token.toString());
-                                print('result: $result');
-
-                                if (result) {
-                                  Future.delayed(Duration.zero).then((_) =>
-                                      Navigator.pushNamed(context,
-                                          CreateWalletPassScreen.routeName));
-                                }
-                              }
-                            } catch (e) {
-                              print(e);
-                            }
-                          });
-                        } else {
-                          String url = 'https://mail.google.com/';
-                          if (await canLaunchUrl(Uri.parse(url))) {
-                            await launchUrl(Uri.parse(url));
-                            isValidated = true;
-                          } else {
-                            throw 'Could not launch $url';
-                          }
-                        }
-                      } else if (splitEmail.contains('outlook')) {
-                        bool isInstalled = await DeviceApps.isAppInstalled(
-                            'com.microsoft.office.outlook');
-                        print(isInstalled);
-                        if (isInstalled != false) {
-                          DeviceApps.openApp('com.microsoft.office.outlook');
-                          isValidated = true;
-                        } else {
-                          String url = 'https://outlook.live.com/';
-                          if (await canLaunchUrl(Uri.parse(url))) {
-                            await launchUrl(Uri.parse(url));
-                            isValidated = true;
-                          } else {
-                            throw 'Could not launch $url';
-                          }
-                        }
-                      } else if (splitEmail.contains('mail')) {
-                        bool isInstalled = await DeviceApps.isAppInstalled(
-                            'com.apple.mobilemail');
-                        print(isInstalled);
-                        if (isInstalled != false) {
-                          DeviceApps.openApp('com.apple.mobilemail');
-                        }
-                        //  else {
-                        //   String url =
-                        //       'https://play.google.com/store/apps/details?id=com.microsoft.office.outlook&gl=US';
-                        //   if (await canLaunchUrl(Uri.parse(url))) {
-                        //     await launchUrl(Uri.parse(url));
-                        //   } else {
-                        //     throw 'Could not launch $url';
-                        //   }
-                        // }
-
-                      }
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.1),
-                  child: const Text(
-                    "¿No recibiste el correo?",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.015),
-                  child: const Text(
-                    "Envíalo otra vez",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xff2504ca),
-                      fontSize: 13,
-                    ),
-                  ),
-                )
+                        ],
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          validating!
+                              ? Padding(
+                                  padding: EdgeInsets.only(
+                                    top: size.height * 0.1,
+                                  ),
+                                  child: const Text(
+                                    "Verificando...",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                )
+                              : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          top: size.height * 0.1),
+                                      child: Text(
+                                        "Validamos en $_startCount segundos",
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          color: Color(0xff170658),
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        onlyCheckValidate();
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            top: size.height * 0.015),
+                                        child: const Text(
+                                          "Ya validé mi correo",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            color: Color(0xff2504ca),
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                        ],
+                      )
               ],
             ),
           ),
