@@ -214,26 +214,6 @@ continuar el proceso de registro en Ebloqs''',
                       if (isInstalled != false) {
                         DeviceApps.openApp('com.google.android.gm');
                         isValidated = true;
-                        Future.delayed(const Duration(seconds: 10))
-                            .then((_) async {
-                          try {
-                            if (Preferences.token != null) {
-                              bool result = await AuthUserService()
-                                  .validateEmailResult(
-                                      accesstoken:
-                                          Preferences.token.toString());
-                              print('result: $result');
-
-                              if (result) {
-                                Future.delayed(Duration.zero).then((_) =>
-                                    Navigator.pushNamed(context,
-                                        CreateWalletPassScreen.routeName));
-                              }
-                            }
-                          } catch (e) {
-                            print(e);
-                          }
-                        });
                       } else {
                         String url = 'https://mail.google.com/';
                         if (await canLaunchUrl(Uri.parse(url))) {
