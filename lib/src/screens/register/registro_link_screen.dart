@@ -33,7 +33,8 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 10, left: 22),
+            padding: EdgeInsets.only(
+                top: size.height * 0.035, left: size.width * 0.05),
             child: Row(
               children: [
                 IconButton(

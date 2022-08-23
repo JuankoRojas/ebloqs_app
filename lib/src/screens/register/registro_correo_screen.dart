@@ -38,17 +38,46 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: size.width * 0.05,
-            vertical: size.height * 0.16,
+          padding: EdgeInsets.only(
+            left: size.width * 0.05,
+            right: size.width * 0.05,
+            top: size.height * 0.035,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: SvgPicture.asset(
-                  'assets/Vectores/Ilustraciones/Group1825.svg',
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/Vectores/Iconos/Arrow left.svg',
+                      allowDrawingOutsideViewBox: true,
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15.5),
+                    child: Text(
+                      'Regresar',
+                      style: TextStyle(
+                        color: Color(0xff170658),
+                        fontSize: 14,
+                        fontFamily: "Archivo",
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: size.height * 0.072),
+                child: Center(
+                  child: SvgPicture.asset(
+                    'assets/Vectores/Ilustraciones/Group1825.svg',
+                  ),
                 ),
               ),
               Padding(

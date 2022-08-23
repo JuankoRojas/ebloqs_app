@@ -48,10 +48,9 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
             ).emailset(user.email);
           });
           Future.delayed(Duration.zero).then(
-            (_) => Navigator.pushNamedAndRemoveUntil(
+            (_) => Navigator.pushNamed(
               context,
               LocalAuth.routeName,
-              (route) => false,
             ),
           );
         } else {
@@ -73,7 +72,7 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
       body: Container(
         padding: EdgeInsets.only(
           left: size.width * 0.052,
-          top: 34,
+          top: size.height * 0.035,
           right: size.width * 0.052,
         ),
         child: Column(
@@ -105,9 +104,12 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                 ),
               ],
             ),
-            Center(
-              child: SvgPicture.asset(
-                  'assets/Vectores/Ilustraciones/Group1825.svg'),
+            Padding(
+              padding: EdgeInsets.only(top: size.height * 0.072),
+              child: Center(
+                child: SvgPicture.asset(
+                    'assets/Vectores/Ilustraciones/Group1825.svg'),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -166,10 +168,9 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                   ).emailset(response['email']);
                                 });
                                 Future.delayed(Duration.zero).then(
-                                  (_) => Navigator.pushNamedAndRemoveUntil(
+                                  (_) => Navigator.pushNamed(
                                     context,
                                     LocalAuth.routeName,
-                                    (route) => false,
                                   ),
                                 );
                               } else {
@@ -227,10 +228,9 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                 });
 
                                 Future.delayed(Duration.zero).then(
-                                  (_) => Navigator.pushNamedAndRemoveUntil(
+                                  (_) => Navigator.pushNamed(
                                     context,
                                     LocalAuth.routeName,
-                                    (route) => false,
                                   ),
                                 );
                               } else {
@@ -305,10 +305,9 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
-                          Navigator.pushNamedAndRemoveUntil(
+                          Navigator.pushNamed(
                             context,
                             RegistroCorreoScreen.routeName,
-                            (route) => false,
                           );
                         },
                         icon: SvgPicture.asset(
