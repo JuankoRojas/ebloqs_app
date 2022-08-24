@@ -17,6 +17,8 @@ class _ComprarScreenState extends State<ComprarScreen> {
   String text = '';
   double ingr = 0.0;
   double total = 0.0;
+  bool transferSelect = false;
+  bool bankSelect = false;
 
   @override
   Widget build(BuildContext context) {
@@ -591,16 +593,16 @@ class _ComprarScreenState extends State<ComprarScreen> {
                   Icons.backspace_outlined,
                   color: Color(0xff170658),
                 ),
-                leftButtonFn: () {
-                  setState(() {
-                    text = "$text.";
-                  });
-                },
-                leftIcon: const Icon(
-                  Icons.circle,
-                  color: Color(0xff170658),
-                  size: 6,
-                ),
+                // leftButtonFn: () {
+                //   setState(() {
+                //     text = "$text.";
+                //   });
+                // },
+                // leftIcon: const Icon(
+                //   Icons.circle,
+                //   color: Color(0xff170658),
+                //   size: 6,
+                // ),
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
               ),
               Padding(
@@ -624,114 +626,154 @@ class _ComprarScreenState extends State<ComprarScreen> {
                 padding: EdgeInsets.only(
                   top: size.height * (15 / size.height),
                 ),
-                child: Container(
-                  width: size.width,
-                  height: size.height * (78 / size.height),
-                  padding: EdgeInsets.only(
-                    left: size.width * (18 / size.width),
-                    right: size.width * (18 / size.width),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: const Color(0xffeae4fc),
-                      width: 1,
+                child: GestureDetector(
+                  child: Container(
+                    width: size.width,
+                    height: size.height * (78 / size.height),
+                    padding: EdgeInsets.only(
+                      left: size.width * (18 / size.width),
+                      right: size.width * (18 / size.width),
                     ),
-                    color: const Color(0xfff9f9fa),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset('assets/Vectores/Iconos/bank.svg'),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: size.width * (16 / size.width),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "Transferencia Bancaria",
-                              style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 15,
-                                fontFamily: "Archivo",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Text(
-                              "Desde tus bancos favoritos",
-                              style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 13,
-                              ),
-                            )
-                          ],
-                        ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: (transferSelect)
+                            ? const Color(0xff170658)
+                            : const Color(0xffeae4fc),
+                        width: 1,
                       ),
-                      Expanded(child: Container()),
-                      // SvgPicture.asset(
-                      //     'assets/Vectores/Iconos/chevronright.svg'),
-                    ],
+                      color: const Color(0xfff9f9fa),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/Vectores/Iconos/bank.svg',
+                          color: (transferSelect)
+                              ? const Color(0xff170658)
+                              : const Color(0xff170658).withOpacity(0.5),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: size.width * (16 / size.width),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Transferencia Bancaria",
+                                style: TextStyle(
+                                  color: (transferSelect)
+                                      ? const Color(0xff170658)
+                                      : const Color(0xff170658)
+                                          .withOpacity(0.5),
+                                  fontSize: 15,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                "Desde tus bancos favoritos",
+                                style: TextStyle(
+                                  color: (transferSelect)
+                                      ? const Color(0xff170658)
+                                      : const Color(0xff170658)
+                                          .withOpacity(0.5),
+                                  fontSize: 13,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Expanded(child: Container()),
+                        // SvgPicture.asset(
+                        //     'assets/Vectores/Iconos/chevronright.svg'),
+                      ],
+                    ),
                   ),
+                  onTap: () {
+                    setState(() {
+                      transferSelect = !transferSelect;
+                    });
+                  },
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(
                   top: size.height * (8 / size.height),
                 ),
-                child: Container(
-                  width: size.width,
-                  height: size.height * (78 / size.height),
-                  padding: EdgeInsets.only(
-                    left: size.width * (18 / size.width),
-                    right: size.width * (18 / size.width),
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: const Color(0xffeae4fc),
-                      width: 1,
+                child: GestureDetector(
+                  child: Container(
+                    width: size.width,
+                    height: size.height * (78 / size.height),
+                    padding: EdgeInsets.only(
+                      left: size.width * (18 / size.width),
+                      right: size.width * (18 / size.width),
                     ),
-                    color: const Color(0xfff9f9fa),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset('assets/Vectores/Iconos/card.svg'),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: size.width * (16 / size.width),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "Tarjeta Bancaria",
-                              style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 15,
-                                fontFamily: "Archivo",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            Text(
-                              "Tarjeta de crédito o tarjeta de débito",
-                              style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 13,
-                              ),
-                            )
-                          ],
-                        ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: (bankSelect)
+                            ? const Color(0xff170658)
+                            : const Color(0xffeae4fc),
+                        width: 1,
                       ),
-                      Expanded(child: Container()),
-                      // SvgPicture.asset(
-                      //     'assets/Vectores/Iconos/chevronright.svg'),
-                    ],
+                      color: const Color(0xfff9f9fa),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SvgPicture.asset(
+                          'assets/Vectores/Iconos/card.svg',
+                          color: (bankSelect)
+                              ? const Color(0xff170658)
+                              : const Color(0xff170658).withOpacity(0.5),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: size.width * (16 / size.width),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Tarjeta Bancaria",
+                                style: TextStyle(
+                                  color: (bankSelect)
+                                      ? const Color(0xff170658)
+                                      : const Color(0xff170658)
+                                          .withOpacity(0.5),
+                                  fontSize: 15,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                "Tarjeta de crédito o tarjeta de débito",
+                                style: TextStyle(
+                                  color: (bankSelect)
+                                      ? const Color(0xff170658)
+                                      : const Color(0xff170658)
+                                          .withOpacity(0.5),
+                                  fontSize: 13,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Expanded(child: Container()),
+                        // SvgPicture.asset(
+                        //     'assets/Vectores/Iconos/chevronright.svg'),
+                      ],
+                    ),
                   ),
+                  onTap: () {
+                    setState(() {
+                      bankSelect = !bankSelect;
+                    });
+                  },
                 ),
               ),
               Padding(
@@ -774,15 +816,17 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     ],
                   ),
                   onTap: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            IntroducirCantidadTransferenciaScreen(
-                          cantidadTransferencia: text,
+                    if (text != '' || transferSelect) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              IntroducirCantidadTransferenciaScreen(
+                            cantidadTransferencia: text,
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    }
                   },
                 ),
               ),

@@ -23,7 +23,7 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
 
   bool validarEstructuraContrasena(String value) {
     String patron =
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~_]).{8,10}$';
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~_]).{8,}$';
     RegExp regExp = RegExp(patron);
     return regExp.hasMatch(value);
   }
@@ -167,7 +167,7 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                   validator: (value) {
                                     if (value!.isEmpty) {
                                       return 'Por favor ingresa una contraseña';
-                                    } else if (validarEstructuraContrasena(
+                                    } else if (!validarEstructuraContrasena(
                                         value)) {
                                       return '''ingresar al menos 8 caracteres, una mayúscula,
 una minúscula, un número y un carácter especial''';
@@ -235,7 +235,7 @@ una minúscula, un número y un carácter especial''';
                                     } else if (passController.text !=
                                         passConfirmController.text) {
                                       return 'Las contraseñas no coinciden';
-                                    } else if (validarEstructuraContrasena(
+                                    } else if (!validarEstructuraContrasena(
                                         value)) {
                                       return '''ingresar al menos 8 caracteres, una mayúscula,
 una minúscula, un número y un carácter especial''';
@@ -341,10 +341,12 @@ una minúscula, un número y un carácter especial''';
                           ],
                         ),
                         onTap: () async {
+                          print('walle5t');
                           if (formKey3.currentState!.validate() &&
                               passController.text ==
                                   passConfirmController.text &&
                               visible == true) {
+                            print(formKey3.currentState!.validate());
                             try {
                               final Map response = await CreateWallet()
                                   .createWallet(pass: passController.text);

@@ -57,6 +57,8 @@ dependencies:
   the_apple_sign_in: ^1.1.1
 
   dotted_line: ^3.1.0
+  scroll_date_picker: ^3.6.0
+  intl_phone_field: ^3.1.0
 
 flutter_native_splash:
   background_image: assets/splash/splashlogo.png

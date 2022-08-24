@@ -1,18 +1,49 @@
+import 'dart:math';
+
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class TransferirEbloqsScreen extends StatefulWidget {
   static const routeName = 'TransferirEbloqsScreen';
-  const TransferirEbloqsScreen({Key? key}) : super(key: key);
+  final String? cantidadTransferencia;
+  const TransferirEbloqsScreen({Key? key, this.cantidadTransferencia})
+      : super(key: key);
 
   @override
   State<TransferirEbloqsScreen> createState() => _TransferirEbloqsScreenState();
 }
 
 class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
+  String referencia = '';
+  @override
+  void initState() {
+    final random = Random();
+    const availableChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const availableNum = '1234567890';
+    final randomString1 = List.generate(
+            2, (index) => availableChars[random.nextInt(availableChars.length)])
+        .join();
+
+    final randomString2 = List.generate(
+            2, (index) => availableChars[random.nextInt(availableChars.length)])
+        .join();
+    final randomString3 = List.generate(
+            1, (index) => availableChars[random.nextInt(availableChars.length)])
+        .join();
+    final randomNum1 = List.generate(
+        2, (index) => availableNum[random.nextInt(availableNum.length)]).join();
+    final randomNum2 = List.generate(
+        1, (index) => availableNum[random.nextInt(availableNum.length)]).join();
+    referencia =
+        '$randomString1$randomNum1$randomString2$randomNum2$randomString3';
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -38,7 +69,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   GestureDetector(
                     child: SvgPicture.asset(
                         'assets/Vectores/Iconos/Arrow left.svg'),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                   ),
                   Expanded(child: Container()),
                   const Text(
@@ -61,8 +94,8 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 padding: EdgeInsets.only(top: size.height * (35 / size.height)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "USD",
                       style: TextStyle(
                         color: Color(0xff2504ca),
@@ -72,9 +105,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                       ),
                     ),
                     Text(
-                      "50.00",
+                      widget.cantidadTransferencia ?? '',
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xff2504ca),
                         fontSize: 28,
                         fontFamily: "Archivo",
@@ -132,8 +165,8 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             "Nº De referencia",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -143,8 +176,8 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                             ),
                           ),
                           Text(
-                            "FI99HL7B",
-                            style: TextStyle(
+                            referencia,
+                            style: const TextStyle(
                               color: Color(0xff2504ca),
                               fontSize: 20,
                               fontFamily: "Archivo",
@@ -156,6 +189,9 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                       GestureDetector(
                         child: SvgPicture.asset(
                             'assets/Vectores/Iconos/Copy 2.svg'),
+                        onTap: () {
+                          Clipboard.setData(ClipboardData(text: referencia));
+                        },
                       )
                     ],
                   ),

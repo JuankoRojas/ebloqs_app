@@ -1,6 +1,8 @@
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
+import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/transferir_ebloqs_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
@@ -43,7 +45,7 @@ class _IntroducirCantidadTransferenciaScreenState
     if (widget.cantidadTransferencia!.isNotEmpty &&
         quantityController.text == widget.cantidadTransferencia) {
       cantidad = double.parse(widget.cantidadTransferencia!);
-      recibes = cantidad! - comision;
+      recibes = cantidad;
       print(cantidad);
       print(recibes);
     }
@@ -72,7 +74,7 @@ class _IntroducirCantidadTransferenciaScreenState
                     child: SvgPicture.asset(
                         'assets/Vectores/Iconos/Arrow left.svg'),
                     onTap: () {
-                      Navigator.of(context).pop();
+                      Navigator.pushNamed(context, ComprarScreen.routeName);
                     },
                   ),
                   Expanded(child: Container()),
@@ -162,7 +164,7 @@ class _IntroducirCantidadTransferenciaScreenState
                       setState(() {
                         if (value.isNotEmpty) {
                           cantidad = double.parse(value);
-                          recibes = cantidad! - comision;
+                          recibes = cantidad;
                         }
                       });
                     },
@@ -335,11 +337,18 @@ class _IntroducirCantidadTransferenciaScreenState
                     ],
                   ),
                   onTap: () {
-                    if (_current == 2) {
+                    if (_current == 2 &&
+                        Provider.of<AccountInfoProvider>(context, listen: false)
+                                .checkedBankInfo ==
+                            true &&
+                        Provider.of<AccountInfoProvider>(context, listen: false)
+                                .checkedtransactInfo ==
+                            true) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const TransferirEbloqsScreen(),
+                          builder: (context) => TransferirEbloqsScreen(
+                              cantidadTransferencia: recibes.toString()),
                         ),
                       );
                     }
@@ -447,8 +456,13 @@ class _PageFormState extends State<PageForm> {
                   ),
                   child: TextFormField(
                     controller: nameController,
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.text,
+                    maxLength: 50,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]"))
+                    ],
                     decoration: InputDecoration(
+                      counterText: '',
                       labelStyle: const TextStyle(
                         color: Color(0xff9B99A3),
                         fontSize: 14,
@@ -487,8 +501,13 @@ class _PageFormState extends State<PageForm> {
                   ),
                   child: TextFormField(
                     controller: bankNameController,
-                    keyboardType: TextInputType.name,
+                    keyboardType: TextInputType.text,
+                    maxLength: 50,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]"))
+                    ],
                     decoration: InputDecoration(
+                      counterText: '',
                       labelStyle: const TextStyle(
                         color: Color(0xff9B99A3),
                         fontSize: 14,
@@ -527,8 +546,10 @@ class _PageFormState extends State<PageForm> {
                   ),
                   child: TextFormField(
                     controller: accountNumberController,
+                    maxLength: 50,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
+                      counterText: '',
                       labelStyle: const TextStyle(
                         color: Color(0xff9B99A3),
                         fontSize: 14,
@@ -729,6 +750,9 @@ class _PageConfirmState extends State<PageConfirm> {
                       onChanged: (bool? value) {
                         setState(() {
                           isCheckedBankInfo = value!;
+                          Provider.of<AccountInfoProvider>(context,
+                                  listen: false)
+                              .checkedBankInfo = isCheckedBankInfo;
                         });
                       }),
                 ),
@@ -773,6 +797,9 @@ class _PageConfirmState extends State<PageConfirm> {
                       onChanged: (bool? value) {
                         setState(() {
                           isCheckedtransactInfo = value!;
+                          Provider.of<AccountInfoProvider>(context,
+                                  listen: false)
+                              .checkedtransactInfo = isCheckedtransactInfo;
                         });
                       }),
                 ),

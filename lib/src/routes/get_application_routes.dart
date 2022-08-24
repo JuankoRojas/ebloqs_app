@@ -1,10 +1,16 @@
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
+import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_tarjeta_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_transferencia_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/transferir_ebloqs_screen.dart';
+import 'package:ebloqs_app/src/screens/deposit/deposit_screen.dart';
 import 'package:ebloqs_app/src/screens/home_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/address_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/id_document_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/personal_information_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
-import 'package:ebloqs_app/src/screens/local_auth/nationality_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
@@ -43,5 +49,14 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     LocalAuth.routeName: (BuildContext context) => const LocalAuth(),
     NationalityScreen.routeName: (BuildContext context) =>
         const NationalityScreen(),
+    PersonalInformation.routeName: (BuildContext context) =>
+        const PersonalInformation(),
+    AddressScreen.routeName: (BuildContext context) => const AddressScreen(),
+    IdDocumentScreen.routeName: (BuildContext context) =>
+        const IdDocumentScreen(),
+    TakePictureFront.routeName: (BuildContext context) =>
+        const TakePictureFront(),
+    CongratsScreen.routeName: (BuildContext context) => const CongratsScreen(),
+    DepositScreen.routeName: (BuildContext context) => const DepositScreen(),
   };
 }
