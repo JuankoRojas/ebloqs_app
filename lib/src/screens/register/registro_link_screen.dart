@@ -210,7 +210,8 @@ continuar el proceso de registro en Ebloqs''',
                   onPressed: () async {
                     if (splitEmail.contains('gmail')) {
                       bool isInstalled = await DeviceApps.isAppInstalled(
-                          'com.google.android.gm');
+                        'com.google.android.gm',
+                      );
                       if (isInstalled != false) {
                         DeviceApps.openApp('com.google.android.gm');
                         isValidated = true;

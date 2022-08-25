@@ -26,7 +26,7 @@ class AuthUserService with ChangeNotifier {
         },
         body: convert.jsonEncode(userData),
       );
-      print(response.statusCode);
+      print(response.body);
       switch (response.statusCode) {
         case 201:
           var jsonResponse =
