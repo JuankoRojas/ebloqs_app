@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/id_document_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -12,17 +13,36 @@ class AddressScreen extends StatefulWidget {
   State<AddressScreen> createState() => _AddressScreenState();
 }
 
-class _AddressScreenState extends State<AddressScreen> {
+class _AddressScreenState extends State<AddressScreen>
+// with AfterLayoutMixin<AddressScreen>
+{
   final GlobalKey<FormState> _formKey12 = GlobalKey<FormState>();
-  final TextEditingController countryController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController addressController = TextEditingController();
-  final TextEditingController zipController = TextEditingController();
+
   bool? isLoadLogin = false;
+  var locationProvider = LocationsProvider();
+
+  // @override
+  // void afterFirstLayout(BuildContext context) {
+  //   locationProvider.useMyLocation();
+  // }
+  @override
+  void initState() {
+    locationProvider.requestPermisionLocation();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    debugPrint('location: ${locationProvider.countryController.text}');
+    if (locationProvider.getMyLocation) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         leadingWidth: size.width * 0.1417004048583,
@@ -135,7 +155,7 @@ class _AddressScreenState extends State<AddressScreen> {
                               left: size.width * 0.0361072902338377,
                               right: size.width * 0.0361072902338377),
                           child: TextFormField(
-                            controller: countryController,
+                            controller: locationProvider.countryController,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
@@ -164,7 +184,7 @@ class _AddressScreenState extends State<AddressScreen> {
                               left: size.width * 0.0361072902338377,
                               right: size.width * 0.0361072902338377),
                           child: TextFormField(
-                            controller: cityController,
+                            controller: locationProvider.cityController,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
@@ -193,7 +213,7 @@ class _AddressScreenState extends State<AddressScreen> {
                               left: size.width * 0.0361072902338377,
                               right: size.width * 0.0361072902338377),
                           child: TextFormField(
-                            controller: addressController,
+                            controller: locationProvider.addressController,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
@@ -222,7 +242,7 @@ class _AddressScreenState extends State<AddressScreen> {
                               left: size.width * 0.0361072902338377,
                               right: size.width * 0.0361072902338377),
                           child: TextFormField(
-                            controller: zipController,
+                            controller: locationProvider.postalCodeController,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(

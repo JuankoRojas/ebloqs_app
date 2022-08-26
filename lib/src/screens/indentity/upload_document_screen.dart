@@ -1,4 +1,6 @@
+import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
+import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -11,6 +13,7 @@ class UploadDocumentScreen extends StatefulWidget {
 }
 
 class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
+  bool? isLoadLogin = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -131,6 +134,22 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
                 fontWeight: FontWeight.w400,
               ),
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+                top: size.height * 0.382960704607046,
+                left: size.width * 0.0361072902338377,
+                right: size.width * 0.0361072902338377,
+                bottom: size.height * 0.0557213930348259),
+            child: ButtonPrimary(
+                width: size.width,
+                title: 'Continuar',
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, CreateWalletPassScreen.routeName);
+                },
+                load: isLoadLogin!,
+                disabled: isLoadLogin!),
           )
         ],
       )),

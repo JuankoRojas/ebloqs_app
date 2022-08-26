@@ -1,5 +1,6 @@
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/deposit/deposit_screen.dart';
+import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
@@ -524,20 +525,25 @@ class _WalletScreenState extends State<WalletScreen> {
                         )
                       ],
                     ),
-                    Column(
-                      children: [
-                        SvgPicture.asset(
-                            'assets/Vectores/Iconos/Transferir.svg'),
-                        const Text(
-                          "Transferir",
-                          style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 12,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
+                    GestureDetector(
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(
+                              'assets/Vectores/Iconos/Transferir.svg'),
+                          const Text(
+                            "Transferir",
+                            style: TextStyle(
+                              color: Color(0xff170658),
+                              fontSize: 12,
+                              fontFamily: "Archivo",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          )
+                        ],
+                      ),
+                      onTap: () {
+                        Navigator.pushNamed(context, TransferScreen.routeName);
+                      },
                     ),
                     GestureDetector(
                       child: Column(

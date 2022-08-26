@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/models/camera_models.dart';
+import 'package:ebloqs_app/src/screens/indentity/take_picture_back_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/upload_document_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -283,14 +285,19 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                       ),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, TakePictureBack.routeName);
+                  },
                 ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: ButtonPrimary(
                       width: size.width * 0.42,
                       title: 'Continuar',
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            context, UploadDocumentScreen.routeName);
+                      },
                       load: isLoadLogin!,
                       disabled: isLoadLogin!),
                 ),

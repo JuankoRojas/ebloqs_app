@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:device_apps/device_apps.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
-import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -63,7 +63,7 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
         Future.delayed(Duration.zero).then(
           (_) => Navigator.pushNamed(
             context,
-            CreateWalletPassScreen.routeName,
+            NationalityScreen.routeName,
           ),
         );
         setState(() {
@@ -206,53 +206,57 @@ continuar el proceso de registro en Ebloqs''',
                     ),
                   ),
                 ),
-                ButtonPrimary(
-                  width: size.width,
-                  title: 'Abrir mi correo',
-                  onPressed: () async {
-                    if (splitEmail.contains('gmail')) {
-                      bool isInstalled = await DeviceApps.isAppInstalled(
-                        'com.google.android.gm',
-                      );
-                      if (isInstalled != false) {
-                        DeviceApps.openApp('com.google.android.gm');
-                        isValidated = true;
-                      } else {
-                        String url = 'https://mail.google.com/';
-                        if (await canLaunchUrl(Uri.parse(url))) {
-                          await launchUrl(Uri.parse(url));
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: size.height * 0.0237127371273713),
+                  child: ButtonPrimary(
+                    width: size.width,
+                    title: 'Abrir mi correo',
+                    onPressed: () async {
+                      if (splitEmail.contains('gmail')) {
+                        bool isInstalled = await DeviceApps.isAppInstalled(
+                          'com.google.android.gm',
+                        );
+                        if (isInstalled != false) {
+                          DeviceApps.openApp('com.google.android.gm');
                           isValidated = true;
                         } else {
-                          throw 'Could not launch $url';
+                          String url = 'https://mail.google.com/';
+                          if (await canLaunchUrl(Uri.parse(url))) {
+                            await launchUrl(Uri.parse(url));
+                            isValidated = true;
+                          } else {
+                            throw 'Could not launch $url';
+                          }
                         }
-                      }
-                    } else if (splitEmail.contains('outlook')) {
-                      bool isInstalled = await DeviceApps.isAppInstalled(
-                          'com.microsoft.office.outlook');
-                      print(isInstalled);
-                      if (isInstalled != false) {
-                        DeviceApps.openApp('com.microsoft.office.outlook');
-                        isValidated = true;
-                      } else {
-                        String url = 'https://outlook.live.com/';
-                        if (await canLaunchUrl(Uri.parse(url))) {
-                          await launchUrl(Uri.parse(url));
+                      } else if (splitEmail.contains('outlook')) {
+                        bool isInstalled = await DeviceApps.isAppInstalled(
+                            'com.microsoft.office.outlook');
+                        print(isInstalled);
+                        if (isInstalled != false) {
+                          DeviceApps.openApp('com.microsoft.office.outlook');
                           isValidated = true;
                         } else {
-                          throw 'Could not launch $url';
+                          String url = 'https://outlook.live.com/';
+                          if (await canLaunchUrl(Uri.parse(url))) {
+                            await launchUrl(Uri.parse(url));
+                            isValidated = true;
+                          } else {
+                            throw 'Could not launch $url';
+                          }
+                        }
+                      } else if (splitEmail.contains('mail')) {
+                        bool isInstalled = await DeviceApps.isAppInstalled(
+                          'com.apple.mobilemail',
+                        );
+                        print(isInstalled);
+                        if (isInstalled != false) {
+                          DeviceApps.openApp('com.apple.mobilemail');
                         }
                       }
-                    } else if (splitEmail.contains('mail')) {
-                      bool isInstalled = await DeviceApps.isAppInstalled(
-                        'com.apple.mobilemail',
-                      );
-                      print(isInstalled);
-                      if (isInstalled != false) {
-                        DeviceApps.openApp('com.apple.mobilemail');
-                      }
-                    }
-                  },
-                  load: false,
+                    },
+                    load: false,
+                  ),
                 ),
                 isValidateAgain!
                     ? Column(

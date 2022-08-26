@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -315,7 +316,9 @@ class _CongratsScreenState extends State<CongratsScreen> {
                   child: ButtonPrimary(
                       width: size.width,
                       title: 'Ir a mi billetera',
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, WalletScreen.routeName);
+                      },
                       load: isLoadLogin!,
                       disabled: isLoadLogin!),
                 )

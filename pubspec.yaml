@@ -33,7 +33,6 @@ dependencies:
   crypto: ^3.0.2
   cupertino_icons: ^1.0.5
   device_apps: ^2.2.0
-
   extended_image: ^6.2.1
   flutter:
     sdk: flutter
@@ -55,11 +54,15 @@ dependencies:
   firebase_auth: ^3.6.4
   firebase_core: ^1.21.0
   the_apple_sign_in: ^1.1.1
-
   dotted_line: ^3.1.0
   scroll_date_picker: ^3.6.0
   intl_phone_field: ^3.1.0
   camera: ^0.10.0+1
+  geolocator: ^9.0.1
+  geocoding: ^2.0.5
+  google_maps_flutter: ^2.1.12
+  after_layout: ^1.2.0
+  http_parser: ^4.0.1
 
 flutter_native_splash:
   background_image: assets/splash/splashlogo.png

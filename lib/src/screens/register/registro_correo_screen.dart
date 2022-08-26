@@ -134,53 +134,57 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                   ),
                 ),
               ),
-              ButtonPrimary(
-                width: size.width,
-                title: 'Enviar',
-                onPressed: () async {
-                  try {
-                    if (emailController.text.isNotEmpty) {
-                      setState(() {
-                        isLoadLogin = true;
-                      });
-                      final register = await AuthUserService().registerUser(
-                        email: emailController.text,
-                        name: emailController.text.split('@').first,
-                        deviceID: uuid.v4(),
-                        type_acount: 'email',
-                      );
-
-                      if (register["access_token"] != null) {
+              Padding(
+                padding: EdgeInsets.only(top: size.height * 0.018970189701897),
+                child: ButtonPrimary(
+                  width: size.width,
+                  title: 'Enviar',
+                  onPressed: () async {
+                    try {
+                      if (emailController.text.isNotEmpty) {
                         setState(() {
-                          Preferences.token = register['access_token'];
-                          Provider.of<UserInfoProvider>(context, listen: false)
-                              .emailset(emailController.text);
-                          isLoadLogin = false;
+                          isLoadLogin = true;
                         });
-
-                        Future.delayed(Duration.zero).then(
-                          (_) => Navigator.pushNamed(
-                            context,
-                            RegistroLinkScreen.routeName,
-                          ),
+                        final register = await AuthUserService().registerUser(
+                          email: emailController.text,
+                          name: emailController.text.split('@').first,
+                          deviceID: uuid.v4(),
+                          type_acount: 'email',
                         );
-                      } else {
-                        print(register);
-                        setState(() {
-                          isLoadLogin = false;
-                        });
-                      }
-                    }
-                  } catch (e) {
-                    setState(() {
-                      isLoadLogin = false;
-                    });
 
-                    throw Exception(e);
-                  }
-                },
-                load: isLoadLogin!,
-                disabled: isLoadLogin!,
+                        if (register["access_token"] != null) {
+                          setState(() {
+                            Preferences.token = register['access_token'];
+                            Provider.of<UserInfoProvider>(context,
+                                    listen: false)
+                                .emailset(emailController.text);
+                            isLoadLogin = false;
+                          });
+
+                          Future.delayed(Duration.zero).then(
+                            (_) => Navigator.pushNamed(
+                              context,
+                              RegistroLinkScreen.routeName,
+                            ),
+                          );
+                        } else {
+                          print(register);
+                          setState(() {
+                            isLoadLogin = false;
+                          });
+                        }
+                      }
+                    } catch (e) {
+                      setState(() {
+                        isLoadLogin = false;
+                      });
+
+                      throw Exception(e);
+                    }
+                  },
+                  load: isLoadLogin!,
+                  disabled: isLoadLogin!,
+                ),
               ),
             ],
           ),

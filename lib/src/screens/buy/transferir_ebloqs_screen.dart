@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
-import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
+import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -383,7 +383,7 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                   ),
                   onTap: () {
                     Navigator.pushNamedAndRemoveUntil(
-                        context, WalletScreen.routeName, (route) => false);
+                        context, CongratsScreen.routeName, (route) => false);
                   },
                 ),
               ),

@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/camera/camera_overlay.dart';
 import 'package:ebloqs_app/src/models/camera_models.dart';
-import 'package:ebloqs_app/src/screens/indentity/verification_front_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/verification_back_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -28,7 +28,9 @@ class _TakePictureBackState extends State<TakePictureBack> {
         systemOverlayStyle: systemBarLight,
         elevation: 0,
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: Container(
             padding: EdgeInsets.symmetric(
                 horizontal: size.width * 0.0359342915811089),
@@ -72,7 +74,7 @@ class _TakePictureBackState extends State<TakePictureBack> {
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                VerificationFrontScreen(file: file))));
+                                VerificationBackScreen(file: file))));
               } else {
                 return const Align(
                     alignment: Alignment.center,
