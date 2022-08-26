@@ -28,7 +28,9 @@ class _TakePictureFrontState extends State<TakePictureFront> {
         systemOverlayStyle: systemBarLight,
         elevation: 0,
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: Container(
             padding: EdgeInsets.symmetric(
                 horizontal: size.width * 0.0359342915811089),

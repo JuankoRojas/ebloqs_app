@@ -55,7 +55,7 @@ class Onboard5Screen extends StatelessWidget {
           ),
           Positioned(
             top: size.height * 0.628,
-            left: size.width * 0.084,
+            left: size.width * 0.07,
             child: SizedBox(
               width: size.width * 0.95,
               height: size.height * 0.162,

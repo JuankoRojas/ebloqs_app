@@ -412,7 +412,7 @@ class _NationalityScreenState extends State<NationalityScreen> {
                     ),
                     Positioned(
                       top: size.height * 0.198541329011345,
-                      left: size.width * 0.198541329011345,
+                      left: size.width * 0.155298013245033,
                       child: const Text(
                         "Domicilio",
                         style: TextStyle(
@@ -423,7 +423,7 @@ class _NationalityScreenState extends State<NationalityScreen> {
                     ),
                     Positioned(
                       top: size.height * 0.232313420754412,
-                      left: size.width * 0.198541329011345,
+                      left: size.width * 0.155298013245033,
                       child: Container(
                         width: size.width * 0.77,
                         height: size.height * 0.0440105890138981,

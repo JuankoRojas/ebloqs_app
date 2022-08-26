@@ -3,7 +3,7 @@ import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
-import 'package:ebloqs_app/src/screens/indentity/address_screen.dart';
+import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/services/apple_signin_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'Ebloqs',
         theme: ThemeData(fontFamily: 'Archivo'),
-        initialRoute: AddressScreen.routeName,
+        initialRoute: OnBoardPageRoute.routeName,
         routes: getApplicationRoutes(),
       ),
     );

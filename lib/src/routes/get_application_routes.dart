@@ -9,6 +9,7 @@ import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/address_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/id_document_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/personal_information_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/take_picture_back_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/upload_document_screen.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
@@ -59,6 +60,8 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
         const IdDocumentScreen(),
     TakePictureFront.routeName: (BuildContext context) =>
         const TakePictureFront(),
+    TakePictureBack.routeName: (BuildContext context) =>
+        const TakePictureBack(),
     CongratsScreen.routeName: (BuildContext context) => const CongratsScreen(),
     DepositScreen.routeName: (BuildContext context) => const DepositScreen(),
     DepositMethodsScreen.routeName: (BuildContext context) =>

@@ -260,9 +260,23 @@ class _AddressScreenState extends State<AddressScreen>
                           child: ButtonPrimary(
                               width: size.width,
                               title: 'Continuar',
-                              onPressed: () {
-                                Navigator.pushNamed(
-                                    context, IdDocumentScreen.routeName);
+                              onPressed: () async {
+                                // final response = await AddresServices()
+                                //     .saveNewAddress(
+                                //         country: locationProvider
+                                //             .countryController.text,
+                                //         city: locationProvider
+                                //             .cityController.text,
+                                //         address1: locationProvider
+                                //             .addressController.text,
+                                //         postalCode: locationProvider
+                                //             .postalCodeController.text,
+                                //         token: Preferences.token!);
+                                // if (response.runtimeType != String) {
+                                Future.delayed(Duration.zero).then((value) =>
+                                    Navigator.pushNamed(
+                                        context, IdDocumentScreen.routeName));
+                                // }
                               },
                               load: isLoadLogin!,
                               disabled: isLoadLogin!),

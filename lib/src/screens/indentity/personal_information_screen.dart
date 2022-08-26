@@ -22,6 +22,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController idNumberController = TextEditingController();
+  String? phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -468,7 +469,9 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           ),
                           initialCountryCode: isoCountryCode,
                           onChanged: (phone) {
-                            print(phone.completeNumber);
+                            setState(() {
+                              phoneNumber = phone.completeNumber;
+                            });
                           },
                         ),
                       ),
@@ -481,9 +484,21 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         child: ButtonPrimary(
                             width: size.width,
                             title: 'Continuar',
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                  context, AddressScreen.routeName);
+                            onPressed: () async {
+                              // final response = await AuthUserService()
+                              //     .personalData(
+                              //         accesstoken: Preferences.token!,
+                              //         name: nameController.text,
+                              //         lastname: lastNameController.text,
+                              //         birthdayDate: formattedDate,
+                              //         phoneNumber: phoneNumber!,
+                              //         dniNumber: idNumberController.text);
+                              // if (response.runtimeType != String &&
+                              //     response['name'] != null) {
+                              Future.delayed(Duration.zero).then((value) =>
+                                  Navigator.pushNamed(
+                                      context, AddressScreen.routeName));
+                              // }
                             },
                             load: isLoadLogin!,
                             disabled: isLoadLogin!),

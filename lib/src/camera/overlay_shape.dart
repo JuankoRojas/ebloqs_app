@@ -42,9 +42,9 @@ class OverlayShape extends StatelessWidget {
                   color: Colors.transparent,
                 ),
                 child: Align(
-                  alignment: Alignment.topCenter,
+                  alignment: Alignment.center,
                   child: Container(
-                    margin: EdgeInsets.only(top: size.height * 0.21),
+                    // margin: EdgeInsets.only(top: size.height * 0.21),
                     width: width,
                     height: width / ratio,
                     decoration: BoxDecoration(

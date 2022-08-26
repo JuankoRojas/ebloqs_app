@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:ebloqs_app/src/models/address_model.dart';
 import 'package:geocoding/geocoding.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -45,20 +44,23 @@ class AddresServices {
   ////TODO:Cambiar nombres a los fields
 
   Future<http.Response> saveNewAddress({
-    AddressModel? address,
-    String? token,
+    required String country,
+    required String city,
+    required String address1,
+    required String postalCode,
+    required String token,
   }) async {
     try {
       var requestSaver = json.encode({
-        "country": address!.country,
-        "city": address.city,
-        "cpcode": int.parse(address.codepostal!),
-        "address1": address.address,
+        "country": country,
+        "city": city,
+        "postalCode": int.parse(address1),
+        "address1": address1,
         // "lat": address.location!.latitude,
         // "long": address.location!.longitude,
       });
 
-      var url = Uri.parse('$baseUrl/address/create');
+      var url = Uri.parse('$baseUrl/user/address');
       var response = await http.post(
         url,
         body: requestSaver,
