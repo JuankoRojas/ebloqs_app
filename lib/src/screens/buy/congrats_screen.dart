@@ -20,16 +20,17 @@ class _CongratsScreenState extends State<CongratsScreen> {
         children: [
           Image.asset('assets/png/02 1.png'),
           Padding(
-            padding: const EdgeInsets.only(top: 86.0),
+            padding: EdgeInsets.only(top: size.height * 0.101964769647697),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
                     child: SvgPicture.asset(
                         'assets/Vectores/Iconos/checkcircle.svg')),
-                const Padding(
-                  padding: EdgeInsets.only(top: 16.0),
-                  child: Center(
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: size.height * 0.018970189701897),
+                  child: const Center(
                     child: Text(
                       "¡Felicitaciones eres propietario de!",
                       textAlign: TextAlign.center,
@@ -42,9 +43,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 12.0),
-                  child: Center(
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: size.height * 0.0142276422764228),
+                  child: const Center(
                     child: Text(
                       "15,000 EBL",
                       style: TextStyle(
@@ -56,9 +58,11 @@ class _CongratsScreenState extends State<CongratsScreen> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 72.0, left: 16),
-                  child: Text(
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.0853658536585366,
+                      left: size.width * 0.0388888888888889),
+                  child: const Text(
                     "Resumen de tu compra",
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -69,8 +73,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 20.0, left: 16, right: 16),
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.0237127371273713,
+                      left: size.width * 0.0388888888888889,
+                      right: size.width * 0.0388888888888889),
                   child: Container(
                     width: size.width,
                     height: 163,
@@ -85,8 +91,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10.0, left: 10, right: 13),
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.0118563685636856,
+                              left: size.width * 0.0243055555555556,
+                              right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
                               const Text(
@@ -113,8 +121,8 @@ class _CongratsScreenState extends State<CongratsScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                            top: 15.0,
+                          padding: EdgeInsets.only(
+                            top: size.height * 0.0177634917949586,
                           ),
                           child: Container(
                             width: size.width,
@@ -123,8 +131,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 9.0, left: 10, right: 13),
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.0106454883406556,
+                              left: size.width * 0.0242466227918255,
+                              right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
                               const Text(
@@ -151,8 +161,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 7.0, left: 26, right: 13),
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.00826028320971005,
+                              left: size.width * 0.0628887353144438,
+                              right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
                               const Text(
@@ -179,7 +191,9 @@ class _CongratsScreenState extends State<CongratsScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 26, right: 13),
+                          padding: EdgeInsets.only(
+                              left: size.width * 0.0628887353144438,
+                              right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
                               const Text(
@@ -206,8 +220,8 @@ class _CongratsScreenState extends State<CongratsScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                            top: 13.0,
+                          padding: EdgeInsets.only(
+                            top: size.height * 0.0153586497890295,
                           ),
                           child: Container(
                             width: size.width,
@@ -216,8 +230,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 9.0, left: 10, right: 13),
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.0106454883406556,
+                              left: size.width * 0.0242466227918255,
+                              right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
                               const Text(
@@ -248,13 +264,19 @@ class _CongratsScreenState extends State<CongratsScreen> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(top: 16, left: 16.0, right: 16),
+                  padding: EdgeInsets.only(
+                    top: size.height * 0.0188583936689679,
+                    left: size.width * 0.0386073767666322,
+                    right: size.width * 0.0386073767666322,
+                  ),
                   child: Container(
                     width: size.width,
-                    height: 68,
-                    padding: const EdgeInsets.only(
-                        top: 17, left: 18.0, right: 21, bottom: 17),
+                    height: size.height * 0.079959684192844,
+                    padding: EdgeInsets.only(
+                        top: size.height * 0.0200134544231416,
+                        left: size.width * 0.0433287482806053,
+                        right: size.width * 0.0504288164665524,
+                        bottom: size.height * 0.0200134544231416),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
@@ -285,9 +307,13 @@ class _CongratsScreenState extends State<CongratsScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      top: 140, left: 15.0, right: 15, bottom: 48),
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.164429530201342,
+                      left: size.width * 0.0359342915811089,
+                      right: size.width * 0.0359342915811089,
+                      bottom: size.height * 0.0563097033685269),
                   child: ButtonPrimary(
+                      width: size.width,
                       title: 'Ir a mi billetera',
                       onPressed: () {},
                       load: isLoadLogin!,

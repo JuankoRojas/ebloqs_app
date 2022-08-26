@@ -20,18 +20,20 @@ class _NationalityScreenState extends State<NationalityScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    print(size.height);
     final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
     String? isoCountryCode = systemLocales.first.countryCode;
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 60,
+        leadingWidth: size.width * 0.1458333333333384,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: systemBarDark,
         elevation: 0,
         leading: GestureDetector(
           onTap: () {},
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.0361072902338377),
             child: SvgPicture.asset(
               'assets/Vectores/Iconos/Arrow left.svg',
               fit: BoxFit.contain,
@@ -51,7 +53,10 @@ class _NationalityScreenState extends State<NationalityScreen> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 26, left: 14, right: 14),
+        padding: EdgeInsets.only(
+            top: size.height * 0.0298360655737705,
+            left: size.width * 0.0327540106951872,
+            right: size.width * 0.0327540106951872),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -64,13 +69,13 @@ class _NationalityScreenState extends State<NationalityScreen> {
                 fontWeight: FontWeight.w700,
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(
+            Padding(
+              padding: const EdgeInsets.only(
                 top: 5,
               ),
               child: SizedBox(
-                width: 345,
-                child: Text(
+                width: size.width * 0.805268422807603,
+                child: const Text(
                   "Asegúrese de que su país de residencia coincida con su identificación válida.  Su identidad podría no ser validada según la selección.",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -81,11 +86,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
                 ),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(
-                top: 18,
+                top: size.height * 0.0206320615686917,
               ),
-              child: Text(
+              child: const Text(
                 "Nacionalidad",
                 style: TextStyle(
                   color: Color(0xff170658),
@@ -96,8 +101,8 @@ class _NationalityScreenState extends State<NationalityScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                top: 8,
+              padding: EdgeInsets.only(
+                top: size.height * 0.00946265630280501,
               ),
               child: CountryListPick(
                   appBar: AppBar(
@@ -130,7 +135,7 @@ class _NationalityScreenState extends State<NationalityScreen> {
                   pickerBuilder: (context, CountryCode? countryCode) {
                     return Container(
                       width: size.width,
-                      height: 52,
+                      height: size.height * 0.0602250165453343,
                       padding: EdgeInsets.only(
                         top: size.height * (11 / size.height),
                         right: size.width * (6 / size.width),
@@ -157,7 +162,8 @@ class _NationalityScreenState extends State<NationalityScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: EdgeInsets.only(
+                                left: size.width * 0.0186294078509648),
                             child: Container(
                               decoration: const BoxDecoration(
                                 boxShadow: [
@@ -205,11 +211,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
                   // Whether the country list should be wrapped in a SafeArea
                   useSafeArea: false),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(
-                top: 32,
+                top: size.height * 0.0373208930356548,
               ),
-              child: Text(
+              child: const Text(
                 "Proceso de verificación",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -221,17 +227,17 @@ class _NationalityScreenState extends State<NationalityScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                top: 17,
+              padding: EdgeInsets.only(
+                top: size.height * 0.01994301994302,
               ),
               child: SizedBox(
                 width: size.width,
-                height: 250,
+                height: size.height * 0.286228328426562,
                 child: Stack(
                   children: [
                     Container(
-                      width: 40,
-                      height: 40,
+                      width: size.width * 0.0929306339196815,
+                      height: size.height * 0.0457441594510701,
                       decoration: const BoxDecoration(
                         color: Color(0xff2504ca),
                         shape: BoxShape.circle,
@@ -249,10 +255,10 @@ class _NationalityScreenState extends State<NationalityScreen> {
                         ),
                       ),
                     ),
-                    const Positioned(
-                      top: 12,
-                      left: 67,
-                      child: Text(
+                    Positioned(
+                      top: size.height * 0.0137075718015666,
+                      left: size.width * 0.155298013245033,
+                      child: const Text(
                         "Verificación identidad",
                         style: TextStyle(
                           color: Color(0xff2504ca),
@@ -263,11 +269,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
                       ),
                     ),
                     Positioned(
-                      top: 60,
-                      left: 67,
+                      top: size.height * 0.0684596577017115,
+                      left: size.width * 0.155298013245033,
                       child: Container(
                         width: size.width * 0.77,
-                        height: 38,
+                        height: size.height * 0.0433083686095735,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -280,8 +286,9 @@ class _NationalityScreenState extends State<NationalityScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10.0, right: 13),
+                              padding: EdgeInsets.only(
+                                  left: size.width * 0.0242466227918255,
+                                  right: size.width * 0.031292984869326),
                               child: SvgPicture.asset(
                                   'assets/Vectores/Iconos/id.svg'),
                             ),
@@ -294,9 +301,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 38.0, right: 14),
-                              child: Text(
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: size.width * 0.0878757846052198,
+                                  right: size.width * 0.0327540106951872),
+                              child: const Text(
                                 "Pendiente",
                                 style: TextStyle(
                                   color: Color(0xffeb4040),
@@ -311,11 +320,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
                       ),
                     ),
                     Positioned(
-                      top: 108,
-                      left: 67,
+                      top: size.height * 0.122946820621239,
+                      left: size.width * 0.156751336898396,
                       child: Container(
                         width: size.width * 0.77,
-                        height: 38,
+                        height: size.height * 0.0440105890138981,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -328,8 +337,9 @@ class _NationalityScreenState extends State<NationalityScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10.0, right: 13),
+                              padding: EdgeInsets.only(
+                                  left: size.width * 0.0242466227918255,
+                                  right: size.width * 0.031292984869326),
                               child: SvgPicture.asset(
                                   'assets/Vectores/Iconos/face id.svg'),
                             ),
@@ -342,9 +352,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 70.0, right: 14),
-                              child: Text(
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: size.width * 0.161502966381015,
+                                  right: size.width * 0.0327540106951872),
+                              child: const Text(
                                 "Pendiente",
                                 style: TextStyle(
                                   color: Color(0xffeb4040),
@@ -358,13 +370,13 @@ class _NationalityScreenState extends State<NationalityScreen> {
                         ),
                       ),
                     ),
-                    const Positioned(
-                      top: 40,
-                      left: 20,
+                    Positioned(
+                      top: size.height * 0.0462198745460548,
+                      left: size.width * 00460374876685301,
                       child: SizedBox(
-                        height: 128,
-                        width: 128,
-                        child: DottedLine(
+                        height: size.height * 0.14554905782976,
+                        width: size.width * 0.293963254593176,
+                        child: const DottedLine(
                           direction: Axis.vertical,
                           lineLength: double.infinity,
                           lineThickness: 1.0,
@@ -374,10 +386,10 @@ class _NationalityScreenState extends State<NationalityScreen> {
                       ),
                     ),
                     Positioned(
-                      top: 165,
+                      top: size.height * 0.187408729514847,
                       child: Container(
-                        width: 40,
-                        height: 40,
+                        width: size.width * 0.0935828877005349,
+                        height: size.height * 0.0462198745460548,
                         decoration: BoxDecoration(
                             color: const Color(0xfff6f4fd),
                             shape: BoxShape.circle,
@@ -398,10 +410,10 @@ class _NationalityScreenState extends State<NationalityScreen> {
                         ),
                       ),
                     ),
-                    const Positioned(
-                      top: 175,
-                      left: 67,
-                      child: Text(
+                    Positioned(
+                      top: size.height * 0.198541329011345,
+                      left: size.width * 0.198541329011345,
+                      child: const Text(
                         "Domicilio",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -410,11 +422,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
                       ),
                     ),
                     Positioned(
-                      top: 205,
-                      left: 67,
+                      top: size.height * 0.232313420754412,
+                      left: size.width * 0.198541329011345,
                       child: Container(
                         width: size.width * 0.77,
-                        height: 38,
+                        height: size.height * 0.0440105890138981,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           border: Border.all(
@@ -427,8 +439,9 @@ class _NationalityScreenState extends State<NationalityScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 17.0, right: 10),
+                              padding: EdgeInsets.only(
+                                  left: size.width * 0.0405313351498638,
+                                  right: size.width * 0.0242466227918255),
                               child: SvgPicture.asset(
                                   'assets/Vectores/Iconos/map.svg'),
                             ),
@@ -441,9 +454,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 58.0, right: 14),
-                              child: Text(
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: size.width * 0.132896890343699,
+                                  right: size.width * 0.0327540106951872),
+                              child: const Text(
                                 "Pendiente",
                                 style: TextStyle(
                                   color: Color(0xffeb4040),
@@ -461,11 +476,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
                 ),
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(
-                top: 35,
+                top: size.height * 0.0396183699870634,
               ),
-              child: Text(
+              child: const Text(
                 "Tiempo de revisión máxima: 72 horas laborables.",
                 style: TextStyle(
                   color: Color(0xff170658),
@@ -476,10 +491,11 @@ class _NationalityScreenState extends State<NationalityScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                top: 65,
+              padding: EdgeInsets.only(
+                top: size.height * 0.0734937812954289,
               ),
               child: ButtonPrimary(
+                width: size.width,
                 title: 'Continuar',
                 onPressed: () {
                   Navigator.pushNamed(context, PersonalInformation.routeName);

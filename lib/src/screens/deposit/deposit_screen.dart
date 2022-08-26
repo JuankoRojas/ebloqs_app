@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/screens/deposit/deposit_methods_screen.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,19 +22,23 @@ class _DepositScreenState extends State<DepositScreen> {
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 62.0),
+          padding: EdgeInsets.only(top: size.height * 0.0723936613844871),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 30.0, right: 19),
+                padding: EdgeInsets.only(
+                    left: size.width * 0.0711864406779662,
+                    right: size.width * 0.0454079890747696),
                 child: Row(
                   children: [
                     GestureDetector(
                       child: SvgPicture.asset(
                           'assets/Vectores/Iconos/Arrow left.svg'),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
                     ),
                     Expanded(child: Container()),
                     const Text(
@@ -54,13 +59,13 @@ class _DepositScreenState extends State<DepositScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 32.0),
+                padding: EdgeInsets.only(top: size.height * 0.037190768719907),
                 child: Row(
                   children: [
                     GestureDetector(
                       child: Container(
                         width: size.width * 0.5,
-                        height: 54,
+                        height: size.height * 0.0626865671641791,
                         color: const Color(0xfff6f4fd),
                         child: const Center(
                           child: Text(
@@ -86,7 +91,7 @@ class _DepositScreenState extends State<DepositScreen> {
                     GestureDetector(
                       child: Container(
                         width: size.width * 0.5,
-                        height: 54,
+                        height: size.height * 0.0626865671641791,
                         color: const Color(0xfff9f9fa),
                         child: const Center(
                           child: Text(
@@ -113,7 +118,11 @@ class _DepositScreenState extends State<DepositScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 39.0, left: 16, right: 16),
+                padding: EdgeInsets.only(
+                  top: size.height * 0.0452211363259898,
+                  left: size.width * 0.0385144429160936,
+                  right: size.width * 0.0385144429160936,
+                ),
                 child: SizedBox(
                   height: size.height * 0.66,
                   width: double.infinity,
@@ -125,18 +134,28 @@ class _DepositScreenState extends State<DepositScreen> {
               ),
               (_curr == 0)
                   ? Padding(
-                      padding: const EdgeInsets.only(
-                          top: 36, left: 15.0, right: 15, bottom: 48),
+                      padding: EdgeInsets.only(
+                          top: size.height * 0.0416942422236929,
+                          left: size.width * 0.0361944157187177,
+                          right: size.width * 0.0361944157187177,
+                          bottom: size.height * 0.0559813395534822),
                       child: ButtonPrimary(
+                          width: size.width,
                           title: 'Continuar',
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(
+                                context, DepositMethodsScreen.routeName);
+                          },
                           load: isLoadLogin!,
                           disabled: isLoadLogin!),
                     )
-                  : const Padding(
+                  : Padding(
                       padding: EdgeInsets.only(
-                          top: 36, left: 15.0, right: 15, bottom: 48),
-                      child: Text(
+                          top: size.height * 0.0420841683366734,
+                          left: size.width * 0.0361944157187177,
+                          right: size.width * 0.0361944157187177,
+                          bottom: size.height * 0.0559813395534822),
+                      child: const Text(
                         "Por el momento no podrá depositar a su billetera criptomonedas ",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -172,8 +191,8 @@ class _EfectivoState extends State<Efectivo> {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   "Historial",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -183,8 +202,9 @@ class _EfectivoState extends State<Efectivo> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Text(
+                  padding:
+                      EdgeInsets.only(top: size.height * 0.0118143459915612),
+                  child: const Text(
                     "USD",
                     style: TextStyle(
                       color: Color(0xff2504ca),
@@ -199,9 +219,9 @@ class _EfectivoState extends State<Efectivo> {
             SvgPicture.asset('assets/Vectores/Iconos/Trash.svg')
           ],
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 42.0),
-          child: Text(
+        Padding(
+          padding: EdgeInsets.only(top: size.height * 0.0485870104115023),
+          child: const Text(
             "Lista de divisas",
             style: TextStyle(
               color: Color(0xff170658),
@@ -212,16 +232,16 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 24.0),
+          padding: EdgeInsets.only(top: size.height * 0.0281548516842635),
           child: Row(
             children: [
               Image.asset(
                 'assets/Imagenes/Group 1835.png',
                 width: 35,
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
+                child: const Text(
                   "Real Brasileño",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -235,7 +255,7 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Container(
             width: size.width,
             height: 0.50,
@@ -248,16 +268,16 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Row(
             children: [
               Image.asset(
                 'assets/Imagenes/Group 1835.png',
                 width: 35,
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
+                child: const Text(
                   "Peso Colombiano",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -271,7 +291,7 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Container(
             width: size.width,
             height: 0.50,
@@ -284,16 +304,16 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Row(
             children: [
               Image.asset(
                 'assets/Imagenes/Group 1836.png',
                 width: 35,
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
+                child: const Text(
                   "Sol Peruano",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -307,7 +327,7 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Container(
             width: size.width,
             height: 0.50,
@@ -320,16 +340,16 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Row(
             children: [
               Image.asset(
                 'assets/Imagenes/Group 1839.png',
                 width: 35,
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
+                child: const Text(
                   "Euro",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -343,7 +363,7 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Container(
             width: size.width,
             height: 0.50,
@@ -356,16 +376,16 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Row(
             children: [
               Image.asset(
                 'assets/Imagenes/Group 1837.png',
                 width: 35,
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
+                child: const Text(
                   "Dólar Americano",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -379,7 +399,7 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Container(
             width: size.width,
             height: 0.50,
@@ -392,16 +412,16 @@ class _EfectivoState extends State<Efectivo> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0231099372730274),
           child: Row(
             children: [
               Image.asset(
                 'assets/Imagenes/Group 1835.png',
                 width: 35,
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 12.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
+                child: const Text(
                   "Peso Chileno",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -438,8 +458,8 @@ class _CriptomonedaState extends State<Criptomoneda> {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   "Historial",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -449,8 +469,9 @@ class _CriptomonedaState extends State<Criptomoneda> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 10.0),
-                  child: Text(
+                  padding:
+                      EdgeInsets.only(top: size.height * 0.0118143459915612),
+                  child: const Text(
                     "BTC",
                     style: TextStyle(
                       color: Color(0xff2504ca),
@@ -465,9 +486,9 @@ class _CriptomonedaState extends State<Criptomoneda> {
             SvgPicture.asset('assets/Vectores/Iconos/Trash.svg')
           ],
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 42.0),
-          child: Text(
+        Padding(
+          padding: EdgeInsets.only(top: size.height * 0.0489266100848727),
+          child: const Text(
             "Lista de Criptomonedas",
             style: TextStyle(
               color: Color(0xff170658),
@@ -478,7 +499,7 @@ class _CriptomonedaState extends State<Criptomoneda> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 24.0),
+          padding: EdgeInsets.only(top: size.height * 0.0281218613993974),
           child: Row(
             children: [
               Container(
@@ -493,7 +514,7 @@ class _CriptomonedaState extends State<Criptomoneda> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 12.0),
+                padding: EdgeInsets.only(left: size.width * 0.0290255701451279),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
@@ -531,7 +552,7 @@ class _CriptomonedaState extends State<Criptomoneda> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: EdgeInsets.only(top: size.height * 0.0234623764035529),
           child: Container(
             width: size.width,
             height: 0.50,

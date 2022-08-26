@@ -32,6 +32,8 @@ class AuthUserService with ChangeNotifier {
           var jsonResponse =
               convert.jsonDecode(response.body) as Map<String, dynamic>;
           return jsonResponse;
+        case 401:
+          return "No pudimos autenticar tu correo";
       }
     } catch (e) {
       print(e);

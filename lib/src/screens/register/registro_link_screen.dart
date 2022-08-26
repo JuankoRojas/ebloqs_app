@@ -207,6 +207,7 @@ continuar el proceso de registro en Ebloqs''',
                   ),
                 ),
                 ButtonPrimary(
+                  width: size.width,
                   title: 'Abrir mi correo',
                   onPressed: () async {
                     if (splitEmail.contains('gmail')) {

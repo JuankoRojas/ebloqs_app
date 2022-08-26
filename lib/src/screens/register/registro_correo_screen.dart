@@ -135,6 +135,7 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                 ),
               ),
               ButtonPrimary(
+                width: size.width,
                 title: 'Enviar',
                 onPressed: () async {
                   try {

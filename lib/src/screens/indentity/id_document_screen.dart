@@ -1,4 +1,5 @@
 import 'package:ebloqs_app/src/screens/indentity/address_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 60,
+        leadingWidth: size.width * 0.1417004048583,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: systemBarDark,
         elevation: 0,
@@ -28,7 +29,8 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
             Navigator.pop(context);
           },
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.0361072902338377),
             child: SvgPicture.asset(
               'assets/Vectores/Iconos/Arrow left.svg',
               fit: BoxFit.contain,
@@ -49,20 +51,21 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(
-            top: 25.0,
+          padding: EdgeInsets.only(
+            top: size.height * 0.0292593211837486,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 15.0),
+                padding: EdgeInsets.only(left: size.width * 0.0361072902338377),
                 child: Row(
                   children: [
                     SvgPicture.asset('assets/Vectores/Iconos/id.svg'),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0),
-                      child: Text(
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: size.width * 0.0384219554030875),
+                      child: const Text(
                         "Documento de identidad",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -76,7 +79,10 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 27.0, left: 15, right: 15),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.031563126252505,
+                    left: size.width * 0.0361072902338377,
+                    right: size.width * 0.0361072902338377),
                 child: Container(
                   width: size.width,
                   height: 4,
@@ -85,23 +91,29 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                       color: Color(0xffeae4fc),
                       borderRadius: BorderRadius.all(Radius.circular(3))),
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxWidth: 94,
+                    constraints: BoxConstraints(
+                      maxWidth: size.width * 0.221474251093908,
                     ),
                     child: Container(
-                        width: 94,
-                        height: 4,
-                        padding: const EdgeInsets.only(right: 251),
-                        decoration: const BoxDecoration(
-                            color: Color(0xff170658),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(3)))),
+                      width: size.width * 0.221474251093908,
+                      height: 4,
+                      padding: EdgeInsets.only(
+                          right: size.width * 0.589993284083278),
+                      decoration: const BoxDecoration(
+                        color: Color(0xff170658),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(3),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 24, left: 16.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(
+                    top: size.height * 0.0281218613993974,
+                    left: size.width * 0.0384219554030875),
+                child: const Text(
                   "Use documento válido de su país",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -112,11 +124,13 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 6, left: 16.0),
+              Padding(
+                padding: EdgeInsets.only(
+                    top: size.height * 0.00690108445612882,
+                    left: size.width * 0.0384219554030875),
                 child: SizedBox(
-                  width: 364,
-                  child: Text(
+                  width: size.width * 0.853601340033502,
+                  child: const Text(
                     "solo se aceptarán los documentos a  continuación, todos los demás documentos serán rechazados",
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -128,45 +142,62 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, left: 16.0, right: 16),
-                child: Container(
-                  width: size.width,
-                  height: 68,
-                  padding: const EdgeInsets.only(
-                      top: 17, left: 18.0, right: 21, bottom: 17),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: const Color(0xffeae4fc),
-                      width: 1,
-                    ),
-                    color: const Color(0xfff9f9fa),
-                  ),
-                  child: Row(
-                    children: [
-                      const Text(
-                        "Documento de identidad",
-                        style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 14,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w400,
-                        ),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.0234623764035529,
+                    left: size.width * 0.0384219554030875,
+                    right: size.width * 0.0384219554030875),
+                child: GestureDetector(
+                  child: Container(
+                    width: size.width,
+                    height: size.height * 0.0785737867282932,
+                    padding: EdgeInsets.only(
+                        top: size.height * 0.0199664429530201,
+                        left: size.width * 0.0430180949129396,
+                        right: size.width * 0.0499490316004078,
+                        bottom: size.height * 0.0199664429530201),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: const Color(0xffeae4fc),
+                        width: 1,
                       ),
-                      Expanded(child: Container()),
-                      SvgPicture.asset(
-                          'assets/Vectores/Iconos/chevronright.svg')
-                    ],
+                      color: const Color(0xfff9f9fa),
+                    ),
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Documento de identidad",
+                          style: TextStyle(
+                            color: Color(0xff170658),
+                            fontSize: 14,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Expanded(child: Container()),
+                        SvgPicture.asset(
+                            'assets/Vectores/Iconos/chevronright.svg')
+                      ],
+                    ),
                   ),
+                  onTap: () {
+                    Navigator.pushNamed(context, TakePictureFront.routeName);
+                  },
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16, left: 16.0, right: 16),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.0188140433394927,
+                    left: size.width * 0.0384219554030875,
+                    right: size.width * 0.0384219554030875),
                 child: Container(
                   width: size.width,
-                  height: 68,
-                  padding: const EdgeInsets.only(
-                      top: 17, left: 18.0, right: 21, bottom: 17),
+                  height: size.height * 0.0785737867282932,
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.0199664429530201,
+                      left: size.width * 0.0430180949129396,
+                      right: size.width * 0.0499490316004078,
+                      bottom: size.height * 0.0199664429530201),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
@@ -194,12 +225,18 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 16, left: 16.0, right: 16),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.0188140433394927,
+                    left: size.width * 0.0384219554030875,
+                    right: size.width * 0.0384219554030875),
                 child: Container(
                   width: size.width,
-                  height: 68,
-                  padding: const EdgeInsets.only(
-                      top: 17, left: 18.0, right: 21, bottom: 17),
+                  height: size.height * 0.0785737867282932,
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.0199664429530201,
+                      left: size.width * 0.0430180949129396,
+                      right: size.width * 0.0499490316004078,
+                      bottom: size.height * 0.0199664429530201),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border: Border.all(
@@ -227,9 +264,13 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                    top: 261, left: 15.0, right: 15, bottom: 48),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.299852289512556,
+                    left: size.width * 0.0361072902338377,
+                    right: size.width * 0.0361072902338377,
+                    bottom: size.height * 0.0557213930348259),
                 child: ButtonPrimary(
+                    width: size.width,
                     title: 'Continuar',
                     onPressed: () {
                       Navigator.pushNamed(context, AddressScreen.routeName);

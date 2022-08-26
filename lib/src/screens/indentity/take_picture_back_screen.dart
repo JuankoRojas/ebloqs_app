@@ -6,15 +6,15 @@ import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class TakePictureFront extends StatefulWidget {
-  static const routeName = 'TakePictureFront';
-  const TakePictureFront({Key? key}) : super(key: key);
+class TakePictureBack extends StatefulWidget {
+  static const routeName = 'TakePictureBack';
+  const TakePictureBack({Key? key}) : super(key: key);
 
   @override
-  State<TakePictureFront> createState() => _TakePictureFrontState();
+  State<TakePictureBack> createState() => _TakePictureBackState();
 }
 
-class _TakePictureFrontState extends State<TakePictureFront> {
+class _TakePictureBackState extends State<TakePictureBack> {
   OverlayFormat format = OverlayFormat.cardID1;
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,7 @@ class _TakePictureFrontState extends State<TakePictureFront> {
             top: size.height * 0.652054794520548,
             left: size.width * 0.0359342915811089,
             child: const Text(
-              "Lado frontal",
+              "Lado reverso",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
@@ -100,7 +100,7 @@ class _TakePictureFrontState extends State<TakePictureFront> {
             top: size.height * 0.672730199613651,
             left: size.width * 0.0359342915811089,
             child: const Text(
-              "Muestra tu documento de identidad del lado frontal",
+              "Muestra tu documento de identidad del lado reverso",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 13,

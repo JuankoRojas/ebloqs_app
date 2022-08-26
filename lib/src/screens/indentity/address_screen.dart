@@ -25,7 +25,7 @@ class _AddressScreenState extends State<AddressScreen> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 60,
+        leadingWidth: size.width * 0.1417004048583,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: systemBarDark,
         elevation: 0,
@@ -34,7 +34,8 @@ class _AddressScreenState extends State<AddressScreen> {
             Navigator.pop(context);
           },
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.0361072902338377),
             child: SvgPicture.asset(
               'assets/Vectores/Iconos/Arrow left.svg',
               fit: BoxFit.contain,
@@ -55,19 +56,20 @@ class _AddressScreenState extends State<AddressScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(
-            top: 25.0,
+          padding: EdgeInsets.only(
+            top: size.height * 0.0288540807914262,
           ),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 15.0),
+                padding: EdgeInsets.only(left: size.width * 0.0361072902338377),
                 child: Row(
                   children: [
                     SvgPicture.asset('assets/Vectores/Iconos/id.svg'),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0),
-                      child: Text(
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: size.width * 0.0384219554030875),
+                      child: const Text(
                         "Domicilio",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -81,7 +83,10 @@ class _AddressScreenState extends State<AddressScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 27.0, left: 15, right: 15),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.0311264822134388,
+                    left: size.width * 0.0361072902338377,
+                    right: size.width * 0.0361072902338377),
                 child: Container(
                   width: size.width,
                   height: 4,
@@ -94,9 +99,10 @@ class _AddressScreenState extends State<AddressScreen> {
                       maxWidth: 94,
                     ),
                     child: Container(
-                        width: 94,
+                        width: size.width * 0.220953660174614,
                         height: 4,
-                        padding: const EdgeInsets.only(right: 251),
+                        padding: EdgeInsets.only(
+                            right: size.width * 0.591383372601818),
                         decoration: const BoxDecoration(
                             color: Color(0xff170658),
                             borderRadius:
@@ -105,7 +111,7 @@ class _AddressScreenState extends State<AddressScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 24.0),
+                padding: EdgeInsets.only(top: size.height * 0.0281218613993974),
                 child: Form(
                     key: _formKey12,
                     child: Column(
@@ -124,8 +130,10 @@ class _AddressScreenState extends State<AddressScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 8, left: 15.0, right: 15),
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.00947386229064457,
+                              left: size.width * 0.0361072902338377,
+                              right: size.width * 0.0361072902338377),
                           child: TextFormField(
                             controller: countryController,
                             keyboardType: TextInputType.text,
@@ -136,9 +144,11 @@ class _AddressScreenState extends State<AddressScreen> {
                             ),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 16, left: 15.0),
-                          child: Text(
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.0188140433394927,
+                              left: size.width * 0.0361072902338377),
+                          child: const Text(
                             "Ciudad",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -149,8 +159,10 @@ class _AddressScreenState extends State<AddressScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 8, left: 15.0, right: 15),
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.00947386229064457,
+                              left: size.width * 0.0361072902338377,
+                              right: size.width * 0.0361072902338377),
                           child: TextFormField(
                             controller: cityController,
                             keyboardType: TextInputType.text,
@@ -161,9 +173,11 @@ class _AddressScreenState extends State<AddressScreen> {
                             ),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 16, left: 15.0),
-                          child: Text(
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.0188140433394927,
+                              left: size.width * 0.0361072902338377),
+                          child: const Text(
                             "Dirección de domicilio",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -174,8 +188,10 @@ class _AddressScreenState extends State<AddressScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 8, left: 15.0, right: 15),
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.00947386229064457,
+                              left: size.width * 0.0361072902338377,
+                              right: size.width * 0.0361072902338377),
                           child: TextFormField(
                             controller: addressController,
                             keyboardType: TextInputType.text,
@@ -186,9 +202,11 @@ class _AddressScreenState extends State<AddressScreen> {
                             ),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 16, left: 15.0),
-                          child: Text(
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.0188140433394927,
+                              left: size.width * 0.0361072902338377),
+                          child: const Text(
                             "Código Postal",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -199,8 +217,10 @@ class _AddressScreenState extends State<AddressScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 8, left: 15.0, right: 15),
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.00947386229064457,
+                              left: size.width * 0.0361072902338377,
+                              right: size.width * 0.0361072902338377),
                           child: TextFormField(
                             controller: zipController,
                             keyboardType: TextInputType.text,
@@ -212,9 +232,13 @@ class _AddressScreenState extends State<AddressScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 174, left: 15.0, right: 15, bottom: 48),
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.200361901628557,
+                              left: size.width * 0.0361072902338377,
+                              right: size.width * 0.0361072902338377,
+                              bottom: size.height * 0.0557213930348259),
                           child: ButtonPrimary(
+                              width: size.width,
                               title: 'Continuar',
                               onPressed: () {
                                 Navigator.pushNamed(

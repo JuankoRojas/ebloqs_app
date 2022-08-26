@@ -33,7 +33,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
     String? isoCountryCode = systemLocales.first.countryCode;
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 60,
+        leadingWidth: size.width * 0.139720558882236,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: systemBarDark,
         elevation: 0,
@@ -42,7 +42,8 @@ class _PersonalInformationState extends State<PersonalInformation> {
             Navigator.pop(context);
           },
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.0359342915811089),
             child: SvgPicture.asset(
               'assets/Vectores/Iconos/Arrow left.svg',
               fit: BoxFit.contain,
@@ -63,13 +64,13 @@ class _PersonalInformationState extends State<PersonalInformation> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(
-            top: 25.0,
+          padding: EdgeInsets.only(
+            top: size.height * 0.0291569476841053,
           ),
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 15.0),
+                padding: EdgeInsets.only(left: size.width * 0.0359342915811089),
                 child: Row(
                   children: [
                     SvgPicture.asset('assets/Vectores/Iconos/id.svg'),
@@ -89,7 +90,10 @@ class _PersonalInformationState extends State<PersonalInformation> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 27.0, left: 15, right: 15),
+                padding: EdgeInsets.only(
+                    top: size.height * 0.0314162234042553,
+                    left: size.width * 0.0359342915811089,
+                    right: size.width * 0.0359342915811089),
                 child: Container(
                   width: size.width,
                   height: 4,
@@ -102,9 +106,10 @@ class _PersonalInformationState extends State<PersonalInformation> {
                       maxWidth: 94,
                     ),
                     child: Container(
-                        width: 94,
-                        height: 4,
-                        padding: const EdgeInsets.only(right: 251),
+                        width: size.width * 0.217376940865544,
+                        height: size.width * 0.217376940865544,
+                        padding: EdgeInsets.only(
+                            right: size.width * 0.577770470240053),
                         decoration: const BoxDecoration(
                             color: Color(0xff170658),
                             borderRadius:
@@ -113,15 +118,16 @@ class _PersonalInformationState extends State<PersonalInformation> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 24.0),
+                padding: EdgeInsets.only(top: size.height * 0.028023352793995),
                 child: Form(
                   key: _formKey11,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 15.0),
-                        child: Text(
+                      Padding(
+                        padding: EdgeInsets.only(
+                            left: size.width * 0.0359342915811089),
+                        child: const Text(
                           "Nacionalidad",
                           style: TextStyle(
                             color: Color(0xff170658),
@@ -132,8 +138,10 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(top: 8, left: 8, right: 8),
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.00946265630280501,
+                            left: size.width * 0.0194444444444445,
+                            right: size.width * 0.0194444444444445),
                         child: SizedBox(
                           child: CountryListPick(
                               appBar: AppBar(
@@ -166,7 +174,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                               pickerBuilder:
                                   (context, CountryCode? countryCode) {
                                 return Container(
-                                  height: 58,
+                                  height: size.height * 0.0655050016134237,
                                   width: size.width,
                                   padding: EdgeInsets.only(
                                     top: size.height * (11 / size.height),
@@ -195,8 +203,9 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                         ),
                                       ),
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 8.0),
+                                        padding: EdgeInsets.only(
+                                            left: size.width *
+                                                0.0194444444444445),
                                         child: Container(
                                           decoration: const BoxDecoration(
                                             boxShadow: [
@@ -248,9 +257,11 @@ class _PersonalInformationState extends State<PersonalInformation> {
                               useSafeArea: false),
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 16, left: 15.0),
-                        child: Text(
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.0187699011228423,
+                            left: size.width * 0.0359342915811089),
+                        child: const Text(
                           "Nombres",
                           style: TextStyle(
                             color: Color(0xff170658),
@@ -261,8 +272,10 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8, left: 15.0, right: 15),
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.00946265630280501,
+                            left: size.width * 0.0359342915811089,
+                            right: size.width * 0.0359342915811089),
                         child: TextFormField(
                           controller: nameController,
                           keyboardType: TextInputType.text,
@@ -273,12 +286,12 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           ),
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(
-                          top: 16,
-                          left: 15.0,
+                          top: size.height * 0.0187699011228423,
+                          left: size.width * 0.0359342915811089,
                         ),
-                        child: Text(
+                        child: const Text(
                           "Apellidos",
                           style: TextStyle(
                             color: Color(0xff170658),
@@ -289,8 +302,10 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8, left: 15.0, right: 15),
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.00946265630280501,
+                            left: size.width * 0.0359342915811089,
+                            right: size.width * 0.0359342915811089),
                         child: TextFormField(
                           controller: lastNameController,
                           keyboardType: TextInputType.text,
@@ -301,12 +316,12 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           ),
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(
                           top: 16,
-                          left: 15.0,
+                          left: size.width * 0.0359342915811089,
                         ),
-                        child: Text(
+                        child: const Text(
                           "Fecha de nacimiento",
                           style: TextStyle(
                             color: Color(0xff170658),
@@ -317,12 +332,14 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8, left: 15.0, right: 15),
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.00946265630280501,
+                            left: size.width * 0.0359342915811089,
+                            right: size.width * 0.0359342915811089),
                         child: GestureDetector(
                           child: Container(
                             width: size.width,
-                            height: 58,
+                            height: size.height * 0.0655050016134237,
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -360,7 +377,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                       borderRadius:
                                           BorderRadius.circular(20.0)),
                                   child: SizedBox(
-                                    height: 250,
+                                    height: size.height * 0.283309049700502,
                                     child: ScrollDatePicker(
                                       selectedDate: _selectedDate,
                                       locale: const Locale('es'),
@@ -377,12 +394,12 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           },
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(
-                          top: 16,
-                          left: 15.0,
+                          top: size.height * 0.0187699011228423,
+                          left: size.width * 0.0359342915811089,
                         ),
-                        child: Text(
+                        child: const Text(
                           "Número documento identidad",
                           style: TextStyle(
                             color: Color(0xff170658),
@@ -393,8 +410,10 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8, left: 15.0, right: 15),
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.00946265630280501,
+                            left: size.width * 0.0359342915811089,
+                            right: size.width * 0.0359342915811089),
                         child: TextFormField(
                           controller: idNumberController,
                           keyboardType: TextInputType.number,
@@ -407,12 +426,12 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           ),
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(
-                          top: 16,
-                          left: 15.0,
+                          top: size.height * 0.0187699011228423,
+                          left: size.width * 0.0359342915811089,
                         ),
-                        child: Text(
+                        child: const Text(
                           "Número de teléfono",
                           style: TextStyle(
                             color: Color(0xff170658),
@@ -423,19 +442,22 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 8, left: 15.0, right: 15),
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.00946265630280501,
+                            left: size.width * 0.0359342915811089,
+                            right: size.width * 0.0359342915811089),
                         child: IntlPhoneField(
-                          flagsButtonPadding:
-                              const EdgeInsets.only(left: 15.0, right: 15),
+                          flagsButtonPadding: EdgeInsets.only(
+                              left: size.width * 0.0359342915811089,
+                              right: size.width * 0.0359342915811089),
                           showDropdownIcon: false,
                           disableLengthCheck: true,
                           decoration: InputDecoration(
                             suffixIconConstraints:
                                 const BoxConstraints(maxWidth: 44),
                             suffixIcon: Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.only(end: 15),
+                              padding: EdgeInsetsDirectional.only(
+                                  end: size.width * 0.0359342915811089),
                               child: SvgPicture.asset(
                                 'assets/Vectores/Iconos/dwon chevron.svg',
                               ),
@@ -451,9 +473,13 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 40, left: 15.0, right: 15, bottom: 34),
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.046166529266282,
+                            left: size.width * 0.0359342915811089,
+                            right: size.width * 0.0359342915811089,
+                            bottom: 34),
                         child: ButtonPrimary(
+                            width: size.width,
                             title: 'Continuar',
                             onPressed: () {
                               Navigator.pushNamed(

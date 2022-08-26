@@ -59,13 +59,13 @@ dependencies:
   dotted_line: ^3.1.0
   scroll_date_picker: ^3.6.0
   intl_phone_field: ^3.1.0
+  camera: ^0.10.0+1
 
 flutter_native_splash:
   background_image: assets/splash/splashlogo.png
   android_12:
-    image: assets/splash/splashlogo.png
-    android_gravity: fill
-
+    branding: assets/splash/splash.png
+    color: #170658
   fullscreen: true
 
 dev_dependencies:

@@ -39,7 +39,8 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
           name: user.displayName ?? user.email!.split('@').first,
           type_acount: 'facebook',
         );
-        if (register["access_token"] != null) {
+        if (register.runtimeType != String &&
+            register["access_token"] != null) {
           setState(() {
             Preferences.token = register['access_token'];
             Provider.of<UserInfoProvider>(
@@ -54,12 +55,35 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
             ),
           );
         } else {
-          print(register);
+          Future.delayed(Duration.zero).then(
+            (_) => ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: Colors.redAccent,
+                duration: const Duration(seconds: 3),
+                content: Text(
+                  register,
+                  style: const TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          );
         }
       }
     } catch (e) {
-      // TODO: Show alert here
-      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.redAccent,
+          duration: Duration(seconds: 3),
+          content: Text(
+            'Hubo un error, inténtalo nuevamente.',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      );
     }
   }
 
@@ -159,7 +183,8 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                     response.email.split('@').first,
                                 type_acount: 'facebook',
                               );
-                              if (register["access_token"] != null) {
+                              if (register.runtimeType != String &&
+                                  register["access_token"] != null) {
                                 setState(() {
                                   Preferences.token = register['access_token'];
                                   Provider.of<UserInfoProvider>(
@@ -174,7 +199,21 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                   ),
                                 );
                               } else {
-                                print(register);
+                                Future.delayed(Duration.zero).then(
+                                  (_) => ScaffoldMessenger.of(context)
+                                      .showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.redAccent,
+                                      duration: const Duration(seconds: 3),
+                                      content: Text(
+                                        register,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
                               }
                             }
                           }
@@ -218,7 +257,8 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                 type_acount: 'google',
                               );
 
-                              if (register["access_token"] != null) {
+                              if (register.runtimeType != String &&
+                                  register["access_token"] != null) {
                                 setState(() {
                                   Preferences.token = register['access_token'];
                                   Provider.of<UserInfoProvider>(
@@ -234,7 +274,21 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                   ),
                                 );
                               } else {
-                                print(register);
+                                Future.delayed(Duration.zero).then(
+                                  (_) => ScaffoldMessenger.of(context)
+                                      .showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.redAccent,
+                                      duration: const Duration(seconds: 3),
+                                      content: Text(
+                                        register,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
                               }
                             }
                           } catch (e) {
@@ -244,7 +298,7 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                 backgroundColor: Colors.redAccent,
                                 duration: Duration(seconds: 3),
                                 content: Text(
-                                  'Hubo un error, intentalo nuevamente.',
+                                  'Hubo un error, inténtalo nuevamente.',
                                   style: TextStyle(
                                     color: Colors.white,
                                   ),

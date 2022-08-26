@@ -22,6 +22,38 @@
           }
         },
         {
+          "client_id": "479067570571-atuamv1nkaf2mb1ebd8e6ldri922lkdr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.application",
+            "certificate_hash": "02a8529a46a08efbec4b2320c5e226490d2a901e"
+          }
+        },
+        {
+          "client_id": "479067570571-e4md5hahmhimo27h65ngbj36861882fa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.application",
+            "certificate_hash": "fc4707278b4a8cd9a5c97f8e1abe357e35ed5c87"
+          }
+        },
+        {
+          "client_id": "479067570571-jou3qj5vheh82kv6jqklenm5om5cd3ml.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.application",
+            "certificate_hash": "c4a45a3761730b9d69bc28d37c78674e0cbe04cc"
+          }
+        },
+        {
+          "client_id": "479067570571-op2940m77f74vhtoe1qrajhc4kin8ibt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.application",
+            "certificate_hash": "63299cfcbe7eeab897edd8f6ebef9be16572ded9"
+          }
+        },
+        {
           "client_id": "479067570571-hgf1n8gviocln18q7kmgrmptsa3oic1r.apps.googleusercontent.com",
           "client_type": 3
         }
