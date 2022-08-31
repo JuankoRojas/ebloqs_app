@@ -16,6 +16,7 @@ class LocationsProvider with ChangeNotifier {
   var cityController = TextEditingController();
   var addressController = TextEditingController();
   var postalCodeController = TextEditingController();
+  String? countryCode;
   useMyLocation() async {
     try {
       getMyLocation = true;
@@ -25,7 +26,7 @@ class LocationsProvider with ChangeNotifier {
       var mydetail = await addressService.searchDetailsOneLocation(
         addressLocation,
       );
-      debugPrint('detalles: $mydetail');
+      debugPrint('detalles: ${mydetail[0].isoCountryCode}');
       countryController.text = mydetail[0].country!;
       cityController.text = mydetail[0].locality!;
       // addressController.clear();
@@ -41,6 +42,28 @@ class LocationsProvider with ChangeNotifier {
         codepostal: mydetail[0].postalCode,
         // location: addressLocation,
       );
+      // modeSearch = false;
+      getMyLocation = false;
+      notifyListeners();
+
+      // _add();
+    } catch (e) {
+      await _geolocatorPlatform.requestPermission();
+      rethrow;
+    }
+  }
+
+  getMyCountryCode() async {
+    try {
+      getMyLocation = true;
+      // update();
+      Position position = await Geolocator.getCurrentPosition();
+      addressLocation = LatLng(position.latitude, position.longitude);
+      var mydetail = await addressService.searchDetailsOneLocation(
+        addressLocation,
+      );
+      debugPrint('detalles: ${mydetail[0].isoCountryCode}');
+      countryCode = mydetail[0].isoCountryCode;
       // modeSearch = false;
       getMyLocation = false;
       notifyListeners();

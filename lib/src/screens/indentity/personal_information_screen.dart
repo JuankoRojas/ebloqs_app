@@ -1,9 +1,13 @@
 import 'package:country_list_pick/country_list_pick.dart';
+import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/address_screen.dart';
+import 'package:ebloqs_app/src/services/auth_user_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
@@ -23,6 +27,19 @@ class _PersonalInformationState extends State<PersonalInformation> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController idNumberController = TextEditingController();
   String? phoneNumber;
+  String? isoCountryCode;
+  String? nacionalty;
+  var location = LocationsProvider();
+  @override
+  void initState() {
+    var gpsUse = location.requestPermisionLocation();
+    if (gpsUse == LocationPermission.whileInUse ||
+        gpsUse == LocationPermission.always) {
+      isoCountryCode = location.countryCode;
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +47,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
     var dateParse = DateTime.parse(_selectedDate.toString());
 
     var formattedDate = "${dateParse.day}-${dateParse.month}-${dateParse.year}";
-    final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
-    String? isoCountryCode = systemLocales.first.countryCode;
+
     return Scaffold(
       appBar: AppBar(
         leadingWidth: size.width * 0.139720558882236,
@@ -251,6 +267,9 @@ class _PersonalInformationState extends State<PersonalInformation> {
                               // initialSelection: 'US'
                               onChanged: (CountryCode? countryCode) {
                                 print(countryCode.toString());
+                                setState(() {
+                                  nacionalty = countryCode!.name;
+                                });
                               },
                               // Whether to allow the widget to set a custom UI overlay
                               useUiOverlay: true,
@@ -485,20 +504,22 @@ class _PersonalInformationState extends State<PersonalInformation> {
                             width: size.width,
                             title: 'Continuar',
                             onPressed: () async {
-                              // final response = await AuthUserService()
-                              //     .personalData(
-                              //         accesstoken: Preferences.token!,
-                              //         name: nameController.text,
-                              //         lastname: lastNameController.text,
-                              //         birthdayDate: formattedDate,
-                              //         phoneNumber: phoneNumber!,
-                              //         dniNumber: idNumberController.text);
-                              // if (response.runtimeType != String &&
-                              //     response['name'] != null) {
-                              Future.delayed(Duration.zero).then((value) =>
-                                  Navigator.pushNamed(
-                                      context, AddressScreen.routeName));
-                              // }
+                              final response = await AuthUserService()
+                                  .personalData(
+                                      accesstoken: Preferences.token!,
+                                      nacionality:
+                                          nacionalty ?? isoCountryCode!,
+                                      name: nameController.text,
+                                      lastname: lastNameController.text,
+                                      birthdayDate: formattedDate,
+                                      phoneNumber: phoneNumber!,
+                                      dniNumber: idNumberController.text);
+                              if (response.runtimeType != String &&
+                                  response['name'] != null) {
+                                Future.delayed(Duration.zero).then((value) =>
+                                    Navigator.pushNamed(
+                                        context, AddressScreen.routeName));
+                              }
                             },
                             load: isLoadLogin!,
                             disabled: isLoadLogin!),

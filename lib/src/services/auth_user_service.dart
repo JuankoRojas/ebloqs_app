@@ -1,4 +1,4 @@
-import 'dart:convert' as convert;
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,8 +6,9 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart' show MediaType;
 
 class AuthUserService with ChangeNotifier {
-  Uri url = Uri.parse('https://agile-beach-41948.herokuapp.com/auth/register');
-  Uri urlUser = Uri.parse('https://agile-beach-41948.herokuapp.com/user/me');
+  Uri url = Uri.parse('http://3.139.233.142:3000/auth/register');
+  Uri urlUser = Uri.parse('http://3.139.233.142:3000/user/me');
+
   Future registerUser({
     required String email,
     required String name,
@@ -26,19 +27,18 @@ class AuthUserService with ChangeNotifier {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: convert.jsonEncode(userData),
+        body: jsonEncode(userData),
       );
       print(response.body);
       switch (response.statusCode) {
         case 201:
-          var jsonResponse =
-              convert.jsonDecode(response.body) as Map<String, dynamic>;
+          var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
           return jsonResponse;
         case 401:
           return "No pudimos autenticar tu correo";
       }
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
       throw Exception(e);
     }
   }
@@ -46,26 +46,31 @@ class AuthUserService with ChangeNotifier {
   Future<bool> validateEmailResult({required String accesstoken}) async {
     try {
       final response = await http.post(
-          Uri.parse('https://agile-beach-41948.herokuapp.com/user/me'),
+          Uri.parse('http://3.139.233.142:3000/user/me'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'Access-Control-Allow-Origin': '*',
             'Authorization': 'Bearer $accesstoken',
           });
-      print(response.statusCode);
+      debugPrint(response.body);
+
       if (response.statusCode == 201) {
-        var jsonRespon = await convert.jsonDecode(response.body);
-        return jsonRespon['email_verificated'];
+        var jsonRespon = await jsonDecode(response.body);
+        debugPrint(jsonRespon['id']);
+        return jsonRespon['emailVerificated'];
       } else {
         return false;
       }
     } catch (e) {
+      debugPrint(e.toString());
+
       throw Exception(e);
     }
   }
 
   Future personalData({
     required String accesstoken,
+    required String nacionality,
     required String name,
     required String lastname,
     required String birthdayDate,
@@ -73,6 +78,7 @@ class AuthUserService with ChangeNotifier {
     required String dniNumber,
   }) async {
     final userData = {
+      'nacionalty': nacionality,
       'name': name,
       'lastname': lastname,
       'birthdayDate': birthdayDate,
@@ -81,18 +87,17 @@ class AuthUserService with ChangeNotifier {
     };
     try {
       final response = await http.post(
-        Uri.parse('https://agile-beach-41948.herokuapp.com/user/personalData'),
+        Uri.parse('http://3.139.233.142:3000/user/personalData'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $accesstoken',
         },
-        body: convert.jsonEncode(userData),
+        body: jsonEncode(userData),
       );
       print(response.body);
       switch (response.statusCode) {
         case 201:
-          var jsonResponse =
-              convert.jsonDecode(response.body) as Map<String, dynamic>;
+          var jsonResponse = jsonDecode(response.body) as Map<String, dynamic>;
           return jsonResponse;
         case 401:
           return "No Se han registrado los datos";
@@ -109,8 +114,7 @@ class AuthUserService with ChangeNotifier {
     required String filename,
   }) async {
     try {
-      final uri = Uri.parse(
-          'https://agile-beach-41948.herokuapp.com/user/personalData');
+      final uri = Uri.parse('http://3.139.233.142:3000/user/personalData');
       var request = http.MultipartRequest('POST', uri);
       request.headers.addAll({
         'Authorization': 'Bearer $accesstoken',
@@ -125,7 +129,7 @@ class AuthUserService with ChangeNotifier {
       ));
       var response = await request.send();
       var responsed = await http.Response.fromStream(response);
-      final responseData = convert.json.decode(responsed.body);
+      final responseData = json.decode(responsed.body);
       print(responseData);
     } catch (e) {
       debugPrint(e.toString());

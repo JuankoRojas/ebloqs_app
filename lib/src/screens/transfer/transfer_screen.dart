@@ -438,9 +438,9 @@ class _TokensState extends State<Tokens> {
 
   List<DropdownMenuItem<String>> get dropdownItems2 {
     List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(value: "USD", child: Text("USD")),
-      const DropdownMenuItem(value: "Euros", child: Text("Euros")),
-      const DropdownMenuItem(value: "Pesos", child: Text("Pesos")),
+      const DropdownMenuItem(value: "EBL", child: Text("EBL")),
+      const DropdownMenuItem(value: "EBL2", child: Text("EBL2")),
+      const DropdownMenuItem(value: "EBL3", child: Text("EBL3")),
     ];
     return menuItems;
   }
@@ -455,7 +455,7 @@ class _TokensState extends State<Tokens> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Text(
-            "Moneda",
+            "Tokens",
             style: TextStyle(
               color: Color(0xff170658),
               fontSize: 13,
