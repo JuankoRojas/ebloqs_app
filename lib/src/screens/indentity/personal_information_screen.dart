@@ -1,3 +1,4 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/address_screen.dart';
@@ -7,8 +8,8 @@ import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:provider/provider.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
 class PersonalInformation extends StatefulWidget {
@@ -19,7 +20,8 @@ class PersonalInformation extends StatefulWidget {
   State<PersonalInformation> createState() => _PersonalInformationState();
 }
 
-class _PersonalInformationState extends State<PersonalInformation> {
+class _PersonalInformationState extends State<PersonalInformation>
+    with AfterLayoutMixin<PersonalInformation> {
   DateTime _selectedDate = DateTime.now();
   bool? isLoadLogin = false;
   final GlobalKey<FormState> _formKey11 = GlobalKey<FormState>();
@@ -27,18 +29,17 @@ class _PersonalInformationState extends State<PersonalInformation> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController idNumberController = TextEditingController();
   String? phoneNumber;
-  String? isoCountryCode;
-  String? nacionalty;
-  var location = LocationsProvider();
-  @override
-  void initState() {
-    var gpsUse = location.requestPermisionLocation();
-    if (gpsUse == LocationPermission.whileInUse ||
-        gpsUse == LocationPermission.always) {
-      isoCountryCode = location.countryCode;
-    }
 
-    super.initState();
+  String? nationality;
+  @override
+  void afterFirstLayout(BuildContext context) {
+    useLocation();
+  }
+
+  void useLocation() async {
+    var locationProvider =
+        Provider.of<LocationsProvider>(context, listen: false);
+    await locationProvider.requestPermisionLocation();
   }
 
   @override
@@ -48,6 +49,15 @@ class _PersonalInformationState extends State<PersonalInformation> {
 
     var formattedDate = "${dateParse.day}-${dateParse.month}-${dateParse.year}";
 
+    final locationValue =
+        Provider.of<LocationsProvider>(context).countryCode.text;
+    if (locationValue.isEmpty) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         leadingWidth: size.width * 0.139720558882236,
@@ -68,7 +78,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
           ),
         ),
         title: const Text(
-          "Información personal",
+          "Información personal ",
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Color(0xff170658),
@@ -262,13 +272,13 @@ class _PersonalInformationState extends State<PersonalInformation> {
                                   searchHintText: 'Buscar país',
                                   lastPickText: 'Ultima selección'),
                               // Set default value
-                              initialSelection: isoCountryCode,
+                              initialSelection: locationValue,
                               // or
                               // initialSelection: 'US'
                               onChanged: (CountryCode? countryCode) {
                                 print(countryCode.toString());
                                 setState(() {
-                                  nacionalty = countryCode!.name;
+                                  nationality = countryCode!.name;
                                 });
                               },
                               // Whether to allow the widget to set a custom UI overlay
@@ -391,24 +401,34 @@ class _PersonalInformationState extends State<PersonalInformation> {
                           onTap: () {
                             showDialog(
                               context: context,
+                              useRootNavigator: false,
                               builder: (BuildContext context) {
-                                return Dialog(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(20.0)),
-                                  child: SizedBox(
-                                    height: size.height * 0.283309049700502,
-                                    child: ScrollDatePicker(
-                                      selectedDate: _selectedDate,
-                                      locale: const Locale('es'),
-                                      onDateTimeChanged: (DateTime value) {
-                                        setState(() {
-                                          _selectedDate = value;
-                                        });
+                                return AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0)),
+                                    content: StatefulBuilder(
+                                      builder: (context, setState) {
+                                        return Container(
+                                          width: 400.0,
+                                          height: 200.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: ScrollDatePicker(
+                                            selectedDate: _selectedDate,
+                                            locale: const Locale('es'),
+                                            onDateTimeChanged:
+                                                (DateTime value) {
+                                              setState(() {
+                                                _selectedDate = value;
+                                              });
+                                            },
+                                          ),
+                                        );
                                       },
-                                    ),
-                                  ),
-                                );
+                                    ));
                               },
                             );
                           },
@@ -462,38 +482,37 @@ class _PersonalInformationState extends State<PersonalInformation> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(
-                            top: size.height * 0.00946265630280501,
-                            left: size.width * 0.0359342915811089,
-                            right: size.width * 0.0359342915811089),
-                        child: IntlPhoneField(
-                          flagsButtonPadding: EdgeInsets.only(
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.00946265630280501,
                               left: size.width * 0.0359342915811089,
                               right: size.width * 0.0359342915811089),
-                          showDropdownIcon: false,
-                          disableLengthCheck: true,
-                          decoration: InputDecoration(
-                            suffixIconConstraints:
-                                const BoxConstraints(maxWidth: 44),
-                            suffixIcon: Padding(
-                              padding: EdgeInsetsDirectional.only(
-                                  end: size.width * 0.0359342915811089),
-                              child: SvgPicture.asset(
-                                'assets/Vectores/Iconos/dwon chevron.svg',
+                          child: IntlPhoneField(
+                            flagsButtonPadding: EdgeInsets.only(
+                                left: size.width * 0.0359342915811089,
+                                right: size.width * 0.0359342915811089),
+                            showDropdownIcon: false,
+                            disableLengthCheck: true,
+                            decoration: InputDecoration(
+                              suffixIconConstraints:
+                                  const BoxConstraints(maxWidth: 44),
+                              suffixIcon: Padding(
+                                padding: EdgeInsetsDirectional.only(
+                                    end: size.width * 0.0359342915811089),
+                                child: SvgPicture.asset(
+                                  'assets/Vectores/Iconos/dwon chevron.svg',
+                                ),
+                              ),
+                              border: const OutlineInputBorder(
+                                borderSide: BorderSide(),
                               ),
                             ),
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(),
-                            ),
-                          ),
-                          initialCountryCode: isoCountryCode,
-                          onChanged: (phone) {
-                            setState(() {
-                              phoneNumber = phone.completeNumber;
-                            });
-                          },
-                        ),
-                      ),
+                            initialCountryCode: locationValue,
+                            onChanged: (phone) {
+                              setState(() {
+                                phoneNumber = phone.completeNumber;
+                              });
+                            },
+                          )),
                       Padding(
                         padding: EdgeInsets.only(
                             top: size.height * 0.046166529266282,
@@ -507,8 +526,7 @@ class _PersonalInformationState extends State<PersonalInformation> {
                               final response = await AuthUserService()
                                   .personalData(
                                       accesstoken: Preferences.token!,
-                                      nacionality:
-                                          nacionalty ?? isoCountryCode!,
+                                      nacionality: nationality ?? locationValue,
                                       name: nameController.text,
                                       lastname: lastNameController.text,
                                       birthdayDate: formattedDate,

@@ -1,9 +1,13 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:country_list_pick/country_list_pick.dart';
+import 'package:ebloqs_app/src/providers/locations_provider.dart';
+import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_tarjeta_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_transferencia_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
+import 'package:provider/provider.dart';
 
 class ComprarScreen extends StatefulWidget {
   static const String routeName = 'ComprarScreen';
@@ -13,7 +17,8 @@ class ComprarScreen extends StatefulWidget {
   State<ComprarScreen> createState() => _ComprarScreenState();
 }
 
-class _ComprarScreenState extends State<ComprarScreen> {
+class _ComprarScreenState extends State<ComprarScreen>
+    with AfterLayoutMixin<ComprarScreen> {
   String text = '';
   double ingr = 0.0;
   double total = 0.0;
@@ -21,15 +26,35 @@ class _ComprarScreenState extends State<ComprarScreen> {
   bool bankSelect = false;
 
   @override
+  void afterFirstLayout(BuildContext context) {
+    useLocation();
+  }
+
+  void useLocation() async {
+    var locationProvider =
+        Provider.of<LocationsProvider>(context, listen: false);
+    await locationProvider.requestPermisionLocation();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
-    String? isoCountryCode = systemLocales.first.countryCode;
-    print(isoCountryCode);
+    // String? isoCountryCode = systemLocales.first.countryCode;
+    // print(isoCountryCode);
 
     if (text != '') {
       ingr = double.parse(text);
       total = ingr / 0.05;
+    }
+    final locationValue =
+        Provider.of<LocationsProvider>(context).countryCode.text;
+    if (locationValue.isEmpty) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
     }
 
     return Scaffold(
@@ -174,7 +199,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                           searchHintText: 'Buscar país',
                           lastPickText: 'Ultima selección'),
                       // Set default value
-                      initialSelection: isoCountryCode,
+                      initialSelection: locationValue,
                       // or
                       // initialSelection: 'US'
                       onChanged: (CountryCode? countryCode) {
@@ -772,6 +797,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                   onTap: () {
                     setState(() {
                       bankSelect = !bankSelect;
+                      print(bankSelect);
                     });
                   },
                 ),
@@ -816,7 +842,7 @@ class _ComprarScreenState extends State<ComprarScreen> {
                     ],
                   ),
                   onTap: () async {
-                    if (text != '' || transferSelect) {
+                    if (text != '' && transferSelect) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -826,6 +852,14 @@ class _ComprarScreenState extends State<ComprarScreen> {
                           ),
                         ),
                       );
+                    } else if (text != '' && bankSelect) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  IntroducirCantidadTarjetaScreen(
+                                    cantidadTarjeta: text,
+                                  )));
                     }
                   },
                 ),

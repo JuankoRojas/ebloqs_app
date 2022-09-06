@@ -6,7 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
 class AddresServices {
-  String baseUrl = '';
+  String baseUrl = 'https://www.api.ebloqs.com';
   Future<List<Location>> searchAddressLocations(String? searcher) async {
     List<Location> locationes = await locationFromAddress(searcher!);
     return locationes;
@@ -54,7 +54,7 @@ class AddresServices {
       var requestSaver = json.encode({
         "country": country,
         "city": city,
-        "postalCode": int.parse(address1),
+        "postalCode": int.parse(postalCode),
         "address1": address1,
         // "lat": address.location!.latitude,
         // "long": address.location!.longitude,
@@ -70,6 +70,7 @@ class AddresServices {
           // 'Accept': 'application/json'
         },
       );
+      print(response.body);
       return response;
     } catch (err) {
       // printError(info: err.toString());

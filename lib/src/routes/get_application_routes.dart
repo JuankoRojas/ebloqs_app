@@ -1,5 +1,4 @@
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
-import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_tarjeta_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_transferencia_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/transferir_ebloqs_screen.dart';
@@ -62,7 +61,7 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
         const TakePictureFront(),
     TakePictureBack.routeName: (BuildContext context) =>
         const TakePictureBack(),
-    CongratsScreen.routeName: (BuildContext context) => const CongratsScreen(),
+    // CongratsScreen.routeName: (BuildContext context) => const CongratsScreen(),
     DepositScreen.routeName: (BuildContext context) => const DepositScreen(),
     DepositMethodsScreen.routeName: (BuildContext context) =>
         const DepositMethodsScreen(),

@@ -1,11 +1,14 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 
 import 'package:dotted_line/dotted_line.dart';
+import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/personal_information_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class NationalityScreen extends StatefulWidget {
   static const routeName = 'NationalityScreen';
@@ -15,14 +18,33 @@ class NationalityScreen extends StatefulWidget {
   State<NationalityScreen> createState() => _NationalityScreenState();
 }
 
-class _NationalityScreenState extends State<NationalityScreen> {
+class _NationalityScreenState extends State<NationalityScreen>
+    with AfterLayoutMixin<NationalityScreen> {
   bool? isLoadLogin = false;
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    useLocation();
+  }
+
+  void useLocation() async {
+    var locationProvider =
+        Provider.of<LocationsProvider>(context, listen: false);
+    await locationProvider.requestPermisionLocation();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    print(size.height);
-    final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
-    String? isoCountryCode = systemLocales.first.countryCode;
+    final locationValue =
+        Provider.of<LocationsProvider>(context).countryCode.text;
+    if (locationValue.isEmpty) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         leadingWidth: size.width * 0.1458333333333384,
@@ -200,7 +222,7 @@ class _NationalityScreenState extends State<NationalityScreen> {
                       searchHintText: 'Buscar país',
                       lastPickText: 'Ultima selección'),
                   // Set default value
-                  initialSelection: isoCountryCode,
+                  initialSelection: locationValue,
                   // or
                   // initialSelection: 'US'
                   onChanged: (CountryCode? countryCode) {

@@ -577,7 +577,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     SizedBox(
                       width: size.width * (284 / size.width),
                       child: const Text(
-                        "Tu acreditación de criptos puede tardar de cinco minutos hasta una hora.",
+                        "Tú acreditación de tokens puede tardar de 5 minutos hasta 1 hora. Para conocer el estatus de clic en refrescar.",
                         style: TextStyle(
                           color: Color(0xff170658),
                           fontSize: 12,
@@ -708,71 +708,71 @@ class _WalletScreenState extends State<WalletScreen> {
               // ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: size.height * (16 / size.height)),
-                    child: const Text(
-                      "Dinero",
-                      style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: size.height * (8 / size.height)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                            width: size.width * (42 / size.width),
-                            height: size.height * (42 / size.height),
-                            child: Image.asset('assets/Imagenes/Dolares.png')),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: size.width * (12 / size.width)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Text(
-                                "Dólares",
-                                style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 14,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                "USD",
-                                style: TextStyle(
-                                  color: Color(0xff8F8B9F),
-                                  fontSize: 14,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(child: Container()),
-                        const Text(
-                          "1,500.00",
-                          textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 14,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                children: const [
+                  // Padding(
+                  //   padding:
+                  //       EdgeInsets.only(top: size.height * (16 / size.height)),
+                  //   child: const Text(
+                  //     "Dinero",
+                  //     style: TextStyle(
+                  //       color: Color(0xff170658),
+                  //       fontSize: 14,
+                  //       fontFamily: "Archivo",
+                  //       fontWeight: FontWeight.w600,
+                  //     ),
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding:
+                  //       EdgeInsets.only(top: size.height * (8 / size.height)),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       SizedBox(
+                  //           width: size.width * (42 / size.width),
+                  //           height: size.height * (42 / size.height),
+                  //           child: Image.asset('assets/Imagenes/Dolares.png')),
+                  //       Padding(
+                  //         padding: EdgeInsets.only(
+                  //             left: size.width * (12 / size.width)),
+                  //         child: Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: const [
+                  //             Text(
+                  //               "Dólares",
+                  //               style: TextStyle(
+                  //                 color: Color(0xff170658),
+                  //                 fontSize: 14,
+                  //                 fontFamily: "Archivo",
+                  //                 fontWeight: FontWeight.w600,
+                  //               ),
+                  //             ),
+                  //             Text(
+                  //               "USD",
+                  //               style: TextStyle(
+                  //                 color: Color(0xff8F8B9F),
+                  //                 fontSize: 14,
+                  //                 fontFamily: "Archivo",
+                  //                 fontWeight: FontWeight.w400,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //       Expanded(child: Container()),
+                  //       const Text(
+                  //         "1,500.00",
+                  //         textAlign: TextAlign.right,
+                  //         style: TextStyle(
+                  //           color: Color(0xff170658),
+                  //           fontSize: 14,
+                  //           fontFamily: "Archivo",
+                  //           fontWeight: FontWeight.w400,
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                   // Padding(
                   //   padding:
                   //       EdgeInsets.only(top: size.height * (16 / size.height)),
@@ -841,7 +841,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     padding:
                         EdgeInsets.only(top: size.height * (16 / size.height)),
                     child: const Text(
-                      "Criptos",
+                      "Criptomonedas",
                       style: TextStyle(
                         color: Color(0xff170658),
                         fontSize: 14,

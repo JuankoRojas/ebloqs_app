@@ -159,19 +159,19 @@ class _TransferScreenState extends State<TransferScreen> {
                           fontSize: 13,
                         ),
                       )),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: size.height * 0.0248983739837399,
-                    left: size.width * 0.0413194444444445,
-                    right: size.width * 0.0413194444444445,
-                    bottom: size.height * 0.0569105691056911),
-                child: ButtonPrimary(
-                    width: size.width,
-                    title: 'Continuar',
-                    onPressed: () {},
-                    load: isLoadLogin!,
-                    disabled: isLoadLogin!),
-              )
+              // Padding(
+              //   padding: EdgeInsets.only(
+              //       top: size.height * 0.0248983739837399,
+              //       left: size.width * 0.0413194444444445,
+              //       right: size.width * 0.0413194444444445,
+              //       bottom: size.height * 0.0569105691056911),
+              //   child: ButtonPrimary(
+              //       width: size.width,
+              //       title: 'Continuar',
+              //       onPressed: () {},
+              //       load: isLoadLogin!,
+              //       disabled: isLoadLogin!),
+              // )
             ],
           ),
         ),
@@ -198,7 +198,6 @@ class _DineroState extends State<Dinero> {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(value: "USD", child: Text("USD")),
       const DropdownMenuItem(value: "Euros", child: Text("Euros")),
-      const DropdownMenuItem(value: "Pesos", child: Text("Pesos")),
     ];
     return menuItems;
   }
@@ -313,32 +312,10 @@ class _DineroState extends State<Dinero> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
-              top: size.height * 0.00948509485094851,
-            ),
-            child: DropdownButtonFormField(
-                icon:
-                    SvgPicture.asset('assets/Vectores/Iconos/dwon chevron.svg'),
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xffcdccd1), width: 1),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xffcdccd1), width: 0.0),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                ),
-                value: byValue,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    byValue = newValue!;
-                  });
-                },
-                items: byItems),
-          ),
+              padding: EdgeInsets.only(
+                top: size.height * 0.00948509485094851,
+              ),
+              child: TextFormField()),
           Padding(
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
@@ -439,8 +416,8 @@ class _TokensState extends State<Tokens> {
   List<DropdownMenuItem<String>> get dropdownItems2 {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(value: "EBL", child: Text("EBL")),
-      const DropdownMenuItem(value: "EBL2", child: Text("EBL2")),
-      const DropdownMenuItem(value: "EBL3", child: Text("EBL3")),
+      // const DropdownMenuItem(value: "EBL2", child: Text("EBL2")),
+      // const DropdownMenuItem(value: "EBL3", child: Text("EBL3")),
     ];
     return menuItems;
   }

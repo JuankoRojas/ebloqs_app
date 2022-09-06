@@ -6,7 +6,7 @@ class BalanceService with ChangeNotifier {
   Future getBalance({required String accesstoken}) async {
     try {
       final response = await http.get(
-          Uri.parse('https://agile-beach-41948.herokuapp.com/wallet/balance'),
+          Uri.parse('https://www.api.ebloqs.com/wallet/balance'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'Access-Control-Allow-Origin': '*',

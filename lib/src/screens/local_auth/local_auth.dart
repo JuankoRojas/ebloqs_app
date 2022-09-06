@@ -1,4 +1,4 @@
-import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -66,7 +66,7 @@ class _LocalAuthState extends State<LocalAuth> {
     });
     if (message == 'Authorized') {
       Navigator.of(context)
-          .pushNamed(CreateWalletPassScreen.routeName)
+          .pushNamed(NationalityScreen.routeName)
           .whenComplete(_cancelAuthentication);
     }
   }
@@ -178,7 +178,7 @@ class _LocalAuthState extends State<LocalAuth> {
                 ),
               ),
               onTap: () {
-                Navigator.pushNamed(context, CreateWalletPassScreen.routeName);
+                Navigator.pushNamed(context, NationalityScreen.routeName);
               },
             ),
           )

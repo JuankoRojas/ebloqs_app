@@ -5,7 +5,8 @@ import 'package:flutter_svg/svg.dart';
 
 class CongratsScreen extends StatefulWidget {
   static const routeName = 'CongratsScreen';
-  const CongratsScreen({Key? key}) : super(key: key);
+  final double total;
+  const CongratsScreen({Key? key, required this.total}) : super(key: key);
 
   @override
   State<CongratsScreen> createState() => _CongratsScreenState();
@@ -47,10 +48,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(top: size.height * 0.0142276422764228),
-                  child: const Center(
+                  child: Center(
                     child: Text(
-                      "15,000 EBL",
-                      style: TextStyle(
+                      "${widget.total.toString()} EBL",
+                      style: const TextStyle(
                         color: Color(0xff2504ca),
                         fontSize: 20,
                         fontFamily: "Archivo",

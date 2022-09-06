@@ -1,10 +1,15 @@
+import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
+import 'package:ebloqs_app/src/services/transfer_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class IntroducirCantidadTarjetaScreen extends StatefulWidget {
   static const String routeName = 'IntroducirCantidadTarjetaScreen';
-  const IntroducirCantidadTarjetaScreen({Key? key}) : super(key: key);
+  final String? cantidadTarjeta;
+  const IntroducirCantidadTarjetaScreen({Key? key, this.cantidadTarjeta})
+      : super(key: key);
 
   @override
   State<IntroducirCantidadTarjetaScreen> createState() =>
@@ -21,8 +26,31 @@ class _IntroducirCantidadTarjetaScreenState
   final TextEditingController expirationDateController =
       TextEditingController();
   final TextEditingController cvvController = TextEditingController();
+
+  final int _current = 0;
+  double comision = 50.00;
+  double? cantidad;
+  double? recibes;
+  double total = 0.0;
+  @override
+  void initState() {
+    quantityController.text = widget.cantidadTarjeta!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    if (widget.cantidadTarjeta!.isNotEmpty &&
+        quantityController.text == widget.cantidadTarjeta) {
+      cantidad = double.parse(widget.cantidadTarjeta!);
+      recibes = cantidad;
+      print(cantidad);
+      print(recibes);
+    }
+    if (recibes != null) {
+      total = recibes! / 0.05;
+    }
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -32,7 +60,11 @@ class _IntroducirCantidadTarjetaScreenState
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 27, left: 16, right: 16),
+          padding: EdgeInsets.only(
+            top: size.height * (27 / size.height),
+            left: size.width * (16 / size.width),
+            right: size.width * (16 / size.width),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,9 +93,11 @@ class _IntroducirCantidadTarjetaScreenState
                           'assets/Vectores/Iconos/Question.svg')),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 32.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(
+                  top: size.height * (32 / size.height),
+                ),
+                child: const Text(
                   "Cantidad",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -74,7 +108,9 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (8 / size.height),
+                ),
                 child: Form(
                   key: formKey7,
                   child: TextFormField(
@@ -87,13 +123,16 @@ class _IntroducirCantidadTarjetaScreenState
                         children: [
                           Container(
                             width: 1,
-                            height: 32,
+                            height: size.height * (32 / size.height),
                             color: const Color(0xffCDCCD1),
                           ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 10.0, right: 19),
-                            child: Text(
-                              "EUR",
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: size.width * (10 / size.width),
+                              right: size.width * (19 / size.width),
+                            ),
+                            child: const Text(
+                              "USD",
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 color: Color(0xff2504ca),
@@ -115,12 +154,22 @@ class _IntroducirCantidadTarjetaScreenState
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value.isNotEmpty) {
+                          cantidad = double.parse(value);
+                          recibes = cantidad;
+                        }
+                      });
+                    },
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 39.0),
-                child: Text(
+              Padding(
+                padding: EdgeInsets.only(
+                  top: size.height * (39 / size.height),
+                ),
+                child: const Text(
                   "Recibes:",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -130,20 +179,22 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 6.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (6 / size.height),
+                ),
                 child: Row(
-                  children: const [
+                  children: [
                     Text(
-                      "98.20 ",
-                      style: TextStyle(
+                      recibes.toString(),
+                      style: const TextStyle(
                         color: Color(0xff2504ca),
                         fontSize: 28,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Text(
-                      "EUR",
+                    const Text(
+                      " USD",
                       style: TextStyle(
                         color: Color(0xff2504ca),
                         fontSize: 28,
@@ -155,7 +206,9 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 19.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (19 / size.height),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -180,11 +233,13 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 14.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (14 / size.height),
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       "Comisión transacción:",
                       style: TextStyle(
                         color: Color(0xff170658),
@@ -192,9 +247,9 @@ class _IntroducirCantidadTarjetaScreenState
                       ),
                     ),
                     Text(
-                      "1.80 EUR",
+                      "${comision.toString()} USD",
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xff170658),
                         fontSize: 14,
                         fontFamily: "Archivo",
@@ -205,10 +260,12 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 48.0),
+                padding: EdgeInsets.only(
+                  top: size.height * (48 / size.height),
+                ),
                 child: Container(
-                  width: 345,
-                  height: 380,
+                  width: size.width,
+                  height: size.height * (416 / size.height),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
@@ -247,9 +304,10 @@ class _IntroducirCantidadTarjetaScreenState
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Padding(
-                                padding: EdgeInsets.only(top: 29.0),
-                                child: Text(
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.0257142857142857),
+                                child: const Text(
                                   "Nombre en Tarjeta",
                                   style: TextStyle(
                                     color: Color(0xff170658),
@@ -260,7 +318,8 @@ class _IntroducirCantidadTarjetaScreenState
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.00985221674876847),
                                 child: TextFormField(
                                   controller: nameController,
                                   keyboardType: TextInputType.name,
@@ -277,9 +336,10 @@ class _IntroducirCantidadTarjetaScreenState
                                   ),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.only(top: 16.0),
-                                child: Text(
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.0197044334975369),
+                                child: const Text(
                                   "Nombre del Banco",
                                   style: TextStyle(
                                     color: Color(0xff170658),
@@ -290,7 +350,8 @@ class _IntroducirCantidadTarjetaScreenState
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 8.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.00985221674876847),
                                 child: TextFormField(
                                   controller: bankNameController,
                                   keyboardType: TextInputType.name,
@@ -308,14 +369,15 @@ class _IntroducirCantidadTarjetaScreenState
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.0197044334975369),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     SizedBox(
-                                      width: 149.73,
-                                      height: 80,
+                                      width: size.width * 0.4,
+                                      height: size.height * 0.0995221674876847,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -330,8 +392,9 @@ class _IntroducirCantidadTarjetaScreenState
                                             ),
                                           ),
                                           Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    0.00985221674876847),
                                             child: TextFormField(
                                               controller:
                                                   expirationDateController,
@@ -355,8 +418,8 @@ class _IntroducirCantidadTarjetaScreenState
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 149.73,
-                                      height: 80,
+                                      width: size.width * 0.4,
+                                      height: size.height * 0.0995221674876847,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -371,8 +434,9 @@ class _IntroducirCantidadTarjetaScreenState
                                             ),
                                           ),
                                           Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 8.0),
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    0.00985221674876847),
                                             child: TextFormField(
                                               controller: cvvController,
                                               keyboardType:
@@ -406,15 +470,15 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 52.0,
+                padding: EdgeInsets.only(
+                  top: size.height * 0.0640394088669951,
                 ),
                 child: GestureDetector(
                   child: Stack(
                     alignment: AlignmentDirectional.center,
                     children: [
                       Container(
-                        height: 52,
+                        height: size.height * 0.0640394088669951,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -444,39 +508,27 @@ class _IntroducirCantidadTarjetaScreenState
                       )
                     ],
                   ),
-                  onTap: () async {},
+                  onTap: () async {
+                    try {
+                      final response = await TransferService().transfer(
+                          to: Preferences.id_wallet!,
+                          amount: quantityController.text);
+                      if (response.isNotEmpty) {
+                        debugPrint(response.toString());
+                        Future.delayed(Duration.zero)
+                            .then((_) => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => CongratsScreen(
+                                          total: total,
+                                        ))));
+                      }
+                    } catch (e) {
+                      debugPrint(e.toString());
+                    }
+                  },
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0, bottom: 44),
-                child: Container(
-                  width: 348,
-                  height: 52,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: const Color(0xfff9f9fa),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x3f000000),
-                        blurRadius: 4,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Registrar pago",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),

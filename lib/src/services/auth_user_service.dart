@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart' show MediaType;
 
 class AuthUserService with ChangeNotifier {
-  Uri url = Uri.parse('http://3.139.233.142:3000/auth/register');
-  Uri urlUser = Uri.parse('http://3.139.233.142:3000/user/me');
+  Uri url = Uri.parse('https://www.api.ebloqs.com/auth/register');
+  Uri urlUser = Uri.parse('https://www.api.ebloqs.com/user/me');
 
   Future registerUser({
     required String email,
@@ -46,7 +46,7 @@ class AuthUserService with ChangeNotifier {
   Future<bool> validateEmailResult({required String accesstoken}) async {
     try {
       final response = await http.post(
-          Uri.parse('http://3.139.233.142:3000/user/me'),
+          Uri.parse('https://www.api.ebloqs.com/user/me'),
           headers: <String, String>{
             'Content-Type': 'application/json; charset=UTF-8',
             'Access-Control-Allow-Origin': '*',
@@ -87,7 +87,7 @@ class AuthUserService with ChangeNotifier {
     };
     try {
       final response = await http.post(
-        Uri.parse('http://3.139.233.142:3000/user/personalData'),
+        Uri.parse('https://www.api.ebloqs.com/user/personalData'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $accesstoken',
@@ -114,7 +114,7 @@ class AuthUserService with ChangeNotifier {
     required String filename,
   }) async {
     try {
-      final uri = Uri.parse('http://3.139.233.142:3000/user/personalData');
+      final uri = Uri.parse('https://www.api.ebloqs.com/user/personalData');
       var request = http.MultipartRequest('POST', uri);
       request.headers.addAll({
         'Authorization': 'Bearer $accesstoken',

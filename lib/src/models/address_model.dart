@@ -4,6 +4,7 @@ class AddressModel {
   String? city;
   String? address;
   String? codepostal;
+  String? countryCode;
 
   AddressModel({
     this.id,
@@ -11,5 +12,6 @@ class AddressModel {
     this.city,
     this.address,
     this.codepostal,
+    this.countryCode,
   });
 }

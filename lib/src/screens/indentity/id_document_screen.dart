@@ -1,5 +1,5 @@
-import 'package:ebloqs_app/src/screens/indentity/address_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
+import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -131,7 +131,7 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                 child: SizedBox(
                   width: size.width * 0.853601340033502,
                   child: const Text(
-                    "solo se aceptarán los documentos a  continuación, todos los demás documentos serán rechazados",
+                    "solo se aceptarán los documentos a continuación, todos los demás documentos serán rechazados",
                     style: TextStyle(
                       color: Color(0xff170658),
                       fontSize: 13,
@@ -278,7 +278,8 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     width: size.width,
                     title: 'Continuar',
                     onPressed: () {
-                      Navigator.pushNamed(context, AddressScreen.routeName);
+                      Navigator.pushNamed(
+                          context, CreateWalletPassScreen.routeName);
                     },
                     load: isLoadLogin!,
                     disabled: isLoadLogin!),

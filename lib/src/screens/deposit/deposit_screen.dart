@@ -509,9 +509,8 @@ class _CriptomonedaState extends State<Criptomoneda> {
                   shape: BoxShape.circle,
                   color: Color(0xffe8e2f9),
                 ),
-                child: Image.asset(
-                  'assets/Imagenes/eblcoin.png',
-                ),
+                child:
+                    SvgPicture.asset('assets/Vectores/Iconos/ebloqscoinb.svg'),
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0290255701451279),
@@ -551,19 +550,19 @@ class _CriptomonedaState extends State<Criptomoneda> {
             ],
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(top: size.height * 0.0234623764035529),
-          child: Container(
-            width: size.width,
-            height: 0.50,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: const Color(0xffc9d1d1),
-                width: 1,
-              ),
-            ),
-          ),
-        ),
+        // Padding(
+        //   padding: EdgeInsets.only(top: size.height * 0.0234623764035529),
+        //   child: Container(
+        //     width: size.width,
+        //     height: 0.50,
+        //     decoration: BoxDecoration(
+        //       border: Border.all(
+        //         color: const Color(0xffc9d1d1),
+        //         width: 1,
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
