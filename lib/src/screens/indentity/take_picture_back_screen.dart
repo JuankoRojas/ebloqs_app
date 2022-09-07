@@ -59,12 +59,12 @@ class _TakePictureBackState extends State<TakePictureBack> {
             future: availableCameras(),
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               if (snapshot.hasData) {
-                if (snapshot.data == null) {
+                if (snapshot.data == null || snapshot.data.isEmpty) {
                   return const Align(
                       alignment: Alignment.center,
                       child: Text(
                         'No camera found',
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.white),
                       ));
                 }
                 return CameraOverlay(
