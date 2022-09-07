@@ -6,9 +6,12 @@ import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 import 'package:provider/provider.dart';
 import 'package:scroll_date_picker/scroll_date_picker.dart';
 
@@ -29,6 +32,8 @@ class _PersonalInformationState extends State<PersonalInformation>
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController idNumberController = TextEditingController();
   String? phoneNumber;
+  String? errorValidation;
+  bool isLoading = false;
 
   String? nationality;
   @override
@@ -309,11 +314,27 @@ class _PersonalInformationState extends State<PersonalInformation>
                         child: TextFormField(
                           controller: nameController,
                           keyboardType: TextInputType.text,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                                RegExp(r'[a-zA-Z]')),
+                          ],
+                          maxLength: 50,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              setState(() {
+                                errorValidation =
+                                    'Porfavor,  debes completar todos los registros para continuar';
+                              });
+
+                              return '';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Padding(
@@ -339,11 +360,27 @@ class _PersonalInformationState extends State<PersonalInformation>
                         child: TextFormField(
                           controller: lastNameController,
                           keyboardType: TextInputType.text,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                                RegExp(r'[a-zA-Z]')),
+                          ],
+                          maxLength: 50,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              setState(() {
+                                errorValidation =
+                                    'Porfavor,  debes completar todos los registros para continuar';
+                              });
+
+                              return '';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Padding(
@@ -464,6 +501,17 @@ class _PersonalInformationState extends State<PersonalInformation>
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              setState(() {
+                                errorValidation =
+                                    'Porfavor,  debes completar todos los registros para continuar';
+                              });
+
+                              return '';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Padding(
@@ -490,9 +538,13 @@ class _PersonalInformationState extends State<PersonalInformation>
                             flagsButtonPadding: EdgeInsets.only(
                                 left: size.width * 0.0359342915811089,
                                 right: size.width * 0.0359342915811089),
+                            keyboardType: TextInputType.phone,
                             showDropdownIcon: false,
-                            disableLengthCheck: true,
+                            invalidNumberMessage: '',
+                            disableLengthCheck: false,
+                            autovalidateMode: AutovalidateMode.disabled,
                             decoration: InputDecoration(
+                              counterText: '',
                               suffixIconConstraints:
                                   const BoxConstraints(maxWidth: 44),
                               suffixIcon: Padding(
@@ -502,11 +554,26 @@ class _PersonalInformationState extends State<PersonalInformation>
                                   'assets/Vectores/Iconos/dwon chevron.svg',
                                 ),
                               ),
+                              errorBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.red),
+                              ),
                               border: const OutlineInputBorder(
                                 borderSide: BorderSide(),
                               ),
                             ),
                             initialCountryCode: locationValue,
+                            validator: (PhoneNumber? value) {
+                              print('value: $value');
+                              if (value!.completeNumber.isEmpty) {
+                                setState(() {
+                                  errorValidation =
+                                      'Porfavor,  debes completar todos los registros para continuar';
+                                });
+
+                                return '';
+                              }
+                              return null;
+                            },
                             onChanged: (phone) {
                               setState(() {
                                 phoneNumber = phone.completeNumber;
@@ -523,20 +590,26 @@ class _PersonalInformationState extends State<PersonalInformation>
                             width: size.width,
                             title: 'Continuar',
                             onPressed: () async {
-                              final response = await AuthUserService()
-                                  .personalData(
-                                      accesstoken: Preferences.token!,
-                                      nacionality: nationality ?? locationValue,
-                                      name: nameController.text,
-                                      lastname: lastNameController.text,
-                                      birthdayDate: formattedDate,
-                                      phoneNumber: phoneNumber!,
-                                      dniNumber: idNumberController.text);
-                              if (response.runtimeType != String &&
-                                  response['name'] != null) {
-                                Future.delayed(Duration.zero).then((value) =>
-                                    Navigator.pushNamed(
-                                        context, AddressScreen.routeName));
+                              if (_formKey11.currentState!.validate()) {
+                                final response = await AuthUserService()
+                                    .personalData(
+                                        accesstoken: Preferences.token!,
+                                        nacionality:
+                                            nationality ?? locationValue,
+                                        name: nameController.text,
+                                        lastname: lastNameController.text,
+                                        birthdayDate: formattedDate,
+                                        phoneNumber: phoneNumber!,
+                                        dniNumber: idNumberController.text);
+                                if (response.runtimeType != String &&
+                                    response['name'] != null) {
+                                  Future.delayed(Duration.zero).then((value) =>
+                                      Navigator.pushNamed(
+                                          context, AddressScreen.routeName));
+                                }
+                              } else {
+                                customModalBottomAlert(
+                                    context, size, errorValidation, isLoading);
                               }
                             },
                             load: isLoadLogin!,

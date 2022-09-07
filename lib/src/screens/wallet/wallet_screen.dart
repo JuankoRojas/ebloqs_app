@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 
 class WalletScreen extends StatefulWidget {
   static const String routeName = 'WalletScreen';
@@ -380,7 +381,11 @@ class _WalletScreenState extends State<WalletScreen> {
                                                                     )
                                                                   ],
                                                                 ),
-                                                                onTap: () {},
+                                                                onTap: () {
+                                                                  Share.share(Preferences
+                                                                      .id_wallet
+                                                                      .toString());
+                                                                },
                                                               ),
                                                             ),
                                                             Padding(

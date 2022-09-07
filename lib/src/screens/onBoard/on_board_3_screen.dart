@@ -168,19 +168,83 @@ cualquier parte del mundo.''',
           Positioned(
               top: size.height * 0.935,
               right: size.width * 0.074,
-              child: GestureDetector(
-                child: SvgPicture.asset(
-                  alignment: Alignment.topCenter,
-                  'assets/Vectores/Iconos/Frame.svg',
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Onboard4Screen(),
+              child: Row(
+                children: [
+                  Container(
+                    width: 8,
+                    height: 8,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xffeae4fc),
                     ),
-                  );
-                },
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: size.width * 0.0426666666666667),
+                    child: Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xffeae4fc),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: size.width * 0.0426666666666667),
+                    child: Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xff8966f0),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: size.width * 0.0426666666666667),
+                    child: Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xffeae4fc),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: size.width * 0.0426666666666667),
+                    child: Container(
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color(0xffeae4fc),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: size.width * 0.533333333333333),
+                    child: GestureDetector(
+                      child: SvgPicture.asset(
+                        alignment: Alignment.topCenter,
+                        'assets/Vectores/Iconos/Frame.svg',
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Onboard4Screen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ))
         ],
       ),

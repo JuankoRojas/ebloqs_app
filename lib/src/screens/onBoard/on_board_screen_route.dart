@@ -9,7 +9,6 @@ import 'package:ebloqs_app/src/screens/onBoard/on_board_5_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardPageRoute extends StatelessWidget {
   static const routeName = 'OnBoardPageRoute';
@@ -149,25 +148,25 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
                 child: const Onboard5Screen()),
           ],
         ),
-        Positioned(
-            top: size.height * 0.943,
-            left: 35,
-            child: SmoothPageIndicator(
-              controller: _pageOnBoardController,
-              count: 5,
-              effect: ExpandingDotsEffect(
-                dotHeight: 8.0,
-                dotWidth: 8,
-                spacing: 16,
-                activeDotColor: const Color(0xff8966F0),
-                dotColor: (navegacionOnBoard.paginaActual == 2 ||
-                        navegacionOnBoard.paginaActual == 3 ||
-                        navegacionOnBoard.paginaActual == 4)
-                    ? const Color(0xffEAE4FC)
-                    : const Color(0xffffffff),
-                expansionFactor: 1.1,
-              ),
-            )),
+        // Positioned(
+        //     top: size.height * 0.943,
+        //     left: 35,
+        //     child: SmoothPageIndicator(
+        //       controller: _pageOnBoardController,
+        //       count: 5,
+        //       effect: ExpandingDotsEffect(
+        //         dotHeight: 8.0,
+        //         dotWidth: 8,
+        //         spacing: 16,
+        //         activeDotColor: const Color(0xff8966F0),
+        //         dotColor: (navegacionOnBoard.paginaActual == 2 ||
+        //                 navegacionOnBoard.paginaActual == 3 ||
+        //                 navegacionOnBoard.paginaActual == 4)
+        //             ? const Color(0xffEAE4FC)
+        //             : const Color(0xffffffff),
+        //         expansionFactor: 1.1,
+        //       ),
+        //     )),
       ],
     );
   }
