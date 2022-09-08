@@ -282,8 +282,8 @@ class _IntroducirCantidadTarjetaScreenState
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
+                          children: const [
+                            Text(
                               "Añadir información de la cuenta.",
                               style: TextStyle(
                                 color: Color(0xff2504ca),
@@ -292,11 +292,11 @@ class _IntroducirCantidadTarjetaScreenState
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            GestureDetector(
-                              child: SvgPicture.asset(
-                                  'assets/Vectores/Iconos/X.svg'),
-                              onTap: () {},
-                            )
+                            // GestureDetector(
+                            //   child: SvgPicture.asset(
+                            //       'assets/Vectores/Iconos/X.svg'),
+                            //   onTap: () {},
+                            // )
                           ],
                         ),
                         Form(
@@ -340,7 +340,7 @@ class _IntroducirCantidadTarjetaScreenState
                                 padding: EdgeInsets.only(
                                     top: size.height * 0.0197044334975369),
                                 child: const Text(
-                                  "Nombre del Banco",
+                                  "Número de la tarjeta",
                                   style: TextStyle(
                                     color: Color(0xff170658),
                                     fontSize: 13,
@@ -401,6 +401,7 @@ class _IntroducirCantidadTarjetaScreenState
                                               keyboardType:
                                                   TextInputType.datetime,
                                               decoration: InputDecoration(
+                                                hintText: "MM/AA",
                                                 labelStyle: const TextStyle(
                                                   color: Color(0xff9B99A3),
                                                   fontSize: 14,
@@ -442,6 +443,7 @@ class _IntroducirCantidadTarjetaScreenState
                                               keyboardType:
                                                   TextInputType.number,
                                               decoration: InputDecoration(
+                                                hintText: 'XXX',
                                                 labelStyle: const TextStyle(
                                                   color: Color(0xff9B99A3),
                                                   fontSize: 14,
@@ -509,10 +511,11 @@ class _IntroducirCantidadTarjetaScreenState
                     ],
                   ),
                   onTap: () async {
+                    var amount = double.parse(quantityController.text) * 0.05;
                     try {
                       final response = await TransferService().transfer(
                           to: Preferences.id_wallet!,
-                          amount: quantityController.text);
+                          amount: amount.toString());
                       if (response.isNotEmpty) {
                         debugPrint(response.toString());
                         Future.delayed(Duration.zero)

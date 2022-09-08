@@ -720,6 +720,9 @@ class _ComprarScreenState extends State<ComprarScreen>
                   onTap: () {
                     setState(() {
                       transferSelect = !transferSelect;
+                      if (bankSelect) {
+                        bankSelect = !bankSelect;
+                      }
                     });
                   },
                 ),
@@ -797,7 +800,9 @@ class _ComprarScreenState extends State<ComprarScreen>
                   onTap: () {
                     setState(() {
                       bankSelect = !bankSelect;
-                      print(bankSelect);
+                      if (transferSelect) {
+                        transferSelect = !transferSelect;
+                      }
                     });
                   },
                 ),

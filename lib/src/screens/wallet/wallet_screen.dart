@@ -70,7 +70,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: FutureBuilder(
                   future: BalanceService()
-                      .getBalance(accesstoken: Preferences.token!),
+                      .getBalance(accesstoken: Preferences.id_wallet!),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     print(snapshot.data);
                     return Container(

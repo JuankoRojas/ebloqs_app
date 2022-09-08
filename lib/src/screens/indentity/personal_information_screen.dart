@@ -34,6 +34,7 @@ class _PersonalInformationState extends State<PersonalInformation>
   String? phoneNumber;
   String? errorValidation;
   bool isLoading = false;
+  bool iscompleted = true;
 
   String? nationality;
   @override
@@ -455,7 +456,10 @@ class _PersonalInformationState extends State<PersonalInformation>
                                           ),
                                           child: ScrollDatePicker(
                                             selectedDate: _selectedDate,
+                                            options: const DatePickerOptions(
+                                                isLoop: false),
                                             locale: const Locale('es'),
+                                            maximumDate: DateTime(2004),
                                             onDateTimeChanged:
                                                 (DateTime value) {
                                               setState(() {
@@ -502,6 +506,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                             ),
                           ),
                           validator: (value) {
+                            print(value);
                             if (value!.isEmpty) {
                               setState(() {
                                 errorValidation =
@@ -541,8 +546,9 @@ class _PersonalInformationState extends State<PersonalInformation>
                             keyboardType: TextInputType.phone,
                             showDropdownIcon: false,
                             invalidNumberMessage: '',
-                            disableLengthCheck: false,
-                            autovalidateMode: AutovalidateMode.disabled,
+                            disableLengthCheck: true,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             decoration: InputDecoration(
                               counterText: '',
                               suffixIconConstraints:
@@ -554,11 +560,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                                   'assets/Vectores/Iconos/dwon chevron.svg',
                                 ),
                               ),
-                              errorBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.red),
-                              ),
-                              border: const OutlineInputBorder(
-                                borderSide: BorderSide(),
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: iscompleted
+                                        ? const Color(0xffCDCCD1)
+                                        : Colors.red),
                               ),
                             ),
                             initialCountryCode: locationValue,
@@ -590,7 +596,9 @@ class _PersonalInformationState extends State<PersonalInformation>
                             width: size.width,
                             title: 'Continuar',
                             onPressed: () async {
-                              if (_formKey11.currentState!.validate()) {
+                              if (_formKey11.currentState!.validate() &&
+                                  phoneNumber != null) {
+                                iscompleted = true;
                                 final response = await AuthUserService()
                                     .personalData(
                                         accesstoken: Preferences.token!,
@@ -608,6 +616,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                                           context, AddressScreen.routeName));
                                 }
                               } else {
+                                setState(() {
+                                  iscompleted = false;
+                                  errorValidation =
+                                      'Porfavor,  debes completar todos los registros para continuar';
+                                });
                                 customModalBottomAlert(
                                     context, size, errorValidation, isLoading);
                               }
