@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
@@ -13,12 +14,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
+late List<CameraDescription> _cameras;
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   SystemChrome.setSystemUIOverlayStyle(systemBarDark);
   await Firebase.initializeApp();
   await Preferences.init();
+  _cameras = await availableCameras();
   // var locationProvider = LocationsProvider();
   // locationProvider.useMyLocation();
   Provider.debugCheckInvalidValueType = null;
