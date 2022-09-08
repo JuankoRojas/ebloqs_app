@@ -22,6 +22,7 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
     final size = MediaQuery.of(context).size;
     print(size.width);
     print(size.height);
+    print(Preferences.id_wallet);
     return Scaffold(
         extendBodyBehindAppBar: true,
         // appBar: AppBar(

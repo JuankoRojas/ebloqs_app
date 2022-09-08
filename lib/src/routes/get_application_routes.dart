@@ -13,6 +13,7 @@ import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart'
 import 'package:ebloqs_app/src/screens/indentity/upload_document_screen.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
+import 'package:ebloqs_app/src/screens/market/market_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
@@ -68,5 +69,8 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     TransferScreen.routeName: (BuildContext context) => const TransferScreen(),
     UploadDocumentScreen.routeName: (BuildContext context) =>
         const UploadDocumentScreen(),
+
+    //Market
+    MarketScreen.routeName: (BuildContext context) => const MarketScreen(),
   };
 }

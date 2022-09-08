@@ -3,6 +3,7 @@ import 'package:country_list_pick/country_list_pick.dart';
 
 import 'package:dotted_line/dotted_line.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
+import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/personal_information_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -52,7 +53,9 @@ class _NationalityScreenState extends State<NationalityScreen>
         systemOverlayStyle: systemBarDark,
         elevation: 0,
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+          },
           child: Container(
             padding: EdgeInsets.symmetric(
                 horizontal: size.width * 0.0361072902338377),

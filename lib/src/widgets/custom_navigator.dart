@@ -83,8 +83,15 @@ class CustomNavigator extends StatelessWidget {
                   IconButton(
                       visualDensity: VisualDensity.compact,
                       padding: EdgeInsets.zero,
-                      onPressed: () {
-                        Navigator.pushNamed(context, WalletScreen.routeName);
+                      onPressed: () async {
+                        final idWallet = Preferences.id_wallet;
+                        final publicKey = Preferences.public_key;
+                        if (idWallet != null && publicKey != null) {
+                          Navigator.pushNamed(context, WalletScreen.routeName);
+                        } else {
+                          Navigator.pushNamed(
+                              context, NationalityScreen.routeName);
+                        }
                       },
                       icon: SvgPicture.asset(
                         'assets/Vectores/Iconos/wallet.svg',

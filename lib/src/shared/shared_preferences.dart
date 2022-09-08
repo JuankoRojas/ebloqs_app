@@ -5,6 +5,7 @@ class Preferences {
   static String? _token;
   static String? _uid;
   static String? _id_wallet;
+  static String? _public_key;
   static String? _mnemonic;
 
   static Future init() async {
@@ -25,6 +26,10 @@ class Preferences {
     return _prefs.getString('id_wallet') ?? _id_wallet;
   }
 
+  static String? get public_key {
+    return _prefs.getString('public_key') ?? _public_key;
+  }
+
   static String? get mnemonic {
     return _prefs.getString('mnemonic') ?? _mnemonic;
   }
@@ -43,6 +48,11 @@ class Preferences {
   static set id_wallet(String? idWallet) {
     _id_wallet = idWallet;
     _prefs.setString('id_wallet', idWallet!);
+  }
+
+  static set public_key(String? publicKey) {
+    _public_key = publicKey;
+    _prefs.setString('public_key', publicKey!);
   }
 
   static set mnemonic(String? mnemonic) {

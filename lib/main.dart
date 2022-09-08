@@ -6,6 +6,7 @@ import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/services/apple_signin_service.dart';
+import 'package:ebloqs_app/src/services/coin_market_cap_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -59,10 +60,14 @@ class _MyAppState extends State<MyApp> {
     print(isoCountryCode);
     return MultiProvider(
       providers: [
+        //USER
         ChangeNotifierProvider(create: (context) => UserInfoProvider()),
         ChangeNotifierProvider(create: (context) => AccountInfoProvider()),
         ChangeNotifierProvider(create: (context) => AuthAppleService()),
+        //Location
         ChangeNotifierProvider(create: (context) => LocationsProvider()),
+        //CoinMarketCap
+        ChangeNotifierProvider(create: (context) => CoinMarketCapService()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

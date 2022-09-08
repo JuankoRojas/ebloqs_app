@@ -353,6 +353,7 @@ una minúscula, un número y un carácter especial''';
                               print(response);
                               if (response.isNotEmpty) {
                                 Preferences.id_wallet = response['id_wallet'];
+                                Preferences.public_key = response['public_key'];
                                 Preferences.mnemonic = response['mnemonic'];
                                 Future.delayed(Duration.zero).then((_) =>
                                     Navigator.pushNamed(

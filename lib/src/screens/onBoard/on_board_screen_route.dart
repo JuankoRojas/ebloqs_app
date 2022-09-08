@@ -1,12 +1,15 @@
 import 'dart:async';
 
+import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_1_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_2_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_3_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_4_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_5_screen.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:provider/provider.dart';
 
@@ -18,9 +21,17 @@ class OnBoardPageRoute extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => _NavegacionOnBoard(),
-      child: const Scaffold(
-        body: _PaginasOnBoard(),
-      ),
+      child: Scaffold(
+          body: FutureBuilder(
+              future: checkPersistenceState(context),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return const _PaginasOnBoard();
+                } else {
+                  return Center(
+                      child: Lottie.asset('assets/lottie/X2lNy3zK9f.json'));
+                }
+              })),
     );
   }
 }
@@ -169,5 +180,15 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
         //     )),
       ],
     );
+  }
+}
+
+Future checkPersistenceState(BuildContext context) async {
+  final uid = Preferences.uid;
+  final token = Preferences.token;
+
+  if (uid != null || token != null) {
+    Future.delayed(Duration.zero)
+        .then((_) => Navigator.pushNamed(context, HomeScreen.routeName));
   }
 }

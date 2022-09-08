@@ -514,7 +514,7 @@ class _IntroducirCantidadTarjetaScreenState
                     var amount = double.parse(quantityController.text) * 0.05;
                     try {
                       final response = await TransferService().transfer(
-                          to: Preferences.id_wallet!,
+                          to: Preferences.public_key!,
                           amount: amount.toString());
                       if (response.isNotEmpty) {
                         debugPrint(response.toString());
