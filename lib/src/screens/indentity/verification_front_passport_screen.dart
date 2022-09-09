@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/models/camera_models.dart';
-import 'package:ebloqs_app/src/screens/indentity/take_picture_back_screen.dart';
-import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/take_picture_front_passport_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/upload_document_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -289,7 +289,8 @@ class _VerificationFrontPassportScreenState
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, TakePictureFront.routeName);
+                    Navigator.pushNamed(
+                        context, TakePicturePassportFront.routeName);
                   },
                 ),
                 ClipRRect(
@@ -298,7 +299,8 @@ class _VerificationFrontPassportScreenState
                       width: size.width * 0.42,
                       title: 'Continuar',
                       onPressed: () {
-                        Navigator.pushNamed(context, TakePictureBack.routeName);
+                        Navigator.pushNamed(
+                            context, UploadDocumentScreen.routeName);
                       },
                       load: isLoadLogin!,
                       disabled: isLoadLogin!),

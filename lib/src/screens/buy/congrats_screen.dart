@@ -109,10 +109,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                                 ),
                               ),
                               Expanded(child: Container()),
-                              const Text(
-                                " \$1,495.33 USD",
+                              Text(
+                                " ${(widget.total * 0.05)} USD",
                                 textAlign: TextAlign.right,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Color(0xff170658),
                                   fontSize: 13,
                                   fontFamily: "Archivo",
@@ -248,10 +248,10 @@ class _CongratsScreenState extends State<CongratsScreen> {
                                 ),
                               ),
                               Expanded(child: Container()),
-                              const Text(
-                                "\$1,500.00USD",
+                              Text(
+                                "${(widget.total * 0.05 + 4.67)} USD",
                                 textAlign: TextAlign.right,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Color(0xff170658),
                                   fontSize: 13,
                                   fontFamily: "Archivo",
