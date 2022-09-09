@@ -3,6 +3,7 @@ import 'package:ebloqs_app/src/screens/qr/qr_view_screen.dart';
 import 'package:ebloqs_app/src/services/get_all_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -16,14 +17,17 @@ class TransferScreen extends StatefulWidget {
 }
 
 class _TransferScreenState extends State<TransferScreen> {
+  final GlobalKey<FormState> _formKey13 = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey14 = GlobalKey<FormState>();
   PageController pageController = PageController();
   bool? isLoadLogin = false;
   int _curr = 0;
+  String? errorValidation;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    print('current : $_curr');
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -130,11 +134,20 @@ class _TransferScreenState extends State<TransferScreen> {
                   right: size.width * 0.0413194444444445,
                 ),
                 child: SizedBox(
-                  height: size.height * 0.7,
+                  height: size.height * 0.800492610837438,
                   width: double.infinity,
                   child: PageView(
                     controller: pageController,
-                    children: const [Dinero(), Tokens()],
+                    children: [
+                      Dinero(
+                        formKey13: _formKey13,
+                        errorValidation: errorValidation,
+                      ),
+                      Tokens(
+                        formKey14: _formKey14,
+                        errorValidation: errorValidation,
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -148,36 +161,67 @@ class _TransferScreenState extends State<TransferScreen> {
                       child: ButtonPrimary(
                           width: size.width,
                           title: 'Continuar',
-                          onPressed: () {},
+                          onPressed: () {
+                            if (_formKey13.currentState!.validate()) {
+                            } else {
+                              setState(() {
+                                errorValidation =
+                                    'Por Favor,  debes completar todos los registros para continuar';
+                              });
+                              customModalBottomAlert(context, size,
+                                  errorValidation, isLoadLogin!, '');
+                            }
+                          },
                           load: isLoadLogin!,
                           disabled: isLoadLogin!),
                     )
-                  : Padding(
-                      padding: EdgeInsets.only(
-                        top: size.height * 0.0130420054200542,
-                        left: size.width * 0.0413194444444445,
-                        right: size.width * 0.0413194444444445,
-                      ),
-                      child: const Text(
-                        "Tiempo estimado de 1 hora",
-                        style: TextStyle(
-                          color: Color(0xff2504ca),
-                          fontSize: 13,
-                        ),
-                      )),
-              // Padding(
-              //   padding: EdgeInsets.only(
-              //       top: size.height * 0.0248983739837399,
-              //       left: size.width * 0.0413194444444445,
-              //       right: size.width * 0.0413194444444445,
-              //       bottom: size.height * 0.0569105691056911),
-              //   child: ButtonPrimary(
-              //       width: size.width,
-              //       title: 'Continuar',
-              //       onPressed: () {},
-              //       load: isLoadLogin!,
-              //       disabled: isLoadLogin!),
-              // )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                            padding: EdgeInsets.only(
+                              top: size.height * 0.0130420054200542,
+                              left: size.width * 0.0413194444444445,
+                              right: size.width * 0.0413194444444445,
+                            ),
+                            child: const Text(
+                              "Tiempo estimado de 1 hora",
+                              style: TextStyle(
+                                color: Color(0xff2504ca),
+                                fontSize: 13,
+                              ),
+                            )),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.0248983739837399,
+                              left: size.width * 0.0413194444444445,
+                              right: size.width * 0.0413194444444445,
+                              bottom: size.height * 0.0569105691056911),
+                          child: ButtonPrimary(
+                              width: size.width,
+                              title: 'Continuar',
+                              onPressed: () {
+                                if (_formKey14.currentState!.validate()) {
+                                  customModalBottomAlert(
+                                      context,
+                                      size,
+                                      errorValidation,
+                                      isLoadLogin!,
+                                      'assets/Vectores/Iconos/checkcircle.svg');
+                                } else {
+                                  setState(() {
+                                    errorValidation =
+                                        'Por Favor,  debes completar todos los registros para continuar';
+                                  });
+                                  customModalBottomAlert(context, size,
+                                      errorValidation, isLoadLogin!, '');
+                                }
+                              },
+                              load: isLoadLogin!,
+                              disabled: isLoadLogin!),
+                        )
+                      ],
+                    ),
             ],
           ),
         ),
@@ -187,14 +231,16 @@ class _TransferScreenState extends State<TransferScreen> {
 }
 
 class Dinero extends StatefulWidget {
-  const Dinero({Key? key}) : super(key: key);
+  final GlobalKey<FormState> formKey13;
+  String? errorValidation;
+  Dinero({Key? key, required this.formKey13, required this.errorValidation})
+      : super(key: key);
 
   @override
   State<Dinero> createState() => _DineroState();
 }
 
 class _DineroState extends State<Dinero> {
-  final GlobalKey<FormState> _formKey13 = GlobalKey<FormState>();
   final TextEditingController quantityController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   String? selectedValue;
@@ -235,7 +281,7 @@ class _DineroState extends State<Dinero> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Form(
-      key: _formKey13,
+      key: widget.formKey13,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -274,6 +320,17 @@ class _DineroState extends State<Dinero> {
                     selectedValue = newValue!;
                   });
                 },
+                validator: (value) {
+                  if (value == null) {
+                    setState(() {
+                      widget.errorValidation =
+                          'Por Favor,  debes completar todos los registros para continuar';
+                    });
+
+                    return '';
+                  }
+                  return null;
+                },
                 items: dropdownItems),
           ),
           Padding(
@@ -309,6 +366,17 @@ class _DineroState extends State<Dinero> {
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
+              validator: (value) {
+                if (value == null) {
+                  setState(() {
+                    widget.errorValidation =
+                        'Por Favor,  debes completar todos los registros para continuar';
+                  });
+
+                  return '';
+                }
+                return null;
+              },
             ),
           ),
           Padding(
@@ -407,6 +475,17 @@ class _DineroState extends State<Dinero> {
                   onFieldSubmitted: (String value) {
                     onFieldSubmitted();
                   },
+                  validator: (value) {
+                    if (value == null) {
+                      setState(() {
+                        widget.errorValidation =
+                            'Por Favor,  debes completar todos los registros para continuar';
+                      });
+
+                      return '';
+                    }
+                    return null;
+                  },
                 );
               },
               optionsViewBuilder: (BuildContext context,
@@ -491,14 +570,16 @@ class _DineroState extends State<Dinero> {
 }
 
 class Tokens extends StatefulWidget {
-  const Tokens({Key? key}) : super(key: key);
+  final GlobalKey<FormState> formKey14;
+  String? errorValidation;
+  Tokens({Key? key, required this.formKey14, required this.errorValidation})
+      : super(key: key);
 
   @override
   State<Tokens> createState() => _TokensState();
 }
 
 class _TokensState extends State<Tokens> {
-  final GlobalKey<FormState> _formKey14 = GlobalKey<FormState>();
   final TextEditingController quantity2Controller = TextEditingController();
   final TextEditingController walletToController = TextEditingController();
   final TextEditingController description2Controller = TextEditingController();
@@ -520,7 +601,7 @@ class _TokensState extends State<Tokens> {
       walletToController.text = Provider.of<QrInfoProvider>(context).getQr()!;
     }
     return Form(
-      key: _formKey14,
+      key: widget.formKey14,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -559,6 +640,17 @@ class _TokensState extends State<Tokens> {
                     selectedValue2 = newValue!;
                   });
                 },
+                validator: (value) {
+                  if (value == null) {
+                    setState(() {
+                      widget.errorValidation =
+                          'Por Favor,  debes completar todos los registros para continuar';
+                    });
+
+                    return '';
+                  }
+                  return null;
+                },
                 items: dropdownItems2),
           ),
           Padding(
@@ -594,6 +686,17 @@ class _TokensState extends State<Tokens> {
                   borderRadius: BorderRadius.circular(4),
                 ),
               ),
+              validator: (value) {
+                if (value == null) {
+                  setState(() {
+                    widget.errorValidation =
+                        'Por Favor,  debes completar todos los registros para continuar';
+                  });
+
+                  return '';
+                }
+                return null;
+              },
             ),
           ),
           Padding(
@@ -683,6 +786,17 @@ class _TokensState extends State<Tokens> {
                       },
                     ),
                   )),
+              validator: (value) {
+                if (value == null) {
+                  setState(() {
+                    widget.errorValidation =
+                        'Por Favor,  debes completar todos los registros para continuar';
+                  });
+
+                  return '';
+                }
+                return null;
+              },
             ),
           ),
           Padding(
