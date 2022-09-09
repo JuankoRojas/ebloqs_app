@@ -1,13 +1,16 @@
+import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/deposit/deposit_screen.dart';
 import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -20,9 +23,30 @@ class WalletScreen extends StatefulWidget {
 }
 
 class _WalletScreenState extends State<WalletScreen> {
+  String? ebl;
+  bool isLoading = false;
+  @override
+  void initState() {
+    getBalance();
+    super.initState();
+  }
+
+  getBalance() async {
+    var balance =
+        await BalanceService().getBalance(accesstoken: Preferences.token!);
+    setState(() {
+      ebl = balance;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    print(Preferences.id_wallet);
+    print(Preferences.public_key);
+
+    print('ebl: $ebl');
+    final avatarSelected = Provider.of<AvatarUserProvider>(context).avatarUser;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -35,10 +59,26 @@ class _WalletScreenState extends State<WalletScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    'assets/Imagenes/avatar.png',
-                    width: size.width * 0.067,
-                    fit: BoxFit.contain,
+                  Container(
+                    width: 32,
+                    height: 32,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 1,
+                      ),
+                      color: const Color(0xffeae4fc),
+                    ),
+                    child: (avatarSelected == null || avatarSelected.isEmpty)
+                        ? SvgPicture.asset(
+                            'assets/uavatares/2.svg',
+                            width: size.width * 0.067,
+                          )
+                        : SvgPicture.asset(
+                            avatarSelected,
+                            width: size.width * 0.067,
+                          ),
                   ),
                   SizedBox(
                     width: size.width * 0.69,
@@ -70,84 +110,68 @@ class _WalletScreenState extends State<WalletScreen> {
                 padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: FutureBuilder(
                   future: BalanceService()
-                      .getBalance(accesstoken: Preferences.id_wallet!),
+                      .getBalance(accesstoken: Preferences.token!),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    print(snapshot.data);
-                    return Container(
-                      width: size.width,
-                      height: size.height * (175 / size.height),
-                      padding: EdgeInsets.only(
-                          top: size.height * (24 / size.height),
-                          right: size.width * (12 / size.width),
-                          bottom: size.height * (10 / size.height),
-                          left: size.width * (16 / size.width)),
-                      decoration: BoxDecoration(
-                        image: const DecorationImage(
-                          image: AssetImage('assets/Imagenes/Mask group.png'),
+                    if (snapshot.hasData && snapshot.data != null) {
+                      print(snapshot.data);
+                      final usd = double.parse(snapshot.data) * 0.05;
+
+                      ebl = snapshot.data;
+
+                      return Container(
+                        width: size.width,
+                        height: size.height * (175 / size.height),
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.0172413793103448,
+                            right: size.width * (12 / size.width),
+                            bottom: size.height * (10 / size.height),
+                            left: size.width * (16 / size.width)),
+                        decoration: BoxDecoration(
+                          image: const DecorationImage(
+                            image: AssetImage('assets/Imagenes/Mask group.png'),
+                          ),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "BALANCE DISPONIBLE",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 11.59,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (7 / size.height)),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      snapshot.data ?? '',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 36,
-                                      ),
-                                    ),
-                                    SizedBox(width: size.width * 0.035),
-                                    const Text(
-                                      "EBL",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18.55,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (6 / size.height)),
-                                child: Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
-                                    color: const Color(0xff170658),
+                                    color: const Color(0x14ffffff),
                                   ),
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: size.width * 0.033,
-                                    vertical: size.height * 0.01,
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                    vertical: 4,
                                   ),
                                   child: Row(
+                                    mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        "${snapshot.data} USD",
-                                        style: const TextStyle(
+                                      Container(
+                                        width: 16,
+                                        height: 16,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/candado.svg',
                                           color: Colors.white,
-                                          fontSize: 13,
+                                          width: 16,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      const Text(
+                                        "Balance Bloqueado   \$1,200 USD",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 11,
                                           fontFamily: "Archivo",
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -155,49 +179,391 @@ class _WalletScreenState extends State<WalletScreen> {
                                     ],
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Container(
-                                width: size.width * 0.15,
-                                height: size.width * 0.15,
-                                padding: EdgeInsets.all(size.width * 0.02),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                      Colors.white.withOpacity(0.7),
-                                      const Color(0x00ffffff)
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * 0.00985221674876847,
+                                      left: size.width * 0.0106666666666667),
+                                  child: const Text(
+                                    "BALANCE DISPONIBLE",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 11.59,
+                                      fontFamily: "Archivo",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * (7 / size.height),
+                                      left: size.width * 0.0106666666666667),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        snapshot.data ?? '',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 36,
+                                        ),
+                                      ),
+                                      SizedBox(width: size.width * 0.035),
+                                      const Text(
+                                        "EBL",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.55,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
-                                child: SvgPicture.asset(
-                                    'assets/Vectores/Iconos/ebloqscoinb.svg'),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (36 / size.height)),
-                                child: Row(
-                                  children: [
-                                    const Text(
-                                      "WALLET ID",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 11.59,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w400,
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * (6 / size.height)),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          color: const Color(0xff170658),
+                                        ),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: size.width * 0.033,
+                                          vertical: size.height * 0.01,
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "$usd USD",
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13,
+                                                fontFamily: "Archivo",
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left:
+                                                size.width * 0.138666666666667),
+                                        child: const Text(
+                                          "WALLET ID",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 11.59,
+                                            fontFamily: "Archivo",
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  width: size.width * 0.15,
+                                  height: size.width * 0.15,
+                                  padding: EdgeInsets.all(size.width * 0.02),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    gradient: LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [
+                                        Colors.white.withOpacity(0.7),
+                                        const Color(0x00ffffff)
+                                      ],
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          right: size.width * (15 / size.width),
-                                          left: size.width * (17 / size.width)),
-                                      child: GestureDetector(
+                                  ),
+                                  child: SvgPicture.asset(
+                                      'assets/Vectores/Iconos/ebloqscoinb.svg'),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * (36 / size.height)),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            right:
+                                                size.width * (12 / size.width),
+                                            left:
+                                                size.width * (17 / size.width)),
+                                        child: GestureDetector(
+                                          child: Container(
+                                            width:
+                                                size.width * (36 / size.width),
+                                            height: size.height *
+                                                (36 / size.height),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Colors.white.withOpacity(0.7),
+                                                  const Color(0x00ffffff)
+                                                ],
+                                              ),
+                                            ),
+                                            child: Center(
+                                              child: SvgPicture.asset(
+                                                  'assets/Vectores/Iconos/qr2.svg'),
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            showDialog(
+                                                context: context,
+                                                // barrierDismissible: false,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    contentPadding:
+                                                        EdgeInsets.zero,
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20.0),
+                                                    ),
+                                                    content: SizedBox(
+                                                      width: size.width *
+                                                          (333 / size.width),
+                                                      height: size.height *
+                                                          (597 / size.height),
+                                                      child: Stack(
+                                                        children: [
+                                                          Image.asset(
+                                                              'assets/Imagenes/Pop up.png'),
+                                                          Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              const Text(
+                                                                "Wallet ID",
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color(
+                                                                      0xff2504ca),
+                                                                  fontSize: 20,
+                                                                  fontFamily:
+                                                                      "Archivo",
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets.only(
+                                                                    top: size
+                                                                            .height *
+                                                                        (7 /
+                                                                            size.height)),
+                                                                child: QrImage(
+                                                                  data: Preferences
+                                                                      .public_key!,
+                                                                  version:
+                                                                      QrVersions
+                                                                          .auto,
+                                                                  size: 222.0,
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets.only(
+                                                                    top: size
+                                                                            .height *
+                                                                        (25 /
+                                                                            size.height)),
+                                                                child: Text(
+                                                                  Preferences
+                                                                      .public_key!,
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    fontSize:
+                                                                        13,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets.only(
+                                                                    top: size
+                                                                            .height *
+                                                                        (35 /
+                                                                            size
+                                                                                .height),
+                                                                    right: size
+                                                                            .width *
+                                                                        (16 /
+                                                                            size
+                                                                                .width),
+                                                                    bottom: size
+                                                                            .height *
+                                                                        (8 /
+                                                                            size
+                                                                                .height),
+                                                                    left: size
+                                                                            .width *
+                                                                        (16 /
+                                                                            size.width)),
+                                                                child:
+                                                                    GestureDetector(
+                                                                  child: Stack(
+                                                                    alignment:
+                                                                        AlignmentDirectional
+                                                                            .center,
+                                                                    children: [
+                                                                      Container(
+                                                                        height: size.height *
+                                                                            (52 /
+                                                                                size.height),
+                                                                        width: size.width *
+                                                                            (301 /
+                                                                                size.width),
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(5),
+                                                                          // boxShadow: const [
+                                                                          //   BoxShadow(
+                                                                          //     color: Color(
+                                                                          //         0x3f000000),
+                                                                          //     blurRadius:
+                                                                          //         4,
+                                                                          //     offset: Offset(
+                                                                          //         0,
+                                                                          //         2),
+                                                                          //   ),
+                                                                          // ],
+                                                                        ),
+                                                                        child:
+                                                                            ClipRRect(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(5),
+                                                                          child:
+                                                                              Image.asset(
+                                                                            'assets/png/buttongradient.png',
+                                                                            width:
+                                                                                size.width * (301 / size.width),
+                                                                            height:
+                                                                                size.height * (52 / size.height),
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      const Center(
+                                                                        child:
+                                                                            Text(
+                                                                          "Compartir",
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontSize:
+                                                                                14,
+                                                                            fontFamily:
+                                                                                "Archivo",
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                          ),
+                                                                        ),
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                  onTap: () {
+                                                                    Share.share(Preferences
+                                                                        .id_wallet
+                                                                        .toString());
+                                                                  },
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets.only(
+                                                                    right: size
+                                                                            .width *
+                                                                        (16 /
+                                                                            size
+                                                                                .width),
+                                                                    left: size
+                                                                            .width *
+                                                                        (16 /
+                                                                            size.width)),
+                                                                child:
+                                                                    GestureDetector(
+                                                                  child:
+                                                                      Container(
+                                                                    width: size
+                                                                            .width *
+                                                                        (301 /
+                                                                            size.width),
+                                                                    height: size
+                                                                            .height *
+                                                                        (52 /
+                                                                            size.height),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                      color: const Color(
+                                                                          0xfff9f9fa),
+                                                                    ),
+                                                                    child:
+                                                                        const Center(
+                                                                      child:
+                                                                          Text(
+                                                                        "Cerrar",
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Color(0xff170658),
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontFamily:
+                                                                              "Archivo",
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  onTap: () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                ),
+                                                              )
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  );
+                                                });
+                                          },
+                                        ),
+                                      ),
+                                      GestureDetector(
                                         child: Container(
                                           width: size.width * (36 / size.width),
                                           height:
@@ -216,278 +582,25 @@ class _WalletScreenState extends State<WalletScreen> {
                                           ),
                                           child: Center(
                                             child: SvgPicture.asset(
-                                                'assets/Vectores/Iconos/qr2.svg'),
+                                                'assets/Vectores/Iconos/copy2.svg'),
                                           ),
                                         ),
                                         onTap: () {
-                                          showDialog(
-                                              context: context,
-                                              // barrierDismissible: false,
-                                              builder: (BuildContext context) {
-                                                return AlertDialog(
-                                                  contentPadding:
-                                                      EdgeInsets.zero,
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20.0),
-                                                  ),
-                                                  content: SizedBox(
-                                                    width: size.width *
-                                                        (333 / size.width),
-                                                    height: size.height *
-                                                        (597 / size.height),
-                                                    child: Stack(
-                                                      children: [
-                                                        Image.asset(
-                                                            'assets/Imagenes/Pop up.png'),
-                                                        Column(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            const Text(
-                                                              "Wallet ID",
-                                                              style: TextStyle(
-                                                                color: Color(
-                                                                    0xff2504ca),
-                                                                fontSize: 20,
-                                                                fontFamily:
-                                                                    "Archivo",
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.only(
-                                                                  top: size
-                                                                          .height *
-                                                                      (7 /
-                                                                          size.height)),
-                                                              child: QrImage(
-                                                                data:
-                                                                    "0xbc1655182858764PxC90298",
-                                                                version:
-                                                                    QrVersions
-                                                                        .auto,
-                                                                size: 222.0,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.only(
-                                                                  top: size
-                                                                          .height *
-                                                                      (25 /
-                                                                          size.height)),
-                                                              child: const Text(
-                                                                "0xbc1655182858764PxC90298",
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize: 13,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.only(
-                                                                  top: size
-                                                                          .height *
-                                                                      (35 /
-                                                                          size
-                                                                              .height),
-                                                                  right: size
-                                                                          .width *
-                                                                      (16 /
-                                                                          size
-                                                                              .width),
-                                                                  bottom: size
-                                                                          .height *
-                                                                      (8 /
-                                                                          size
-                                                                              .height),
-                                                                  left: size
-                                                                          .width *
-                                                                      (16 /
-                                                                          size.width)),
-                                                              child:
-                                                                  GestureDetector(
-                                                                child: Stack(
-                                                                  alignment:
-                                                                      AlignmentDirectional
-                                                                          .center,
-                                                                  children: [
-                                                                    Container(
-                                                                      height: size
-                                                                              .height *
-                                                                          (52 /
-                                                                              size.height),
-                                                                      width: size
-                                                                              .width *
-                                                                          (301 /
-                                                                              size.width),
-                                                                      decoration:
-                                                                          BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(5),
-                                                                        // boxShadow: const [
-                                                                        //   BoxShadow(
-                                                                        //     color: Color(
-                                                                        //         0x3f000000),
-                                                                        //     blurRadius:
-                                                                        //         4,
-                                                                        //     offset: Offset(
-                                                                        //         0,
-                                                                        //         2),
-                                                                        //   ),
-                                                                        // ],
-                                                                      ),
-                                                                      child:
-                                                                          ClipRRect(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(5),
-                                                                        child: Image
-                                                                            .asset(
-                                                                          'assets/png/buttongradient.png',
-                                                                          width:
-                                                                              size.width * (301 / size.width),
-                                                                          height:
-                                                                              size.height * (52 / size.height),
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                    const Center(
-                                                                      child:
-                                                                          Text(
-                                                                        "Compartir",
-                                                                        style:
-                                                                            TextStyle(
-                                                                          color:
-                                                                              Colors.white,
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontFamily:
-                                                                              "Archivo",
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                        ),
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                                onTap: () {
-                                                                  Share.share(Preferences
-                                                                      .id_wallet
-                                                                      .toString());
-                                                                },
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.only(
-                                                                  right: size
-                                                                          .width *
-                                                                      (16 /
-                                                                          size
-                                                                              .width),
-                                                                  left: size
-                                                                          .width *
-                                                                      (16 /
-                                                                          size.width)),
-                                                              child:
-                                                                  GestureDetector(
-                                                                child:
-                                                                    Container(
-                                                                  width: size
-                                                                          .width *
-                                                                      (301 /
-                                                                          size.width),
-                                                                  height: size
-                                                                          .height *
-                                                                      (52 /
-                                                                          size.height),
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(5),
-                                                                    color: const Color(
-                                                                        0xfff9f9fa),
-                                                                  ),
-                                                                  child:
-                                                                      const Center(
-                                                                    child: Text(
-                                                                      "Cerrar",
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Color(
-                                                                            0xff170658),
-                                                                        fontSize:
-                                                                            14,
-                                                                        fontFamily:
-                                                                            "Archivo",
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                onTap: () {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                },
-                                                              ),
-                                                            )
-                                                          ],
-                                                        )
-                                                      ],
-                                                    ),
-                                                  ),
-                                                );
-                                              });
+                                          Clipboard.setData(ClipboardData(
+                                              text: Preferences.id_wallet));
                                         },
                                       ),
-                                    ),
-                                    GestureDetector(
-                                      child: Container(
-                                        width: size.width * (36 / size.width),
-                                        height:
-                                            size.height * (36 / size.height),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              Colors.white.withOpacity(0.7),
-                                              const Color(0x00ffffff)
-                                            ],
-                                          ),
-                                        ),
-                                        child: Center(
-                                          child: SvgPicture.asset(
-                                              'assets/Vectores/Iconos/copy2.svg'),
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        Clipboard.setData(ClipboardData(
-                                            text: Preferences.id_wallet));
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    );
+                                    ],
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
                   },
                 ),
               ),
@@ -516,19 +629,29 @@ class _WalletScreenState extends State<WalletScreen> {
                         Navigator.pushNamed(context, DepositScreen.routeName);
                       },
                     ),
-                    Column(
-                      children: [
-                        SvgPicture.asset('assets/Vectores/Iconos/Retirar.svg'),
-                        const Text(
-                          "Retirar",
-                          style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 12,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        )
-                      ],
+                    GestureDetector(
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(
+                              'assets/Vectores/Iconos/Retirar.svg'),
+                          const Text(
+                            "Retirar",
+                            style: TextStyle(
+                              color: Color(0xff170658),
+                              fontSize: 12,
+                              fontFamily: "Archivo",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          )
+                        ],
+                      ),
+                      onTap: () {
+                        customModalBottomAlert(
+                            context,
+                            size,
+                            'En la etapa 2 saldremos con la inversión en tokens de bienes y servicios con alta rentabilidad. Aquí podrás retirar tu dinero sobre la rentabilidad de tus inversiones. Espérala pronto!!',
+                            isLoading);
+                      },
                     ),
                     GestureDetector(
                       child: Column(
@@ -589,7 +712,13 @@ class _WalletScreenState extends State<WalletScreen> {
                         ),
                       ),
                     ),
-                    SvgPicture.asset('assets/Vectores/Iconos/refresh.svg')
+                    GestureDetector(
+                      child: SvgPicture.asset(
+                          'assets/Vectores/Iconos/refresh.svg'),
+                      onTap: () {
+                        setState(() {});
+                      },
+                    )
                   ],
                 ),
               ),
@@ -906,10 +1035,10 @@ class _WalletScreenState extends State<WalletScreen> {
                           ),
                         ),
                         Expanded(child: Container()),
-                        const Text(
-                          "0.0000150",
+                        Text(
+                          ebl ?? '0.00',
                           textAlign: TextAlign.right,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xff170658),
                             fontSize: 14,
                             fontFamily: "Archivo",

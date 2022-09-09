@@ -1,6 +1,11 @@
+import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
+import 'package:ebloqs_app/src/screens/qr/qr_view_screen.dart';
+import 'package:ebloqs_app/src/services/get_all_user_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class TransferScreen extends StatefulWidget {
   static const String routeName = 'TransferScreen';
@@ -18,6 +23,7 @@ class _TransferScreenState extends State<TransferScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -209,13 +215,20 @@ class _DineroState extends State<Dinero> {
     return menuItems;
   }
 
-  List<DropdownMenuItem<String>> get toItems {
-    List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(
-          value: "Javier Cervantes", child: Text("Javier Cervantes")),
-      const DropdownMenuItem(value: "Julian Usma", child: Text("Julian Usma")),
-    ];
-    return menuItems;
+  var _textFieldHints = ['Julian Usma'];
+  TextEditingController _textFieldController = TextEditingController();
+  @override
+  void initState() {
+    getAllUser();
+    super.initState();
+  }
+
+  getAllUser() async {
+    var allUser = await GetAllUserService().getAllUsers();
+    setState(() {
+      _textFieldHints = allUser;
+    });
+    return allUser;
   }
 
   @override
@@ -315,7 +328,29 @@ class _DineroState extends State<Dinero> {
               padding: EdgeInsets.only(
                 top: size.height * 0.00948509485094851,
               ),
-              child: TextFormField()),
+              child: Container(
+                width: size.width,
+                height: size.height * 0.0640394088669951,
+                padding: EdgeInsets.only(
+                    left: size.width * 0.0426666666666667,
+                    top: size.height * 0.0197044334975369,
+                    bottom: size.height * 0.0197044334975369),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  border: Border.all(
+                    color: const Color(0xffcdccd1),
+                    width: 1,
+                  ),
+                  color: Colors.white,
+                ),
+                child: Text(
+                  Preferences.userName!,
+                  style: const TextStyle(
+                    color: Color(0xff383346),
+                    fontSize: 14,
+                  ),
+                ),
+              )),
           Padding(
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
@@ -334,28 +369,82 @@ class _DineroState extends State<Dinero> {
             padding: EdgeInsets.only(
               top: size.height * 0.00948509485094851,
             ),
-            child: DropdownButtonFormField(
-                icon:
-                    SvgPicture.asset('assets/Vectores/Iconos/dwon chevron.svg'),
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xffcdccd1), width: 1),
-                    borderRadius: BorderRadius.circular(4),
+            child: RawAutocomplete<String>(
+              optionsBuilder: (TextEditingValue textEditingValue) {
+                if (textEditingValue.text == '') {
+                  return const Iterable<String>.empty();
+                }
+                return _textFieldHints.where((String option) {
+                  return option
+                      .toLowerCase()
+                      .contains(textEditingValue.text.toLowerCase());
+                });
+              },
+              onSelected: (String selection) {
+                debugPrint('$selection selected');
+              },
+              fieldViewBuilder: (BuildContext context,
+                  TextEditingController textEditingController,
+                  FocusNode focusNode,
+                  VoidCallback onFieldSubmitted) {
+                _textFieldController = textEditingController;
+                return TextFormField(
+                  controller: _textFieldController,
+                  focusNode: focusNode,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Color(0xffcdccd1), width: 1),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                          color: Color(0xffcdccd1), width: 0.0),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
                   ),
-                  border: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xffcdccd1), width: 0.0),
-                    borderRadius: BorderRadius.circular(4),
+                  onFieldSubmitted: (String value) {
+                    onFieldSubmitted();
+                  },
+                );
+              },
+              optionsViewBuilder: (BuildContext context,
+                  AutocompleteOnSelected<String> onSelected,
+                  Iterable<String> options) {
+                return Align(
+                  alignment: Alignment.topLeft,
+                  child: Material(
+                    elevation: 4.0,
+                    child: SizedBox(
+                      height: 200.0,
+                      child: ListView.builder(
+                        padding: const EdgeInsets.all(8.0),
+                        itemCount: options.length + 1,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index >= options.length) {
+                            return TextButton(
+                              child: const Text('clear'),
+                              onPressed: () {
+                                _textFieldController.clear();
+                              },
+                            );
+                          }
+                          final String option = options.elementAt(index);
+                          return GestureDetector(
+                            onTap: () {
+                              onSelected(option);
+                            },
+                            child: ListTile(
+                              title: Text(option),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                ),
-                value: toValue,
-                onChanged: (String? newValue) {
-                  setState(() {
-                    toValue = newValue!;
-                  });
-                },
-                items: toItems),
+                );
+              },
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -425,6 +514,9 @@ class _TokensState extends State<Tokens> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    if (Provider.of<QrInfoProvider>(context).getQr() != null) {
+      walletToController.text = Provider.of<QrInfoProvider>(context).getQr()!;
+    }
     return Form(
       key: _formKey14,
       child: Column(
@@ -530,10 +622,10 @@ class _TokensState extends State<Tokens> {
                 ),
               ),
               child: Row(
-                children: const [
+                children: [
                   Text(
-                    "Private Key Wallet",
-                    style: TextStyle(
+                    Preferences.id_wallet!,
+                    style: const TextStyle(
                       color: Color(0xff383346),
                       fontSize: 14,
                     ),
@@ -561,17 +653,33 @@ class _TokensState extends State<Tokens> {
             child: TextFormField(
               controller: walletToController,
               decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      const BorderSide(color: Color(0xffcdccd1), width: 1),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                border: OutlineInputBorder(
-                  borderSide:
-                      const BorderSide(color: Color(0xffcdccd1), width: 0.0),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Color(0xffcdccd1), width: 1),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  border: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Color(0xffcdccd1), width: 0.0),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  suffixIcon: Padding(
+                    padding:
+                        EdgeInsets.only(right: size.width * 0.0426666666666667),
+                    child: GestureDetector(
+                      child: SvgPicture.asset(
+                        'assets/Vectores/Iconos/qr2.svg',
+                        width: 20,
+                        color: const Color(0xff4A0086),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const QrViewScreen()));
+                      },
+                    ),
+                  )),
             ),
           ),
           Padding(

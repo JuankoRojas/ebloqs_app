@@ -1,6 +1,7 @@
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/transferir_ebloqs_screen.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,15 +22,17 @@ class IntroducirCantidadTransferenciaScreen extends StatefulWidget {
 class _IntroducirCantidadTransferenciaScreenState
     extends State<IntroducirCantidadTransferenciaScreen> {
   final GlobalKey<FormState> formKey9 = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey10 = GlobalKey<FormState>();
 
   final TextEditingController quantityController = TextEditingController();
 
   PageController controller = PageController();
-
+  String? errorValidation;
   int _current = 0;
   double comision = 50.00;
   double? cantidad;
   double? recibes;
+  bool isLoading = false;
   @override
   void initState() {
     quantityController.text = widget.cantidadTransferencia!;
@@ -168,6 +171,20 @@ class _IntroducirCantidadTransferenciaScreenState
                         }
                       });
                     },
+                    validator: (value) {
+                      if (quantityController.text.isEmpty) {
+                        if (value!.isEmpty) {
+                          setState(() {
+                            errorValidation =
+                                'Por Favor,  debes completar todos los registros para continuar';
+                          });
+
+                          return '';
+                        }
+                        return null;
+                      }
+                      return null;
+                    },
                   ),
                 ),
               ),
@@ -271,7 +288,7 @@ class _IntroducirCantidadTransferenciaScreenState
                 ),
                 child: SizedBox(
                   width: size.width,
-                  height: size.height * (410 / size.height),
+                  height: size.height * (457 / size.height),
                   child: PageView(
                     controller: controller,
                     scrollDirection: Axis.horizontal,
@@ -285,6 +302,7 @@ class _IntroducirCantidadTransferenciaScreenState
                       ),
                       PageForm(
                         controller: controller,
+                        formKey10: formKey10,
                       ),
                       const PageConfirm(),
                     ],
@@ -344,17 +362,42 @@ class _IntroducirCantidadTransferenciaScreenState
                         Provider.of<AccountInfoProvider>(context, listen: false)
                                 .checkedtransactInfo ==
                             true) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TransferirEbloqsScreen(
-                              cantidadTransferencia: recibes.toString()),
-                        ),
-                      );
+                      if (formKey9.currentState!.validate()) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TransferirEbloqsScreen(
+                                cantidadTransferencia: recibes.toString()),
+                          ),
+                        );
+                      } else {
+                        setState(() {
+                          errorValidation =
+                              'Por Favor,  debes completar todos los registros para continuar';
+                        });
+                        customModalBottomAlert(
+                            context, size, errorValidation, isLoading);
+                      }
                     }
-                    setState(() {
-                      controller.jumpToPage(_current + 1);
-                    });
+                    if (_current == 1) {
+                      if (formKey10.currentState!.validate()) {
+                        setState(() {
+                          controller.jumpToPage(_current + 1);
+                        });
+                      } else {
+                        setState(() {
+                          errorValidation =
+                              'Por Favor,  debes completar todos los registros para continuar';
+                        });
+                        customModalBottomAlert(
+                            context, size, errorValidation, isLoading);
+                      }
+                    }
+                    if (_current == 0) {
+                      setState(() {
+                        controller.jumpToPage(_current + 1);
+                      });
+                    }
                   },
                 ),
               ),
@@ -368,18 +411,18 @@ class _IntroducirCantidadTransferenciaScreenState
 
 class PageForm extends StatefulWidget {
   final PageController controller;
+  final GlobalKey<FormState> formKey10;
 
-  const PageForm({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+  const PageForm(
+      {Key? key, required this.controller, required, required this.formKey10})
+      : super(key: key);
 
   @override
   State<PageForm> createState() => _PageFormState();
 }
 
 class _PageFormState extends State<PageForm> {
-  final GlobalKey<FormState> formKey10 = GlobalKey<FormState>();
+  String? errorValidation;
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController bankNameController = TextEditingController();
@@ -390,7 +433,7 @@ class _PageFormState extends State<PageForm> {
 
     return Container(
       width: size.width,
-      height: size.height * (421 / size.height),
+      // height: size.height * (421 / size.height),
       padding: EdgeInsets.only(
         top: size.height * (24 / size.height),
         right: size.width * (13 / size.width),
@@ -432,7 +475,7 @@ class _PageFormState extends State<PageForm> {
             ],
           ),
           Form(
-            key: formKey10,
+            key: widget.formKey10,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -479,6 +522,18 @@ class _PageFormState extends State<PageForm> {
                             .nombreTitular = value;
                       });
                     },
+                    validator: (value) {
+                      print(value);
+                      if (value!.isEmpty) {
+                        setState(() {
+                          errorValidation =
+                              'Por Favor,  debes completar todos los registros para continuar';
+                        });
+
+                        return '';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Padding(
@@ -524,6 +579,18 @@ class _PageFormState extends State<PageForm> {
                             .nombreBanco = value;
                       });
                     },
+                    validator: (value) {
+                      print(value);
+                      if (value!.isEmpty) {
+                        setState(() {
+                          errorValidation =
+                              'Por Favor,  debes completar todos los registros para continuar';
+                        });
+
+                        return '';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Padding(
@@ -548,6 +615,9 @@ class _PageFormState extends State<PageForm> {
                     controller: accountNumberController,
                     maxLength: 50,
                     keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp("[0-9]"))
+                    ],
                     decoration: InputDecoration(
                       counterText: '',
                       labelStyle: const TextStyle(
@@ -565,6 +635,17 @@ class _PageFormState extends State<PageForm> {
                         Provider.of<AccountInfoProvider>(context, listen: false)
                             .numeroCuenta = int.parse(value);
                       });
+                    },
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        setState(() {
+                          errorValidation =
+                              'Por Favor,  debes completar todos los registros para continuar';
+                        });
+
+                        return '';
+                      }
+                      return null;
                     },
                   ),
                 ),

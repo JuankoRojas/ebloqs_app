@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/models/camera_models.dart';
+import 'package:ebloqs_app/src/providers/images_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_back_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
@@ -9,6 +10,7 @@ import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class VerificationFrontScreen extends StatefulWidget {
   final XFile file;
@@ -297,6 +299,10 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
                       width: size.width * 0.42,
                       title: 'Continuar',
                       onPressed: () {
+                        setState(() {
+                          Provider.of<ImagesProvider>(context, listen: false)
+                              .imageFrontFile = widget.file;
+                        });
                         Navigator.pushNamed(context, TakePictureBack.routeName);
                       },
                       load: isLoadLogin!,

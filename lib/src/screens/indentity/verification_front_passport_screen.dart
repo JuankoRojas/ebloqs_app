@@ -2,41 +2,35 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/models/camera_models.dart';
-import 'package:ebloqs_app/src/providers/images_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_back_screen.dart';
-import 'package:ebloqs_app/src/screens/indentity/upload_document_screen.dart';
-import 'package:ebloqs_app/src/services/auth_user_service.dart';
-import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
-class VerificationBackScreen extends StatefulWidget {
+class VerificationFrontPassportScreen extends StatefulWidget {
   final XFile file;
-  const VerificationBackScreen({Key? key, required this.file})
+  const VerificationFrontPassportScreen({Key? key, required this.file})
       : super(key: key);
 
   @override
-  State<VerificationBackScreen> createState() => _VerificationBackScreenState();
+  State<VerificationFrontPassportScreen> createState() =>
+      _VerificationFrontPassportScreenState();
 }
 
-class _VerificationBackScreenState extends State<VerificationBackScreen> {
+class _VerificationFrontPassportScreenState
+    extends State<VerificationFrontPassportScreen> {
   bool? isLoadLogin = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     OverlayFormat format = OverlayFormat.cardID1;
     CardOverlay overlay = CardOverlay.byFormat(format);
-    final frontImage = Provider.of<ImagesProvider>(
-      context,
-    ).imageGetFrontFile;
-    print('frontImage: $frontImage');
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: size.width * 0.139720558882236,
+        leadingWidth: size.width * 0.145833333333333,
         backgroundColor: Colors.transparent,
         systemOverlayStyle: systemBarDark,
         elevation: 0,
@@ -46,7 +40,7 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
           },
           child: Container(
             padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.0359342915811089),
+                horizontal: size.width * 0.0364583333333334),
             child: SvgPicture.asset(
               'assets/Vectores/Iconos/Arrow left.svg',
               fit: BoxFit.contain,
@@ -70,13 +64,13 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: size.width * 0.0359342915811089),
+            padding: EdgeInsets.only(left: size.width * 0.0364583333333334),
             child: Row(
               children: [
                 SvgPicture.asset('assets/Vectores/Iconos/id.svg'),
                 Padding(
                   padding:
-                      EdgeInsets.only(left: size.width * 0.0382383065892797),
+                      EdgeInsets.only(left: size.width * 0.0388888888888889),
                   child: const Text(
                     "Documento de identidad",
                     style: TextStyle(
@@ -92,9 +86,9 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: size.height * 0.0314162234042553,
-                left: size.width * 0.0359342915811089,
-                right: size.width * 0.0359342915811089),
+                top: size.height * 0.0320121951219512,
+                left: size.width * 0.0364583333333334,
+                right: size.width * 0.0364583333333334),
             child: Container(
               width: size.width,
               height: 4,
@@ -104,13 +98,13 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(3))),
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                  maxWidth: size.width * 0.217376940865544,
+                  maxWidth: size.width * 0.228472222222222,
                 ),
                 child: Container(
-                    width: size.width * 0.217376940865544,
+                    width: size.width * 0.228472222222222,
                     height: 4,
                     padding:
-                        EdgeInsets.only(right: size.width * 0.577770470240053),
+                        EdgeInsets.only(right: size.width * 0.610069444444445),
                     decoration: const BoxDecoration(
                         color: Color(0xff170658),
                         borderRadius: BorderRadius.all(Radius.circular(3)))),
@@ -119,9 +113,9 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: size.height * 0.0247072035937751,
-                left: size.width * 0.0359342915811089,
-                right: size.width * 0.0359342915811089),
+                top: size.height * 0.0260840108401084,
+                left: size.width * 0.0364583333333334,
+                right: size.width * 0.0364583333333334),
             child: AspectRatio(
               aspectRatio: overlay.ratio!,
               child: Container(
@@ -136,16 +130,17 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: size.width * 0.028023352793995,
-                left: size.width * 0.0359342915811089,
-                right: size.width * 0.0359342915811089),
+                top: size.height * 0.0284552845528455,
+                left: size.width * 0.0364583333333334,
+                right: size.width * 0.0364583333333334),
             child: Container(
               width: size.width,
               height: 53,
               padding: EdgeInsets.only(
-                  left: size.width * 0.04375,
-                  top: size.height * 0.0201558265582656,
-                  bottom: size.height * 0.0201558265582656),
+                left: size.width * 0.0413194444444445,
+                top: size.height * 0.0201558265582656,
+                bottom: size.height * 0.0201558265582656,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(
@@ -155,7 +150,7 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                 color: const Color(0xfff9f9fa),
               ),
               child: const Text(
-                "Lado Reverso",
+                "Lado Frontal",
                 style: TextStyle(
                   color: Color(0xff170658),
                   fontSize: 14,
@@ -165,8 +160,8 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: size.width * 0.028023352793995,
-                left: size.width * 0.0359342915811089),
+                top: size.height * 0.0284552845528455,
+                left: size.width * 0.0364583333333334),
             child: const Text(
               "Para el reconocimiento, tu foto debe ser:",
               style: TextStyle(
@@ -179,8 +174,8 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: size.height * 0.0247072035937751,
-                left: size.width * 0.0359342915811089),
+                top: size.height * 0.0260840108401084,
+                left: size.width * 0.0364583333333334),
             child: Row(
               children: [
                 Container(
@@ -207,8 +202,8 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: size.width * 0.028023352793995,
-                left: size.width * 0.0359342915811089),
+                top: size.height * 0.0284552845528455,
+                left: size.width * 0.0364583333333334),
             child: Row(
               children: [
                 Container(
@@ -235,8 +230,8 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                top: size.width * 0.028023352793995,
-                left: size.width * 0.0359342915811089),
+                top: size.height * 0.0284552845528455,
+                left: size.width * 0.0364583333333334),
             child: Row(
               children: [
                 Container(
@@ -264,8 +259,8 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
           Padding(
             padding: EdgeInsets.only(
                 top: size.height * 0.100779132791328,
-                left: size.width * 0.0359342915811089,
-                right: size.width * 0.0359342915811089),
+                left: size.width * 0.0364583333333334,
+                right: size.width * 0.0364583333333334),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -294,7 +289,7 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushNamed(context, TakePictureBack.routeName);
+                    Navigator.pushNamed(context, TakePictureFront.routeName);
                   },
                 ),
                 ClipRRect(
@@ -302,17 +297,8 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                   child: ButtonPrimary(
                       width: size.width * 0.42,
                       title: 'Continuar',
-                      onPressed: () async {
-                        final response = await AuthUserService().documents(
-                            accesstoken: Preferences.token!,
-                            type: 'Documento de identidad',
-                            front: frontImage,
-                            rever: widget.file);
-                        if (response['message'] == "documentos cargados") {
-                          Future.delayed(Duration.zero).then((_) =>
-                              Navigator.pushNamed(
-                                  context, UploadDocumentScreen.routeName));
-                        }
+                      onPressed: () {
+                        Navigator.pushNamed(context, TakePictureBack.routeName);
                       },
                       load: isLoadLogin!,
                       disabled: isLoadLogin!),

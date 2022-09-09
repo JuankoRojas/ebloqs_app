@@ -2,9 +2,12 @@ import 'dart:math';
 
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
+import 'package:ebloqs_app/src/services/transfer_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class TransferirEbloqsScreen extends StatefulWidget {
@@ -19,6 +22,22 @@ class TransferirEbloqsScreen extends StatefulWidget {
 
 class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
   String referencia = '';
+  String? subCuenta;
+  String? subCuenta2;
+  String nombreBenf = "Key Vision Development";
+  String numCuentBenf = "1504546221";
+  String direccBenf = "1504546221";
+  String codSwift = "SIGNNIIS33XXX";
+  String nomBancRecep = "Signature Bank";
+  String dirBancRecep = "565 Fith Avenue New York ";
+  bool copiedRef = false;
+  bool copiedBenef = false;
+  bool copiedAccBenef = false;
+  bool copiedDirBenef = false;
+  bool copiedCodSwift = false;
+  bool copiedBancRec = false;
+  bool copiedDireccBanc = false;
+  bool setTransaction = false;
   @override
   void initState() {
     final random = Random();
@@ -49,10 +68,19 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
     final size = MediaQuery.of(context).size;
     String cuenta =
         Provider.of<AccountInfoProvider>(context).numeroCuenta.toString();
-    String subCuenta = cuenta.substring(0, 4);
+    if (cuenta.length > 4) {
+      subCuenta = cuenta.substring(0, 4);
+      subCuenta2 = cuenta.substring(cuenta.length - 4);
+    }
 
-    String subCuenta2 = cuenta.substring(cuenta.length - 4);
-
+    print('Plublic:${Preferences.public_key}');
+    if (setTransaction) {
+      return Scaffold(
+        body: Center(
+          child: Lottie.asset('assets/lottie/X2lNy3zK9f.json'),
+        ),
+      );
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -186,13 +214,34 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                           )
                         ],
                       ),
-                      GestureDetector(
-                        child: SvgPicture.asset(
-                            'assets/Vectores/Iconos/Copy 2.svg'),
-                        onTap: () {
-                          Clipboard.setData(ClipboardData(text: referencia));
-                        },
-                      )
+                      (copiedRef)
+                          ? Padding(
+                              padding:
+                                  EdgeInsets.only(right: size.width * 0.04),
+                              child: SvgPicture.asset(
+                                  'assets/Vectores/Iconos/copied.svg'),
+                            )
+                          : Padding(
+                              padding:
+                                  EdgeInsets.only(right: size.width * 0.04),
+                              child: GestureDetector(
+                                child: SvgPicture.asset(
+                                    'assets/Vectores/Iconos/Copy 2.svg'),
+                                onTap: () {
+                                  Clipboard.setData(
+                                      ClipboardData(text: referencia));
+                                  setState(() {
+                                    copiedRef = true;
+                                    Future.delayed(const Duration(minutes: 2))
+                                        .then((value) {
+                                      setState(() {
+                                        copiedRef = false;
+                                      });
+                                    });
+                                  });
+                                },
+                              ),
+                            )
                     ],
                   ),
                 ),
@@ -224,12 +273,43 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (3 / size.height)),
-                child: const Text(
-                  "Key Vision Development",
-                  style: TextStyle(
-                    color: Color(0xff2c3e50),
-                    fontSize: 15,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      nombreBenf,
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
+                      ),
+                    ),
+                    (copiedBenef)
+                        ? Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: SvgPicture.asset(
+                                'assets/Vectores/Iconos/copied.svg'),
+                          )
+                        : Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: GestureDetector(
+                              child: SvgPicture.asset(
+                                  'assets/Vectores/Iconos/Copy 2.svg'),
+                              onTap: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: nombreBenf));
+                                setState(() {
+                                  copiedBenef = true;
+                                  Future.delayed(const Duration(minutes: 2))
+                                      .then((value) {
+                                    setState(() {
+                                      copiedBenef = false;
+                                    });
+                                  });
+                                });
+                              },
+                            ),
+                          )
+                  ],
                 ),
               ),
               Padding(
@@ -246,12 +326,43 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (3 / size.height)),
-                child: const Text(
-                  "1504546221",
-                  style: TextStyle(
-                    color: Color(0xff2c3e50),
-                    fontSize: 15,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      numCuentBenf,
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
+                      ),
+                    ),
+                    (copiedAccBenef)
+                        ? Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: SvgPicture.asset(
+                                'assets/Vectores/Iconos/copied.svg'),
+                          )
+                        : Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: GestureDetector(
+                              child: SvgPicture.asset(
+                                  'assets/Vectores/Iconos/Copy 2.svg'),
+                              onTap: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: numCuentBenf));
+                                setState(() {
+                                  copiedAccBenef = true;
+                                  Future.delayed(const Duration(minutes: 2))
+                                      .then((value) {
+                                    setState(() {
+                                      copiedAccBenef = false;
+                                    });
+                                  });
+                                });
+                              },
+                            ),
+                          )
+                  ],
                 ),
               ),
               Padding(
@@ -268,12 +379,43 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (3 / size.height)),
-                child: const Text(
-                  "1504546221",
-                  style: TextStyle(
-                    color: Color(0xff2c3e50),
-                    fontSize: 15,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      direccBenf,
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
+                      ),
+                    ),
+                    (copiedDirBenef)
+                        ? Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: SvgPicture.asset(
+                                'assets/Vectores/Iconos/copied.svg'),
+                          )
+                        : Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: GestureDetector(
+                              child: SvgPicture.asset(
+                                  'assets/Vectores/Iconos/Copy 2.svg'),
+                              onTap: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: direccBenf));
+                                setState(() {
+                                  copiedDirBenef = true;
+                                  Future.delayed(const Duration(minutes: 2))
+                                      .then((value) {
+                                    setState(() {
+                                      copiedDirBenef = false;
+                                    });
+                                  });
+                                });
+                              },
+                            ),
+                          )
+                  ],
                 ),
               ),
               Padding(
@@ -290,12 +432,43 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (3 / size.height)),
-                child: const Text(
-                  "SIGNNIIS33XXX",
-                  style: TextStyle(
-                    color: Color(0xff2c3e50),
-                    fontSize: 15,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      codSwift,
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
+                      ),
+                    ),
+                    (copiedCodSwift)
+                        ? Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: SvgPicture.asset(
+                                'assets/Vectores/Iconos/copied.svg'),
+                          )
+                        : Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: GestureDetector(
+                              child: SvgPicture.asset(
+                                  'assets/Vectores/Iconos/Copy 2.svg'),
+                              onTap: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: codSwift));
+                                setState(() {
+                                  copiedCodSwift = true;
+                                  Future.delayed(const Duration(minutes: 2))
+                                      .then((value) {
+                                    setState(() {
+                                      copiedCodSwift = false;
+                                    });
+                                  });
+                                });
+                              },
+                            ),
+                          )
+                  ],
                 ),
               ),
               Padding(
@@ -312,12 +485,43 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (3 / size.height)),
-                child: const Text(
-                  "Signature Bank",
-                  style: TextStyle(
-                    color: Color(0xff2c3e50),
-                    fontSize: 15,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      nomBancRecep,
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
+                      ),
+                    ),
+                    (copiedBancRec)
+                        ? Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: SvgPicture.asset(
+                                'assets/Vectores/Iconos/copied.svg'),
+                          )
+                        : Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: GestureDetector(
+                              child: SvgPicture.asset(
+                                  'assets/Vectores/Iconos/Copy 2.svg'),
+                              onTap: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: nomBancRecep));
+                                setState(() {
+                                  copiedBancRec = true;
+                                  Future.delayed(const Duration(minutes: 2))
+                                      .then((value) {
+                                    setState(() {
+                                      copiedBancRec = false;
+                                    });
+                                  });
+                                });
+                              },
+                            ),
+                          )
+                  ],
                 ),
               ),
               Padding(
@@ -334,14 +538,89 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (3 / size.height)),
-                child: const Text(
-                  "565 Fith Avenue New York ",
-                  style: TextStyle(
-                    color: Color(0xff2c3e50),
-                    fontSize: 15,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      dirBancRecep,
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
+                      ),
+                    ),
+                    (copiedDireccBanc)
+                        ? Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: SvgPicture.asset(
+                                'assets/Vectores/Iconos/copied.svg'),
+                          )
+                        : Padding(
+                            padding: EdgeInsets.only(right: size.width * 0.08),
+                            child: GestureDetector(
+                              child: SvgPicture.asset(
+                                  'assets/Vectores/Iconos/Copy 2.svg'),
+                              onTap: () {
+                                Clipboard.setData(
+                                    ClipboardData(text: dirBancRecep));
+                                setState(() {
+                                  copiedDireccBanc = true;
+                                  Future.delayed(const Duration(minutes: 2))
+                                      .then((value) {
+                                    setState(() {
+                                      copiedDireccBanc = false;
+                                    });
+                                  });
+                                });
+                              },
+                            ),
+                          )
+                  ],
                 ),
               ),
+              (copiedRef ||
+                      copiedBenef ||
+                      copiedAccBenef ||
+                      copiedDirBenef ||
+                      copiedCodSwift ||
+                      copiedBancRec ||
+                      copiedDireccBanc)
+                  ? Container(
+                      width: size.width,
+                      height: size.height * 0.041871921182266,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: const Color(0xff130a37),
+                      ),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              'assets/Vectores/Iconos/copied.svg',
+                              color: const Color(0xff00C853),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(left: size.width * 0.032),
+                              child: const Text(
+                                "Copiado correctamente",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : const SizedBox(
+                      width: 0,
+                      height: 0,
+                    ),
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * (42 / size.height),
@@ -381,9 +660,35 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                       )
                     ],
                   ),
-                  onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context, CongratsScreen.routeName, (route) => false);
+                  onTap: () async {
+                    var amount =
+                        double.parse(widget.cantidadTransferencia!) / 0.05;
+                    var parsedAmount = amount.toInt();
+                    try {
+                      if (Preferences.public_key != null) {
+                        setState(() {
+                          setTransaction = true;
+                        });
+                        final response = await TransferService().transfer(
+                            to: Preferences.public_key!,
+                            amount: parsedAmount.toString());
+                        if (response.isNotEmpty) {
+                          setState(() {
+                            setTransaction = false;
+                          });
+                          debugPrint(response.toString());
+                          Future.delayed(Duration.zero)
+                              .then((_) => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => CongratsScreen(
+                                            total: amount,
+                                          ))));
+                        }
+                      }
+                    } catch (e) {
+                      debugPrint(e.toString());
+                    }
                   },
                 ),
               ),

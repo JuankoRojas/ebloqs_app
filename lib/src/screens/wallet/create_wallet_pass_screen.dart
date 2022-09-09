@@ -1,6 +1,8 @@
+import 'package:ebloqs_app/src/screens/legal/therms_conditions_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_screen.dart';
 import 'package:ebloqs_app/src/services/create_wallet_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,6 +15,8 @@ class CreateWalletPassScreen extends StatefulWidget {
 }
 
 class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
+  String? errorValidation;
+  bool isLoading = false;
   bool visible = false;
   bool _showPassword = true;
   bool _showConfirmPassword = true;
@@ -165,12 +169,22 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                     ),
                                   ),
                                   validator: (value) {
+                                    print(value);
                                     if (value!.isEmpty) {
-                                      return 'Por favor ingresa una contraseña';
+                                      setState(() {
+                                        errorValidation =
+                                            'Por Favor,  debes completar todos los registros para continuar';
+                                      });
+
+                                      return '';
                                     } else if (!validarEstructuraContrasena(
                                         value)) {
-                                      return '''ingresar al menos 8 caracteres, una mayúscula,
+                                      setState(() {
+                                        errorValidation =
+                                            '''ingresar al menos 8 caracteres, una mayúscula,
 una minúscula, un número y un carácter especial''';
+                                      });
+                                      return '';
                                     }
                                     return null;
                                   }),
@@ -192,56 +206,71 @@ una minúscula, un número y un carácter especial''';
                               padding:
                                   EdgeInsets.only(top: size.height * 0.005),
                               child: TextFormField(
-                                  controller: passConfirmController,
-                                  obscureText: _showConfirmPassword,
-                                  style: const TextStyle(
-                                    color: Color(0xff170658),
-                                    fontSize: 16,
-                                    fontFamily: "Archivo",
-                                    fontWeight: FontWeight.w400,
+                                controller: passConfirmController,
+                                obscureText: _showConfirmPassword,
+                                style: const TextStyle(
+                                  color: Color(0xff170658),
+                                  fontSize: 16,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                keyboardType: TextInputType.visiblePassword,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(4),
                                   ),
-                                  keyboardType: TextInputType.visiblePassword,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    suffixIcon: Padding(
-                                      padding: const EdgeInsets.all(14.0),
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            _showConfirmPassword =
-                                                !_showConfirmPassword;
-                                          });
-                                        },
-                                        child: Container(
-                                          width: size.width * 0.065,
-                                          padding: const EdgeInsets.all(4),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                            color: const Color(0xfff9f9fa),
-                                          ),
-                                          child: SvgPicture.asset(
-                                            'assets/Vectores/Iconos/eye.svg',
-                                          ),
+                                  suffixIcon: Padding(
+                                    padding: const EdgeInsets.all(14.0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _showConfirmPassword =
+                                              !_showConfirmPassword;
+                                        });
+                                      },
+                                      child: Container(
+                                        width: size.width * 0.065,
+                                        padding: const EdgeInsets.all(4),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4),
+                                          color: const Color(0xfff9f9fa),
+                                        ),
+                                        child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/eye.svg',
                                         ),
                                       ),
                                     ),
                                   ),
-                                  validator: (value) {
-                                    if (value!.isEmpty) {
-                                      return 'Por favor de nuevo la contraseña';
-                                    } else if (passController.text !=
-                                        passConfirmController.text) {
-                                      return 'Las contraseñas no coinciden';
-                                    } else if (!validarEstructuraContrasena(
-                                        value)) {
-                                      return '''ingresar al menos 8 caracteres, una mayúscula,
+                                ),
+                                validator: (value) {
+                                  print(value);
+                                  if (value!.isEmpty) {
+                                    setState(() {
+                                      errorValidation =
+                                          'Por Favor,  debes completar todos los registros para continuar';
+                                    });
+
+                                    return '';
+                                  } else if (passController.text !=
+                                      passConfirmController.text) {
+                                    setState(() {
+                                      errorValidation =
+                                          'Las contraseñas no coinciden';
+                                    });
+                                    return '';
+                                  } else if (!validarEstructuraContrasena(
+                                      value)) {
+                                    setState(() {
+                                      errorValidation =
+                                          '''ingresar al menos 8 caracteres, una mayúscula,
 una minúscula, un número y un carácter especial''';
-                                    }
-                                    return null;
-                                  }),
+                                    });
+                                    return '';
+                                  }
+                                  return null;
+                                },
+                              ),
                             ),
                             Padding(
                               padding:
@@ -293,6 +322,10 @@ una minúscula, un número y un carácter especial''';
                                           fontWeight: FontWeight.w400,
                                         ),
                                       ),
+                                      onTap: () {
+                                        Navigator.pushNamed(context,
+                                            ThermsConditionsScreen.routeName);
+                                      },
                                     ),
                                   )
                                 ],
@@ -362,6 +395,9 @@ una minúscula, un número y un carácter especial''';
                             } catch (e) {
                               print(e);
                             }
+                          } else {
+                            customModalBottomAlert(
+                                context, size, errorValidation, isLoading);
                           }
                         },
                       ),

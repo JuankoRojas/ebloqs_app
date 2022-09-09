@@ -1,8 +1,14 @@
 part of 'custom_widgets.dart';
 
-class CustomNavigator extends StatelessWidget {
+class CustomNavigator extends StatefulWidget {
   const CustomNavigator({Key? key}) : super(key: key);
 
+  @override
+  State<CustomNavigator> createState() => _CustomNavigatorState();
+}
+
+class _CustomNavigatorState extends State<CustomNavigator> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     String? currentPath = ModalRoute.of(context)!.settings.name;
@@ -60,7 +66,13 @@ class CustomNavigator extends StatelessWidget {
                   IconButton(
                       visualDensity: VisualDensity.compact,
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () {
+                        customModalBottomAlert(
+                            context,
+                            size,
+                            'No tienes inversiones por el momento, puedes ir a tu billetera y comprar tokens de utilidad ebloqs (EBL).',
+                            isLoading);
+                      },
                       icon: SvgPicture.asset(
                           'assets/Vectores/Iconos/inversiones.svg')),
                   const Text(
@@ -144,11 +156,17 @@ class CustomNavigator extends StatelessWidget {
                   IconButton(
                       visualDensity: VisualDensity.compact,
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () {
+                        customModalBottomAlert(
+                            context,
+                            size,
+                            'La opción de beneficios se habilitará en la etapa 2.',
+                            isLoading);
+                      },
                       icon: SvgPicture.asset(
                           'assets/Vectores/Iconos/referidos(2).svg')),
                   const Text(
-                    'Referidos',
+                    'Beneficios',
                     style: TextStyle(
                         color: Color(0xff170658),
                         fontSize: 10,

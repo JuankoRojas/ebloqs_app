@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/screens/indentity/take_picture_front_passport_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
@@ -190,38 +191,44 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     top: size.height * 0.0188140433394927,
                     left: size.width * 0.0384219554030875,
                     right: size.width * 0.0384219554030875),
-                child: Container(
-                  width: size.width,
-                  height: size.height * 0.0785737867282932,
-                  padding: EdgeInsets.only(
-                      top: size.height * 0.0199664429530201,
-                      left: size.width * 0.0430180949129396,
-                      right: size.width * 0.0499490316004078,
-                      bottom: size.height * 0.0199664429530201),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: const Color(0xffeae4fc),
-                      width: 1,
-                    ),
-                    color: const Color(0xfff9f9fa),
-                  ),
-                  child: Row(
-                    children: [
-                      const Text(
-                        "Pasaporte",
-                        style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 14,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w400,
-                        ),
+                child: GestureDetector(
+                  child: Container(
+                    width: size.width,
+                    height: size.height * 0.0785737867282932,
+                    padding: EdgeInsets.only(
+                        top: size.height * 0.0199664429530201,
+                        left: size.width * 0.0430180949129396,
+                        right: size.width * 0.0499490316004078,
+                        bottom: size.height * 0.0199664429530201),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: const Color(0xffeae4fc),
+                        width: 1,
                       ),
-                      Expanded(child: Container()),
-                      SvgPicture.asset(
-                          'assets/Vectores/Iconos/chevronright.svg')
-                    ],
+                      color: const Color(0xfff9f9fa),
+                    ),
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Pasaporte",
+                          style: TextStyle(
+                            color: Color(0xff170658),
+                            fontSize: 14,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Expanded(child: Container()),
+                        SvgPicture.asset(
+                            'assets/Vectores/Iconos/chevronright.svg')
+                      ],
+                    ),
                   ),
+                  onTap: () {
+                    Navigator.pushNamed(
+                        context, TakePicturePassportFront.routeName);
+                  },
                 ),
               ),
               Padding(

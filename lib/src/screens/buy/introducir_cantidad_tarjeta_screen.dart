@@ -2,8 +2,11 @@ import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
 import 'package:ebloqs_app/src/services/transfer_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 class IntroducirCantidadTarjetaScreen extends StatefulWidget {
   static const String routeName = 'IntroducirCantidadTarjetaScreen';
@@ -32,6 +35,9 @@ class _IntroducirCantidadTarjetaScreenState
   double? cantidad;
   double? recibes;
   double total = 0.0;
+  bool isLoading = false;
+  String? errorValidation;
+  bool setTransaction = false;
   @override
   void initState() {
     quantityController.text = widget.cantidadTarjeta!;
@@ -50,6 +56,13 @@ class _IntroducirCantidadTarjetaScreenState
     }
     if (recibes != null) {
       total = recibes! / 0.05;
+    }
+    if (setTransaction) {
+      return Scaffold(
+        body: Center(
+          child: Lottie.asset('assets/lottie/X2lNy3zK9f.json'),
+        ),
+      );
     }
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -265,7 +278,7 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
                 child: Container(
                   width: size.width,
-                  height: size.height * (416 / size.height),
+                  height: size.height * (447 / size.height),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
@@ -323,7 +336,13 @@ class _IntroducirCantidadTarjetaScreenState
                                 child: TextFormField(
                                   controller: nameController,
                                   keyboardType: TextInputType.name,
+                                  maxLength: 50,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp("[a-zA-Z ]"))
+                                  ],
                                   decoration: InputDecoration(
+                                    counterText: '',
                                     labelStyle: const TextStyle(
                                       color: Color(0xff9B99A3),
                                       fontSize: 14,
@@ -334,6 +353,17 @@ class _IntroducirCantidadTarjetaScreenState
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                   ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      setState(() {
+                                        errorValidation =
+                                            'Por Favor,  debes completar todos los registros para continuar';
+                                      });
+
+                                      return '';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               Padding(
@@ -354,7 +384,12 @@ class _IntroducirCantidadTarjetaScreenState
                                     top: size.height * 0.00985221674876847),
                                 child: TextFormField(
                                   controller: bankNameController,
-                                  keyboardType: TextInputType.name,
+                                  keyboardType: TextInputType.number,
+                                  maxLength: 50,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp("[0-9]"))
+                                  ],
                                   decoration: InputDecoration(
                                     labelStyle: const TextStyle(
                                       color: Color(0xff9B99A3),
@@ -366,6 +401,17 @@ class _IntroducirCantidadTarjetaScreenState
                                       borderRadius: BorderRadius.circular(4),
                                     ),
                                   ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      setState(() {
+                                        errorValidation =
+                                            'Por Favor,  debes completar todos los registros para continuar';
+                                      });
+
+                                      return '';
+                                    }
+                                    return null;
+                                  },
                                 ),
                               ),
                               Padding(
@@ -377,7 +423,7 @@ class _IntroducirCantidadTarjetaScreenState
                                   children: [
                                     SizedBox(
                                       width: size.width * 0.4,
-                                      height: size.height * 0.0995221674876847,
+                                      height: size.height * 0.125615763546798,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -398,8 +444,12 @@ class _IntroducirCantidadTarjetaScreenState
                                             child: TextFormField(
                                               controller:
                                                   expirationDateController,
-                                              keyboardType:
-                                                  TextInputType.datetime,
+                                              keyboardType: TextInputType.text,
+                                              inputFormatters: <
+                                                  TextInputFormatter>[
+                                                FilteringTextInputFormatter
+                                                    .allow(RegExp("[0-9/]"))
+                                              ],
                                               decoration: InputDecoration(
                                                 hintText: "MM/AA",
                                                 labelStyle: const TextStyle(
@@ -413,6 +463,17 @@ class _IntroducirCantidadTarjetaScreenState
                                                       BorderRadius.circular(4),
                                                 ),
                                               ),
+                                              validator: (value) {
+                                                if (value!.isEmpty) {
+                                                  setState(() {
+                                                    errorValidation =
+                                                        'Por Favor,  debes completar todos los registros para continuar';
+                                                  });
+
+                                                  return '';
+                                                }
+                                                return null;
+                                              },
                                             ),
                                           ),
                                         ],
@@ -420,7 +481,7 @@ class _IntroducirCantidadTarjetaScreenState
                                     ),
                                     SizedBox(
                                       width: size.width * 0.4,
-                                      height: size.height * 0.0995221674876847,
+                                      height: size.height * 0.125615763546798,
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -440,9 +501,11 @@ class _IntroducirCantidadTarjetaScreenState
                                                     0.00985221674876847),
                                             child: TextFormField(
                                               controller: cvvController,
+                                              maxLength: 3,
                                               keyboardType:
                                                   TextInputType.number,
                                               decoration: InputDecoration(
+                                                counterText: '',
                                                 hintText: 'XXX',
                                                 labelStyle: const TextStyle(
                                                   color: Color(0xff9B99A3),
@@ -455,6 +518,17 @@ class _IntroducirCantidadTarjetaScreenState
                                                       BorderRadius.circular(4),
                                                 ),
                                               ),
+                                              validator: (value) {
+                                                if (value!.isEmpty) {
+                                                  setState(() {
+                                                    errorValidation =
+                                                        'Por Favor,  debes completar todos los registros para continuar';
+                                                  });
+
+                                                  return '';
+                                                }
+                                                return null;
+                                              },
                                             ),
                                           ),
                                         ],
@@ -511,23 +585,39 @@ class _IntroducirCantidadTarjetaScreenState
                     ],
                   ),
                   onTap: () async {
-                    var amount = double.parse(quantityController.text) * 0.05;
-                    try {
-                      final response = await TransferService().transfer(
-                          to: Preferences.public_key!,
-                          amount: amount.toString());
-                      if (response.isNotEmpty) {
-                        debugPrint(response.toString());
-                        Future.delayed(Duration.zero)
-                            .then((_) => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => CongratsScreen(
-                                          total: total,
-                                        ))));
+                    if (formKey8.currentState!.validate()) {
+                      setState(() {
+                        setTransaction = true;
+                      });
+                      var amount = double.parse(quantityController.text) / 0.05;
+                      var parsedAmount = amount.toInt();
+                      try {
+                        final response = await TransferService().transfer(
+                            to: Preferences.public_key!,
+                            amount: parsedAmount.toString());
+                        if (response.isNotEmpty) {
+                          setState(() {
+                            setTransaction = false;
+                          });
+                          debugPrint(response.toString());
+                          Future.delayed(Duration.zero)
+                              .then((_) => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => CongratsScreen(
+                                            total: total,
+                                          ))));
+                        }
+                      } catch (e) {
+                        debugPrint(e.toString());
                       }
-                    } catch (e) {
-                      debugPrint(e.toString());
+                    } else {
+                      setState(() {
+                        errorValidation =
+                            'Por Favor,  debes completar todos los registros para continuar';
+                      });
+                      customModalBottomAlert(
+                          context, size, errorValidation, isLoading);
                     }
                   },
                 ),

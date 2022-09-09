@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
+import 'package:camera/camera.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_parser/http_parser.dart' show MediaType;
 
 class AuthUserService with ChangeNotifier {
   Uri url = Uri.parse('https://www.api.ebloqs.com/auth/register');
@@ -110,29 +110,39 @@ class AuthUserService with ChangeNotifier {
 
   Future documents({
     required String accesstoken,
-    required File file,
-    required String filename,
+    XFile? front,
+    XFile? rever,
+    required String type,
   }) async {
     try {
-      final uri = Uri.parse('https://www.api.ebloqs.com/user/personalData');
-      var request = http.MultipartRequest('POST', uri);
-      request.headers.addAll({
-        'Authorization': 'Bearer $accesstoken',
-        "Content-type": "multipart/form-data"
+      final formData = FormData.fromMap({
+        "front":
+            await MultipartFile.fromFile(front!.path, filename: "front.jpg"),
+        "rever":
+            await MultipartFile.fromFile(rever!.path, filename: "rever.jpg"),
+        "type": type,
       });
-      request.files.add(http.MultipartFile(
-        'file',
-        file.readAsBytes().asStream(),
-        file.lengthSync(),
-        filename: filename,
-        contentType: MediaType('image', 'jpeg'),
-      ));
-      var response = await request.send();
-      var responsed = await http.Response.fromStream(response);
-      final responseData = json.decode(responsed.body);
-      print(responseData);
+      final uri = Uri.parse('https://www.api.ebloqs.com/user/documents');
+      final response = await Dio().post(uri.toString(),
+          data: formData,
+          options: Options(
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': 'Bearer $accesstoken',
+            },
+          ));
+      print(response.data);
+      switch (response.statusCode) {
+        case 201:
+          final jsonString = jsonEncode(response.data);
+          var jsonResponse = jsonDecode(jsonString) as Map<String, dynamic>;
+          return jsonResponse;
+        case 401:
+          return "No Se han guardado las Imágenes";
+      }
     } catch (e) {
-      debugPrint(e.toString());
+      print(e);
+      throw Exception(e);
     }
   }
 }

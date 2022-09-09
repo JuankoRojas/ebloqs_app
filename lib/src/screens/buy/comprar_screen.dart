@@ -6,6 +6,7 @@ import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_transferencia_scr
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 import 'package:provider/provider.dart';
 
@@ -50,9 +51,9 @@ class _ComprarScreenState extends State<ComprarScreen>
     final locationValue =
         Provider.of<LocationsProvider>(context).countryCode.text;
     if (locationValue.isEmpty) {
-      return const Scaffold(
+      return Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: Lottie.asset('assets/lottie/X2lNy3zK9f.json'),
         ),
       );
     }

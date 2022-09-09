@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
+import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
 import 'package:ebloqs_app/src/services/apple_signin_service.dart';
@@ -49,10 +50,17 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
             ).emailset(user.email);
           });
           Future.delayed(Duration.zero).then(
-            (_) => Navigator.pushNamed(
-              context,
-              LocalAuth.routeName,
-            ),
+            (_) {
+              return Platform.isIOS
+                  ? Navigator.pushNamed(
+                      context,
+                      LocalAuth.routeName,
+                    )
+                  : Navigator.pushNamed(
+                      context,
+                      LocalAuthAndroid.routeName,
+                    );
+            },
           );
         } else {
           Future.delayed(Duration.zero).then(
@@ -193,10 +201,17 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                   ).emailset(response['email']);
                                 });
                                 Future.delayed(Duration.zero).then(
-                                  (_) => Navigator.pushNamed(
-                                    context,
-                                    LocalAuth.routeName,
-                                  ),
+                                  (_) {
+                                    return Platform.isIOS
+                                        ? Navigator.pushNamed(
+                                            context,
+                                            LocalAuth.routeName,
+                                          )
+                                        : Navigator.pushNamed(
+                                            context,
+                                            LocalAuthAndroid.routeName,
+                                          );
+                                  },
                                 );
                               } else {
                                 Future.delayed(Duration.zero).then(
@@ -268,10 +283,17 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                 });
 
                                 Future.delayed(Duration.zero).then(
-                                  (_) => Navigator.pushNamed(
-                                    context,
-                                    LocalAuth.routeName,
-                                  ),
+                                  (_) {
+                                    return Platform.isIOS
+                                        ? Navigator.pushNamed(
+                                            context,
+                                            LocalAuth.routeName,
+                                          )
+                                        : Navigator.pushNamed(
+                                            context,
+                                            LocalAuthAndroid.routeName,
+                                          );
+                                  },
                                 );
                               } else {
                                 Future.delayed(Duration.zero).then(

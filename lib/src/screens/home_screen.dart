@@ -1,11 +1,12 @@
 import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
-import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    print('token: ${Preferences.token}');
     List<Map<String, dynamic>> inversiones = [
       {
         'imagen': 'assets/Imagenes/heraldica.png',
@@ -134,12 +136,12 @@ class HomeScreen extends StatelessWidget {
     ];
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        systemOverlayStyle: systemBarDark,
-        automaticallyImplyLeading: false,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   systemOverlayStyle: systemBarDark,
+      //   automaticallyImplyLeading: false,
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -151,10 +153,30 @@ class HomeScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    'assets/Imagenes/avatar.png',
-                    width: size.width * 0.067,
-                    fit: BoxFit.contain,
+                  GestureDetector(
+                    child: Container(
+                      width: 36,
+                      height: 36,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                        color: const Color(0xffeae4fc),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Lottie.asset(
+                          'assets/lottie/LL55nCDKzx.json',
+                          width: 36,
+                          height: 36,
+                        ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, SettingsScreen.routeName);
+                    },
                   ),
                   SizedBox(
                     width: size.width * 0.69,
@@ -207,135 +229,144 @@ class HomeScreen extends StatelessWidget {
                             .getBalance(accesstoken: Preferences.token!),
                         builder:
                             (BuildContext context, AsyncSnapshot snapshot) {
-                          return Container(
-                            width: size.width * 0.95,
-                            height: size.height * 0.1,
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.043,
-                                left: size.width * 0.043,
-                                right: size.width * 0.034),
-                            decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                image: AssetImage(
-                                    'assets/Imagenes/Mask group.png'),
+                          if (snapshot.hasData && snapshot.data != null) {
+                            print(snapshot.data);
+                            final usd = double.parse(snapshot.data) * 0.05;
+                            return Container(
+                              width: size.width * 0.95,
+                              height: size.height * 0.1,
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.043,
+                                  left: size.width * 0.043,
+                                  right: size.width * 0.034),
+                              decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                  image: AssetImage(
+                                      'assets/Imagenes/Mask group.png'),
+                                ),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "BALANCE DISPONIBLE",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 11.59,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: size.height * 0.015),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Text(
-                                            snapshot.data ?? '',
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 36,
-                                            ),
-                                          ),
-                                          SizedBox(width: size.width * 0.035),
-                                          const Text(
-                                            "EBL",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18.55,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: size.height * 0.015),
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                          color: const Color(0xff170658),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        "BALANCE DISPONIBLE",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 11.59,
+                                          fontFamily: "Archivo",
+                                          fontWeight: FontWeight.w400,
                                         ),
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: size.width * 0.033,
-                                          vertical: size.height * 0.01,
-                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: size.height * 0.015),
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                              MainAxisAlignment.end,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                              CrossAxisAlignment.end,
                                           children: [
                                             Text(
-                                              "${snapshot.data} USD",
+                                              snapshot.data ?? '',
                                               style: const TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 13,
-                                                fontFamily: "Archivo",
-                                                fontWeight: FontWeight.w600,
+                                                fontSize: 36,
+                                              ),
+                                            ),
+                                            SizedBox(width: size.width * 0.035),
+                                            const Text(
+                                              "EBL",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18.55,
                                               ),
                                             ),
                                           ],
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom: size.height * 0.022),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Container(
-                                        width: size.width * 0.15,
-                                        height: size.width * 0.15,
-                                        padding:
-                                            EdgeInsets.all(size.width * 0.02),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                          gradient: LinearGradient(
-                                            begin: Alignment.topCenter,
-                                            end: Alignment.bottomCenter,
-                                            colors: [
-                                              Colors.white.withOpacity(0.7),
-                                              const Color(0x00ffffff)
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: size.height * 0.015),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            color: const Color(0xff170658),
+                                          ),
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: size.width * 0.033,
+                                            vertical: size.height * 0.01,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "$usd USD",
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 13,
+                                                  fontFamily: "Archivo",
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ),
-                                        child: SvgPicture.asset(
-                                            'assets/Vectores/Iconos/ebloqscoinb.svg'),
-                                      ),
-                                      SvgPicture.asset(
-                                        'assets/Vectores/Iconos/chevronright.svg',
-                                        color: const Color(0xffffffff),
                                       )
                                     ],
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: size.height * 0.022),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          width: size.width * 0.15,
+                                          height: size.width * 0.15,
+                                          padding:
+                                              EdgeInsets.all(size.width * 0.02),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            gradient: LinearGradient(
+                                              begin: Alignment.topCenter,
+                                              end: Alignment.bottomCenter,
+                                              colors: [
+                                                Colors.white.withOpacity(0.7),
+                                                const Color(0x00ffffff)
+                                              ],
+                                            ),
+                                          ),
+                                          child: SvgPicture.asset(
+                                              'assets/Vectores/Iconos/ebloqscoinb.svg'),
+                                        ),
+                                        SvgPicture.asset(
+                                          'assets/Vectores/Iconos/chevronright.svg',
+                                          color: const Color(0xffffffff),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          } else {
+                            return Container();
+                          }
                         },
                       ),
                     ),

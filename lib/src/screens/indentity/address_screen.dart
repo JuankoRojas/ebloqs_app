@@ -4,7 +4,9 @@ import 'package:ebloqs_app/src/services/address_services.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
@@ -23,6 +25,7 @@ class _AddressScreenState extends State<AddressScreen>
 
   bool? isLoadLogin = false;
   // var locationProvider = LocationsProvider();
+  String? errorValidation;
 
   // // @override
   // // void afterFirstLayout(BuildContext context) {
@@ -165,11 +168,26 @@ class _AddressScreenState extends State<AddressScreen>
                             child: TextFormField(
                               controller: locationProvider.countryController,
                               keyboardType: TextInputType.text,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[a-zA-Z ]')),
+                              ],
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                               ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  setState(() {
+                                    errorValidation =
+                                        'Por Favor,  debes completar todos los registros para continuar';
+                                  });
+
+                                  return '';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Padding(
@@ -194,11 +212,26 @@ class _AddressScreenState extends State<AddressScreen>
                             child: TextFormField(
                               controller: locationProvider.cityController,
                               keyboardType: TextInputType.text,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[a-zA-Z ]')),
+                              ],
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                               ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  setState(() {
+                                    errorValidation =
+                                        'Por Favor,  debes completar todos los registros para continuar';
+                                  });
+
+                                  return '';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Padding(
@@ -228,6 +261,17 @@ class _AddressScreenState extends State<AddressScreen>
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                               ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  setState(() {
+                                    errorValidation =
+                                        'Por Favor,  debes completar todos los registros para continuar';
+                                  });
+
+                                  return '';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Padding(
@@ -251,12 +295,27 @@ class _AddressScreenState extends State<AddressScreen>
                                 right: size.width * 0.0361072902338377),
                             child: TextFormField(
                               controller: locationProvider.postalCodeController,
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[0-9]')),
+                              ],
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(4),
                                 ),
                               ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  setState(() {
+                                    errorValidation =
+                                        'Por Favor,  debes completar todos los registros para continuar';
+                                  });
+
+                                  return '';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Padding(
@@ -269,21 +328,31 @@ class _AddressScreenState extends State<AddressScreen>
                                 width: size.width,
                                 title: 'Continuar',
                                 onPressed: () async {
-                                  final response = await AddresServices()
-                                      .saveNewAddress(
-                                          country: locationProvider
-                                              .countryController.text,
-                                          city: locationProvider
-                                              .cityController.text,
-                                          address1: locationProvider
-                                              .addressController.text,
-                                          postalCode: locationProvider
-                                              .postalCodeController.text,
-                                          token: Preferences.token!);
-                                  if (response.runtimeType != String) {
-                                    Future.delayed(Duration.zero).then(
-                                        (value) => Navigator.pushNamed(context,
-                                            IdDocumentScreen.routeName));
+                                  if (_formKey12.currentState!.validate()) {
+                                    final response = await AddresServices()
+                                        .saveNewAddress(
+                                            country: locationProvider
+                                                .countryController.text,
+                                            city: locationProvider
+                                                .cityController.text,
+                                            address1: locationProvider
+                                                .addressController.text,
+                                            postalCode: locationProvider
+                                                .postalCodeController.text,
+                                            token: Preferences.token!);
+                                    if (response.runtimeType != String) {
+                                      Future.delayed(Duration.zero).then(
+                                          (value) => Navigator.pushNamed(
+                                              context,
+                                              IdDocumentScreen.routeName));
+                                    }
+                                  } else {
+                                    setState(() {
+                                      errorValidation =
+                                          'Por Favor,  debes completar todos los registros para continuar';
+                                    });
+                                    customModalBottomAlert(context, size,
+                                        errorValidation, isLoadLogin!);
                                   }
                                 },
                                 load: isLoadLogin!,

@@ -1,7 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
+import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
+import 'package:ebloqs_app/src/providers/images_provider.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
+import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
@@ -68,6 +71,12 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => LocationsProvider()),
         //CoinMarketCap
         ChangeNotifierProvider(create: (context) => CoinMarketCapService()),
+        //Images
+        ChangeNotifierProvider(create: (context) => ImagesProvider()),
+        //QR
+        ChangeNotifierProvider(create: (context) => QrInfoProvider()),
+        //AVATAR
+        ChangeNotifierProvider(create: (context) => AvatarUserProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

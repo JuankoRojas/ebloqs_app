@@ -9,6 +9,7 @@ import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class NationalityScreen extends StatefulWidget {
@@ -40,9 +41,9 @@ class _NationalityScreenState extends State<NationalityScreen>
     final locationValue =
         Provider.of<LocationsProvider>(context).countryCode.text;
     if (locationValue.isEmpty) {
-      return const Scaffold(
+      return Scaffold(
         body: Center(
-          child: CircularProgressIndicator(),
+          child: Lottie.asset('assets/lottie/X2lNy3zK9f.json'),
         ),
       );
     }

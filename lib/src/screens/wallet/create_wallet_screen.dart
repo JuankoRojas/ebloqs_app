@@ -16,6 +16,7 @@ class CreateWalletScreen extends StatefulWidget {
 
 class _CreateWalletScreenState extends State<CreateWalletScreen> {
   bool? visible;
+  bool copied = false;
 
   @override
   Widget build(BuildContext context) {
@@ -255,10 +256,35 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                       ),
                       onTap: () {
                         Clipboard.setData(
-                            ClipboardData(text: Preferences.mnemonic));
+                                ClipboardData(text: Preferences.mnemonic))
+                            .then((_) {
+                          setState(() {
+                            copied = true;
+                          });
+                        });
                       },
                     ),
                   ),
+                  (copied)
+                      ? Container(
+                          width: size.width,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: const Color(0xff170658),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              "Copiado en portapapeles",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontFamily: 'Archivo',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Container(),
                   Padding(
                     padding: EdgeInsets.only(
                         top: size.height * 0.25, right: size.width * 0.039),

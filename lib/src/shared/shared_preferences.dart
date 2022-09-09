@@ -7,6 +7,7 @@ class Preferences {
   static String? _id_wallet;
   static String? _public_key;
   static String? _mnemonic;
+  static String? _userName;
 
   static Future init() async {
     _prefs = await SharedPreferences.getInstance();
@@ -34,6 +35,10 @@ class Preferences {
     return _prefs.getString('mnemonic') ?? _mnemonic;
   }
 
+  static String? get userName {
+    return _prefs.getString('userName') ?? _userName;
+  }
+
 //SETTERS
   static set token(String? token) {
     _token = token;
@@ -58,5 +63,10 @@ class Preferences {
   static set mnemonic(String? mnemonic) {
     _mnemonic = mnemonic;
     _prefs.setString('mnemonic', mnemonic!);
+  }
+
+  static set userName(String? userName) {
+    _userName = userName;
+    _prefs.setString('userName', userName!);
   }
 }

@@ -34,7 +34,7 @@ class _PersonalInformationState extends State<PersonalInformation>
   String? phoneNumber;
   String? errorValidation;
   bool isLoading = false;
-  bool iscompleted = true;
+  bool isCompleted = true;
 
   String? nationality;
   @override
@@ -317,7 +317,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                           keyboardType: TextInputType.text,
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(
-                                RegExp(r'[a-zA-Z]')),
+                                RegExp(r'[a-zA-Z ]')),
                           ],
                           maxLength: 50,
                           decoration: InputDecoration(
@@ -329,7 +329,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                             if (value!.isEmpty) {
                               setState(() {
                                 errorValidation =
-                                    'Porfavor,  debes completar todos los registros para continuar';
+                                    'Por Favor,  debes completar todos los registros para continuar';
                               });
 
                               return '';
@@ -363,7 +363,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                           keyboardType: TextInputType.text,
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(
-                                RegExp(r'[a-zA-Z]')),
+                                RegExp(r'[a-zA-Z ]')),
                           ],
                           maxLength: 50,
                           decoration: InputDecoration(
@@ -375,7 +375,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                             if (value!.isEmpty) {
                               setState(() {
                                 errorValidation =
-                                    'Porfavor,  debes completar todos los registros para continuar';
+                                    'Por Favor,  debes completar todos los registros para continuar';
                               });
 
                               return '';
@@ -459,6 +459,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                                             options: const DatePickerOptions(
                                                 isLoop: false),
                                             locale: const Locale('es'),
+                                            minimumDate: DateTime(1950),
                                             maximumDate: DateTime(2004),
                                             onDateTimeChanged:
                                                 (DateTime value) {
@@ -498,6 +499,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                         child: TextFormField(
                           controller: idNumberController,
                           keyboardType: TextInputType.number,
+                          maxLength: 50,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderSide:
@@ -510,7 +512,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                             if (value!.isEmpty) {
                               setState(() {
                                 errorValidation =
-                                    'Porfavor,  debes completar todos los registros para continuar';
+                                    'Por Favor,  debes completar todos los registros para continuar';
                               });
 
                               return '';
@@ -562,7 +564,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                               ),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: iscompleted
+                                    color: isCompleted
                                         ? const Color(0xffCDCCD1)
                                         : Colors.red),
                               ),
@@ -570,10 +572,10 @@ class _PersonalInformationState extends State<PersonalInformation>
                             initialCountryCode: locationValue,
                             validator: (PhoneNumber? value) {
                               print('value: $value');
-                              if (value!.completeNumber.isEmpty) {
+                              if (value!.number.isEmpty) {
                                 setState(() {
                                   errorValidation =
-                                      'Porfavor,  debes completar todos los registros para continuar';
+                                      'Por Favor,  debes completar todos los registros para continuar';
                                 });
 
                                 return '';
@@ -597,8 +599,9 @@ class _PersonalInformationState extends State<PersonalInformation>
                             title: 'Continuar',
                             onPressed: () async {
                               if (_formKey11.currentState!.validate() &&
-                                  phoneNumber != null) {
-                                iscompleted = true;
+                                  phoneNumber != null &&
+                                  phoneNumber!.isNotEmpty) {
+                                isCompleted = true;
                                 final response = await AuthUserService()
                                     .personalData(
                                         accesstoken: Preferences.token!,
@@ -611,15 +614,17 @@ class _PersonalInformationState extends State<PersonalInformation>
                                         dniNumber: idNumberController.text);
                                 if (response.runtimeType != String &&
                                     response['name'] != null) {
+                                  Preferences.userName =
+                                      '${response['name']} ${response['lastname']}';
                                   Future.delayed(Duration.zero).then((value) =>
                                       Navigator.pushNamed(
                                           context, AddressScreen.routeName));
                                 }
                               } else {
                                 setState(() {
-                                  iscompleted = false;
+                                  isCompleted = false;
                                   errorValidation =
-                                      'Porfavor,  debes completar todos los registros para continuar';
+                                      'Por Favor,  debes completar todos los registros para continuar';
                                 });
                                 customModalBottomAlert(
                                     context, size, errorValidation, isLoading);
