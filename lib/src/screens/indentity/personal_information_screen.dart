@@ -626,8 +626,8 @@ class _PersonalInformationState extends State<PersonalInformation>
                                   errorValidation =
                                       'Por Favor,  debes completar todos los registros para continuar';
                                 });
-                                customModalBottomAlert(
-                                    context, size, errorValidation, isLoading);
+                                customModalBottomAlert(context, size,
+                                    errorValidation, isLoading, '');
                               }
                             },
                             load: isLoadLogin!,

@@ -110,7 +110,7 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               ),
                               Expanded(child: Container()),
                               Text(
-                                " ${(widget.total * 0.05)} USD",
+                                "${(widget.total * 0.05)} USD",
                                 textAlign: TextAlign.right,
                                 style: const TextStyle(
                                   color: Color(0xff170658),

@@ -1,6 +1,5 @@
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
-import 'package:ebloqs_app/src/screens/deposit/deposit_screen.dart';
 import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
@@ -626,7 +625,12 @@ class _WalletScreenState extends State<WalletScreen> {
                         ],
                       ),
                       onTap: () {
-                        Navigator.pushNamed(context, DepositScreen.routeName);
+                        customModalBottomAlert(
+                            context,
+                            size,
+                            "Pronto podrás depositar dinero en tu billetera.",
+                            isLoading,
+                            '');
                       },
                     ),
                     GestureDetector(
@@ -649,8 +653,10 @@ class _WalletScreenState extends State<WalletScreen> {
                         customModalBottomAlert(
                             context,
                             size,
-                            'En la etapa 2 saldremos con la inversión en tokens de bienes y servicios con alta rentabilidad. Aquí podrás retirar tu dinero sobre la rentabilidad de tus inversiones. Espérala pronto!!',
-                            isLoading);
+                            '''En la etapa 2 saldremos con la inversión en tokens de bienes y servicios. Aquí podrás retirar tu dinero sobre la rentabilidad de tus inversiones.
+Espérala pronto!!''',
+                            isLoading,
+                            '');
                       },
                     ),
                     GestureDetector(

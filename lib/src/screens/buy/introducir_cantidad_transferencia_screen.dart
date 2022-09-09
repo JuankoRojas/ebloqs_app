@@ -376,7 +376,7 @@ class _IntroducirCantidadTransferenciaScreenState
                               'Por Favor,  debes completar todos los registros para continuar';
                         });
                         customModalBottomAlert(
-                            context, size, errorValidation, isLoading);
+                            context, size, errorValidation, isLoading, '');
                       }
                     }
                     if (_current == 1) {
@@ -390,7 +390,7 @@ class _IntroducirCantidadTransferenciaScreenState
                               'Por Favor,  debes completar todos los registros para continuar';
                         });
                         customModalBottomAlert(
-                            context, size, errorValidation, isLoading);
+                            context, size, errorValidation, isLoading, '');
                       }
                     }
                     if (_current == 0) {

@@ -71,7 +71,8 @@ class _CustomNavigatorState extends State<CustomNavigator> {
                             context,
                             size,
                             'No tienes inversiones por el momento, puedes ir a tu billetera y comprar tokens de utilidad ebloqs (EBL).',
-                            isLoading);
+                            isLoading,
+                            '');
                       },
                       icon: SvgPicture.asset(
                           'assets/Vectores/Iconos/inversiones.svg')),
@@ -161,7 +162,8 @@ class _CustomNavigatorState extends State<CustomNavigator> {
                             context,
                             size,
                             'La opción de beneficios se habilitará en la etapa 2.',
-                            isLoading);
+                            isLoading,
+                            '');
                       },
                       icon: SvgPicture.asset(
                           'assets/Vectores/Iconos/referidos(2).svg')),

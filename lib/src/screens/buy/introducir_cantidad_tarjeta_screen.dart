@@ -1,7 +1,6 @@
 import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
 import 'package:ebloqs_app/src/services/transfer_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
-import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,11 +65,11 @@ class _IntroducirCantidadTarjetaScreenState
     }
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        systemOverlayStyle: systemBarDark,
-      ),
+      //appBar: AppBar(
+      //  elevation: 0,
+      //  backgroundColor: Colors.transparent,
+      //  systemOverlayStyle: systemBarDark,
+      //),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(
@@ -87,7 +86,9 @@ class _IntroducirCantidadTarjetaScreenState
                   GestureDetector(
                     child: SvgPicture.asset(
                         'assets/Vectores/Iconos/Arrow left.svg'),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                   ),
                   Expanded(child: Container()),
                   const Text(
@@ -600,13 +601,16 @@ class _IntroducirCantidadTarjetaScreenState
                             setTransaction = false;
                           });
                           debugPrint(response.toString());
-                          Future.delayed(Duration.zero)
-                              .then((_) => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => CongratsScreen(
-                                            total: total,
-                                          ))));
+                          Future.delayed(Duration.zero).then(
+                            (_) => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => CongratsScreen(
+                                  total: total,
+                                ),
+                              ),
+                            ),
+                          );
                         }
                       } catch (e) {
                         debugPrint(e.toString());
@@ -617,7 +621,7 @@ class _IntroducirCantidadTarjetaScreenState
                             'Por Favor,  debes completar todos los registros para continuar';
                       });
                       customModalBottomAlert(
-                          context, size, errorValidation, isLoading);
+                          context, size, errorValidation, isLoading, '');
                     }
                   },
                 ),

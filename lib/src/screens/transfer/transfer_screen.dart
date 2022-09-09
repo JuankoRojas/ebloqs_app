@@ -203,7 +203,7 @@ class _DineroState extends State<Dinero> {
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(value: "USD", child: Text("USD")),
-      const DropdownMenuItem(value: "Euros", child: Text("Euros")),
+      const DropdownMenuItem(value: "EUR", child: Text("EUR")),
     ];
     return menuItems;
   }
@@ -296,6 +296,7 @@ class _DineroState extends State<Dinero> {
             ),
             child: TextFormField(
               controller: quantityController,
+              maxLength: 50,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide:
@@ -467,6 +468,7 @@ class _DineroState extends State<Dinero> {
             child: TextFormField(
               controller: descriptionController,
               keyboardType: TextInputType.multiline,
+              maxLength: 50,
               maxLines: 5,
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
@@ -579,6 +581,7 @@ class _TokensState extends State<Tokens> {
             ),
             child: TextFormField(
               controller: quantity2Controller,
+              maxLength: 50,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide:

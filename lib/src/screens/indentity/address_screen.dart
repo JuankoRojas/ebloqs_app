@@ -352,7 +352,7 @@ class _AddressScreenState extends State<AddressScreen>
                                           'Por Favor,  debes completar todos los registros para continuar';
                                     });
                                     customModalBottomAlert(context, size,
-                                        errorValidation, isLoadLogin!);
+                                        errorValidation, isLoadLogin!, '');
                                   }
                                 },
                                 load: isLoadLogin!,

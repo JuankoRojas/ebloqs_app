@@ -2,8 +2,8 @@ import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-Future<void> customModalBottomAlert(
-    BuildContext context, Size size, String? errorValidation, bool isLoading) {
+Future<void> customModalBottomAlert(BuildContext context, Size size,
+    String? errorValidation, bool isLoading, String? icon) {
   return showModalBottomSheet<void>(
       context: context,
       barrierColor: const Color(0xff0B022C).withOpacity(0.85),
@@ -25,16 +25,18 @@ Future<void> customModalBottomAlert(
                   Padding(
                     padding:
                         EdgeInsets.only(top: size.height * 0.04064039408867),
-                    child: const Text(
-                      "!Hey!",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xff2504ca),
-                        fontSize: 28,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    child: (icon == null || icon.isEmpty)
+                        ? const Text(
+                            "!Hey!",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xff2504ca),
+                              fontSize: 28,
+                              fontFamily: "Archivo",
+                              fontWeight: FontWeight.w700,
+                            ),
+                          )
+                        : SvgPicture.asset(icon),
                   ),
                   Padding(
                     padding: EdgeInsets.only(
