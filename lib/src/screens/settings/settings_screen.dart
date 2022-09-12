@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/screens/settings/avatar_selection_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/payments_methods_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/personal_settings.dart';
@@ -5,6 +6,7 @@ import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routeName = 'SettingsScreen';
@@ -19,6 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final avatarSelected = Provider.of<AvatarUserProvider>(context).avatarUser;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -41,15 +44,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   left: size.width * 0.0426666666666667),
               child: Row(
                 children: [
-                  Image.asset(
-                    'assets/Imagenes/avatar.png',
-                    width: size.width * 0.157333333333333,
-                    fit: BoxFit.contain,
-                  ),
+                  (avatarSelected == null || avatarSelected.isEmpty)
+                      ? SvgPicture.asset(
+                          'assets/uavatares/2.svg',
+                          width: size.width * 0.157333333333333,
+                        )
+                      : SvgPicture.asset(
+                          avatarSelected,
+                          width: size.width * 0.157333333333333,
+                        ),
+                  // Image.asset(
+                  //   'assets/Imagenes/avatar.png',
+                  //   width: size.width * 0.157333333333333,
+                  //   fit: BoxFit.contain,
+                  // ),
                   Padding(
                     padding: EdgeInsets.only(
-                        left: size.width * 0.0453333333333333,
-                        right: size.width * 0.221333333333333),
+                      left: size.width * 0.0453333333333333,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -72,22 +84,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ],
                     ),
                   ),
-                  Container(
-                    width: size.width * 0.221333333333333,
-                    height: size.height * 0.0369458128078818,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color(0xffb9f6ca),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Verificado",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xff00c853),
-                          fontSize: 12,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w600,
+                  Expanded(child: Container()),
+                  Padding(
+                    padding: EdgeInsets.only(
+                        right: size.height * 0.00985221674876847),
+                    child: Container(
+                      width: size.width * 0.221333333333333,
+                      height: size.height * 0.0369458128078818,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: const Color(0xffb9f6ca),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Verificado",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Color(0xff00c853),
+                            fontSize: 12,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                     ),

@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
@@ -6,8 +7,8 @@ import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   static String routeName = 'HomeScreen';
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final avatarSelected = Provider.of<AvatarUserProvider>(context).avatarUser;
     print('token: ${Preferences.token}');
     List<Map<String, dynamic>> inversiones = [
       {
@@ -167,11 +169,16 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Lottie.asset(
-                          'assets/lottie/LL55nCDKzx.json',
-                          width: 36,
-                          height: 36,
-                        ),
+                        child:
+                            (avatarSelected == null || avatarSelected.isEmpty)
+                                ? SvgPicture.asset(
+                                    'assets/uavatares/2.svg',
+                                    width: size.width * 0.067,
+                                  )
+                                : SvgPicture.asset(
+                                    avatarSelected,
+                                    width: size.width * 0.067,
+                                  ),
                       ),
                     ),
                     onTap: () {
@@ -236,7 +243,7 @@ class HomeScreen extends StatelessWidget {
                               width: size.width * 0.95,
                               height: size.height * 0.1,
                               padding: EdgeInsets.only(
-                                  top: size.height * 0.043,
+                                  top: size.height * 0.0184729064039409,
                                   left: size.width * 0.043,
                                   right: size.width * 0.034),
                               decoration: BoxDecoration(
@@ -255,13 +262,84 @@ class HomeScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      const Text(
-                                        "BALANCE DISPONIBLE",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 11.59,
-                                          fontFamily: "Archivo",
-                                          fontWeight: FontWeight.w400,
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          color: const Color(0x14ffffff),
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 4,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              width: 16,
+                                              height: 16,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                              ),
+                                              child: SvgPicture.asset(
+                                                'assets/Vectores/Iconos/candado.svg',
+                                                color: Colors.white,
+                                                width: 16,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Row(
+                                              children: [
+                                                const Text(
+                                                  "Balance Bloqueado ",
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 11,
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  snapshot.data ?? '',
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 11,
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                const Text(
+                                                  ' EBL',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 11,
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: size.height *
+                                                0.00985221674876847,
+                                            left: size.width *
+                                                0.0106666666666667),
+                                        child: const Text(
+                                          "BALANCE DISPONIBLE",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 11.59,
+                                            fontFamily: "Archivo",
+                                            fontWeight: FontWeight.w400,
+                                          ),
                                         ),
                                       ),
                                       Padding(

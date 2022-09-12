@@ -1,5 +1,6 @@
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
@@ -59,26 +60,31 @@ class _WalletScreenState extends State<WalletScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1,
+                  GestureDetector(
+                    child: Container(
+                      width: 32,
+                      height: 32,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                        color: const Color(0xffeae4fc),
                       ),
-                      color: const Color(0xffeae4fc),
+                      child: (avatarSelected == null || avatarSelected.isEmpty)
+                          ? SvgPicture.asset(
+                              'assets/uavatares/2.svg',
+                              width: size.width * 0.067,
+                            )
+                          : SvgPicture.asset(
+                              avatarSelected,
+                              width: size.width * 0.067,
+                            ),
                     ),
-                    child: (avatarSelected == null || avatarSelected.isEmpty)
-                        ? SvgPicture.asset(
-                            'assets/uavatares/2.svg',
-                            width: size.width * 0.067,
-                          )
-                        : SvgPicture.asset(
-                            avatarSelected,
-                            width: size.width * 0.067,
-                          ),
+                    onTap: () {
+                      Navigator.pushNamed(context, SettingsScreen.routeName);
+                    },
                   ),
                   SizedBox(
                     width: size.width * 0.69,
