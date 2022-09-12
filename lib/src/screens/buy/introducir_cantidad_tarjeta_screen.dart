@@ -27,6 +27,7 @@ class _IntroducirCantidadTarjetaScreenState
   final TextEditingController bankNameController = TextEditingController();
   final TextEditingController expirationDateController =
       TextEditingController();
+  String dateExpired = '';
   final TextEditingController cvvController = TextEditingController();
 
   final int _current = 0;
@@ -416,43 +417,23 @@ class _IntroducirCantidadTarjetaScreenState
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * 0.0197044334975369),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    SizedBox(
-                                      width: size.width * 0.4,
-                                      height: size.height * 0.125615763546798,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            "F. Vencimiento",
-                                            style: TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 13,
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          Padding(
                                             padding: EdgeInsets.only(
                                                 top: size.height *
                                                     0.00985221674876847),
                                             child: TextFormField(
-                                              controller:
-                                                  expirationDateController,
                                               keyboardType: TextInputType.text,
+                                              
                                               inputFormatters: <
                                                   TextInputFormatter>[
                                                 FilteringTextInputFormatter
                                                     .allow(RegExp("[0-9/]"))
                                               ],
+                                              
+                                                controller: expirationDateController,
+                                                maxLength: 5,
                                               decoration: InputDecoration(
                                                 hintText: "MM/AA",
+                                                
                                                 labelStyle: const TextStyle(
                                                   color: Color(0xff9B99A3),
                                                   fontSize: 14,
@@ -464,125 +445,41 @@ class _IntroducirCantidadTarjetaScreenState
                                                       BorderRadius.circular(4),
                                                 ),
                                               ),
-                                              validator: (String? value) {
-                                                if (value!.isEmpty) {
-                                                  setState(() {
-                                                    errorValidation =
-                                                        'Llenar todos los campos';
-                                                  });
-                                                  print('empty');
-                                                  print(errorValidation);
-                                                }
-                                                if (value.length < 5) {
-                                                  setState(() {
-                                                    errorValidation =
-                                                        'Expiración fecha error';
-                                                  });
-                                                  print('length');
-                                                  print(errorValidation);
-                                                }
-                                                value = value.replaceAll(
-                                                    '/', '/20');
-                                                try {
-                                                  DateTime date =
-                                                      DateFormat("MM/yyyy")
-                                                          .parseStrict(value);
-                                                  DateTime dateWithLastDay =
-                                                      DateTime(
-                                                          date.year,
-                                                          date.month + 1,
-                                                          0); // Returns the last day of the month
-                                                  if (dateWithLastDay.isBefore(
-                                                      DateTime.now())) {
-                                                    setState(() {
-                                                      errorValidation =
-                                                          'Advertencia';
-                                                    });
-                                                    print('date');
-                                                    print(errorValidation);
+                                                onChanged: (String? value) {
+                                                  if (value!.length < dateExpired.length) {
+                                                    value = '';
+                                                  } else if (value.length == 1 && (int.parse(value) < 10 && int.parse(value) > 1)) {
+                                                    value = '0$value/';
+                                                  } else if (value.length == 2 && ( value == '10' || value == '11' || value == '12')) {
+                                                    value += '/';
+                                                  } else if (!value.contains('/') && value.length == 2 ) {
+                                                    if (int.parse(value) > 12) value = '${value[0]}/${value[1]}';
                                                   }
-                                                  return null;
-                                                } catch (e) {
-                                                  print('value');
-                                                  print(value);
-                                                  print('date');
-                                                  return value;
-                                                }
-                                              },
-                                              onSaved: (String? value) {
-                                                value = value!
-                                                    .replaceAll('/', '/20');
-                                                DateTime date =
-                                                    DateFormat("MM/yyyy")
-                                                        .parseStrict(value);
-                                                print('date.month');
-                                                print(date.month);
-                                                print('date.year');
-                                                print(date.year);
-                                              },
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: size.width * 0.4,
-                                      height: size.height * 0.125615763546798,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            "CVV",
-                                            style: TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 13,
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    0.00985221674876847),
-                                            child: TextFormField(
-                                              controller: cvvController,
-                                              maxLength: 3,
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              decoration: InputDecoration(
-                                                counterText: '',
-                                                hintText: 'XXX',
-                                                labelStyle: const TextStyle(
-                                                  color: Color(0xff9B99A3),
-                                                  fontSize: 14,
-                                                  fontFamily: "Archivo",
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
-                                                ),
-                                              ),
-                                              validator: (value) {
-                                                if (value!.isEmpty) {
-                                                  setState(() {
-                                                    errorValidation =
-                                                        'Por Favor,  debes completar todos los registros para continuar';
-                                                  });
+                                                  value.replaceAll('//', '/');
+                                                    setState(() {
+                                                      expirationDateController.text = value!;
+                                                      dateExpired = value;
+                                                      expirationDateController.selection = TextSelection.fromPosition(TextPosition(offset: expirationDateController.text.length));
+                                                    });
+                                                  if (expirationDateController.text.length == 5) {
+                                                      try {
+                                                    DateTime date = DateFormat("MM/yyyy").parseStrict(value);
+                                                    if (date.isBefore(DateTime.now())) {
+                                                      setState(() {
+                                                      errorValidation = 'Fecha vencida';
+                                                    });
+                                                    print(errorValidation);
+                                                    }
+                                                  } catch (e) {
+                                                    return print(e);
 
-                                                  return '';
-                                                }
-                                                return null;
+                                                  }
+                                                  }
+                
                                               },
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
+              
                             ],
                           ),
                         ),
