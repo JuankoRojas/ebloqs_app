@@ -73,7 +73,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                       color: const Color(0xffeae4fc),
                     ),
                     child: (avatarSelected == null || avatarSelected.isEmpty)
-                        ? SvgPicture.asset('assets/uavatares/2.svg')
+                        ? SvgPicture.asset('assets/avatares/mascota/pet-4.svg')
                         : SvgPicture.asset(avatarSelected),
                   ),
                 ),
@@ -193,57 +193,101 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      width: 78,
-                      height: 78,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1,
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
                         ),
-                        color: const Color(0xffeae4fc),
+                        child: SvgPicture.asset(
+                            'assets/avatares/avatar/men/men-1.svg'),
                       ),
-                      child: SvgPicture.asset('assets/uavatares/1.svg'),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/avatar/men/men-1.svg';
+                        });
+                      },
                     ),
-                    Container(
-                      width: 78,
-                      height: 78,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1,
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
                         ),
-                        color: const Color(0xffeae4fc),
+                        child: SvgPicture.asset(
+                            'assets/avatares/avatar/men/men-4.svg'),
                       ),
-                      child: SvgPicture.asset('assets/uavatares/2.svg'),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/avatar/men/men-4.svg';
+                        });
+                      },
                     ),
-                    Container(
-                      width: 78,
-                      height: 78,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1,
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
                         ),
-                        color: const Color(0xffeae4fc),
+                        child: SvgPicture.asset(
+                            'assets/avatares/avatar/girls/girl-1.svg'),
                       ),
-                      child: SvgPicture.asset('assets/uavatares/3.svg'),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/avatar/girls/girl-1.svg';
+                        });
+                      },
                     ),
-                    Container(
-                      width: 78,
-                      height: 78,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1,
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
                         ),
-                        color: const Color(0xffeae4fc),
+                        child: SvgPicture.asset(
+                            'assets/avatares/avatar/girls/girl-4.svg'),
                       ),
-                      child: SvgPicture.asset('assets/uavatares/4.svg'),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/avatar/girls/girl-4.svg';
+                        });
+                      },
                     ),
                   ],
                 ),
@@ -253,57 +297,205 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      width: 78,
-                      height: 78,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1,
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
                         ),
-                        color: const Color(0xffeae4fc),
+                        child: SvgPicture.asset(
+                            'assets/avatares/avatar/men/men-5.svg'),
                       ),
-                      child: SvgPicture.asset('assets/uavatares/1.svg'),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/avatar/men/men-5.svg';
+                        });
+                      },
                     ),
-                    Container(
-                      width: 78,
-                      height: 78,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1,
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
                         ),
-                        color: const Color(0xffeae4fc),
+                        child: SvgPicture.asset(
+                            'assets/avatares/avatar/men/men-6.svg'),
                       ),
-                      child: SvgPicture.asset('assets/uavatares/2.svg'),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/avatar/men/men-6.svg';
+                        });
+                      },
                     ),
-                    Container(
-                      width: 78,
-                      height: 78,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1,
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
                         ),
-                        color: const Color(0xffeae4fc),
+                        child: SvgPicture.asset(
+                            'assets/avatares/avatar/girls/girl-5.svg'),
                       ),
-                      child: SvgPicture.asset('assets/uavatares/3.svg'),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/avatar/girls/girl-5.svg';
+                        });
+                      },
                     ),
-                    Container(
-                      width: 78,
-                      height: 78,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1,
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
                         ),
-                        color: const Color(0xffeae4fc),
+                        child: SvgPicture.asset(
+                            'assets/avatares/avatar/girls/girl-6.svg'),
                       ),
-                      child: SvgPicture.asset('assets/uavatares/4.svg'),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/avatar/girls/girl-6.svg';
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: size.height * 0.0369458128078818),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
+                        ),
+                        child: SvgPicture.asset(
+                            'assets/avatares/mascota/pet-1.svg'),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/mascota/pet-1.svg';
+                        });
+                      },
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
+                        ),
+                        child: SvgPicture.asset(
+                            'assets/avatares/mascota/pet-2.svg'),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/mascota/pet-2.svg';
+                        });
+                      },
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
+                        ),
+                        child: SvgPicture.asset(
+                            'assets/avatares/mascota/pet-3.svg'),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/mascota/pet-3.svg';
+                        });
+                      },
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        width: 78,
+                        height: 78,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1,
+                          ),
+                          color: const Color(0xffeae4fc),
+                        ),
+                        child: SvgPicture.asset(
+                            'assets/avatares/mascota/pet-4.svg'),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          Provider.of<AvatarUserProvider>(context,
+                                      listen: false)
+                                  .avatarSetUser =
+                              'assets/avatares/mascota/pet-4.svg';
+                        });
+                      },
                     ),
                   ],
                 ),

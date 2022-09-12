@@ -172,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                         child:
                             (avatarSelected == null || avatarSelected.isEmpty)
                                 ? SvgPicture.asset(
-                                    'assets/uavatares/2.svg',
+                                    'assets/avatares/mascota/pet-4.svg',
                                     width: size.width * 0.067,
                                   )
                                 : SvgPicture.asset(

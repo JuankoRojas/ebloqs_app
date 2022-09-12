@@ -46,7 +46,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   (avatarSelected == null || avatarSelected.isEmpty)
                       ? SvgPicture.asset(
-                          'assets/uavatares/2.svg',
+                          'assets/avatares/mascota/pet-4.svg',
                           width: size.width * 0.157333333333333,
                         )
                       : SvgPicture.asset(
