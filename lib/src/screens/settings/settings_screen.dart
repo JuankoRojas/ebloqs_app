@@ -81,34 +81,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             fontSize: 13,
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.0123152709359606),
+                          child: Container(
+                            width: size.width * 0.221333333333333,
+                            height: size.height * 0.0369458128078818,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color(0xffb9f6ca),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Verificado",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Color(0xff00c853),
+                                  fontSize: 12,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
-                  Expanded(child: Container()),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        right: size.height * 0.00985221674876847),
-                    child: Container(
-                      width: size.width * 0.221333333333333,
-                      height: size.height * 0.0369458128078818,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xffb9f6ca),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          "Verificado",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color(0xff00c853),
-                            fontSize: 12,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),

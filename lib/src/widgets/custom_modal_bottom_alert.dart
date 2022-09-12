@@ -21,7 +21,6 @@ Future<void> customModalBottomAlert(BuildContext context, Size size,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SvgPicture.asset('assets/svg/warning.svg'),
                   Padding(
                     padding:
                         EdgeInsets.only(top: size.height * 0.04064039408867),

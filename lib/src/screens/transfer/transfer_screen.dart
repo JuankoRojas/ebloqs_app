@@ -22,6 +22,7 @@ class _TransferScreenState extends State<TransferScreen> {
   final GlobalKey<FormState> _formKey14 = GlobalKey<FormState>();
   final TextEditingController quantity2Controller = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
+  final TextEditingController fromController = TextEditingController();
   PageController pageController = PageController();
   bool? isLoadLogin = false;
   int _curr = 0;
@@ -79,7 +80,9 @@ class _TransferScreenState extends State<TransferScreen> {
                       child: Container(
                         width: size.width * 0.5,
                         height: size.height * 0.0640243902439025,
-                        color: const Color(0xfff6f4fd),
+                        color: (_curr == 0)
+                            ? const Color(0xfff6f4fd)
+                            : const Color(0xfff9f9fa),
                         child: const Center(
                           child: Text(
                             "Dinero",
@@ -105,7 +108,9 @@ class _TransferScreenState extends State<TransferScreen> {
                       child: Container(
                         width: size.width * 0.5,
                         height: size.height * 0.0640243902439025,
-                        color: const Color(0xfff9f9fa),
+                        color: (_curr == 1)
+                            ? const Color(0xfff6f4fd)
+                            : const Color(0xfff9f9fa),
                         child: const Center(
                           child: Text(
                             "Tokens",
@@ -149,6 +154,7 @@ class _TransferScreenState extends State<TransferScreen> {
                       ),
                       Tokens(
                         formKey14: _formKey14,
+                        fromController: fromController,
                         quantity2Controller: quantity2Controller,
                         errorValidation: errorValidation,
                       )
@@ -171,21 +177,20 @@ class _TransferScreenState extends State<TransferScreen> {
                               customModalBottomAlert(
                                   context,
                                   size,
-                                  'Se Ha Procedido a enviar ${quantityController.text}  USD',
+                                  'Se ha procedido a enviar ${quantityController.text}  USD',
                                   isLoadLogin!,
                                   'assets/Vectores/Iconos/checkcircle.svg', () {
                                 Navigator.pushNamed(
                                     context, WalletScreen.routeName);
                               });
                             } else {
-                              setState(() {
-                                errorValidation =
-                                    'Por Favor,  debes completar todos los registros para continuar';
-                              });
-                              customModalBottomAlert(context, size,
-                                  errorValidation, isLoadLogin!, '', () {
-                                Navigator.pushNamed(
-                                    context, WalletScreen.routeName);
+                              customModalBottomAlert(
+                                  context,
+                                  size,
+                                  'Por Favor,  debes completar todos los registros para continuar',
+                                  isLoadLogin!,
+                                  '', () {
+                                Navigator.pop(context);
                               });
                             }
                           },
@@ -222,11 +227,12 @@ class _TransferScreenState extends State<TransferScreen> {
                                   customModalBottomAlert(
                                       context,
                                       size,
-                                      'Se Ha Procedido a enviar ${quantity2Controller.text} EBL',
+                                      'Se ha procedido a enviar ${quantity2Controller.text} EBL',
                                       isLoadLogin!,
                                       'assets/Vectores/Iconos/checkcircle.svg',
                                       () {
-                                    Navigator.pop(context);
+                                    Navigator.pushNamed(
+                                        context, WalletScreen.routeName);
                                   });
                                 } else {
                                   setState(() {
@@ -599,12 +605,14 @@ class _DineroState extends State<Dinero> {
 class Tokens extends StatefulWidget {
   final GlobalKey<FormState> formKey14;
   final TextEditingController quantity2Controller;
+  final TextEditingController fromController;
   String? errorValidation;
   Tokens(
       {Key? key,
       required this.formKey14,
       required this.errorValidation,
-      required this.quantity2Controller})
+      required this.quantity2Controller,
+      required this.fromController})
       : super(key: key);
 
   @override
@@ -613,6 +621,7 @@ class Tokens extends StatefulWidget {
 
 class _TokensState extends State<Tokens> {
   final TextEditingController walletToController = TextEditingController();
+
   final TextEditingController description2Controller = TextEditingController();
   String? selectedValue2;
 
@@ -759,16 +768,32 @@ class _TokensState extends State<Tokens> {
                   width: 1,
                 ),
               ),
-              child: Row(
-                children: [
-                  Text(
-                    Preferences.id_wallet!,
-                    style: const TextStyle(
-                      color: Color(0xff383346),
-                      fontSize: 14,
-                    ),
+              child: TextFormField(
+                controller: widget.fromController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Color(0xffcdccd1), width: 1),
+                    borderRadius: BorderRadius.circular(4),
                   ),
-                ],
+                  border: OutlineInputBorder(
+                    borderSide:
+                        const BorderSide(color: Color(0xffcdccd1), width: 0.0),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                validator: (value) {
+                  if (value == null) {
+                    setState(() {
+                      widget.errorValidation =
+                          'Por Favor,  debes completar todos los registros para continuar';
+                    });
+
+                    return '';
+                  }
+                  return null;
+                },
               ),
             ),
           ),

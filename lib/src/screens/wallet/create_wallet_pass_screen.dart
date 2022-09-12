@@ -382,6 +382,12 @@ una minúscula, un número y un carácter especial''';
                                   passConfirmController.text &&
                               visible == true) {
                             print(formKey3.currentState!.validate());
+                            if (visible == false) {
+                              setState(() {
+                                errorValidation =
+                                    'Debes aceptar los términos y condiciones';
+                              });
+                            }
                             try {
                               final Map response = await CreateWallet()
                                   .createWallet(pass: passController.text);

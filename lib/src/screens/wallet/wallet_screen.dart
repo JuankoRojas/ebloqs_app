@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
@@ -22,13 +25,14 @@ class WalletScreen extends StatefulWidget {
   State<WalletScreen> createState() => _WalletScreenState();
 }
 
-class _WalletScreenState extends State<WalletScreen> {
+class _WalletScreenState extends State<WalletScreen>
+    with AfterLayoutMixin<WalletScreen> {
   String? ebl;
   bool isLoading = false;
+
   @override
-  void initState() {
+  FutureOr<void> afterFirstLayout(BuildContext context) {
     getBalance();
-    super.initState();
   }
 
   getBalance() async {
