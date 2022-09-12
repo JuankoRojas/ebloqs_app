@@ -51,6 +51,7 @@ dependencies:
   google_sign_in: ^5.4.1
   http: ^0.13.5
   http_parser: ^4.0.1
+  intl: ^0.17.0
   intl_phone_field: ^3.1.0
   local_auth: ^2.1.2
   lottie: ^1.4.2

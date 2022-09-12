@@ -5,6 +5,7 @@ import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 class IntroducirCantidadTarjetaScreen extends StatefulWidget {
   static const String routeName = 'IntroducirCantidadTarjetaScreen';
@@ -463,16 +464,61 @@ class _IntroducirCantidadTarjetaScreenState
                                                       BorderRadius.circular(4),
                                                 ),
                                               ),
-                                              validator: (value) {
+                                              validator: (String? value) {
                                                 if (value!.isEmpty) {
                                                   setState(() {
                                                     errorValidation =
-                                                        'Por Favor,  debes completar todos los registros para continuar';
+                                                        'Llenar todos los campos';
                                                   });
-
-                                                  return '';
+                                                  print('empty');
+                                                  print(errorValidation);
                                                 }
-                                                return null;
+                                                if (value.length < 5) {
+                                                  setState(() {
+                                                    errorValidation =
+                                                        'Expiración fecha error';
+                                                  });
+                                                  print('length');
+                                                  print(errorValidation);
+                                                }
+                                                value = value.replaceAll(
+                                                    '/', '/20');
+                                                try {
+                                                  DateTime date =
+                                                      DateFormat("MM/yyyy")
+                                                          .parseStrict(value);
+                                                  DateTime dateWithLastDay =
+                                                      DateTime(
+                                                          date.year,
+                                                          date.month + 1,
+                                                          0); // Returns the last day of the month
+                                                  if (dateWithLastDay.isBefore(
+                                                      DateTime.now())) {
+                                                    setState(() {
+                                                      errorValidation =
+                                                          'Advertencia';
+                                                    });
+                                                    print('date');
+                                                    print(errorValidation);
+                                                  }
+                                                  return null;
+                                                } catch (e) {
+                                                  print('value');
+                                                  print(value);
+                                                  print('date');
+                                                  return value;
+                                                }
+                                              },
+                                              onSaved: (String? value) {
+                                                value = value!
+                                                    .replaceAll('/', '/20');
+                                                DateTime date =
+                                                    DateFormat("MM/yyyy")
+                                                        .parseStrict(value);
+                                                print('date.month');
+                                                print(date.month);
+                                                print('date.year');
+                                                print(date.year);
                                               },
                                             ),
                                           ),
