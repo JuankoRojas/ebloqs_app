@@ -170,7 +170,7 @@ class _WalletScreenState extends State<WalletScreen> {
                                       Row(
                                         children: [
                                           const Text(
-                                            "Balance Bloqueado",
+                                            "Balance Bloqueado ",
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 11,

@@ -145,4 +145,29 @@ class AuthUserService with ChangeNotifier {
       throw Exception(e);
     }
   }
+
+  Future<bool> getUserInfo({required String accesstoken}) async {
+    try {
+      final response = await http.post(
+          Uri.parse('https://www.api.ebloqs.com/user/me'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': 'Bearer $accesstoken',
+          });
+      debugPrint(response.body);
+
+      if (response.statusCode == 201) {
+        var jsonRespon = await jsonDecode(response.body);
+        debugPrint(jsonRespon['id']);
+        return jsonRespon;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+
+      throw Exception(e);
+    }
+  }
 }

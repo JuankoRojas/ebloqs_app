@@ -303,6 +303,8 @@ una minúscula, un número y un carácter especial''';
                                       setState(() {
                                         if (visible == false) {
                                           visible = true;
+                                          errorValidation =
+                                              'Debes aceptar los términos y condiciones';
                                         } else {
                                           visible = false;
                                         }

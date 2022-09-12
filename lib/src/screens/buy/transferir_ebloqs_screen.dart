@@ -1,8 +1,7 @@
 import 'dart:math';
 
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
-import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
-import 'package:ebloqs_app/src/services/transfer_service.dart';
+import 'package:ebloqs_app/src/screens/buy/congrats_screen_transfer.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -669,22 +668,25 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                         setState(() {
                           setTransaction = true;
                         });
-                        final response = await TransferService().transfer(
-                            to: Preferences.public_key!,
-                            amount: parsedAmount.toString());
-                        if (response['data'].isNotEmpty) {
-                          setState(() {
-                            setTransaction = false;
-                          });
-                          debugPrint(response.toString());
-                          Future.delayed(Duration.zero)
-                              .then((_) => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => CongratsScreen(
-                                            total: amount,
-                                          ))));
-                        }
+                        // final response = await TransferService().transfer(
+                        //     to: Preferences.public_key!,
+                        //     amount: parsedAmount.toString());
+                        // if (response['data'].isNotEmpty) {
+                        //   setState(() {
+                        //     setTransaction = false;
+                        //   });
+                        // debugPrint(response.toString());
+                        Future.delayed(Duration.zero).then(
+                          (_) => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => CongratsScreenTransfer(
+                                total: amount,
+                              ),
+                            ),
+                          ),
+                        );
+                        // }
                       }
                     } catch (e) {
                       debugPrint(e.toString());

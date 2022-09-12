@@ -19,6 +19,8 @@ class TransferScreen extends StatefulWidget {
 class _TransferScreenState extends State<TransferScreen> {
   final GlobalKey<FormState> _formKey13 = GlobalKey<FormState>();
   final GlobalKey<FormState> _formKey14 = GlobalKey<FormState>();
+  final TextEditingController quantity2Controller = TextEditingController();
+  final TextEditingController quantityController = TextEditingController();
   PageController pageController = PageController();
   bool? isLoadLogin = false;
   int _curr = 0;
@@ -141,10 +143,12 @@ class _TransferScreenState extends State<TransferScreen> {
                     children: [
                       Dinero(
                         formKey13: _formKey13,
+                        quantityController: quantityController,
                         errorValidation: errorValidation,
                       ),
                       Tokens(
                         formKey14: _formKey14,
+                        quantity2Controller: quantity2Controller,
                         errorValidation: errorValidation,
                       )
                     ],
@@ -163,6 +167,12 @@ class _TransferScreenState extends State<TransferScreen> {
                           title: 'Continuar',
                           onPressed: () {
                             if (_formKey13.currentState!.validate()) {
+                              customModalBottomAlert(
+                                  context,
+                                  size,
+                                  'Se Ha Procedido a enviar ${quantityController.text}  USD',
+                                  isLoadLogin!,
+                                  'assets/Vectores/Iconos/checkcircle.svg');
                             } else {
                               setState(() {
                                 errorValidation =
@@ -205,7 +215,7 @@ class _TransferScreenState extends State<TransferScreen> {
                                   customModalBottomAlert(
                                       context,
                                       size,
-                                      'Se Ha Procedido a enviar ',
+                                      'Se Ha Procedido a enviar ${quantity2Controller.text} EBL',
                                       isLoadLogin!,
                                       'assets/Vectores/Iconos/checkcircle.svg');
                                 } else {
@@ -232,8 +242,13 @@ class _TransferScreenState extends State<TransferScreen> {
 
 class Dinero extends StatefulWidget {
   final GlobalKey<FormState> formKey13;
+  final TextEditingController quantityController;
   String? errorValidation;
-  Dinero({Key? key, required this.formKey13, required this.errorValidation})
+  Dinero(
+      {Key? key,
+      required this.formKey13,
+      required this.errorValidation,
+      required this.quantityController})
       : super(key: key);
 
   @override
@@ -241,7 +256,6 @@ class Dinero extends StatefulWidget {
 }
 
 class _DineroState extends State<Dinero> {
-  final TextEditingController quantityController = TextEditingController();
   final TextEditingController descriptionController = TextEditingController();
   String? selectedValue;
   String? byValue;
@@ -352,7 +366,7 @@ class _DineroState extends State<Dinero> {
               top: size.height * 0.00948509485094851,
             ),
             child: TextFormField(
-              controller: quantityController,
+              controller: widget.quantityController,
               maxLength: 50,
               keyboardType: const TextInputType.numberWithOptions(),
               decoration: InputDecoration(
@@ -572,8 +586,13 @@ class _DineroState extends State<Dinero> {
 
 class Tokens extends StatefulWidget {
   final GlobalKey<FormState> formKey14;
+  final TextEditingController quantity2Controller;
   String? errorValidation;
-  Tokens({Key? key, required this.formKey14, required this.errorValidation})
+  Tokens(
+      {Key? key,
+      required this.formKey14,
+      required this.errorValidation,
+      required this.quantity2Controller})
       : super(key: key);
 
   @override
@@ -581,7 +600,6 @@ class Tokens extends StatefulWidget {
 }
 
 class _TokensState extends State<Tokens> {
-  final TextEditingController quantity2Controller = TextEditingController();
   final TextEditingController walletToController = TextEditingController();
   final TextEditingController description2Controller = TextEditingController();
   String? selectedValue2;
@@ -673,7 +691,7 @@ class _TokensState extends State<Tokens> {
               top: size.height * 0.00948509485094851,
             ),
             child: TextFormField(
-              controller: quantity2Controller,
+              controller: widget.quantity2Controller,
               maxLength: 50,
               keyboardType: const TextInputType.numberWithOptions(),
               decoration: InputDecoration(

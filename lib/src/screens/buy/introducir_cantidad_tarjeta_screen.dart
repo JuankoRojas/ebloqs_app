@@ -5,7 +5,6 @@ import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
 
 class IntroducirCantidadTarjetaScreen extends StatefulWidget {
   static const String routeName = 'IntroducirCantidadTarjetaScreen';
@@ -56,13 +55,13 @@ class _IntroducirCantidadTarjetaScreenState
     if (recibes != null) {
       total = recibes! / 0.05;
     }
-    if (setTransaction) {
-      return Scaffold(
-        body: Center(
-          child: Lottie.asset('assets/lottie/X2lNy3zK9f.json'),
-        ),
-      );
-    }
+    // if (setTransaction) {
+    //   return Scaffold(
+    //     body: Center(
+    //       child: Lottie.asset('assets/lottie/X2lNy3zK9f.json'),
+    //     ),
+    //   );
+    // }
     return Scaffold(
       extendBodyBehindAppBar: true,
       //appBar: AppBar(
@@ -298,7 +297,7 @@ class _IntroducirCantidadTarjetaScreenState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: const [
                             Text(
-                              "Añadir información de la cuenta.",
+                              "Añadir información de la tarjeta.",
                               style: TextStyle(
                                 color: Color(0xff2504ca),
                                 fontSize: 15,
