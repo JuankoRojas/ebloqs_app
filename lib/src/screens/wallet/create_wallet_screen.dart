@@ -272,14 +272,19 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                             borderRadius: BorderRadius.circular(4),
                             color: const Color(0xff170658),
                           ),
-                          child: const Center(
-                            child: Text(
-                              "Copiado en portapapeles",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                                fontFamily: 'Archivo',
-                                fontWeight: FontWeight.w400,
+                          child: Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.00985221674876847,
+                                  bottom: size.height * 0.00985221674876847),
+                              child: const Text(
+                                "Copiado en portapapeles",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 12,
+                                  fontFamily: 'Archivo',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                             ),
                           ),

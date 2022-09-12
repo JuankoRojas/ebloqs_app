@@ -672,7 +672,7 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                         final response = await TransferService().transfer(
                             to: Preferences.public_key!,
                             amount: parsedAmount.toString());
-                        if (response.isNotEmpty) {
+                        if (response['data'].isNotEmpty) {
                           setState(() {
                             setTransaction = false;
                           });

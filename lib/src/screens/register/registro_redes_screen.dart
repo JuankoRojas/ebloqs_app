@@ -38,7 +38,7 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
           email: user.email!,
           deviceID: user.tenantId ?? uuid.v4(),
           name: user.displayName ?? user.email!.split('@').first,
-          type_acount: 'facebook',
+          type_account: 'facebook',
         );
         if (register.runtimeType != String &&
             register["access_token"] != null) {
@@ -189,10 +189,12 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                 deviceID: response['id'],
                                 name: response['name'] ??
                                     response.email.split('@').first,
-                                type_acount: 'facebook',
+                                type_account: 'facebook',
                               );
                               if (register.runtimeType != String &&
                                   register["access_token"] != null) {
+                                print(
+                                    'Usuario token: ${register['access_token']}');
                                 setState(() {
                                   Preferences.token = register['access_token'];
                                   Provider.of<UserInfoProvider>(
@@ -269,7 +271,7 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                 deviceID: response.id,
                                 name: response.displayName ??
                                     response.email.split('@').first,
-                                type_acount: 'google',
+                                type_account: 'google',
                               );
 
                               if (register.runtimeType != String &&

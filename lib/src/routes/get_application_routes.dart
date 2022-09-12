@@ -23,8 +23,11 @@ import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_link_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/add_card_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/avatar_selection_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/payments_methods_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/personal_information_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/personal_settings.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
@@ -101,5 +104,10 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
         const AvatarSelectionScreen(),
     PaymentMethodsScreen.routeName: (BuildContext context) =>
         const PaymentMethodsScreen(),
+    AddCardAcreen.routeName: (BuildContext context) => const AddCardAcreen(),
+    PersonalSettingsScreen.routeName: (BuildContext context) =>
+        const PersonalSettingsScreen(),
+    PersonalInformationScreen.routeName: (BuildContext context) =>
+        const PersonalInformationScreen(),
   };
 }

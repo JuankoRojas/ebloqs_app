@@ -31,6 +31,7 @@ class _WalletScreenState extends State<WalletScreen> {
   }
 
   getBalance() async {
+    print('token $Preferences.token!');
     var balance =
         await BalanceService().getBalance(accesstoken: Preferences.token!);
     setState(() {
@@ -166,14 +167,36 @@ class _WalletScreenState extends State<WalletScreen> {
                                         ),
                                       ),
                                       const SizedBox(width: 8),
-                                      const Text(
-                                        "Balance Bloqueado   \$1,200 USD",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 11,
-                                          fontFamily: "Archivo",
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                      Row(
+                                        children: [
+                                          const Text(
+                                            "Balance Bloqueado",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 11,
+                                              fontFamily: "Archivo",
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          Text(
+                                            snapshot.data ?? '',
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 11,
+                                              fontFamily: "Archivo",
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          const Text(
+                                            ' EBL',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 11,
+                                              fontFamily: "Archivo",
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -654,6 +677,7 @@ class _WalletScreenState extends State<WalletScreen> {
                             context,
                             size,
                             '''En la etapa 2 saldremos con la inversión en tokens de bienes y servicios. Aquí podrás retirar tu dinero sobre la rentabilidad de tus inversiones.
+
 Espérala pronto!!''',
                             isLoading,
                             '');

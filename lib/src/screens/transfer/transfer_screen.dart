@@ -205,7 +205,7 @@ class _TransferScreenState extends State<TransferScreen> {
                                   customModalBottomAlert(
                                       context,
                                       size,
-                                      errorValidation,
+                                      'Se Ha Procedido a enviar ',
                                       isLoadLogin!,
                                       'assets/Vectores/Iconos/checkcircle.svg');
                                 } else {
@@ -354,6 +354,7 @@ class _DineroState extends State<Dinero> {
             child: TextFormField(
               controller: quantityController,
               maxLength: 50,
+              keyboardType: const TextInputType.numberWithOptions(),
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide:
@@ -674,6 +675,7 @@ class _TokensState extends State<Tokens> {
             child: TextFormField(
               controller: quantity2Controller,
               maxLength: 50,
+              keyboardType: const TextInputType.numberWithOptions(),
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide:

@@ -13,13 +13,13 @@ class AuthUserService with ChangeNotifier {
     required String email,
     required String name,
     required String deviceID,
-    required String type_acount,
+    required String type_account,
   }) async {
     final userData = {
       'email': email,
       'name': name,
       'deviceID': deviceID,
-      "type_acount": type_acount
+      "type_account": type_account
     };
     try {
       final response = await http.post(

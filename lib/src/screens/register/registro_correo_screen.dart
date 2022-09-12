@@ -149,7 +149,7 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                           email: emailController.text,
                           name: emailController.text.split('@').first,
                           deviceID: uuid.v4(),
-                          type_acount: 'email',
+                          type_account: 'email',
                         );
 
                         if (register["access_token"] != null) {

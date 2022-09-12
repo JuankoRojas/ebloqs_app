@@ -1,5 +1,6 @@
 import 'package:ebloqs_app/src/screens/settings/avatar_selection_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/payments_methods_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/personal_settings.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_setting.dart';
 import 'package:flutter/material.dart';
@@ -133,17 +134,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * 0.0197044334975369,
-                  left: size.width * 0.04,
-                  right: size.width * 0.04),
-              child: CustomSetting(
-                size: size,
-                setting: 'Seguridad',
-                onTap: () {},
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //       top: size.height * 0.0197044334975369,
+            //       left: size.width * 0.04,
+            //       right: size.width * 0.04),
+            //   child: CustomSetting(
+            //     size: size,
+            //     setting: 'Seguridad',
+            //     onTap: () {},
+            //   ),
+            // ),
             Padding(
               padding: EdgeInsets.only(
                   top: size.height * 0.0197044334975369,
@@ -152,31 +153,34 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: CustomSetting(
                 size: size,
                 setting: 'Ajustes',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, PersonalSettingsScreen.routeName);
+                },
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * 0.0197044334975369,
-                  left: size.width * 0.04,
-                  right: size.width * 0.04),
-              child: CustomSetting(
-                size: size,
-                setting: 'Soporte',
-                onTap: () {},
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * 0.0197044334975369,
-                  left: size.width * 0.04,
-                  right: size.width * 0.04),
-              child: CustomSetting(
-                size: size,
-                setting: 'Siri configuración',
-                onTap: () {},
-              ),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //       top: size.height * 0.0197044334975369,
+            //       left: size.width * 0.04,
+            //       right: size.width * 0.04),
+            //   child: CustomSetting(
+            //     size: size,
+            //     setting: 'Soporte',
+            //     onTap: () {},
+            //   ),
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //       top: size.height * 0.0197044334975369,
+            //       left: size.width * 0.04,
+            //       right: size.width * 0.04),
+            //   child: CustomSetting(
+            //     size: size,
+            //     setting: 'Siri configuración',
+            //     onTap: () {},
+            //   ),
+            // ),
             Padding(
               padding: EdgeInsets.only(
                   top: size.height * 0.172413793103448,

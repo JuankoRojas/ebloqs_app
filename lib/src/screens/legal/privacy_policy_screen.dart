@@ -16,7 +16,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          'Términos y condiciones',
+          'Políticas de privacidad',
           style: TextStyle(
             color: Color(0xff170658),
             fontSize: 17,
