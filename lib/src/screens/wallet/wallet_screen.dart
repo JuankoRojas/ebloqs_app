@@ -659,7 +659,9 @@ class _WalletScreenState extends State<WalletScreen> {
                             size,
                             "Pronto podrás depositar dinero en tu billetera.",
                             isLoading,
-                            '');
+                            '', () {
+                          Navigator.pop(context);
+                        });
                       },
                     ),
                     GestureDetector(
@@ -686,7 +688,9 @@ class _WalletScreenState extends State<WalletScreen> {
 
 Espérala pronto!!''',
                             isLoading,
-                            '');
+                            '', () {
+                          Navigator.pop(context);
+                        });
                       },
                     ),
                     GestureDetector(

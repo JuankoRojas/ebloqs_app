@@ -399,7 +399,10 @@ una minúscula, un número y un carácter especial''';
                             }
                           } else {
                             customModalBottomAlert(
-                                context, size, errorValidation, isLoading, '');
+                                context, size, errorValidation, isLoading, '',
+                                () {
+                              Navigator.pop(context);
+                            });
                           }
                         },
                       ),

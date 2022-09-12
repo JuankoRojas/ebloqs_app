@@ -31,6 +31,10 @@ class _QrViewScreenState extends State<QrViewScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var scanArea = (MediaQuery.of(context).size.width < 400 ||
+            MediaQuery.of(context).size.height < 400)
+        ? 150.0
+        : 300.0;
     return Scaffold(
         body: Column(
       children: [
@@ -39,6 +43,12 @@ class _QrViewScreenState extends State<QrViewScreen> {
           child: QRView(
             key: qrKey,
             onQRViewCreated: _onQRViewCreated,
+            overlay: QrScannerOverlayShape(
+                borderColor: const Color(0xff00DAF8),
+                borderRadius: 10,
+                borderLength: 30,
+                borderWidth: 10,
+                cutOutSize: scanArea),
           ),
         ),
       ],

@@ -1,5 +1,6 @@
 import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
 import 'package:ebloqs_app/src/screens/qr/qr_view_screen.dart';
+import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/services/get_all_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -172,14 +173,20 @@ class _TransferScreenState extends State<TransferScreen> {
                                   size,
                                   'Se Ha Procedido a enviar ${quantityController.text}  USD',
                                   isLoadLogin!,
-                                  'assets/Vectores/Iconos/checkcircle.svg');
+                                  'assets/Vectores/Iconos/checkcircle.svg', () {
+                                Navigator.pushNamed(
+                                    context, WalletScreen.routeName);
+                              });
                             } else {
                               setState(() {
                                 errorValidation =
                                     'Por Favor,  debes completar todos los registros para continuar';
                               });
                               customModalBottomAlert(context, size,
-                                  errorValidation, isLoadLogin!, '');
+                                  errorValidation, isLoadLogin!, '', () {
+                                Navigator.pushNamed(
+                                    context, WalletScreen.routeName);
+                              });
                             }
                           },
                           load: isLoadLogin!,
@@ -217,14 +224,19 @@ class _TransferScreenState extends State<TransferScreen> {
                                       size,
                                       'Se Ha Procedido a enviar ${quantity2Controller.text} EBL',
                                       isLoadLogin!,
-                                      'assets/Vectores/Iconos/checkcircle.svg');
+                                      'assets/Vectores/Iconos/checkcircle.svg',
+                                      () {
+                                    Navigator.pop(context);
+                                  });
                                 } else {
                                   setState(() {
                                     errorValidation =
                                         'Por Favor,  debes completar todos los registros para continuar';
                                   });
                                   customModalBottomAlert(context, size,
-                                      errorValidation, isLoadLogin!, '');
+                                      errorValidation, isLoadLogin!, '', () {
+                                    Navigator.pop(context);
+                                  });
                                 }
                               },
                               load: isLoadLogin!,

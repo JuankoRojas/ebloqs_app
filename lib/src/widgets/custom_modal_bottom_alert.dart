@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 Future<void> customModalBottomAlert(BuildContext context, Size size,
-    String? errorValidation, bool isLoading, String? icon) {
+    String? errorValidation, bool isLoading, String? icon, VoidCallback ontap) {
   return showModalBottomSheet<void>(
       context: context,
       barrierColor: const Color(0xff0B022C).withOpacity(0.85),
@@ -60,9 +60,7 @@ Future<void> customModalBottomAlert(BuildContext context, Size size,
                     child: ButtonPrimary(
                         width: size.width,
                         title: 'Continuar',
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
+                        onPressed: ontap,
                         load: isLoading),
                   )
                 ],

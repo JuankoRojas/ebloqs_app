@@ -320,7 +320,9 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                         'Por Favor,  debes completar todos los registros para continuar';
                   });
                   customModalBottomAlert(
-                      context, size, errorValidation, isLoading, '');
+                      context, size, errorValidation, isLoading, '', () {
+                    Navigator.pop(context);
+                  });
                 }
               },
             ),
