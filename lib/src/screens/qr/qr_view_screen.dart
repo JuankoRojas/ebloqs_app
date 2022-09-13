@@ -30,6 +30,8 @@ class _QrViewScreenState extends State<QrViewScreen> {
     }
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
@@ -62,18 +64,22 @@ class _QrViewScreenState extends State<QrViewScreen> {
     try {
       controller.scannedDataStream.listen((scanData) {
         if (scanData.code != null) {
-          setState(() {
+          Future.delayed(Duration.zero).then((_) {
+            setState(() {
             result = scanData;
             print('result:${result!.code}');
           });
-        }
-
-        if (result!.code!.isNotEmpty) {
+          if (result!.code!.isNotEmpty) {
           Provider.of<QrInfoProvider>(context, listen: false)
               .setQr(result!.code);
           Navigator.pushNamedAndRemoveUntil(
               context, TransferScreen.routeName, (route) => false);
         }
+          
+          });
+        }
+
+        
       });
     } on Exception catch (e) {
       print(e);
