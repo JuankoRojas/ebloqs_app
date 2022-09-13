@@ -37,7 +37,6 @@ class _PersonalInformationState extends State<PersonalInformation>
   bool isLoading = false;
   bool isCompleted = true;
 
-  String? nationality;
   @override
   void afterFirstLayout(BuildContext context) {
     useLocation();
@@ -61,7 +60,7 @@ class _PersonalInformationState extends State<PersonalInformation>
 
     var formattedDate = "${dateParse.day}-${dateParse.month}-${dateParse.year}";
 
-    final locationValue =
+    String locationValue =
         Provider.of<LocationsProvider>(context).countryCode.text;
     if (locationValue.isEmpty) {
       return const Scaffold(
@@ -290,7 +289,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                               onChanged: (CountryCode? countryCode) {
                                 print(countryCode.toString());
                                 setState(() {
-                                  nationality = countryCode!.name;
+                                  locationValue = countryCode!.name!;
                                 });
                               },
                               // Whether to allow the widget to set a custom UI overlay
@@ -611,8 +610,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                                 final response = await AuthUserService()
                                     .personalData(
                                         accesstoken: Preferences.token!,
-                                        nacionality:
-                                            nationality ?? locationValue,
+                                        nacionality: locationValue,
                                         name: nameController.text,
                                         lastname: lastNameController.text,
                                         birthdayDate: formattedDate,

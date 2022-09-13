@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
+import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -57,16 +58,26 @@ class _QrViewScreenState extends State<QrViewScreen> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-        print('result:${result!.code}');
+
+    try {
+      controller.scannedDataStream.listen((scanData) {
+        if (scanData.code != null) {
+          setState(() {
+            result = scanData;
+            print('result:${result!.code}');
+          });
+        }
+
+        if (result!.code!.isNotEmpty) {
+          Provider.of<QrInfoProvider>(context, listen: false)
+              .setQr(result!.code);
+          Navigator.pushNamedAndRemoveUntil(
+              context, TransferScreen.routeName, (route) => false);
+        }
       });
-      if (result!.code!.isNotEmpty) {
-        Provider.of<QrInfoProvider>(context, listen: false).setQr(result!.code);
-        Navigator.pop(context);
-      }
-    });
+    } on Exception catch (e) {
+      print(e);
+    }
   }
 
   @override
