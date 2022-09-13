@@ -31,7 +31,7 @@ class _TransferScreenState extends State<TransferScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    print('current : $_curr');
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
