@@ -72,8 +72,8 @@ class _QrViewScreenState extends State<QrViewScreen> {
           if (result!.code!.isNotEmpty) {
           Provider.of<QrInfoProvider>(context, listen: false)
               .setQr(result!.code);
-          Navigator.pushNamedAndRemoveUntil(
-              context, TransferScreen.routeName, (route) => false);
+          Navigator.pushNamed(
+              context, TransferScreen.routeName);
         }
           
           });
