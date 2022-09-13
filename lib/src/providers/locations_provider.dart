@@ -91,6 +91,7 @@ class LocationsProvider with ChangeNotifier {
     if (accepted == LocationPermission.whileInUse ||
         accepted == LocationPermission.always) {
       useMyLocation();
+      return accepted;
       // getMyCountryCode();
     }
     // debugPrint(accepted.toString());

@@ -9,6 +9,7 @@ import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,12 @@ class _NationalityScreenState extends State<NationalityScreen>
   void useLocation() async {
     var locationProvider =
         Provider.of<LocationsProvider>(context, listen: false);
-    await locationProvider.requestPermisionLocation();
+    if (locationProvider.requestPermisionLocation() !=
+            LocationPermission.whileInUse ||
+        locationProvider.requestPermisionLocation() !=
+            LocationPermission.always) {
+      await locationProvider.requestPermisionLocation();
+    }
   }
 
   @override
@@ -40,6 +46,7 @@ class _NationalityScreenState extends State<NationalityScreen>
     final size = MediaQuery.of(context).size;
     final locationValue =
         Provider.of<LocationsProvider>(context).countryCode.text;
+
     if (locationValue.isEmpty) {
       return Scaffold(
         body: Center(

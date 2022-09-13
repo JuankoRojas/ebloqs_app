@@ -771,17 +771,8 @@ class _TokensState extends State<Tokens> {
               child: TextFormField(
                 controller: widget.fromController,
                 keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xffcdccd1), width: 1),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xffcdccd1), width: 0.0),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
                 ),
                 validator: (value) {
                   if (value == null) {

@@ -10,6 +10,7 @@ import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +46,12 @@ class _PersonalInformationState extends State<PersonalInformation>
   void useLocation() async {
     var locationProvider =
         Provider.of<LocationsProvider>(context, listen: false);
-    await locationProvider.requestPermisionLocation();
+    if (locationProvider.requestPermisionLocation() !=
+            LocationPermission.whileInUse ||
+        locationProvider.requestPermisionLocation() !=
+            LocationPermission.always) {
+      await locationProvider.requestPermisionLocation();
+    }
   }
 
   @override

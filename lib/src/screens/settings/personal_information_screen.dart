@@ -63,17 +63,17 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
               onTap: () {},
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(
-                top: size.height * 0.0344827586206897,
-                left: size.width * 0.064,
-                right: size.width * 0.064),
-            child: CustomPersonalInfo(
-              field: 'Género',
-              value: '',
-              onTap: () {},
-            ),
-          ),
+          // Padding(
+          //   padding: EdgeInsets.only(
+          //       top: size.height * 0.0344827586206897,
+          //       left: size.width * 0.064,
+          //       right: size.width * 0.064),
+          //   child: CustomPersonalInfo(
+          //     field: 'Género',
+          //     value: '',
+          //     onTap: () {},
+          //   ),
+          // ),
           Padding(
             padding: EdgeInsets.only(
                 top: size.height * 0.0344827586206897,

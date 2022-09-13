@@ -188,7 +188,9 @@ Future checkPersistenceState(BuildContext context) async {
   final token = Preferences.token;
 
   if (uid != null || token != null) {
-    Future.delayed(Duration.zero)
-        .then((_) => Navigator.pushNamed(context, HomeScreen.routeName));
+    Future.delayed(Duration.zero).then((_) =>
+        //  null
+
+        Navigator.pushNamed(context, HomeScreen.routeName));
   }
 }

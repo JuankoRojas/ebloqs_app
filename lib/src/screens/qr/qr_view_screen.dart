@@ -61,9 +61,11 @@ class _QrViewScreenState extends State<QrViewScreen> {
       setState(() {
         result = scanData;
         print('result:${result!.code}');
+      });
+      if (result!.code!.isNotEmpty) {
         Provider.of<QrInfoProvider>(context, listen: false).setQr(result!.code);
         Navigator.pop(context);
-      });
+      }
     });
   }
 

@@ -1,3 +1,4 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/id_document_screen.dart';
 import 'package:ebloqs_app/src/services/address_services.dart';
@@ -8,6 +9,7 @@ import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 
 class AddressScreen extends StatefulWidget {
@@ -19,8 +21,7 @@ class AddressScreen extends StatefulWidget {
 }
 
 class _AddressScreenState extends State<AddressScreen>
-// with AfterLayoutMixin<AddressScreen>
-{
+    with AfterLayoutMixin<AddressScreen> {
   final GlobalKey<FormState> _formKey12 = GlobalKey<FormState>();
 
   bool? isLoadLogin = false;
@@ -37,11 +38,26 @@ class _AddressScreenState extends State<AddressScreen>
 
   //   super.initState();
   // }
+  @override
+  void afterFirstLayout(BuildContext context) {
+    useLocation();
+  }
+
+  void useLocation() async {
+    var locationProvider =
+        Provider.of<LocationsProvider>(context, listen: false);
+    if (locationProvider.requestPermisionLocation() !=
+            LocationPermission.whileInUse ||
+        locationProvider.requestPermisionLocation() !=
+            LocationPermission.always) {
+      await locationProvider.requestPermisionLocation();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var locationProvider = Provider.of<LocationsProvider>(context);
-    locationProvider.requestPermisionLocation();
+    // locationProvider.requestPermisionLocation();
     final size = MediaQuery.of(context).size;
     // debugPrint('location: ${locationProvider.countryController.text}');
     // if (locationProvider.getMyLocation == true) {
