@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
+import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
 import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,8 +30,6 @@ class _QrViewScreenState extends State<QrViewScreen> {
       controller!.resumeCamera();
     }
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -66,20 +65,23 @@ class _QrViewScreenState extends State<QrViewScreen> {
         if (scanData.code != null) {
           Future.delayed(Duration.zero).then((_) {
             setState(() {
-            result = scanData;
-            print('result:${result!.code}');
+              result = scanData;
+              print('result:${result!.code}');
+            });
+            if (result!.code!.isNotEmpty) {
+              Provider.of<QrInfoProvider>(context, listen: false)
+                  .setQr(result!.code);
+              Provider.of<TransferCurrentProvider>(context, listen: false)
+                  .setCurrent(1);
+              Future.delayed(Duration.zero).then((_) {
+                Navigator.pushNamed(
+                context,
+                TransferScreen.routeName,
+              );
+              });
+            }
           });
-          if (result!.code!.isNotEmpty) {
-          Provider.of<QrInfoProvider>(context, listen: false)
-              .setQr(result!.code);
-          Navigator.pushNamed(
-              context, TransferScreen.routeName);
         }
-          
-          });
-        }
-
-        
       });
     } on Exception catch (e) {
       print(e);

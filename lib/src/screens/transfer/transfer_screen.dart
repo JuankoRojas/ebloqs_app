@@ -1,5 +1,5 @@
-import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
+import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
 import 'package:ebloqs_app/src/screens/qr/qr_view_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/services/get_all_user_service.dart';
@@ -26,13 +26,14 @@ class _TransferScreenState extends State<TransferScreen> {
   final TextEditingController fromController = TextEditingController();
   PageController pageController = PageController();
   bool? isLoadLogin = false;
-  int _curr = 0;
+  int? _curr;
   String? errorValidation;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    print('current : $_curr');
+    _curr = Provider.of<TransferCurrentProvider>(context).getCurrent();
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -101,7 +102,7 @@ class _TransferScreenState extends State<TransferScreen> {
                           setState(() {
                             _curr = 0;
                           });
-                          pageController.jumpToPage(_curr);
+                          pageController.jumpToPage(_curr!);
                         }
                       },
                     ),
@@ -129,7 +130,7 @@ class _TransferScreenState extends State<TransferScreen> {
                           setState(() {
                             _curr = 1;
                           });
-                          pageController.jumpToPage(_curr);
+                          pageController.jumpToPage(_curr!);
                         }
                       },
                     )
@@ -274,7 +275,7 @@ class Dinero extends StatefulWidget {
   State<Dinero> createState() => _DineroState();
 }
 
-class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
+class _DineroState extends State<Dinero> {
   final TextEditingController descriptionController = TextEditingController();
   String? selectedValue;
   String? byValue;
@@ -297,18 +298,16 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
   var _textFieldHints = ['Julian Usma'];
   TextEditingController _textFieldController = TextEditingController();
   @override
-  void afterFirstLayout(BuildContext context) {
+  void initState() {
     getAllUser();
-
+    super.initState();
   }
 
   getAllUser() async {
     var allUser = await GetAllUserService().getAllUsers();
-    if (!mounted) return null;
-      setState(() {
-        _textFieldHints = allUser;
-      });
-    
+    setState(() {
+      _textFieldHints = allUser;
+    });
     return allUser;
   }
 

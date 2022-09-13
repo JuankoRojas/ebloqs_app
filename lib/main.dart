@@ -5,6 +5,7 @@ import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/images_provider.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
+import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
@@ -77,6 +78,7 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => QrInfoProvider()),
         //AVATAR
         ChangeNotifierProvider(create: (context) => AvatarUserProvider()),
+        ChangeNotifierProvider(create: (context) => TransferCurrentProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
