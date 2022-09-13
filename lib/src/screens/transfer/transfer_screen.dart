@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
 import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
@@ -19,22 +21,36 @@ class TransferScreen extends StatefulWidget {
   State<TransferScreen> createState() => _TransferScreenState();
 }
 
-class _TransferScreenState extends State<TransferScreen> {
+class _TransferScreenState extends State<TransferScreen>
+    with AfterLayoutMixin<TransferScreen> {
   final GlobalKey<FormState> _formKey13 = GlobalKey<FormState>();
   final GlobalKey<FormState> _formKey14 = GlobalKey<FormState>();
   final TextEditingController quantity2Controller = TextEditingController();
   final TextEditingController quantityController = TextEditingController();
   final TextEditingController fromController = TextEditingController();
+  final TextEditingController walletToController = TextEditingController();
   PageController pageController = PageController();
   bool? isLoadLogin = false;
-  int? _curr;
+
   String? errorValidation;
+  int current = 0;
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    setState(() {
+      current = Provider.of<TransferCurrentProvider>(context, listen: false)
+          .getCurrent();
+      if (current == 1) {
+        pageController.jumpToPage(current);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    _curr = Provider.of<TransferCurrentProvider>(context).getCurrent();
 
+    walletToController.text = Provider.of<QrInfoProvider>(context).getQr();
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -83,7 +99,7 @@ class _TransferScreenState extends State<TransferScreen> {
                       child: Container(
                         width: size.width * 0.5,
                         height: size.height * 0.0640243902439025,
-                        color: (_curr == 0)
+                        color: (current == 0)
                             ? const Color(0xfff6f4fd)
                             : const Color(0xfff9f9fa),
                         child: const Center(
@@ -99,11 +115,17 @@ class _TransferScreenState extends State<TransferScreen> {
                         ),
                       ),
                       onTap: () {
-                        if (_curr == 1) {
+                        if (current == 1) {
                           setState(() {
-                            _curr = 0;
+                            current = 0;
+                            Provider.of<TransferCurrentProvider>(context,
+                                    listen: false)
+                                .setCurrent(0);
                           });
-                          pageController.jumpToPage(_curr!);
+                          pageController.jumpToPage(
+                              Provider.of<TransferCurrentProvider>(context,
+                                      listen: false)
+                                  .getCurrent());
                         }
                       },
                     ),
@@ -111,7 +133,7 @@ class _TransferScreenState extends State<TransferScreen> {
                       child: Container(
                         width: size.width * 0.5,
                         height: size.height * 0.0640243902439025,
-                        color: (_curr == 1)
+                        color: (current == 1)
                             ? const Color(0xfff6f4fd)
                             : const Color(0xfff9f9fa),
                         child: const Center(
@@ -127,11 +149,17 @@ class _TransferScreenState extends State<TransferScreen> {
                         ),
                       ),
                       onTap: () {
-                        if (_curr == 0) {
+                        if (current == 0) {
                           setState(() {
-                            _curr = 1;
+                            current = 1;
+                            Provider.of<TransferCurrentProvider>(context,
+                                    listen: false)
+                                .setCurrent(1);
                           });
-                          pageController.jumpToPage(_curr!);
+                          pageController.jumpToPage(
+                              Provider.of<TransferCurrentProvider>(context,
+                                      listen: false)
+                                  .getCurrent());
                         }
                       },
                     )
@@ -158,6 +186,7 @@ class _TransferScreenState extends State<TransferScreen> {
                       Tokens(
                         formKey14: _formKey14,
                         fromController: fromController,
+                        toController: walletToController,
                         quantity2Controller: quantity2Controller,
                         errorValidation: errorValidation,
                       )
@@ -165,7 +194,7 @@ class _TransferScreenState extends State<TransferScreen> {
                   ),
                 ),
               ),
-              (_curr == 0)
+              (current == 0)
                   ? Padding(
                       padding: EdgeInsets.only(
                           top: size.height * 0.0426829268292683,
@@ -261,7 +290,7 @@ class _TransferScreenState extends State<TransferScreen> {
   }
 }
 
-class Dinero extends StatefulWidget{
+class Dinero extends StatefulWidget {
   final GlobalKey<FormState> formKey13;
   final TextEditingController quantityController;
   String? errorValidation;
@@ -609,13 +638,16 @@ class Tokens extends StatefulWidget {
   final GlobalKey<FormState> formKey14;
   final TextEditingController quantity2Controller;
   final TextEditingController fromController;
+  final TextEditingController toController;
+
   String? errorValidation;
   Tokens(
       {Key? key,
       required this.formKey14,
       required this.errorValidation,
       required this.quantity2Controller,
-      required this.fromController})
+      required this.fromController,
+      required this.toController})
       : super(key: key);
 
   @override
@@ -640,9 +672,7 @@ class _TokensState extends State<Tokens> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    // if (Provider.of<QrInfoProvider>(context).getQr() != null) {
-      walletToController.text = Provider.of<QrInfoProvider>(context).getQr();
-    // }
+
     return Form(
       key: widget.formKey14,
       child: Column(
@@ -808,7 +838,7 @@ class _TokensState extends State<Tokens> {
           Padding(
             padding: EdgeInsets.only(top: size.height * 0.00948509485094851),
             child: TextFormField(
-              controller: walletToController,
+              controller: widget.toController,
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                     borderSide:
