@@ -1,3 +1,4 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
 import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
 import 'package:ebloqs_app/src/screens/qr/qr_view_screen.dart';
@@ -260,7 +261,7 @@ class _TransferScreenState extends State<TransferScreen> {
   }
 }
 
-class Dinero extends StatefulWidget {
+class Dinero extends StatefulWidget{
   final GlobalKey<FormState> formKey13;
   final TextEditingController quantityController;
   String? errorValidation;
@@ -275,7 +276,7 @@ class Dinero extends StatefulWidget {
   State<Dinero> createState() => _DineroState();
 }
 
-class _DineroState extends State<Dinero> {
+class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
   final TextEditingController descriptionController = TextEditingController();
   String? selectedValue;
   String? byValue;
@@ -298,13 +299,13 @@ class _DineroState extends State<Dinero> {
   var _textFieldHints = ['Julian Usma'];
   TextEditingController _textFieldController = TextEditingController();
   @override
-  void initState() {
+  void afterFirstLayout(BuildContext context) {
     getAllUser();
-    super.initState();
   }
 
   getAllUser() async {
     var allUser = await GetAllUserService().getAllUsers();
+    if (!mounted) return null;
     setState(() {
       _textFieldHints = allUser;
     });
@@ -639,9 +640,9 @@ class _TokensState extends State<Tokens> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    if (Provider.of<QrInfoProvider>(context).getQr() != null) {
-      walletToController.text = Provider.of<QrInfoProvider>(context).getQr()!;
-    }
+    // if (Provider.of<QrInfoProvider>(context).getQr() != null) {
+      walletToController.text = Provider.of<QrInfoProvider>(context).getQr();
+    // }
     return Form(
       key: widget.formKey14,
       child: Column(

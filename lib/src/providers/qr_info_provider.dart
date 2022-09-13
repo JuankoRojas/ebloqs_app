@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class QrInfoProvider with ChangeNotifier {
-  String? qr;
+  String qr = '';
 
-  void setQr(String? qr) {
+  void setQr(String qr) {
     this.qr = qr;
     notifyListeners();
   }
 
-  String? getQr() {
+  String getQr() {
     return qr;
   }
 }

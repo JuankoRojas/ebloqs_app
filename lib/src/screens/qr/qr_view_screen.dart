@@ -66,11 +66,11 @@ class _QrViewScreenState extends State<QrViewScreen> {
           Future.delayed(Duration.zero).then((_) {
             setState(() {
               result = scanData;
-              print('result:${result!.code}');
             });
             if (result!.code!.isNotEmpty) {
+              print('result:${result!.code}');
               Provider.of<QrInfoProvider>(context, listen: false)
-                  .setQr(result!.code);
+                  .setQr(result!.code!);
               Provider.of<TransferCurrentProvider>(context, listen: false)
                   .setCurrent(1);
               Future.delayed(Duration.zero).then((_) {
