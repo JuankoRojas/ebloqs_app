@@ -1,3 +1,4 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
 import 'package:ebloqs_app/src/screens/qr/qr_view_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
@@ -273,7 +274,7 @@ class Dinero extends StatefulWidget {
   State<Dinero> createState() => _DineroState();
 }
 
-class _DineroState extends State<Dinero> {
+class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
   final TextEditingController descriptionController = TextEditingController();
   String? selectedValue;
   String? byValue;
@@ -296,16 +297,18 @@ class _DineroState extends State<Dinero> {
   var _textFieldHints = ['Julian Usma'];
   TextEditingController _textFieldController = TextEditingController();
   @override
-  void initState() {
+  void afterFirstLayout(BuildContext context) {
     getAllUser();
-    super.initState();
+
   }
 
   getAllUser() async {
     var allUser = await GetAllUserService().getAllUsers();
-    setState(() {
-      _textFieldHints = allUser;
-    });
+    if (!mounted) return null;
+      setState(() {
+        _textFieldHints = allUser;
+      });
+    
     return allUser;
   }
 
