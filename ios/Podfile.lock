@@ -206,7 +206,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 9a2b10270a854731c4d4d8a97d0aa8380ec3458d
   FirebaseCoreDiagnostics: aaa87098082c4d4bdd1a9557b1186d18ca85ce8c
   FirebaseCoreInternal: a13302b0088fbf5f38b79b6ece49c2af7d3e05d6
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_facebook_auth: 361ac7a57263ebf327f26089507ead0d66558ee8
   flutter_native_splash: 52501b97d1c0a5f898d687f1646226c1f93c56ef
   geocoding: 32cfcdb16d38d907caaba65e2e42ad10d38bee58
