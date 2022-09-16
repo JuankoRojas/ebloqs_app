@@ -181,7 +181,7 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                         value)) {
                                       setState(() {
                                         errorValidation =
-                                            '''ingresar al menos 8 caracteres, una mayúscula,
+                                            '''Ingresar al menos 8 caracteres, una mayúscula,
 una minúscula, un número y un carácter especial''';
                                       });
                                       return '';
@@ -263,7 +263,7 @@ una minúscula, un número y un carácter especial''';
                                       value)) {
                                     setState(() {
                                       errorValidation =
-                                          '''ingresar al menos 8 caracteres, una mayúscula,
+                                          '''Ingresar al menos 8 caracteres, una mayúscula,
 una minúscula, un número y un carácter especial''';
                                     });
                                     return '';

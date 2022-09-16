@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:after_layout/after_layout.dart';
-import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
 import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
-import 'package:ebloqs_app/src/screens/qr/qr_view_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/services/get_all_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
@@ -50,7 +48,7 @@ class _TransferScreenState extends State<TransferScreen>
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    walletToController.text = Provider.of<QrInfoProvider>(context).getQr();
+    // walletToController.text = Provider.of<QrInfoProvider>(context).getQr();
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -420,6 +418,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
               maxLength: 50,
               keyboardType: const TextInputType.numberWithOptions(),
               decoration: InputDecoration(
+                hintText: '100',
                 enabledBorder: OutlineInputBorder(
                   borderSide:
                       const BorderSide(color: Color(0xffcdccd1), width: 1),
@@ -526,6 +525,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                   controller: _textFieldController,
                   focusNode: focusNode,
                   decoration: InputDecoration(
+                    hintText: 'Buscar persona que recibe',
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(color: Color(0xffcdccd1), width: 1),
@@ -749,6 +749,7 @@ class _TokensState extends State<Tokens> {
               maxLength: 50,
               keyboardType: const TextInputType.numberWithOptions(),
               decoration: InputDecoration(
+                hintText: '100',
                 enabledBorder: OutlineInputBorder(
                   borderSide:
                       const BorderSide(color: Color(0xffcdccd1), width: 1),
@@ -806,6 +807,7 @@ class _TokensState extends State<Tokens> {
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
+                  hintText: "Ingresa tu frase secreta",
                 ),
                 validator: (value) {
                   if (value == null) {
@@ -840,38 +842,40 @@ class _TokensState extends State<Tokens> {
             child: TextFormField(
               controller: widget.toController,
               decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xffcdccd1), width: 1),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color(0xffcdccd1), width: 0.0),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  suffixIcon: Padding(
-                    padding:
-                        EdgeInsets.only(right: size.width * 0.0426666666666667),
-                    child: GestureDetector(
-                      child: SvgPicture.asset(
-                        'assets/Vectores/Iconos/qr2.svg',
-                        width: 20,
-                        color: const Color(0xff4A0086),
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const QrViewScreen()));
-                      },
-                    ),
-                  )),
+                hintText: 'Ingresa la llave criptográfica pública',
+                enabledBorder: OutlineInputBorder(
+                  borderSide:
+                      const BorderSide(color: Color(0xffcdccd1), width: 1),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                border: OutlineInputBorder(
+                  borderSide:
+                      const BorderSide(color: Color(0xffcdccd1), width: 0.0),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                // suffixIcon: Padding(
+                //   padding:
+                //       EdgeInsets.only(right: size.width * 0.0426666666666667),
+                //   child: GestureDetector(
+                //     child: SvgPicture.asset(
+                //       'assets/Vectores/Iconos/qr2.svg',
+                //       width: 20,
+                //       color: const Color(0xff4A0086),
+                //     ),
+                //     onTap: () {
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => const QrViewScreen()));
+                //     },
+                //   ),
+                // )
+              ),
               validator: (value) {
                 if (value == null) {
                   setState(() {
                     widget.errorValidation =
-                        'Por Favor,  debes completar todos los registros para continuar';
+                        'Por Favor, debes completar todos los registros para continuar';
                   });
 
                   return '';
@@ -913,7 +917,7 @@ class _TokensState extends State<Tokens> {
                         const BorderSide(color: Color(0xffcdccd1), width: 0.0),
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  hintText: "Ubique descripción opcional"),
+                  hintText: "Ingrese descripción opcional"),
             ),
           )
         ],

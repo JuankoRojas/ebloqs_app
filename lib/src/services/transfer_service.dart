@@ -8,23 +8,26 @@ class TransferService with ChangeNotifier {
 
   Future transfer({required String to, required String amount}) async {
     final userData = {'to': to, 'amount': amount};
+    final encoded = convert.jsonEncode(userData);
     try {
-      final response = await http.post(
-        url,
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': 'Bearer ${Preferences.token}',
-        },
-        body: convert.jsonEncode(userData),
-      );
-      print(response.body);
-      switch (response.statusCode) {
-        case 201:
-          var jsonResponse =
-              convert.jsonDecode(response.body) as Map<String, dynamic>;
-          return jsonResponse;
-        case 401:
-          throw Exception('Invalid transfer');
+      if (userData.isNotEmpty && encoded.isNotEmpty) {
+        final response = await http.post(
+          url,
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer ${Preferences.token}',
+          },
+          body: encoded,
+        );
+        print(response.body);
+        switch (response.statusCode) {
+          case 201:
+            var jsonResponse =
+                convert.jsonDecode(response.body) as Map<String, dynamic>;
+            return jsonResponse;
+          case 401:
+            throw Exception('Invalid transfer');
+        }
       }
     } catch (e) {
       debugPrint(e.toString());

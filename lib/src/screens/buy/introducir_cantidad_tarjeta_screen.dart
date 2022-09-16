@@ -1,6 +1,7 @@
 import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
 import 'package:ebloqs_app/src/services/transfer_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,6 +39,7 @@ class _IntroducirCantidadTarjetaScreenState
   bool isLoading = false;
   String? errorValidation;
   bool setTransaction = false;
+  bool? isLoadingTransfer = false;
   @override
   void initState() {
     quantityController.text = widget.cantidadTarjeta!;
@@ -417,69 +419,74 @@ class _IntroducirCantidadTarjetaScreenState
                                 ),
                               ),
                               Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    0.00985221674876847),
-                                            child: TextFormField(
-                                              keyboardType: TextInputType.text,
-                                              
-                                              inputFormatters: <
-                                                  TextInputFormatter>[
-                                                FilteringTextInputFormatter
-                                                    .allow(RegExp("[0-9/]"))
-                                              ],
-                                              
-                                                controller: expirationDateController,
-                                                maxLength: 5,
-                                              decoration: InputDecoration(
-                                                hintText: "MM/AA",
-                                                
-                                                labelStyle: const TextStyle(
-                                                  color: Color(0xff9B99A3),
-                                                  fontSize: 14,
-                                                  fontFamily: "Archivo",
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
-                                                ),
-                                              ),
-                                                onChanged: (String? value) {
-                                                  if (value!.length < dateExpired.length) {
-                                                    value = '';
-                                                  } else if (value.length == 1 && (int.parse(value) < 10 && int.parse(value) > 1)) {
-                                                    value = '0$value/';
-                                                  } else if (value.length == 2 && ( value == '10' || value == '11' || value == '12')) {
-                                                    value += '/';
-                                                  } else if (!value.contains('/') && value.length == 2 ) {
-                                                    if (int.parse(value) > 12) value = '${value[0]}/${value[1]}';
-                                                  }
-                                                  value.replaceAll('//', '/');
-                                                    setState(() {
-                                                      expirationDateController.text = value!;
-                                                      dateExpired = value;
-                                                      expirationDateController.selection = TextSelection.fromPosition(TextPosition(offset: expirationDateController.text.length));
-                                                    });
-                                                  if (expirationDateController.text.length == 5) {
-                                                      try {
-                                                    DateTime date = DateFormat("MM/yyyy").parseStrict(value);
-                                                    if (date.isBefore(DateTime.now())) {
-                                                      setState(() {
-                                                      errorValidation = 'Fecha vencida';
-                                                    });
-                                                    print(errorValidation);
-                                                    }
-                                                  } catch (e) {
-                                                    return print(e);
-
-                                                  }
-                                                  }
-                
-                                              },
-                                            ),
-                                          ),
-              
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.00985221674876847),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.text,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp("[0-9/]"))
+                                  ],
+                                  controller: expirationDateController,
+                                  maxLength: 5,
+                                  decoration: InputDecoration(
+                                    hintText: "MM/AA",
+                                    labelStyle: const TextStyle(
+                                      color: Color(0xff9B99A3),
+                                      fontSize: 14,
+                                      fontFamily: "Archivo",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                  ),
+                                  onChanged: (String? value) {
+                                    if (value!.length < dateExpired.length) {
+                                      value = '';
+                                    } else if (value.length == 1 &&
+                                        (int.parse(value) < 10 &&
+                                            int.parse(value) > 1)) {
+                                      value = '0$value/';
+                                    } else if (value.length == 2 &&
+                                        (value == '10' ||
+                                            value == '11' ||
+                                            value == '12')) {
+                                      value += '/';
+                                    } else if (!value.contains('/') &&
+                                        value.length == 2) {
+                                      if (int.parse(value) > 12)
+                                        value = '${value[0]}/${value[1]}';
+                                    }
+                                    value.replaceAll('//', '/');
+                                    setState(() {
+                                      expirationDateController.text = value!;
+                                      dateExpired = value;
+                                      expirationDateController.selection =
+                                          TextSelection.fromPosition(
+                                              TextPosition(
+                                                  offset:
+                                                      expirationDateController
+                                                          .text.length));
+                                    });
+                                    if (expirationDateController.text.length ==
+                                        5) {
+                                      try {
+                                        DateTime date = DateFormat("MM/yyyy")
+                                            .parseStrict(value);
+                                        if (date.isBefore(DateTime.now())) {
+                                          setState(() {
+                                            errorValidation = 'Fecha vencida';
+                                          });
+                                          print(errorValidation);
+                                        }
+                                      } catch (e) {
+                                        return print(e);
+                                      }
+                                    }
+                                  },
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -492,45 +499,14 @@ class _IntroducirCantidadTarjetaScreenState
                 padding: EdgeInsets.only(
                   top: size.height * 0.0640394088669951,
                 ),
-                child: GestureDetector(
-                  child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Container(
-                        height: size.height * 0.0640394088669951,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x3f000000),
-                              blurRadius: 4,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Image.asset(
-                          'assets/png/buttongradient.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const Center(
-                        child: Text(
-                          "Continuar",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  onTap: () async {
+                child: ButtonPrimary(
+                  width: size.width,
+                  title: 'Continuar',
+                  onPressed: () async {
                     if (formKey8.currentState!.validate()) {
                       setState(() {
                         setTransaction = true;
+                        isLoadingTransfer = true;
                       });
                       var amount = double.parse(quantityController.text) / 0.05;
                       var parsedAmount = amount.toInt();
@@ -541,6 +517,7 @@ class _IntroducirCantidadTarjetaScreenState
                         if (response.isNotEmpty) {
                           setState(() {
                             setTransaction = false;
+                            isLoadingTransfer = false;
                           });
                           debugPrint(response.toString());
                           Future.delayed(Duration.zero).then(
@@ -556,6 +533,10 @@ class _IntroducirCantidadTarjetaScreenState
                         }
                       } catch (e) {
                         debugPrint(e.toString());
+                        setState(() {
+                          setTransaction = false;
+                          isLoadingTransfer = false;
+                        });
                       }
                     } else {
                       setState(() {
@@ -566,10 +547,16 @@ class _IntroducirCantidadTarjetaScreenState
                           context, size, errorValidation, isLoading, '', () {
                         Navigator.pop(context);
                       });
+                      setState(() {
+                        setTransaction = false;
+                        isLoadingTransfer = false;
+                      });
                     }
                   },
+                  load: isLoadingTransfer!,
+                  disabled: isLoadingTransfer!,
                 ),
-              ),
+              )
             ],
           ),
         ),
