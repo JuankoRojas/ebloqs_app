@@ -69,6 +69,7 @@ class _PersonalInformationState extends State<PersonalInformation>
         ),
       );
     }
+    print('accesstoken: ${Preferences.token!}');
     return Scaffold(
       appBar: AppBar(
         leadingWidth: size.width * 0.139720558882236,

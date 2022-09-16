@@ -78,7 +78,7 @@ class AuthUserService with ChangeNotifier {
     required String dniNumber,
   }) async {
     final userData = {
-      'nacionalty': nacionality,
+      'nacionality': nacionality,
       'name': name,
       'lastname': lastname,
       'birthdayDate': birthdayDate,
