@@ -1,4 +1,4 @@
-package com.ebloqs.application
+package com.ebloqs.application.android
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

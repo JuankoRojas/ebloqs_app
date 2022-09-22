@@ -80,6 +80,82 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:479067570571:android:0e373324032c4bfcb62f8e",
+        "android_client_info": {
+          "package_name": "com.ebloqs.application.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "479067570571-2plaohpojj23pmq2n04s8tdgb4nohkb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.application.android",
+            "certificate_hash": "c4a45a3761730b9d69bc28d37c78674e0cbe04cc"
+          }
+        },
+        {
+          "client_id": "479067570571-ah2otdnc47lvgasg57fvgcit8vvbhlvn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.application.android",
+            "certificate_hash": "63299cfcbe7eeab897edd8f6ebef9be16572ded9"
+          }
+        },
+        {
+          "client_id": "479067570571-maq8qvumnkhufq1ju70nj90mmkce6h8r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.application.android",
+            "certificate_hash": "fc4707278b4a8cd9a5c97f8e1abe357e35ed5c87"
+          }
+        },
+        {
+          "client_id": "479067570571-o09m1ht6cv3ho18k0r31c9jrp8sstlgi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.application.android",
+            "certificate_hash": "02a8529a46a08efbec4b2320c5e226490d2a901e"
+          }
+        },
+        {
+          "client_id": "479067570571-p53udg92br2eiilrao6er241u38bg24f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ebloqs.application.android",
+            "certificate_hash": "4bbfb67ff3205866739b0d3f9bd70e1e3b7d78e1"
+          }
+        },
+        {
+          "client_id": "479067570571-hgf1n8gviocln18q7kmgrmptsa3oic1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0L-sSNR5QzCHcd9Zo2vjYenu2aka2_0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "479067570571-hgf1n8gviocln18q7kmgrmptsa3oic1r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "479067570571-cnpu8vbkiqfaou5modgft4nb9kdkdfar.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ebloqs.application"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

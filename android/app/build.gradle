@@ -13,7 +13,7 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '9'
+    flutterVersionCode = '22'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
@@ -50,12 +50,12 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.ebloqs.application"
+        applicationId "com.ebloqs.application.android"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 9
+        versionCode 22
         versionName "1.0.0"
         multiDexEnabled true
     }

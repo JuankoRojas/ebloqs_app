@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:camera/camera.dart';
 import 'package:dio/dio.dart';
+import 'package:ebloqs_app/src/models/get_my_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -146,7 +147,7 @@ class AuthUserService with ChangeNotifier {
     }
   }
 
-  Future<bool> getUserInfo({required String accesstoken}) async {
+  Future<GetMyInfoModel> getUserInfo({required String accesstoken}) async {
     try {
       final response = await http.post(
           Uri.parse('https://www.api.ebloqs.com/user/me'),
@@ -160,9 +161,9 @@ class AuthUserService with ChangeNotifier {
       if (response.statusCode == 201) {
         var jsonRespon = await jsonDecode(response.body);
         debugPrint(jsonRespon['id']);
-        return jsonRespon;
+        return GetMyInfoModel.fromJson(jsonRespon);
       } else {
-        return false;
+        return GetMyInfoModel();
       }
     } catch (e) {
       debugPrint(e.toString());

@@ -15,6 +15,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SingleChildScrollView(
           child: Column(
