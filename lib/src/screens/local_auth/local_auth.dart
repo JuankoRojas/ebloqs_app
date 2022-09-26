@@ -1,4 +1,5 @@
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -65,6 +66,7 @@ class _LocalAuthState extends State<LocalAuth> {
       _authorized = message;
     });
     if (message == 'Authorized') {
+      Preferences.local_auth = message;
       Navigator.of(context)
           .pushNamed(NationalityScreen.routeName)
           .whenComplete(_cancelAuthentication);
@@ -178,6 +180,7 @@ class _LocalAuthState extends State<LocalAuth> {
                 ),
               ),
               onTap: () {
+                Preferences.local_auth = 'Not Authorized';
                 Navigator.pushNamed(context, NationalityScreen.routeName);
               },
             ),

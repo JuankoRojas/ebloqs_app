@@ -134,15 +134,22 @@ class _CustomNavigatorState extends State<CustomNavigator> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                      visualDensity: VisualDensity.compact,
-                      padding: EdgeInsets.zero,
-                      onPressed: () {},
-                      icon: SvgPicture.asset(
-                          'assets/Vectores/Iconos/mercado.svg')),
-                  const Text(
+                    visualDensity: VisualDensity.compact,
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      Navigator.pushNamed(context, MarketScreen.routeName);
+                    },
+                    icon: SvgPicture.asset('assets/Vectores/Iconos/mercado.svg',
+                        color: (currentPath == 'MarketScreen')
+                            ? const Color(0xff2504CA)
+                            : const Color(0xff170658)),
+                  ),
+                  Text(
                     'Mercado',
                     style: TextStyle(
-                        color: Color(0xff170658),
+                        color: (currentPath == 'MarketScreen')
+                            ? const Color(0xff2504CA)
+                            : const Color(0xff170658),
                         fontSize: 10,
                         fontFamily: 'Archivo',
                         fontWeight: FontWeight.w400),
@@ -160,14 +167,15 @@ class _CustomNavigatorState extends State<CustomNavigator> {
                       visualDensity: VisualDensity.compact,
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        customModalBottomAlert(
-                            context,
-                            size,
-                            'La opción de beneficios se habilitará en la etapa 2.',
-                            isLoading,
-                            '', () {
-                          Navigator.pop(context);
-                        });
+                        // customModalBottomAlert(
+                        //     context,
+                        //     size,
+                        //     'La opción de beneficios se habilitará en la etapa 2.',
+                        //     isLoading,
+                        //     '', () {
+                        //   Navigator.pop(context);
+                        // });
+                        Navigator.pushNamed(context, BenefitsScreen.routeName);
                       },
                       icon: SvgPicture.asset(
                           'assets/Vectores/Iconos/referidos(2).svg')),

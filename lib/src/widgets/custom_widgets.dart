@@ -1,5 +1,7 @@
+import 'package:ebloqs_app/src/screens/benefits/benefits_screen.dart';
 import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
+import 'package:ebloqs_app/src/screens/market/market_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';

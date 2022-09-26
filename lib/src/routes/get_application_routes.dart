@@ -1,3 +1,9 @@
+import 'package:ebloqs_app/src/screens/benefits/accumulated_points_screen.dart';
+import 'package:ebloqs_app/src/screens/benefits/benefits_screen.dart';
+import 'package:ebloqs_app/src/screens/benefits/exchange_screen.dart';
+import 'package:ebloqs_app/src/screens/benefits/my_referrals_screen.dart';
+import 'package:ebloqs_app/src/screens/benefits/my_rewards_screen.dart';
+import 'package:ebloqs_app/src/screens/benefits/referrals_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_tarjeta_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_transferencia_screen.dart';
@@ -15,8 +21,10 @@ import 'package:ebloqs_app/src/screens/indentity/upload_document_screen.dart';
 import 'package:ebloqs_app/src/screens/legal/privacy_policy_screen.dart';
 import 'package:ebloqs_app/src/screens/legal/therms_conditions_screen.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android.dart';
+import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android_settings.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
+import 'package:ebloqs_app/src/screens/local_auth/local_auth_settings.dart';
 import 'package:ebloqs_app/src/screens/market/market_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
@@ -25,9 +33,12 @@ import 'package:ebloqs_app/src/screens/register/registro_link_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/add_card_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/avatar_selection_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/delete_account_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/device_management_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/payments_methods_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/personal_information_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/personal_settings.dart';
+import 'package:ebloqs_app/src/screens/settings/security_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
@@ -90,6 +101,10 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     LocalAuth.routeName: (BuildContext context) => const LocalAuth(),
     LocalAuthAndroid.routeName: (BuildContext context) =>
         const LocalAuthAndroid(),
+    LocalAuthSettings.routeName: (BuildContext context) =>
+        const LocalAuthSettings(),
+    LocalAuthAndroidSettings.routeName: (BuildContext context) =>
+        const LocalAuthAndroidSettings(),
     //Legal
 
     ThermsConditionsScreen.routeName: (BuildContext context) =>
@@ -109,5 +124,22 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
         const PersonalSettingsScreen(),
     PersonalInformationScreen.routeName: (BuildContext context) =>
         const PersonalInformationScreen(),
+    SecurityScreen.routeName: (BuildContext context) => const SecurityScreen(),
+    DeviceManagementScreen.routeName: (BuildContext context) =>
+        const DeviceManagementScreen(),
+    DeleteAccountScreen.routeName: (BuildContext context) =>
+        const DeleteAccountScreen(),
+
+    //Benefits
+    BenefitsScreen.routeName: (BuildContext context) => const BenefitsScreen(),
+    ReferralsScreen.routeName: (BuildContext context) =>
+        const ReferralsScreen(),
+    MyReferralsScreen.routeName: (BuildContext context) =>
+        const MyReferralsScreen(),
+    MyRewardsScreen.routeName: (BuildContext context) =>
+        const MyRewardsScreen(),
+    ExchangeScreen.routeName: (BuildContext context) => const ExchangeScreen(),
+    AccumulatedPointsScreen.routeName: (BuildContext context) =>
+        const AccumulatedPointsScreen(),
   };
 }

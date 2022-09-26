@@ -1,8 +1,13 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
-import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
+import 'package:ebloqs_app/src/providers/user_info_provider.dart';
+import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
+import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
+import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
@@ -10,14 +15,30 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:outline_search_bar/outline_search_bar.dart';
 import 'package:provider/provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static String routeName = 'HomeScreen';
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen>
+    with AfterLayoutMixin<HomeScreen> {
+  @override
+  void afterFirstLayout(BuildContext context) async {
+    var userInfo =
+        await AuthUserService().getUserInfo(accesstoken: Preferences.token!);
+    Future.delayed(Duration.zero).then((_) =>
+        Provider.of<UserInfoProvider>(context, listen: false)
+            .userInfoSet(userInfo));
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final avatarSelected = Provider.of<AvatarUserProvider>(context).avatarUser;
+    bool isLoading = false;
     print('token: ${Preferences.token}');
     List<Map<String, dynamic>> inversiones = [
       {
@@ -43,7 +64,7 @@ class HomeScreen extends StatelessWidget {
       {
         'imagen': 'assets/Imagenes/quito2.png',
         'inversion': 'Dinámica II',
-        'sector': 'Av . Gonzalez Suarez y Av. Pinzon. Es 94',
+        'sector': 'Av. Diego Almagro y Av. Alpallana',
         'precio': '120',
         'pisos': '6',
         'apartamentos': '36',
@@ -61,49 +82,49 @@ class HomeScreen extends StatelessWidget {
       {
         'imagen': 'assets/Imagenes/quito2.png',
         'inversion': 'Dinámica II',
-        'sector': 'Av . Gonzalez Suarez y Av. Pinzon. Es 94',
+        'sector': 'Av. Diego Almagro y Av. Alpallana',
         'precio': '120',
-        'pisos': '6',
-        'apartamentos': '36',
+        'pisos': '15',
+        'apartamentos': '80',
         'rentabilidad': '12.01'
       },
     ];
-    List<Map<String, dynamic>> inversionesGuayaquil = [
+    List<Map<String, dynamic>> inversionesMiami = [
       {
         'imagen': 'assets/Imagenes/guayaquil1.png',
-        'inversion': 'SOHO 360 Smart Office',
-        'sector': 'Home Office - Consultorios · Puerto Santa Ana',
-        'precio': '98',
-        'pisos': '6',
-        'apartamentos': '36',
-        'rentabilidad': '13.25'
+        'inversion': 'SOHO 500 Smart',
+        'sector': '1569 NW 17th Ave.',
+        'precio': '300',
+        'pisos': '25',
+        'apartamentos': '120',
+        'rentabilidad': '29.75'
       },
       {
         'imagen': 'assets/Imagenes/guayaquil2.png',
-        'inversion': 'Ágora Ciudad Médica',
-        'sector': 'Av. Joaquín Orrantia y la Av. Abel Romeo Castillo',
+        'inversion': 'Ocean Beach',
+        'sector': '551 N Fort Lauderdale Beach Blvd R2403',
         'precio': '103',
-        'pisos': '6',
-        'apartamentos': '36',
-        'rentabilidad': '12.01'
+        'pisos': '21',
+        'apartamentos': '105',
+        'rentabilidad': '28.05'
       },
       {
         'imagen': 'assets/Imagenes/guayaquil1.png',
-        'inversion': 'SOHO 360 Smart Office',
-        'sector': 'Home Office - Consultorios · Puerto Santa Ana',
-        'precio': '98',
-        'pisos': '6',
-        'apartamentos': '36',
-        'rentabilidad': '13.25'
+        'inversion': 'SOHO 500 Smart',
+        'sector': '1569 NW 17th Ave.',
+        'precio': '300',
+        'pisos': '25',
+        'apartamentos': '120',
+        'rentabilidad': '29.75'
       },
       {
         'imagen': 'assets/Imagenes/guayaquil2.png',
-        'inversion': 'Ágora Ciudad Médica',
-        'sector': 'Av. Joaquín Orrantia y la Av. Abel Romeo Castillo',
+        'inversion': 'Ocean Beach',
+        'sector': '551 N Fort Lauderdale Beach Blvd R2403',
         'precio': '103',
-        'pisos': '6',
-        'apartamentos': '36',
-        'rentabilidad': '12.01'
+        'pisos': '21',
+        'apartamentos': '105',
+        'rentabilidad': '28.05'
       },
     ];
     List<Map<String, dynamic>> inversionesVehiculos = [
@@ -126,14 +147,26 @@ class HomeScreen extends StatelessWidget {
     ];
     List<Map<String, dynamic>> inversionesEducacion = [
       {
-        'imagen': 'assets/Imagenes/educativa1.png',
-        'inversion': 'Anáhuac México Norte',
+        'imagen': 'assets/Imagenes/university-library-4825366_1920.jpg',
+        'inversion': 'UNAH Universidad MX',
         'oferta': 'Oferta educativa',
       },
       {
         'imagen': 'assets/Imagenes/educativa1.png',
-        'inversion': 'Anáhuac México Norte',
+        'inversion': 'TEC CR México Norte',
         'oferta': 'Oferta educativa',
+      },
+    ];
+    List<Map<String, dynamic>> inversionesEventos = [
+      {
+        'imagen': 'assets/Imagenes/rock-3079352_640.jpg',
+        'inversion': 'Inversión concierto',
+        'oferta': 'Inversiones eventos',
+      },
+      {
+        'imagen': 'assets/Imagenes/belgium-6497401_1920.jpg',
+        'inversion': 'Inversión evento',
+        'oferta': 'Inversiones eventos',
       },
     ];
     return Scaffold(
@@ -231,232 +264,11 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(
                           top: size.height * 0.02, bottom: size.height * 0.03),
-                      child: FutureBuilder(
-                        future: BalanceService()
-                            .getBalance(accesstoken: Preferences.token!),
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          if (snapshot.hasData && snapshot.data != null) {
-                            print(snapshot.data);
-                            final usd = double.parse(snapshot.data) * 0.05;
-                            return Container(
-                              width: size.width * 0.95,
-                              height: size.height * 0.1,
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.0184729064039409,
-                                  left: size.width * 0.043,
-                                  right: size.width * 0.034),
-                              decoration: BoxDecoration(
-                                image: const DecorationImage(
-                                  image: AssetImage(
-                                      'assets/Imagenes/Mask group.png'),
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(100),
-                                          color: const Color(0x14ffffff),
-                                        ),
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 4,
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                              width: 16,
-                                              height: 16,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              ),
-                                              child: SvgPicture.asset(
-                                                'assets/Vectores/Iconos/candado.svg',
-                                                color: Colors.white,
-                                                width: 16,
-                                              ),
-                                            ),
-                                            const SizedBox(width: 8),
-                                            Row(
-                                              children: [
-                                                const Text(
-                                                  "Balance Bloqueado ",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 11,
-                                                    fontFamily: "Archivo",
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  snapshot.data ?? '',
-                                                  style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 11,
-                                                    fontFamily: "Archivo",
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                                const Text(
-                                                  ' EBL',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 11,
-                                                    fontFamily: "Archivo",
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: size.height *
-                                                0.00985221674876847,
-                                            left: size.width *
-                                                0.0106666666666667),
-                                        child: const Text(
-                                          "BALANCE DISPONIBLE",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 11.59,
-                                            fontFamily: "Archivo",
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: size.height * 0.015),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              snapshot.data ?? '',
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 36,
-                                              ),
-                                            ),
-                                            SizedBox(width: size.width * 0.035),
-                                            const Text(
-                                              "EBL",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18.55,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: size.height * 0.015),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                            color: const Color(0xff170658),
-                                          ),
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: size.width * 0.033,
-                                            vertical: size.height * 0.01,
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "$usd USD",
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 13,
-                                                  fontFamily: "Archivo",
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        bottom: size.height * 0.022),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          width: size.width * 0.15,
-                                          height: size.width * 0.15,
-                                          padding:
-                                              EdgeInsets.all(size.width * 0.02),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topCenter,
-                                              end: Alignment.bottomCenter,
-                                              colors: [
-                                                Colors.white.withOpacity(0.7),
-                                                const Color(0x00ffffff)
-                                              ],
-                                            ),
-                                          ),
-                                          child: SvgPicture.asset(
-                                              'assets/Vectores/Iconos/ebloqscoinb.svg'),
-                                        ),
-                                        SvgPicture.asset(
-                                          'assets/Vectores/Iconos/chevronright.svg',
-                                          color: const Color(0xffffffff),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          } else {
-                            return Container();
-                          }
-                        },
-                      ),
-                    ),
-                    //tarjeta 2
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: size.height * 0.02, bottom: size.height * 0.03),
                       child: Container(
                         width: size.width * 0.9,
                         height: size.height * 0.1,
                         padding: EdgeInsets.only(
-                            top: size.height * 0.03,
+                            top: size.height * 0.0197044334975369,
                             left: size.width * 0.04,
                             right: size.width * 0.032),
                         decoration: BoxDecoration(
@@ -465,114 +277,399 @@ class HomeScreen extends StatelessWidget {
                           ),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        child: Stack(
                           children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      top: size.height * 0.006,
-                                      left: size.width * 0.11),
-                                  child: Image.asset(
-                                    'assets/Imagenes/Group 2066.png',
-                                    width: size.width * 0.2,
-                                    height: size.height * 0.09,
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(top: size.height * 0.027),
-                                  child: const Text(
-                                    "INVIERTE EN TOKENS EBLOQS",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontFamily: "Archivo",
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
                             Padding(
-                              padding:
-                                  EdgeInsets.only(bottom: size.height * 0.022),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: size.height * 0.025,
-                                        right: size.width * 0.05),
-                                    child: const Text(
-                                      "Preventa: Fase 1",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 11.59,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
+                              padding: EdgeInsets.only(
+                                top: size.height * 0.0369458128078818,
+                                left: size.width * 0.04,
+                              ),
+                              child: SizedBox(
+                                width: size.width * 0.432,
+                                child: const Text(
+                                  "Invierte en bienes y servicios tokenizados ¡con tarjeta! ",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontFamily: "Archivo",
+                                    fontWeight: FontWeight.w600,
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        right: size.width * 0.04),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(126.47),
-                                        color: const Color(0xff170658),
-                                      ),
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.04,
-                                        vertical: size.width * 0.03,
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: const [
-                                          Text(
-                                            "\$0,10 USD",
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              child: Image.asset(
+                                'assets/Vectores/Ilustraciones/Group 2189.png',
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    //tarjeta 2
+                    Padding(
+                      padding: EdgeInsets.only(
+                          top: size.height * 0.02, bottom: size.height * 0.03),
+                      child: FutureBuilder(
+                        future: BalanceService().getBalanceOf(
+                            accesstoken: Preferences.token!,
+                            publicKey: Preferences.public_key!),
+                        builder:
+                            (BuildContext context, AsyncSnapshot snapshot) {
+                          if (snapshot.hasData && snapshot.data != null) {
+                            print(snapshot.data);
+                            final usd = double.parse(snapshot.data) * 0.05;
+                            return GestureDetector(
+                              child: Container(
+                                width: size.width * 0.95,
+                                height: size.height * 0.1,
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.0184729064039409,
+                                    left: size.width * 0.043,
+                                    right: size.width * 0.034),
+                                decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    image: AssetImage(
+                                        'assets/Imagenes/Mask group.png'),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            color: const Color(0x14ffffff),
+                                          ),
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 4,
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                width: 16,
+                                                height: 16,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                ),
+                                                child: SvgPicture.asset(
+                                                  'assets/Vectores/Iconos/candado.svg',
+                                                  color: Colors.white,
+                                                  width: 16,
+                                                ),
+                                              ),
+                                              const SizedBox(width: 8),
+                                              Row(
+                                                children: [
+                                                  const Text(
+                                                    "Balance Bloqueado ",
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 11,
+                                                      fontFamily: "Archivo",
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    snapshot.data ?? '',
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 11,
+                                                      fontFamily: "Archivo",
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                  const Text(
+                                                    ' EBL',
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 11,
+                                                      fontFamily: "Archivo",
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  0.00985221674876847,
+                                              left: size.width *
+                                                  0.0106666666666667),
+                                          child: const Text(
+                                            "BALANCE DISPONIBLE",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 16.44,
+                                              fontSize: 11.59,
                                               fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
+                                              fontWeight: FontWeight.w400,
                                             ),
                                           ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: size.height * 0.015),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                snapshot.data ?? '',
+                                                style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 36,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                  width: size.width * 0.035),
+                                              const Text(
+                                                "EBL",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 18.55,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: size.height * 0.015),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              color: const Color(0xff170658),
+                                            ),
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.033,
+                                              vertical: size.height * 0.01,
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  "$usd USD",
+                                                  style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 13,
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          bottom: size.height * 0.022),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                            width: size.width * 0.15,
+                                            height: size.width * 0.15,
+                                            padding: EdgeInsets.all(
+                                                size.width * 0.02),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              gradient: LinearGradient(
+                                                begin: Alignment.topCenter,
+                                                end: Alignment.bottomCenter,
+                                                colors: [
+                                                  Colors.white.withOpacity(0.7),
+                                                  const Color(0x00ffffff)
+                                                ],
+                                              ),
+                                            ),
+                                            child: SvgPicture.asset(
+                                                'assets/Vectores/Iconos/ebloqscoinb.svg'),
+                                          ),
+                                          SvgPicture.asset(
+                                            'assets/Vectores/Iconos/chevronright.svg',
+                                            color: const Color(0xffffffff),
+                                          )
                                         ],
                                       ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, WalletScreen.routeName);
+                              },
+                            );
+                          } else {
+                            return Container();
+                          }
+                        },
+                      ),
+                    ),
+                    //tarjeta 3
+                    Padding(
+                      padding: EdgeInsets.only(
+                          top: size.height * 0.02, bottom: size.height * 0.03),
+                      child: GestureDetector(
+                        child: Container(
+                          width: size.width * 0.9,
+                          height: size.height * 0.1,
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.03,
+                              left: size.width * 0.04,
+                              right: size.width * 0.032),
+                          decoration: BoxDecoration(
+                            image: const DecorationImage(
+                              image:
+                                  AssetImage('assets/Imagenes/Mask group.png'),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: size.height * 0.006,
+                                        left: size.width * 0.11),
+                                    child: Image.asset(
+                                      'assets/Imagenes/Group 2066.png',
+                                      width: size.width * 0.2,
+                                      height: size.height * 0.09,
+                                    ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        right: size.width * 0.025),
-                                    child: SvgPicture.asset(
-                                      'assets/Vectores/Iconos/chevronright.svg',
-                                      color: const Color(0xffffffff),
+                                        top: size.height * 0.027),
+                                    child: const Text(
+                                      "INVIERTE EN TOKENS EBLOQS",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontFamily: "Archivo",
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
-                            )
-                          ],
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: size.height * 0.022),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          top: size.height * 0.025,
+                                          right: size.width * 0.05),
+                                      child: const Text(
+                                        "Preventa: Fase 1",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 11.59,
+                                          fontFamily: "Archivo",
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          right: size.width * 0.04),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(126.47),
+                                          color: const Color(0xff170658),
+                                        ),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: size.width * 0.04,
+                                          vertical: size.width * 0.03,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: const [
+                                            Text(
+                                              "\$0,10 USD",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16.44,
+                                                fontFamily: "Archivo",
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          right: size.width * 0.025),
+                                      child: SvgPicture.asset(
+                                        'assets/Vectores/Iconos/chevronright.svg',
+                                        color: const Color(0xffffffff),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
+                        onTap: () {
+                          Navigator.pushNamed(context, ComprarScreen.routeName);
+                        },
                       ),
                     )
                   ]),
               //Banner
 
-              // Inversión Inmobiliarias
+              // Inversión destacadas
               const Text(
-                "Inversión Inmobiliarias",
+                "Inversión Destacadas",
                 style: TextStyle(
                   color: Color(0xff170658),
                   fontSize: 15,
@@ -687,7 +784,7 @@ class HomeScreen extends StatelessWidget {
                                             ),
                                           ),
                                           const Text(
-                                            "1 EBL",
+                                            "1 Token",
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
                                               color: Color(0xff170658),
@@ -860,8 +957,14 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          Navigator.pushNamed(
-                              context, ProjectViewScreen.routeName);
+                          customModalBottomAlert(
+                              context,
+                              size,
+                              'La tokenización de bienes y servicios se habilitará en la etapa 2',
+                              isLoading,
+                              '', () {
+                            Navigator.pop(context);
+                          });
                         },
                       );
                     },
@@ -892,199 +995,215 @@ class HomeScreen extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index2) {
                     return Padding(
                       padding: EdgeInsets.only(right: size.width * 0.04),
-                      child: Container(
-                        width: size.width * 0.46,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: const Color(0xffeae4fc),
-                            width: 0.88,
+                      child: GestureDetector(
+                        child: Container(
+                          width: size.width * 0.46,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: const Color(0xffeae4fc),
+                              width: 0.88,
+                            ),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0x0f000000),
+                                blurRadius: 17.62,
+                                offset: Offset(0, 0),
+                              ),
+                            ],
+                            color: Colors.white,
                           ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x0f000000),
-                              blurRadius: 17.62,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                Image.asset(inversionesQuito[index2]['imagen']),
-                                Positioned(
-                                  top: size.height * 0.008,
-                                  right: size.width * 0.015,
-                                  child: SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Hearth.svg'),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.012,
-                                  bottom: size.height * 0.003,
-                                  left: size.width * 0.032,
-                                  right: size.width * 0.032),
-                              child: Text(
-                                inversionesQuito[index2]['inversion'],
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 14,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w600,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Stack(
+                                children: [
+                                  Image.asset(
+                                      inversionesQuito[index2]['imagen']),
+                                  Positioned(
+                                    top: size.height * 0.008,
+                                    right: size.width * 0.015,
+                                    child: SvgPicture.asset(
+                                        'assets/Vectores/Iconos/Hearth.svg'),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: size.height * 0.012,
+                                    bottom: size.height * 0.003,
+                                    left: size.width * 0.032,
+                                    right: size.width * 0.032),
+                                child: Text(
+                                  inversionesQuito[index2]['inversion'],
+                                  style: const TextStyle(
+                                    color: Color(0xff170658),
+                                    fontSize: 14,
+                                    fontFamily: "Archivo",
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  left: size.width * 0.032,
-                                  right: size.width * 0.032,
-                                  bottom: size.height * 0.01),
-                              child: Text(
-                                inversionesQuito[index2]['sector'],
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 12,
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    left: size.width * 0.032,
+                                    right: size.width * 0.032,
+                                    bottom: size.height * 0.01),
+                                child: Text(
+                                  inversionesQuito[index2]['sector'],
+                                  style: const TextStyle(
+                                    color: Color(0xff170658),
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.0098),
-                              child: Container(
-                                width: size.width * 0.5,
-                                height: size.height * 0.06,
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.0098),
+                                child: Container(
+                                  width: size.width * 0.5,
+                                  height: size.height * 0.06,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.03,
+                                      vertical: size.height * 0.007),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(4.40),
+                                    color: const Color(0xfff9f9fa),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text(
+                                        "Precio token",
+                                        textAlign: TextAlign.right,
+                                        style: TextStyle(
+                                          color: Color(0xff170658),
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            "USD\$ ${inversionesQuito[index2]['precio']}",
+                                            textAlign: TextAlign.right,
+                                            style: const TextStyle(
+                                              color: Color(0xff2504ca),
+                                              fontSize: 13,
+                                              fontFamily: "Archivo",
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          const Text(
+                                            "1 Token",
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: size.width * 0.03,
-                                    vertical: size.height * 0.007),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4.40),
-                                  color: const Color(0xfff9f9fa),
-                                ),
+                                    vertical: size.height * 0.02),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Text(
-                                      "Precio token",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 10,
+                                    SvgPicture.asset(
+                                        'assets/Vectores/Iconos/Building.svg'),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.02),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "${inversionesQuito[index2]['pisos']} Pisos ",
+                                            style: const TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                          Text(
+                                            "${inversionesQuito[index2]['apartamentos']} Apartamentos ",
+                                            style: const TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          "USD\$ ${inversionesQuito[index2]['precio']}",
-                                          textAlign: TextAlign.right,
-                                          style: const TextStyle(
-                                            color: Color(0xff2504ca),
-                                            fontSize: 13,
-                                            fontFamily: "Archivo",
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const Text(
-                                          "1 EBL",
-                                          textAlign: TextAlign.right,
-                                          style: TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ],
+                                    Expanded(child: Container()),
+                                    SvgPicture.asset(
+                                        'assets/Vectores/Iconos/Plus.svg'),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.03,
+                                    vertical: size.height * 0.015),
+                                child: Center(
+                                  child: Container(
+                                    height: size.height * 0.001,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: const Color(0xff170658),
+                                        width: 0.12,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: size.width * 0.03,
+                                ),
+                                child: Row(
+                                  children: [
+                                    const Text(
+                                      "Rentabilidad",
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0xff170658)),
+                                    ),
+                                    Expanded(child: Container()),
+                                    Text(
+                                      "${inversionesQuito[index2]['rentabilidad']}%",
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0xff170658)),
                                     ),
                                   ],
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.03,
-                                  vertical: size.height * 0.02),
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Building.svg'),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "${inversionesQuito[index2]['pisos']} Pisos ",
-                                          style: const TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                        Text(
-                                          "${inversionesQuito[index2]['apartamentos']} Apartamentos ",
-                                          style: const TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(child: Container()),
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Plus.svg'),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.03,
-                                  vertical: size.height * 0.015),
-                              child: Center(
-                                child: Container(
-                                  height: size.height * 0.001,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xff170658),
-                                      width: 0.12,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.03,
-                              ),
-                              child: Row(
-                                children: [
-                                  const Text(
-                                    "Rentabilidad",
-                                    style: TextStyle(
-                                        fontSize: 12, color: Color(0xff170658)),
-                                  ),
-                                  Expanded(child: Container()),
-                                  Text(
-                                    "${inversionesQuito[index2]['rentabilidad']}%",
-                                    style: const TextStyle(
-                                        fontSize: 12, color: Color(0xff170658)),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
+                        onTap: () {
+                          customModalBottomAlert(
+                              context,
+                              size,
+                              'La opción de inversiones se habilitará en la etapa 2.',
+                              isLoading,
+                              '', () {
+                            Navigator.pop(context);
+                          });
+                        },
                       ),
                     );
                   },
@@ -1108,210 +1227,224 @@ class HomeScreen extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.475,
                 child: ListView.builder(
-                  itemCount: inversionesGuayaquil.length,
+                  itemCount: inversionesMiami.length,
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index3) {
                     return Padding(
                       padding: EdgeInsets.only(right: size.width * 0.045),
-                      child: Container(
-                        width: size.width * 0.46,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          border: Border.all(
-                            color: const Color(0xffeae4fc),
-                            width: 0.88,
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x0f000000),
-                              blurRadius: 17.62,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                    inversionesGuayaquil[index3]['imagen']),
-                                Positioned(
-                                  top: size.height * 0.01,
-                                  right: size.width * 0.015,
-                                  child: SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Hearth.svg'),
+                      child: GestureDetector(
+                          child: Container(
+                            width: size.width * 0.46,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: const Color(0xffeae4fc),
+                                width: 0.88,
+                              ),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x0f000000),
+                                  blurRadius: 17.62,
+                                  offset: Offset(0, 0),
                                 ),
                               ],
+                              color: Colors.white,
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.012,
-                                  bottom: size.height * 0.007,
-                                  left: size.width * 0.02,
-                                  right: size.width * 0.02),
-                              child: Text(
-                                inversionesGuayaquil[index3]['inversion'],
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 14,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: size.width * 0.034,
-                                right: size.width * 0.034,
-                                bottom: size.height * 0.01,
-                              ),
-                              child: Text(
-                                inversionesGuayaquil[index3]['sector'],
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.02,
-                              ),
-                              child: Container(
-                                width: size.width * 0.5,
-                                height: size.height * 0.06,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: size.width * 0.025,
-                                    vertical: size.height * 0.007),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4.40),
-                                  color: const Color(0xfff9f9fa),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Stack(
                                   children: [
-                                    const Text(
-                                      "Precio token",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 10,
-                                      ),
-                                    ),
-                                    Column(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Text(
-                                          "USD\$ ${inversionesGuayaquil[index3]['precio']}",
-                                          textAlign: TextAlign.right,
-                                          style: const TextStyle(
-                                            color: Color(0xff2504ca),
-                                            fontSize: 13,
-                                            fontFamily: "Archivo",
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const Text(
-                                          "1 EBL",
-                                          textAlign: TextAlign.right,
-                                          style: TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 13,
-                                          ),
-                                        ),
-                                      ],
+                                    Image.asset(
+                                        inversionesMiami[index3]['imagen']),
+                                    Positioned(
+                                      top: size.height * 0.01,
+                                      right: size.width * 0.015,
+                                      child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Hearth.svg'),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.03,
-                                  vertical: size.height * 0.02),
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Building.svg'),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02),
-                                    child: Column(
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * 0.012,
+                                      bottom: size.height * 0.007,
+                                      left: size.width * 0.02,
+                                      right: size.width * 0.02),
+                                  child: Text(
+                                    inversionesMiami[index3]['inversion'],
+                                    style: const TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 14,
+                                      fontFamily: "Archivo",
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    left: size.width * 0.034,
+                                    right: size.width * 0.034,
+                                    bottom: size.height * 0.01,
+                                  ),
+                                  child: Text(
+                                    inversionesMiami[index3]['sector'],
+                                    style: const TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.02,
+                                  ),
+                                  child: Container(
+                                    width: size.width * 0.5,
+                                    height: size.height * 0.06,
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: size.width * 0.025,
+                                        vertical: size.height * 0.007),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4.40),
+                                      color: const Color(0xfff9f9fa),
+                                    ),
+                                    child: Row(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          "${inversionesGuayaquil[index3]['pisos']} Pisos ",
-                                          style: const TextStyle(
+                                        const Text(
+                                          "Precio token",
+                                          textAlign: TextAlign.right,
+                                          style: TextStyle(
                                             color: Color(0xff170658),
-                                            fontSize: 12,
+                                            fontSize: 10,
                                           ),
                                         ),
-                                        Text(
-                                          "${inversionesGuayaquil[index3]['apartamentos']} Apartamentos ",
-                                          style: const TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 12,
-                                          ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              "USD\$ ${inversionesMiami[index3]['precio']}",
+                                              textAlign: TextAlign.right,
+                                              style: const TextStyle(
+                                                color: Color(0xff2504ca),
+                                                fontSize: 13,
+                                                fontFamily: "Archivo",
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            const Text(
+                                              "1 Token",
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                color: Color(0xff170658),
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
                                   ),
-                                  Expanded(child: Container()),
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Plus.svg'),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.03,
-                                  vertical: size.height * 0.017),
-                              child: Center(
-                                child: Container(
-                                  width: size.width * 0.9,
-                                  height: size.height * 0.002,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xff170658),
-                                      width: 0.12,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.03,
+                                      vertical: size.height * 0.02),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Building.svg'),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: size.width * 0.02),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "${inversionesMiami[index3]['pisos']} Pisos ",
+                                              style: const TextStyle(
+                                                color: Color(0xff170658),
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                            Text(
+                                              "${inversionesMiami[index3]['apartamentos']} Apartamentos ",
+                                              style: const TextStyle(
+                                                color: Color(0xff170658),
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(child: Container()),
+                                      SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Plus.svg'),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.03,
+                                      vertical: size.height * 0.017),
+                                  child: Center(
+                                    child: Container(
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.002,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xff170658),
+                                          width: 0.12,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: size.width * 0.03,
-                              ),
-                              child: Row(
-                                children: [
-                                  const Text(
-                                    "Rentabilidad",
-                                    style: TextStyle(
-                                        fontSize: 12, color: Color(0xff170658)),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.03,
                                   ),
-                                  Expanded(child: Container()),
-                                  Text(
-                                    "${inversionesGuayaquil[index3]['rentabilidad']}%",
-                                    style: const TextStyle(
-                                        fontSize: 12, color: Color(0xff170658)),
+                                  child: Row(
+                                    children: [
+                                      const Text(
+                                        "Rentabilidad",
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            color: Color(0xff170658)),
+                                      ),
+                                      Expanded(child: Container()),
+                                      Text(
+                                        "${inversionesMiami[index3]['rentabilidad']}%",
+                                        style: const TextStyle(
+                                            fontSize: 12,
+                                            color: Color(0xff170658)),
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
+                          ),
+                          onTap: () {
+                            customModalBottomAlert(
+                                context,
+                                size,
+                                'La opción de inversiones se habilitará en la etapa 2.',
+                                isLoading,
+                                '', () {
+                              Navigator.pop(context);
+                            });
+                          }),
                     );
                   },
                 ),
@@ -1339,146 +1472,157 @@ class HomeScreen extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index4) {
                     return Padding(
                       padding: EdgeInsets.only(right: size.width * 0.05),
-                      child: Container(
-                        width: size.width * 0.74,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3.64),
-                          border: Border.all(
-                            color: const Color(0xffeae4fc),
-                            width: 0.64,
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x0f000000),
-                              blurRadius: 12.83,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                    inversionesVehiculos[index4]['imagen']),
-                                Positioned(
-                                  top: size.height * 0.01,
-                                  right: size.width * 0.01,
-                                  child: SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Hearth.svg'),
+                      child: GestureDetector(
+                          child: Container(
+                            width: size.width * 0.74,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3.64),
+                              border: Border.all(
+                                color: const Color(0xffeae4fc),
+                                width: 0.64,
+                              ),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x0f000000),
+                                  blurRadius: 12.83,
+                                  offset: Offset(0, 0),
                                 ),
                               ],
+                              color: Colors.white,
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                top: size.height * 0.023,
-                                left: size.width * 0.04,
-                              ),
-                              child: Text(
-                                inversionesVehiculos[index4]['inversion'],
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 14.57,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w700,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Stack(
+                                  children: [
+                                    Image.asset(
+                                        inversionesVehiculos[index4]['imagen']),
+                                    Positioned(
+                                      top: size.height * 0.01,
+                                      right: size.width * 0.01,
+                                      child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Hearth.svg'),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.01,
-                                  left: size.width * 0.04,
-                                  right: size.width * 0.21),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    inversionesVehiculos[index4]['ratio'],
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: size.height * 0.023,
+                                    left: size.width * 0.04,
+                                  ),
+                                  child: Text(
+                                    inversionesVehiculos[index4]['inversion'],
                                     style: const TextStyle(
                                       color: Color(0xff170658),
-                                      fontSize: 10.93,
-                                    ),
-                                  ),
-                                  SvgPicture.asset(
-                                    'assets/Vectores/Iconos/star-fill1.svg',
-                                    width: size.width * 0.035,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: size.width * 0.032,
-                                      right: size.width * 0.032,
-                                    ),
-                                    child: Text(
-                                      "(${inversionesVehiculos[index4]['trips']} trips)",
-                                      style: const TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 10.93,
-                                      ),
-                                    ),
-                                  ),
-                                  SvgPicture.asset(
-                                    'assets/Vectores/Iconos/Award.svg',
-                                    width: size.width * 0.035,
-                                  ),
-                                  Text(
-                                    inversionesVehiculos[index4]['star'],
-                                    style: const TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 10.93,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.032,
-                                  vertical: size.height * 0.018),
-                              child: Center(
-                                child: Container(
-                                  width: size.width * 0.9,
-                                  height: size.height * 0.001,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xff170658),
-                                      width: 0.12,
+                                      fontSize: 14.57,
+                                      fontFamily: "Archivo",
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: size.width * 0.04,
-                                  bottom: size.height * 0.022),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Plus.svg',
-                                      width: 18),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.02,
-                                        right: size.width * 0.04),
-                                    child: Text(
-                                      "\$${inversionesVehiculos[index4]['precio']}/day",
-                                      style: const TextStyle(
-                                        color: Color(0xff2504ca),
-                                        fontSize: 12.38,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w700,
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * 0.01,
+                                      left: size.width * 0.04,
+                                      right: size.width * 0.21),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        inversionesVehiculos[index4]['ratio'],
+                                        style: const TextStyle(
+                                          color: Color(0xff170658),
+                                          fontSize: 10.93,
+                                        ),
+                                      ),
+                                      SvgPicture.asset(
+                                        'assets/Vectores/Iconos/star-fill1.svg',
+                                        width: size.width * 0.035,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          left: size.width * 0.032,
+                                          right: size.width * 0.032,
+                                        ),
+                                        child: Text(
+                                          "(${inversionesVehiculos[index4]['trips']} trips)",
+                                          style: const TextStyle(
+                                            color: Color(0xff170658),
+                                            fontSize: 10.93,
+                                          ),
+                                        ),
+                                      ),
+                                      SvgPicture.asset(
+                                        'assets/Vectores/Iconos/Award.svg',
+                                        width: size.width * 0.035,
+                                      ),
+                                      Text(
+                                        inversionesVehiculos[index4]['star'],
+                                        style: const TextStyle(
+                                          color: Color(0xff170658),
+                                          fontSize: 10.93,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.032,
+                                      vertical: size.height * 0.018),
+                                  child: Center(
+                                    child: Container(
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.001,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xff170658),
+                                          width: 0.12,
+                                        ),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.width * 0.04,
+                                      bottom: size.height * 0.022),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Plus.svg',
+                                          width: 18),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: size.width * 0.02,
+                                            right: size.width * 0.04),
+                                        child: Text(
+                                          "\$${inversionesVehiculos[index4]['precio']}/day",
+                                          style: const TextStyle(
+                                            color: Color(0xff2504ca),
+                                            fontSize: 12.38,
+                                            fontFamily: "Archivo",
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            customModalBottomAlert(
+                                context,
+                                size,
+                                'La opción de inversiones se habilitará en la etapa 2.',
+                                isLoading,
+                                '', () {
+                              Navigator.pop(context);
+                            });
+                          }),
                     );
                   },
                 ),
@@ -1507,105 +1651,251 @@ class HomeScreen extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index5) {
                     return Padding(
                       padding: EdgeInsets.only(right: size.width * 0.045),
-                      child: Container(
-                        width: size.width * 0.74,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3.64),
-                          border: Border.all(
-                            color: const Color(0xffeae4fc),
-                            width: 0.64,
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x0f000000),
-                              blurRadius: 12.83,
-                              offset: Offset(0, 0),
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                    inversionesEducacion[index5]['imagen']),
-                                Positioned(
-                                  top: size.height * 0.007,
-                                  right: size.width * 0.015,
-                                  child: SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Hearth.svg'),
+                      child: GestureDetector(
+                          child: Container(
+                            width: size.width * 0.74,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3.64),
+                              border: Border.all(
+                                color: const Color(0xffeae4fc),
+                                width: 0.64,
+                              ),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x0f000000),
+                                  blurRadius: 12.83,
+                                  offset: Offset(0, 0),
                                 ),
                               ],
+                              color: Colors.white,
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                top: size.height * 0.023,
-                                left: size.width * 0.04,
-                              ),
-                              child: Text(
-                                inversionesEducacion[index5]['inversion'],
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 14.57,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w700,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Stack(
+                                  children: [
+                                    Image.asset(
+                                      inversionesEducacion[index5]['imagen'],
+                                    ),
+                                    Positioned(
+                                      top: size.height * 0.007,
+                                      right: size.width * 0.015,
+                                      child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Hearth.svg'),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.03,
-                                  vertical: size.height * 0.018),
-                              child: Center(
-                                child: Container(
-                                  width: size.width * 0.9,
-                                  height: size.height * 0.001,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: const Color(0xff170658),
-                                      width: 0.12,
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: size.height * 0.023,
+                                    left: size.width * 0.04,
+                                  ),
+                                  child: Text(
+                                    inversionesEducacion[index5]['inversion'],
+                                    style: const TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 14.57,
+                                      fontFamily: "Archivo",
+                                      fontWeight: FontWeight.w700,
                                     ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.02,
-                                  bottom: size.height * 0.022),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Plus.svg',
-                                      width: 18),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.025,
-                                        right: size.width * 0.04),
-                                    child: Text(
-                                      "${inversionesEducacion[index5]['oferta']}",
-                                      style: const TextStyle(
-                                        color: Color(0xff2504ca),
-                                        fontSize: 12.38,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w700,
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.03,
+                                      vertical: size.height * 0.018),
+                                  child: Center(
+                                    child: Container(
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.001,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xff170658),
+                                          width: 0.12,
+                                        ),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * 0.02,
+                                      bottom: size.height * 0.022),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Plus.svg',
+                                          width: 18),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: size.width * 0.025,
+                                            right: size.width * 0.04),
+                                        child: Text(
+                                          "${inversionesEducacion[index5]['oferta']}",
+                                          style: const TextStyle(
+                                            color: Color(0xff2504ca),
+                                            fontSize: 12.38,
+                                            fontFamily: "Archivo",
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            customModalBottomAlert(
+                                context,
+                                size,
+                                'La opción de inversiones se habilitará en la etapa 2.',
+                                isLoading,
+                                '', () {
+                              Navigator.pop(context);
+                            });
+                          }),
                     );
                   },
                 ),
-              )
+              ),
+              //INVERSIÓN EVENTOS
+              Padding(
+                padding: EdgeInsets.only(
+                    top: size.height * 0.05, bottom: size.height * 0.02),
+                child: const Text(
+                  "Inversión eventos",
+                  style: TextStyle(
+                    color: Color(0xff170658),
+                    fontSize: 15,
+                    fontFamily: "Archivo",
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.32,
+                child: ListView.builder(
+                  itemCount: inversionesEventos.length,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int index5) {
+                    return Padding(
+                      padding: EdgeInsets.only(right: size.width * 0.045),
+                      child: GestureDetector(
+                          child: Container(
+                            width: size.width * 0.74,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3.64),
+                              border: Border.all(
+                                color: const Color(0xffeae4fc),
+                                width: 0.64,
+                              ),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x0f000000),
+                                  blurRadius: 12.83,
+                                  offset: Offset(0, 0),
+                                ),
+                              ],
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Stack(
+                                  children: [
+                                    Image.asset(
+                                      inversionesEventos[index5]['imagen'],
+                                    ),
+                                    Positioned(
+                                      top: size.height * 0.007,
+                                      right: size.width * 0.015,
+                                      child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Hearth.svg'),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: size.height * 0.023,
+                                    left: size.width * 0.04,
+                                  ),
+                                  child: Text(
+                                    inversionesEventos[index5]['inversion'],
+                                    style: const TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 14.57,
+                                      fontFamily: "Archivo",
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.03,
+                                      vertical: size.height * 0.018),
+                                  child: Center(
+                                    child: Container(
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.001,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xff170658),
+                                          width: 0.12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * 0.02,
+                                      bottom: size.height * 0.022),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Plus.svg',
+                                          width: 18),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: size.width * 0.025,
+                                            right: size.width * 0.04),
+                                        child: Text(
+                                          "${inversionesEventos[index5]['oferta']}",
+                                          style: const TextStyle(
+                                            color: Color(0xff2504ca),
+                                            fontSize: 12.38,
+                                            fontFamily: "Archivo",
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            customModalBottomAlert(
+                                context,
+                                size,
+                                'La opción de inversiones se habilitará en la etapa 2.',
+                                isLoading,
+                                '', () {
+                              Navigator.pop(context);
+                            });
+                          }),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

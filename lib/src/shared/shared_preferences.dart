@@ -8,6 +8,7 @@ class Preferences {
   static String? _public_key;
   static String? _mnemonic;
   static String? _userName;
+  static String? _local_auth;
 
   static Future init() async {
     _prefs = await SharedPreferences.getInstance();
@@ -39,6 +40,10 @@ class Preferences {
     return _prefs.getString('userName') ?? _userName;
   }
 
+  static String? get local_auth {
+    return _prefs.getString('local_auth') ?? _local_auth;
+  }
+
 //SETTERS
   static set token(String? token) {
     _token = token;
@@ -68,5 +73,10 @@ class Preferences {
   static set userName(String? userName) {
     _userName = userName;
     _prefs.setString('userName', userName!);
+  }
+
+  static set local_auth(String? localAuth) {
+    _local_auth = localAuth;
+    _prefs.setString('local_auth', localAuth!);
   }
 }

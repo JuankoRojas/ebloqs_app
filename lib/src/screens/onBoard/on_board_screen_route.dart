@@ -1,17 +1,12 @@
 import 'dart:async';
-import 'dart:convert';
 
-import 'package:ebloqs_app/src/models/get_my_info_model.dart';
-import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_1_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_2_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_3_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_4_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_5_screen.dart';
-import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
-import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -191,18 +186,18 @@ class __PaginasOnBoardState extends State<_PaginasOnBoard> {
 Future checkPersistenceState(BuildContext context) async {
   final uid = Preferences.uid;
   final token = Preferences.token;
-  void heavyTask(GetMyInfoModel model) {
-    final jsonString = jsonEncode(model);
+  // void heavyTask(GetMyInfoModel model) {
+  //   final jsonString = jsonEncode(model);
 
-    final GetMyInfoModel infoModel = getMyInfoModelFromJson(jsonString);
+  //   final GetMyInfoModel infoModel = getMyInfoModelFromJson(jsonString);
 
-    Provider.of<UserInfoProvider>(context, listen: false)
-        .userInfoSet(infoModel);
-  }
+  //   Provider.of<UserInfoProvider>(context, listen: false)
+  //       .userInfoSet(infoModel);
+  // }
 
   if (uid != null || token != null) {
-    compute<GetMyInfoModel, void>(
-        heavyTask, await AuthUserService().getUserInfo(accesstoken: token!));
+    // compute<GetMyInfoModel, void>(
+    //     heavyTask, await AuthUserService().getUserInfo(accesstoken: token!));
     Future.delayed(Duration.zero)
         .then((_) => Navigator.pushNamed(context, HomeScreen.routeName));
   }

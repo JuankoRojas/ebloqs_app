@@ -1,6 +1,8 @@
+import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/widgets/custom_appbar_pop_question.dart';
 import 'package:ebloqs_app/src/widgets/custom_personal_info.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PersonalInformationScreen extends StatefulWidget {
   static const String routeName = 'PersonalInformationScreen';
@@ -15,7 +17,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    final user = Provider.of<UserInfoProvider>(context).userInfoget;
     return Scaffold(
       body: SingleChildScrollView(
           child: Column(
@@ -49,7 +51,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 right: size.width * 0.064),
             child: CustomPersonalInfo(
               field: 'Nombre',
-              value: '',
+              value: user["name"] ?? '',
               onTap: () {},
             ),
           ),
@@ -60,7 +62,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 right: size.width * 0.064),
             child: CustomPersonalInfo(
               field: 'Apellidos',
-              value: '',
+              value: '${user["lastName"]}',
               onTap: () {},
             ),
           ),
@@ -82,7 +84,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 right: size.width * 0.064),
             child: CustomPersonalInfo(
               field: 'Email',
-              value: '',
+              value: '${user["email"]}',
               onTap: () {},
             ),
           ),
@@ -93,7 +95,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 right: size.width * 0.064),
             child: CustomPersonalInfo(
               field: 'Número de celular',
-              value: '',
+              value: '${user["phone"]}',
               onTap: () {},
             ),
           ),

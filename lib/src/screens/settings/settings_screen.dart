@@ -1,7 +1,9 @@
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
+import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/settings/avatar_selection_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/payments_methods_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/personal_settings.dart';
+import 'package:ebloqs_app/src/screens/settings/security_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_setting.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final avatarSelected = Provider.of<AvatarUserProvider>(context).avatarUser;
+    final user = Provider.of<UserInfoProvider>(context).userInfoget;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -74,37 +77,51 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        const Text(
-                          "ID: 3578032",
-                          style: TextStyle(
+                        Text(
+                          "ID: ${user["DniNumber"]}",
+                          style: const TextStyle(
                             color: Color(0xff170658),
                             fontSize: 13,
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                              top: size.height * 0.0123152709359606),
-                          child: Container(
-                            width: size.width * 0.221333333333333,
-                            height: size.height * 0.0369458128078818,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color(0xffb9f6ca),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "Verificado",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xff00c853),
-                                  fontSize: 12,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w600,
-                                ),
+                            padding: EdgeInsets.only(
+                                top: size.height * 0.0123152709359606),
+                            child: Container(
+                              width: size.width * 0.221333333333333,
+                              height: size.height * 0.0369458128078818,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: (user["verify"] == "true")
+                                    ? const Color(0xffb9f6ca)
+                                    : const Color(0xffEC4141).withOpacity(0.4),
                               ),
-                            ),
-                          ),
-                        )
+                              child: (user["verify"] == "true")
+                                  ? const Center(
+                                      child: Text(
+                                        "Verificado",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xff00c853),
+                                          fontSize: 12,
+                                          fontFamily: "Archivo",
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    )
+                                  : const Center(
+                                      child: Text(
+                                        "No verificado",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Color(0xffEC4141),
+                                          fontSize: 12,
+                                          fontFamily: "Archivo",
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ),
+                            ))
                       ],
                     ),
                   ),
@@ -150,17 +167,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.only(
-            //       top: size.height * 0.0197044334975369,
-            //       left: size.width * 0.04,
-            //       right: size.width * 0.04),
-            //   child: CustomSetting(
-            //     size: size,
-            //     setting: 'Seguridad',
-            //     onTap: () {},
-            //   ),
-            // ),
+            Padding(
+              padding: EdgeInsets.only(
+                  top: size.height * 0.0197044334975369,
+                  left: size.width * 0.04,
+                  right: size.width * 0.04),
+              child: CustomSetting(
+                size: size,
+                setting: 'Seguridad',
+                onTap: () {
+                  Navigator.pushNamed(context, SecurityScreen.routeName);
+                },
+              ),
+            ),
             Padding(
               padding: EdgeInsets.only(
                   top: size.height * 0.0197044334975369,

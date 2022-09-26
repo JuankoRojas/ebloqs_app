@@ -1,19 +1,20 @@
-import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:local_auth/local_auth.dart';
 
-class LocalAuthAndroid extends StatefulWidget {
-  static const routeName = 'LocalAuthAndroid';
-  const LocalAuthAndroid({Key? key}) : super(key: key);
+class LocalAuthAndroidSettings extends StatefulWidget {
+  static const routeName = 'LocalAuthAndroidSettings';
+  const LocalAuthAndroidSettings({Key? key}) : super(key: key);
 
   @override
-  State<LocalAuthAndroid> createState() => _LocalAuthAndroidState();
+  State<LocalAuthAndroidSettings> createState() =>
+      _LocalAuthAndroidSettingsState();
 }
 
-class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
+class _LocalAuthAndroidSettingsState extends State<LocalAuthAndroidSettings> {
   final LocalAuthentication auth = LocalAuthentication();
   _SupportState _supportState = _SupportState.unknown;
   bool? _canCheckBiometrics;
@@ -70,7 +71,7 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
         Preferences.local_auth = message;
       });
       Navigator.of(context)
-          .pushNamed(NationalityScreen.routeName)
+          .pushNamed(SettingsScreen.routeName)
           .whenComplete(_cancelAuthentication);
     }
   }
@@ -183,7 +184,7 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
               ),
               onTap: () {
                 Preferences.local_auth = 'Not Authorized';
-                Navigator.pushNamed(context, NationalityScreen.routeName);
+                Navigator.pushNamed(context, SettingsScreen.routeName);
               },
             ),
           )

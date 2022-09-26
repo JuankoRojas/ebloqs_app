@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
+import 'package:ebloqs_app/src/providers/coin_market_provider.dart';
 import 'package:ebloqs_app/src/providers/images_provider.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
@@ -79,11 +80,14 @@ class _MyAppState extends State<MyApp> {
         //AVATAR
         ChangeNotifierProvider(create: (context) => AvatarUserProvider()),
         ChangeNotifierProvider(create: (context) => TransferCurrentProvider()),
+        //COINMARKET
+        ChangeNotifierProvider(create: (context) => CoinMarketProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Ebloqs',
-        theme: ThemeData(fontFamily: 'Archivo'),
+        theme: ThemeData(
+            fontFamily: 'Archivo', scaffoldBackgroundColor: Colors.white),
         initialRoute: OnBoardPageRoute.routeName,
         routes: getApplicationRoutes(),
       ),

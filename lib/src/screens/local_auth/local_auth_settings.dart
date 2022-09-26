@@ -1,19 +1,19 @@
-import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
+import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:local_auth/local_auth.dart';
 
-class LocalAuthAndroid extends StatefulWidget {
-  static const routeName = 'LocalAuthAndroid';
-  const LocalAuthAndroid({Key? key}) : super(key: key);
+class LocalAuthSettings extends StatefulWidget {
+  static const routeName = 'LocalAuthSettings';
+  const LocalAuthSettings({Key? key}) : super(key: key);
 
   @override
-  State<LocalAuthAndroid> createState() => _LocalAuthAndroidState();
+  State<LocalAuthSettings> createState() => _LocalAuthSettingsState();
 }
 
-class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
+class _LocalAuthSettingsState extends State<LocalAuthSettings> {
   final LocalAuthentication auth = LocalAuthentication();
   _SupportState _supportState = _SupportState.unknown;
   bool? _canCheckBiometrics;
@@ -66,11 +66,9 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
       _authorized = message;
     });
     if (message == 'Authorized') {
-      setState(() {
-        Preferences.local_auth = message;
-      });
+      Preferences.local_auth = message;
       Navigator.of(context)
-          .pushNamed(NationalityScreen.routeName)
+          .pushNamed(SettingsScreen.routeName)
           .whenComplete(_cancelAuthentication);
     }
   }
@@ -91,13 +89,13 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
             padding: const EdgeInsets.only(top: 142.0),
             child: Center(
               child: SvgPicture.asset(
-                  'assets/Vectores/Ilustraciones/Group 2066.svg'),
+                  'assets/Vectores/Ilustraciones/Group 2065.svg'),
             ),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 30.0, left: 15),
             child: Text(
-              "Asegurar tu cuenta con Huella Digital",
+              "Asegura tu cuenta con Face ID",
               style: TextStyle(
                 color: Color(0xff170658),
                 fontSize: 20,
@@ -146,7 +144,7 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
                   ),
                   const Center(
                     child: Text(
-                      "Habilitar huella digital",
+                      "Habilitar Face ID",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14,
@@ -183,7 +181,7 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
               ),
               onTap: () {
                 Preferences.local_auth = 'Not Authorized';
-                Navigator.pushNamed(context, NationalityScreen.routeName);
+                Navigator.pushNamed(context, SettingsScreen.routeName);
               },
             ),
           )

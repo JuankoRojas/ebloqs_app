@@ -331,7 +331,8 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
   }
 
   getAllUser() async {
-    var allUser = await GetAllUserService().getAllUsers();
+    var allUser =
+        await GetAllUserService().getAllUsers(accesstoken: Preferences.token!);
     if (!mounted) return null;
     setState(() {
       _textFieldHints = allUser;

@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
+import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
+import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
@@ -31,14 +33,19 @@ class _WalletScreenState extends State<WalletScreen>
   bool isLoading = false;
 
   @override
-  FutureOr<void> afterFirstLayout(BuildContext context) {
+  FutureOr<void> afterFirstLayout(BuildContext context) async {
     getBalance();
+    var userInfo =
+        await AuthUserService().getUserInfo(accesstoken: Preferences.token!);
+    Future.delayed(Duration.zero).then((_) =>
+        Provider.of<UserInfoProvider>(context, listen: false)
+            .userInfoSet(userInfo));
   }
 
   getBalance() async {
     print('token $Preferences.token!');
-    var balance =
-        await BalanceService().getBalance(accesstoken: Preferences.token!);
+    var balance = await BalanceService().getBalanceOf(
+        accesstoken: Preferences.token!, publicKey: Preferences.public_key!);
     setState(() {
       ebl = balance;
     });
@@ -119,8 +126,9 @@ class _WalletScreenState extends State<WalletScreen>
               Padding(
                 padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: FutureBuilder(
-                  future: BalanceService()
-                      .getBalance(accesstoken: Preferences.token!),
+                  future: BalanceService().getBalanceOf(
+                      accesstoken: Preferences.token!,
+                      publicKey: Preferences.public_key!),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData && snapshot.data != null) {
                       print(snapshot.data);

@@ -1,4 +1,5 @@
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
+import 'package:ebloqs_app/src/screens/market/coins_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ Payload payloadFromJson(String str) => Payload.fromJson(json.decode(str));
 
 String payloadToJson(Payload data) => json.encode(data.toJson());
 
+//TODO:Cambiar Clases a nuevos files
 class Payload {
   Payload({
     this.status,
@@ -482,9 +484,12 @@ class MarketScreen extends StatefulWidget {
   _MarketScreenState createState() => _MarketScreenState();
 }
 
-class _MarketScreenState extends State<MarketScreen> {
+class _MarketScreenState extends State<MarketScreen>
+    with TickerProviderStateMixin {
   final int _counter = 0;
   Future<Payload>? _future;
+  TabController? _controller;
+  int _selectedIndex = 0;
 
   Future<Payload>? getCryptoPrices() async {
     var response = await http.get(
@@ -498,436 +503,175 @@ class _MarketScreenState extends State<MarketScreen> {
     if (response.statusCode == 200) {
       return payloadFromJson(response.body);
     } else {
-      throw Exception('Failed to load album');
-    }
-  }
-
-  Future getCryptoIcons({required String name}) async {
-    try {
-      var response = await http.get(
-        Uri.parse(
-            "https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol=$name"),
-        headers: {
-          'X-CMC_PRO_API_KEY': 'e5421cfd-c95b-49e1-8267-29777bb45e02',
-          "Accept": "application/json",
-        },
-      );
-
-      if (response.statusCode == 200) {
-        return response.body;
-      } else {
-        throw Exception('Failed to load images');
-      }
-    } catch (e) {
-      print(e);
+      throw Exception('Failed to load CryptoPrices');
     }
   }
 
   @override
   void initState() {
-    // TODO: implement initState
+    _controller = TabController(length: 1, vsync: this);
+    _controller?.addListener(() {
+      setState(() {
+        _selectedIndex = _controller!.index;
+      });
+      print("Selected Index: ${_controller!.index}");
+    });
     super.initState();
     _future = getCryptoPrices();
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final avatarSelected = Provider.of<AvatarUserProvider>(context).avatarUser;
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(
-            left: size.width * 0.035,
-            top: size.height * 0.07,
-            right: size.width * 0.035),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  child: Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1,
-                      ),
-                      color: const Color(0xffeae4fc),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: (avatarSelected == null || avatarSelected.isEmpty)
-                          ? SvgPicture.asset(
-                              'assets/avatares/mascota/pet-4.svg',
-                              width: size.width * 0.067,
-                            )
-                          : SvgPicture.asset(
-                              avatarSelected,
-                              width: size.width * 0.067,
-                            ),
-                    ),
-                  ),
-                  onTap: () {
-                    Navigator.pushNamed(context, SettingsScreen.routeName);
-                  },
-                ),
-                SizedBox(
-                  width: size.width * 0.69,
-                  height: size.height * 0.047,
-                  child: OutlineSearchBar(
-                    borderRadius: BorderRadius.circular(100),
-                    borderColor: const Color(0xffeae4fc),
-                    searchButtonIconColor: const Color(0xff170658),
-                    hideSearchButton: true,
-                    hintText: 'Buscar Inversiones',
-                    hintStyle: const TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    'assets/Vectores/Iconos/Bell.svg',
-                    width: size.width * 0.06,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * 0.0184729064039409,
-                  right: size.width * 0.352,
-                  bottom: size.height * 0.0394088669950739),
-              child: Row(
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.only(
+              left: size.width * 0.035,
+              top: size.height * 0.07,
+              right: size.width * 0.035),
+          child: Column(
+            children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: size.width * 0.157333333333333,
-                    height: size.height * 0.0381773399014778,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: const Color(0xffeae4fc),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "USD",
-                        style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 12,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w400,
+                  GestureDetector(
+                    child: Container(
+                      width: 36,
+                      height: 36,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 1,
                         ),
+                        color: const Color(0xffeae4fc),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child:
+                            (avatarSelected == null || avatarSelected.isEmpty)
+                                ? SvgPicture.asset(
+                                    'assets/avatares/mascota/pet-4.svg',
+                                    width: size.width * 0.067,
+                                  )
+                                : SvgPicture.asset(
+                                    avatarSelected,
+                                    width: size.width * 0.067,
+                                  ),
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.pushNamed(context, SettingsScreen.routeName);
+                    },
+                  ),
+                  SizedBox(
+                    width: size.width * 0.69,
+                    height: size.height * 0.047,
+                    child: OutlineSearchBar(
+                      borderRadius: BorderRadius.circular(100),
+                      borderColor: const Color(0xffeae4fc),
+                      searchButtonIconColor: const Color(0xff170658),
+                      hideSearchButton: true,
+                      hintText: 'Buscar Inversiones',
+                      hintStyle: const TextStyle(
+                        color: Color(0xff170658),
+                        fontSize: 13,
                       ),
                     ),
                   ),
-                  Container(
-                    width: size.width * 0.157333333333333,
-                    height: size.height * 0.0381773399014778,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: const Color(0xffeae4fc),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "24H %",
-                        style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 12,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: size.width * 0.157333333333333,
-                    height: size.height * 0.0381773399014778,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: const Color(0xffeae4fc),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Top 100",
-                        style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 12,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {},
+                    icon: SvgPicture.asset(
+                      'assets/Vectores/Iconos/Bell.svg',
+                      width: size.width * 0.06,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: size.width * 0.016, right: size.width * 0.016),
-              child: Row(
-                children: [
-                  const Text(
-                    "#",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 12,
-                      fontFamily: "Archivo",
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
-                  Padding(
-                    padding: EdgeInsets.only(left: size.width * 0.016),
-                    child: const Text(
-                      "Market cap",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 12,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w600,
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(top: size.height * 0.0344827586206897),
+                  child: TabBar(
+                    indicatorColor: const Color(0xff2504ca),
+                    indicatorWeight: 1.5,
+                    indicatorSize: TabBarIndicatorSize.label,
+                    isScrollable: true,
+                    controller: _controller,
+                    tabs: [
+                      Tab(
+                        icon: null,
+                        child: Text(
+                          "Monedas",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: (_selectedIndex == 0)
+                                ? const Color(0xff2504ca)
+                                : const Color(0xff170658),
+                            fontSize: 14,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
-                    ),
+                      // Tab(
+                      //   icon: null,
+                      //   child: Text(
+                      //     "Categorías",
+                      //     textAlign: TextAlign.center,
+                      //     style: TextStyle(
+                      //       color: (_selectedIndex == 1)
+                      //           ? const Color(0xff2504ca)
+                      //           : const Color(0xff170658),
+                      //       fontSize: 14,
+                      //       fontFamily: "Archivo",
+                      //       fontWeight: FontWeight.w600,
+                      //     ),
+                      //   ),
+                      // ),
+                      // Tab(
+                      //   icon: null,
+                      //   child: Text(
+                      //     "Intercambios",
+                      //     textAlign: TextAlign.center,
+                      //     style: TextStyle(
+                      //       color: (_selectedIndex == 2)
+                      //           ? const Color(0xff2504ca)
+                      //           : const Color(0xff170658),
+                      //       fontSize: 14,
+                      //       fontFamily: "Archivo",
+                      //       fontWeight: FontWeight.w600,
+                      //     ),
+                      //   ),
+                      // ),
+                    ],
                   ),
-                  SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: size.width * 0.197333333333333),
-                    child: const Text(
-                      "Precio (USD)",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 12,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: size.width * 0.0853333333333333),
-                    child: const Text(
-                      "24h %",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 12,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
-                ],
+                ),
               ),
-            ),
-            Expanded(
-              child: FutureBuilder(
-                future: _future,
-                builder: (context, AsyncSnapshot<Payload> snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                      return const Text('none');
-                    case ConnectionState.waiting:
-                      return const Center(child: CircularProgressIndicator());
-                    case ConnectionState.active:
-                      return const Text('');
-                    case ConnectionState.done:
-                      if (snapshot.hasError) {
-                        return Text(
-                          '${snapshot.error}',
-                          style: const TextStyle(color: Colors.red),
-                        );
-                      } else {
-                        return ListView.builder(
-                            itemCount: snapshot.data?.data?.length,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: EdgeInsets.only(
-                                    bottom: size.height * 0.0123152709359606,
-                                    left: size.width * 0.016,
-                                    right: size.width * 0.016),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Text((index + 1).toString(),
-                                            style: const TextStyle(
-                                                color: Color(0xff170658),
-                                                fontFamily: 'Archivo',
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w400)),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: size.width *
-                                                  0.0266666666666667,
-                                              right: size.width *
-                                                  0.0346666666666667),
-                                          child: FutureBuilder(
-                                              future: getCryptoIcons(
-                                                  name: snapshot.data!
-                                                      .data![index].symbol!),
-                                              builder: (context,
-                                                  AsyncSnapshot snapshotIcon) {
-                                                switch (snapshotIcon
-                                                    .connectionState) {
-                                                  case ConnectionState.none:
-                                                    return const Text('none');
-                                                  case ConnectionState.waiting:
-                                                    return const Center(
-                                                        child:
-                                                            CircularProgressIndicator());
-                                                  case ConnectionState.active:
-                                                    return const Text('');
-                                                  case ConnectionState.done:
-                                                    if (snapshotIcon.hasError) {
-                                                      return Text(
-                                                        '${snapshotIcon.error}',
-                                                        style: const TextStyle(
-                                                            color: Colors.red),
-                                                      );
-                                                    } else {
-                                                      if (snapshotIcon.data !=
-                                                          null) {
-                                                        Map<String, dynamic>
-                                                            datos = jsonDecode(
-                                                                snapshotIcon
-                                                                    .data);
-                                                        return CircleAvatar(
-                                                          maxRadius: 20,
-                                                          backgroundImage:
-                                                              NetworkImage(datos[
-                                                                      'data'][
-                                                                  snapshot
-                                                                      .data!
-                                                                      .data![
-                                                                          index]
-                                                                      .symbol!]['logo']),
-                                                        );
-                                                      } else {
-                                                        return const SizedBox();
-                                                      }
-                                                    }
-                                                }
-                                              }),
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              snapshot.data!.data![index].name!,
-                                              style: const TextStyle(
-                                                  color: Color(0xff170658),
-                                                  fontFamily: 'Archivo',
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            Text(
-                                              '${snapshot.data!.data![index].quote!.usd!.marketCap!.toStringAsFixed(2)} Bn',
-                                              style: const TextStyle(
-                                                  color: Color(0xff8F8B9F),
-                                                  fontFamily: 'Archivo',
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          ],
-                                        ),
-                                        const Spacer(),
-                                        Text(
-                                          snapshot.data!.data![index].quote!
-                                              .usd!.price!
-                                              .toStringAsFixed(3),
-                                          style: const TextStyle(
-                                              color: Color(0xff170658),
-                                              fontFamily: 'Archivo',
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        const Spacer(),
-                                        Container(
-                                          width: size.width * 0.197333333333333,
-                                          height:
-                                              size.height * 0.0307881773399015,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: (snapshot
-                                                        .data!
-                                                        .data![index]
-                                                        .quote!
-                                                        .usd!
-                                                        .percentChange24H! >
-                                                    0)
-                                                ? const Color(0xffceffdc)
-                                                : const Color(0xfffbe0e0),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              (snapshot
-                                                          .data!
-                                                          .data![index]
-                                                          .quote!
-                                                          .usd!
-                                                          .percentChange24H! >
-                                                      0)
-                                                  ? SvgPicture.asset(
-                                                      'assets/Vectores/Iconos/Polygon 1.svg')
-                                                  : SvgPicture.asset(
-                                                      'assets/Vectores/Iconos/Polygon 2.svg'),
-                                              Text(
-                                                '${snapshot.data!.data![index].quote!.usd!.percentChange24H!.toStringAsFixed(3)} %',
-                                                style: TextStyle(
-                                                    color: (snapshot
-                                                                .data!
-                                                                .data![index]
-                                                                .quote!
-                                                                .usd!
-                                                                .percentChange24H! >
-                                                            0)
-                                                        ? const Color(
-                                                            0xff00C853)
-                                                        : const Color(
-                                                            0xffEC4141),
-                                                    fontFamily: 'Archivo',
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              );
-                            });
-                      }
-                  }
-                },
+              Expanded(
+                child: TabBarView(controller: _controller, children: [
+                  CoinsScreen(future: _future),
+                  // CategoriesScreen(future: _future),
+                  // ExchangesScreen(future: _future),
+                ]),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+        bottomNavigationBar: const CustomNavigator(),
       ),
-      bottomNavigationBar: const CustomNavigator(),
     );
   }
 }

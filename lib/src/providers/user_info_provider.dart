@@ -1,9 +1,8 @@
-import 'package:ebloqs_app/src/models/get_my_info_model.dart';
 import 'package:flutter/material.dart';
 
 class UserInfoProvider with ChangeNotifier {
   String? _email;
-  GetMyInfoModel? _userInfo;
+  Map? _userInfo;
 
   //GETTERS
   get emailget {
@@ -21,7 +20,7 @@ class UserInfoProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void userInfoSet(GetMyInfoModel? userInfo) {
+  void userInfoSet(Map? userInfo) {
     _userInfo = userInfo;
     notifyListeners();
   }

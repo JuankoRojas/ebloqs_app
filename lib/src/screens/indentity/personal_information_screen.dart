@@ -611,7 +611,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                                 final response = await AuthUserService()
                                     .personalData(
                                         accesstoken: Preferences.token!,
-                                        nacionality: locationValue,
+                                        nationality: locationValue,
                                         name: nameController.text,
                                         lastname: lastNameController.text,
                                         birthdayDate: formattedDate,
