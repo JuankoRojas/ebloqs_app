@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:after_layout/after_layout.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:ebloqs_app/src/widgets/custom_appbar_pop_question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,19 +19,27 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
     with AfterLayoutMixin<DeviceManagementScreen> {
   String? brand;
   String? device;
+  String? imei;
   String? ip;
   bool load = false;
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
     printIps();
     setState(() {
-      brand = androidInfo.brand;
-      device = androidInfo.device;
+      if (Platform.isAndroid) {
+        brand = androidInfo.brand;
+        device = androidInfo.device;
+        imei = androidInfo.id;
+      } else if (Platform.isIOS) {
+        brand = iosInfo.name;
+        device = iosInfo.model;
+        imei = iosInfo.identifierForVendor;
+      }
     });
 
-    // IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
     // print('Running on ${iosInfo.utsname.machine}');
   }
 
@@ -97,7 +104,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                     ),
                   ),
                   Expanded(child: Container()),
-                  SvgPicture.asset('assets/Vectores/Iconos/edit.svg')
+                  // SvgPicture.asset('assets/Vectores/Iconos/edit.svg')
                 ],
               ),
             ),
@@ -158,10 +165,33 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                   top: size.height * 0.0197044334975369,
                   left: size.width * 0.064,
                   right: size.width * 0.0426666666666667),
-              child: Row(
+              child:
+                  // (ip!.isNotEmpty)
+                  //     ? Row(
+                  //         children: [
+                  //           const Text(
+                  //             "Dirección IP:",
+                  //             style: TextStyle(
+                  //               color: Color(0xff170658),
+                  //               fontSize: 15,
+                  //             ),
+                  //           ),
+                  //           const Spacer(),
+                  //           Text(
+                  //             ip ?? '',
+                  //             textAlign: TextAlign.right,
+                  //             style: TextStyle(
+                  //               color: const Color(0xff170658).withOpacity(0.6),
+                  //               fontSize: 14,
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       )
+                  //     :
+                  Row(
                 children: [
                   const Text(
-                    "Dirección IP:",
+                    "IMEI:",
                     style: TextStyle(
                       color: Color(0xff170658),
                       fontSize: 15,
@@ -169,7 +199,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                   ),
                   const Spacer(),
                   Text(
-                    ip ?? '',
+                    imei ?? '',
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       color: const Color(0xff170658).withOpacity(0.6),
@@ -179,20 +209,20 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: size.height * 0.431034482758621,
-                  left: size.width * 0.064,
-                  right: size.width * 0.0426666666666667),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: ButtonPrimary(
-                    width: size.width,
-                    title: 'Guardar cambios',
-                    onPressed: () {},
-                    load: load),
-              ),
-            )
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //       top: size.height * 0.431034482758621,
+            //       left: size.width * 0.064,
+            //       right: size.width * 0.0426666666666667),
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(10),
+            //     child: ButtonPrimary(
+            //         width: size.width,
+            //         title: 'Guardar cambios',
+            //         onPressed: () {},
+            //         load: load),
+            //   ),
+            // )
           ],
         ));
   }

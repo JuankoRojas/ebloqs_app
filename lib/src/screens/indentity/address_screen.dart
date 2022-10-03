@@ -197,7 +197,7 @@ class _AddressScreenState extends State<AddressScreen>
                                 if (value!.isEmpty) {
                                   setState(() {
                                     errorValidation =
-                                        'Por Favor,  debes completar todos los registros para continuar';
+                                        'Por favor,  debes completar todos los registros para continuar';
                                   });
 
                                   return '';
@@ -241,7 +241,7 @@ class _AddressScreenState extends State<AddressScreen>
                                 if (value!.isEmpty) {
                                   setState(() {
                                     errorValidation =
-                                        'Por Favor,  debes completar todos los registros para continuar';
+                                        'Por favor,  debes completar todos los registros para continuar';
                                   });
 
                                   return '';
@@ -281,7 +281,7 @@ class _AddressScreenState extends State<AddressScreen>
                                 if (value!.isEmpty) {
                                   setState(() {
                                     errorValidation =
-                                        'Por Favor,  debes completar todos los registros para continuar';
+                                        'Por favor,  debes completar todos los registros para continuar';
                                   });
 
                                   return '';
@@ -325,7 +325,7 @@ class _AddressScreenState extends State<AddressScreen>
                                 if (value!.isEmpty) {
                                   setState(() {
                                     errorValidation =
-                                        'Por Favor,  debes completar todos los registros para continuar';
+                                        'Por favor,  debes completar todos los registros para continuar';
                                   });
 
                                   return '';
@@ -365,7 +365,7 @@ class _AddressScreenState extends State<AddressScreen>
                                   } else {
                                     setState(() {
                                       errorValidation =
-                                          'Por Favor,  debes completar todos los registros para continuar';
+                                          'Por favor,  debes completar todos los registros para continuar';
                                     });
                                     customModalBottomAlert(context, size,
                                         errorValidation, isLoadLogin!, '', () {

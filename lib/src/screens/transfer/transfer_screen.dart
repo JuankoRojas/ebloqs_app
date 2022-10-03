@@ -217,7 +217,7 @@ class _TransferScreenState extends State<TransferScreen>
                               customModalBottomAlert(
                                   context,
                                   size,
-                                  'Por Favor,  debes completar todos los registros para continuar',
+                                  'Por favor,  debes completar todos los registros para continuar',
                                   isLoadLogin!,
                                   '', () {
                                 Navigator.pop(context);
@@ -267,7 +267,7 @@ class _TransferScreenState extends State<TransferScreen>
                                 } else {
                                   setState(() {
                                     errorValidation =
-                                        'Por Favor,  debes completar todos los registros para continuar';
+                                        'Por favor,  debes completar todos los registros para continuar';
                                   });
                                   customModalBottomAlert(context, size,
                                       errorValidation, isLoadLogin!, '', () {
@@ -387,7 +387,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                   if (value == null) {
                     setState(() {
                       widget.errorValidation =
-                          'Por Favor,  debes completar todos los registros para continuar';
+                          'Por favor,  debes completar todos los registros para continuar';
                     });
 
                     return '';
@@ -435,7 +435,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                 if (value == null) {
                   setState(() {
                     widget.errorValidation =
-                        'Por Favor,  debes completar todos los registros para continuar';
+                        'Por favor,  debes completar todos los registros para continuar';
                   });
 
                   return '';
@@ -545,7 +545,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                     if (value == null) {
                       setState(() {
                         widget.errorValidation =
-                            'Por Favor,  debes completar todos los registros para continuar';
+                            'Por favor,  debes completar todos los registros para continuar';
                       });
 
                       return '';
@@ -718,7 +718,7 @@ class _TokensState extends State<Tokens> {
                   if (value == null) {
                     setState(() {
                       widget.errorValidation =
-                          'Por Favor,  debes completar todos los registros para continuar';
+                          'Por favor,  debes completar todos los registros para continuar';
                     });
 
                     return '';
@@ -766,7 +766,7 @@ class _TokensState extends State<Tokens> {
                 if (value == null) {
                   setState(() {
                     widget.errorValidation =
-                        'Por Favor,  debes completar todos los registros para continuar';
+                        'Por favor,  debes completar todos los registros para continuar';
                   });
 
                   return '';
@@ -814,7 +814,7 @@ class _TokensState extends State<Tokens> {
                   if (value == null) {
                     setState(() {
                       widget.errorValidation =
-                          'Por Favor,  debes completar todos los registros para continuar';
+                          'Por favor,  debes completar todos los registros para continuar';
                     });
 
                     return '';
@@ -876,7 +876,7 @@ class _TokensState extends State<Tokens> {
                 if (value == null) {
                   setState(() {
                     widget.errorValidation =
-                        'Por Favor, debes completar todos los registros para continuar';
+                        'Por favor, debes completar todos los registros para continuar';
                   });
 
                   return '';

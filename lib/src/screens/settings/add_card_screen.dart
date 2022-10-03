@@ -98,7 +98,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                         if (value!.isEmpty) {
                           setState(() {
                             errorValidation =
-                                'Por Favor,  debes completar todos los registros para continuar';
+                                'Por favor,  debes completar todos los registros para continuar';
                           });
 
                           return '';
@@ -145,7 +145,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                         if (value!.isEmpty) {
                           setState(() {
                             errorValidation =
-                                'Por Favor,  debes completar todos los registros para continuar';
+                                'Por favor,  debes completar todos los registros para continuar';
                           });
 
                           return '';
@@ -201,7 +201,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                                     if (value!.isEmpty) {
                                       setState(() {
                                         errorValidation =
-                                            'Por Favor,  debes completar todos los registros para continuar';
+                                            'Por favor,  debes completar todos los registros para continuar';
                                       });
 
                                       return '';
@@ -252,7 +252,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                                     if (value!.isEmpty) {
                                       setState(() {
                                         errorValidation =
-                                            'Por Favor,  debes completar todos los registros para continuar';
+                                            'Por favor,  debes completar todos los registros para continuar';
                                       });
 
                                       return '';
@@ -317,7 +317,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                 } else {
                   setState(() {
                     errorValidation =
-                        'Por Favor,  debes completar todos los registros para continuar';
+                        'Por favor,  debes completar todos los registros para continuar';
                   });
                   customModalBottomAlert(
                       context, size, errorValidation, isLoading, '', () {

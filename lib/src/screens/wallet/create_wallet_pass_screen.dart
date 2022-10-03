@@ -173,7 +173,7 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                     if (value!.isEmpty) {
                                       setState(() {
                                         errorValidation =
-                                            'Por Favor,  debes completar todos los registros para continuar';
+                                            'Por favor,  debes completar todos los registros para continuar';
                                       });
 
                                       return '';
@@ -248,7 +248,7 @@ una minúscula, un número y un carácter especial''';
                                   if (value!.isEmpty) {
                                     setState(() {
                                       errorValidation =
-                                          'Por Favor,  debes completar todos los registros para continuar';
+                                          'Por favor,  debes completar todos los registros para continuar';
                                     });
 
                                     return '';

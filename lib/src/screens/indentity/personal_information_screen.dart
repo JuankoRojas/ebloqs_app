@@ -335,7 +335,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                             if (value!.isEmpty) {
                               setState(() {
                                 errorValidation =
-                                    'Por Favor,  debes completar todos los registros para continuar';
+                                    'Por favor,  debes completar todos los registros para continuar';
                               });
 
                               return '';
@@ -381,7 +381,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                             if (value!.isEmpty) {
                               setState(() {
                                 errorValidation =
-                                    'Por Favor,  debes completar todos los registros para continuar';
+                                    'Por favor,  debes completar todos los registros para continuar';
                               });
 
                               return '';
@@ -518,7 +518,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                             if (value!.isEmpty) {
                               setState(() {
                                 errorValidation =
-                                    'Por Favor,  debes completar todos los registros para continuar';
+                                    'Por favor,  debes completar todos los registros para continuar';
                               });
 
                               return '';
@@ -581,7 +581,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                               if (value!.number.isEmpty) {
                                 setState(() {
                                   errorValidation =
-                                      'Por Favor,  debes completar todos los registros para continuar';
+                                      'Por favor,  debes completar todos los registros para continuar';
                                 });
 
                                 return '';
@@ -629,7 +629,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                                 setState(() {
                                   isCompleted = false;
                                   errorValidation =
-                                      'Por Favor,  debes completar todos los registros para continuar';
+                                      'Por favor,  debes completar todos los registros para continuar';
                                 });
                                 customModalBottomAlert(context, size,
                                     errorValidation, isLoading, '', () {

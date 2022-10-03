@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/app/app_config.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
   List<BiometricType>? _availableBiometrics;
   String _authorized = 'Not Authorized';
   bool _isAuthenticating = false;
+  Environment? environment;
 
   @override
   void initState() {
@@ -29,6 +31,9 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
               ? _SupportState.supported
               : _SupportState.unsupported),
         );
+    setState(() {
+      environment = AppConfig.instance.environment;
+    });
   }
 
   Future<void> _authenticateWithBiometrics() async {

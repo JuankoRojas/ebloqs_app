@@ -176,7 +176,7 @@ class _IntroducirCantidadTransferenciaScreenState
                         if (value!.isEmpty) {
                           setState(() {
                             errorValidation =
-                                'Por Favor,  debes completar todos los registros para continuar';
+                                'Por favor,  debes completar todos los registros para continuar';
                           });
 
                           return '';
@@ -373,7 +373,7 @@ class _IntroducirCantidadTransferenciaScreenState
                       } else {
                         setState(() {
                           errorValidation =
-                              'Por Favor,  debes completar todos los registros para continuar';
+                              'Por favor,  debes completar todos los registros para continuar';
                         });
                         customModalBottomAlert(
                             context, size, errorValidation, isLoading, '', () {
@@ -389,7 +389,7 @@ class _IntroducirCantidadTransferenciaScreenState
                       } else {
                         setState(() {
                           errorValidation =
-                              'Por Favor,  debes completar todos los registros para continuar';
+                              'Por favor,  debes completar todos los registros para continuar';
                         });
                         customModalBottomAlert(
                             context, size, errorValidation, isLoading, '', () {
@@ -531,7 +531,7 @@ class _PageFormState extends State<PageForm> {
                       if (value!.isEmpty) {
                         setState(() {
                           errorValidation =
-                              'Por Favor,  debes completar todos los registros para continuar';
+                              'Por favor,  debes completar todos los registros para continuar';
                         });
 
                         return '';
@@ -588,7 +588,7 @@ class _PageFormState extends State<PageForm> {
                       if (value!.isEmpty) {
                         setState(() {
                           errorValidation =
-                              'Por Favor,  debes completar todos los registros para continuar';
+                              'Por favor,  debes completar todos los registros para continuar';
                         });
 
                         return '';
@@ -644,7 +644,7 @@ class _PageFormState extends State<PageForm> {
                       if (value!.isEmpty) {
                         setState(() {
                           errorValidation =
-                              'Por Favor,  debes completar todos los registros para continuar';
+                              'Por favor,  debes completar todos los registros para continuar';
                         });
 
                         return '';

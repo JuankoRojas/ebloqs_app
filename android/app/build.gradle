@@ -68,6 +68,35 @@ android {
            storePassword keystoreProperties['storePassword']
        }
    }
+
+    flavorDimensions "default"
+    productFlavors { 
+        production {
+            dimension "default"
+            applicationIdSuffix ""
+            manifestPlaceholders = [appName: "Ebloqs"]
+            versionCode 23
+            versionName "1.0.0"
+            signingConfig signingConfigs.release
+        }
+        staging {
+            dimension "default"
+            applicationIdSuffix ".stg"
+            manifestPlaceholders = [appName: "[STG] Ebloqs"]
+            versionCode 1
+            versionName "1.0.0"
+            signingConfig signingConfigs.release
+        }
+        development {
+            dimension "default"
+            applicationIdSuffix ".dev"
+            manifestPlaceholders = [appName: "[DEV] Ebloqs"]
+            versionCode 1
+            versionName "1.0.0"
+            signingConfig signingConfigs.release
+        }
+    }    
+
    buildTypes {
        release {
            signingConfig signingConfigs.release
