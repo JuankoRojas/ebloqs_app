@@ -1,7 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/bootstrap.dart';
 import 'package:ebloqs_app/src/app/app.dart';
-import 'package:ebloqs_app/src/app/app_config.dart';
 import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
@@ -23,7 +22,6 @@ void main() async {
   // locationProvider.useMyLocation();
   Provider.debugCheckInvalidValueType = null;
   final appleSignInAvailable = await AppleSignInAvailable.check();
-  AppConfig.instance.init(environment: Environment.prod);
 
   bootstrap(() => Provider<AppleSignInAvailable>.value(
         value: appleSignInAvailable,

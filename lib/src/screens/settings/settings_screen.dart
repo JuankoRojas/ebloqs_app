@@ -78,7 +78,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ),
                         Text(
-                          "ID: ${user["DniNumber"]}",
+                          "ID: ${user["DniNumber"] ?? ''}",
                           style: const TextStyle(
                             color: Color(0xff170658),
                             fontSize: 13,

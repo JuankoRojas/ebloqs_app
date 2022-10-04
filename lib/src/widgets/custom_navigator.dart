@@ -7,8 +7,17 @@ class CustomNavigator extends StatefulWidget {
   State<CustomNavigator> createState() => _CustomNavigatorState();
 }
 
-class _CustomNavigatorState extends State<CustomNavigator> {
+class _CustomNavigatorState extends State<CustomNavigator>
+    with AfterLayoutMixin<CustomNavigator> {
   bool isLoading = false;
+  Environment? environment;
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    setState(() {
+      environment = AppConfig.of(context).environment;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     String? currentPath = ModalRoute.of(context)!.settings.name;
@@ -67,14 +76,23 @@ class _CustomNavigatorState extends State<CustomNavigator> {
                       visualDensity: VisualDensity.compact,
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        customModalBottomAlert(
-                            context,
-                            size,
-                            'No tienes inversiones por el momento, puedes ir a tu billetera y comprar tokens de utilidad ebloqs (EBL).',
-                            isLoading,
-                            '', () {
-                          Navigator.pop(context);
-                        });
+                        (environment == Environment.prod)
+                            ? customModalBottomAlert(
+                                context,
+                                size,
+                                'La opción de inversiones se habilitará en la etapa 2.',
+                                isLoading,
+                                '', () {
+                                Navigator.pop(context);
+                              })
+                            : customModalBottomAlert(
+                                context,
+                                size,
+                                'No tienes inversiones por el momento, puedes ir a tu billetera y comprar tokens de utilidad ebloqs (EBL).',
+                                isLoading,
+                                '', () {
+                                Navigator.pop(context);
+                              });
                       },
                       icon: SvgPicture.asset(
                           'assets/Vectores/Iconos/inversiones.svg')),
@@ -101,11 +119,21 @@ class _CustomNavigatorState extends State<CustomNavigator> {
                       onPressed: () async {
                         final idWallet = Preferences.id_wallet;
                         final publicKey = Preferences.public_key;
+
                         if (idWallet != null && publicKey != null) {
                           Navigator.pushNamed(context, WalletScreen.routeName);
                         } else {
-                          Navigator.pushNamed(
-                              context, NationalityScreen.routeName);
+                          (environment == Environment.prod)
+                              ? customModalBottomAlert(
+                                  context,
+                                  size,
+                                  '"La opción de billetera se habilitará en la etapa 2.',
+                                  isLoading,
+                                  '', () {
+                                  Navigator.pop(context);
+                                })
+                              : Navigator.pushNamed(
+                                  context, NationalityScreen.routeName);
                         }
                       },
                       icon: SvgPicture.asset(
@@ -167,15 +195,15 @@ class _CustomNavigatorState extends State<CustomNavigator> {
                       visualDensity: VisualDensity.compact,
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                        // customModalBottomAlert(
-                        //     context,
-                        //     size,
-                        //     'La opción de beneficios se habilitará en la etapa 2.',
-                        //     isLoading,
-                        //     '', () {
-                        //   Navigator.pop(context);
-                        // });
-                        Navigator.pushNamed(context, BenefitsScreen.routeName);
+                        customModalBottomAlert(
+                            context,
+                            size,
+                            'La opción de beneficios se habilitará en la etapa 2.',
+                            isLoading,
+                            '', () {
+                          Navigator.pop(context);
+                        });
+                        // Navigator.pushNamed(context, BenefitsScreen.routeName);
                       },
                       icon: SvgPicture.asset(
                           'assets/Vectores/Iconos/referidos(2).svg')),

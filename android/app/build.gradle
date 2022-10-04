@@ -78,6 +78,7 @@ android {
             versionCode 23
             versionName "1.0.0"
             signingConfig signingConfigs.release
+           
         }
         staging {
             dimension "default"
@@ -86,6 +87,7 @@ android {
             versionCode 1
             versionName "1.0.0"
             signingConfig signingConfigs.release
+            
         }
         development {
             dimension "default"
@@ -94,6 +96,7 @@ android {
             versionCode 1
             versionName "1.0.0"
             signingConfig signingConfigs.release
+            
         }
     }    
 
@@ -102,12 +105,11 @@ android {
            signingConfig signingConfigs.release
        }
    }
-    lintOptions {
-        checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
+    lint {
         abortOnError false
+        checkReleaseBuilds false
     }
+    namespace 'com.ebloqs.application.android'
 
 }
 

@@ -23,10 +23,14 @@ void main() async {
   // locationProvider.useMyLocation();
   Provider.debugCheckInvalidValueType = null;
   final appleSignInAvailable = await AppleSignInAvailable.check();
-  AppConfig.instance.init(environment: Environment.prod);
 
-  bootstrap(() => Provider<AppleSignInAvailable>.value(
-        value: appleSignInAvailable,
-        child: const MyApp(),
-      ));
+  bootstrap(
+    () => Provider<AppleSignInAvailable>.value(
+      value: appleSignInAvailable,
+      child: const AppConfig(
+        environment: Environment.prod,
+        child: MyApp(),
+      ),
+    ),
+  );
 }

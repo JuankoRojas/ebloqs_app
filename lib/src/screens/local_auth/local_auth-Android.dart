@@ -1,4 +1,5 @@
 import 'package:ebloqs_app/src/app/app_config.dart';
+import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
               : _SupportState.unsupported),
         );
     setState(() {
-      environment = AppConfig.instance.environment;
+      environment = AppConfig.of(context).environment;
     });
   }
 
@@ -74,9 +75,13 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
       setState(() {
         Preferences.local_auth = message;
       });
-      Navigator.of(context)
-          .pushNamed(NationalityScreen.routeName)
-          .whenComplete(_cancelAuthentication);
+      (environment == Environment.prod)
+          ? Navigator.of(context)
+              .pushNamed(HomeScreen.routeName)
+              .whenComplete(_cancelAuthentication)
+          : Navigator.of(context)
+              .pushNamed(NationalityScreen.routeName)
+              .whenComplete(_cancelAuthentication);
     }
   }
 
@@ -188,7 +193,12 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
               ),
               onTap: () {
                 Preferences.local_auth = 'Not Authorized';
-                Navigator.pushNamed(context, NationalityScreen.routeName);
+                (environment == Environment.prod)
+                    ? Navigator.of(context)
+                        .pushNamed(HomeScreen.routeName)
+                        .whenComplete(_cancelAuthentication)
+                    : Navigator.pushNamed(context, NationalityScreen.routeName)
+                        .whenComplete(_cancelAuthentication);
               },
             ),
           )

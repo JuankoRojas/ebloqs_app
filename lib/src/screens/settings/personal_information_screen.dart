@@ -62,7 +62,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 right: size.width * 0.064),
             child: CustomPersonalInfo(
               field: 'Apellidos',
-              value: '${user["lastName"]}',
+              value: '${user["lastName"] ?? ''}',
               onTap: () {},
             ),
           ),
@@ -84,7 +84,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 right: size.width * 0.064),
             child: CustomPersonalInfo(
               field: 'Email',
-              value: '${user["email"]}',
+              value: '${user["email"] ?? ''}',
               onTap: () {},
             ),
           ),
@@ -95,7 +95,7 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 right: size.width * 0.064),
             child: CustomPersonalInfo(
               field: 'Número de celular',
-              value: '${user["phone"]}',
+              value: '${user["phone"] ?? ''}',
               onTap: () {},
             ),
           ),

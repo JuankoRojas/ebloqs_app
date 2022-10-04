@@ -1,3 +1,5 @@
+import 'package:ebloqs_app/src/app/app_config.dart';
+import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,7 @@ class _LocalAuthState extends State<LocalAuth> {
   List<BiometricType>? _availableBiometrics;
   String _authorized = 'Not Authorized';
   bool _isAuthenticating = false;
+  Environment? environment;
 
   @override
   void initState() {
@@ -29,6 +32,9 @@ class _LocalAuthState extends State<LocalAuth> {
               ? _SupportState.supported
               : _SupportState.unsupported),
         );
+    setState(() {
+      environment = AppConfig.of(context).environment;
+    });
   }
 
   Future<void> _authenticateWithBiometrics() async {
@@ -67,9 +73,13 @@ class _LocalAuthState extends State<LocalAuth> {
     });
     if (message == 'Authorized') {
       Preferences.local_auth = message;
-      Navigator.of(context)
-          .pushNamed(NationalityScreen.routeName)
-          .whenComplete(_cancelAuthentication);
+      (environment == Environment.prod)
+          ? Navigator.of(context)
+              .pushNamed(HomeScreen.routeName)
+              .whenComplete(_cancelAuthentication)
+          : Navigator.of(context)
+              .pushNamed(NationalityScreen.routeName)
+              .whenComplete(_cancelAuthentication);
     }
   }
 
@@ -181,7 +191,13 @@ class _LocalAuthState extends State<LocalAuth> {
               ),
               onTap: () {
                 Preferences.local_auth = 'Not Authorized';
-                Navigator.pushNamed(context, NationalityScreen.routeName);
+                (environment == Environment.prod)
+                    ? Navigator.of(context)
+                        .pushNamed(HomeScreen.routeName)
+                        .whenComplete(_cancelAuthentication)
+                    : Navigator.of(context)
+                        .pushNamed(NationalityScreen.routeName)
+                        .whenComplete(_cancelAuthentication);
               },
             ),
           )

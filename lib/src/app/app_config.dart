@@ -1,17 +1,29 @@
-class AppConfig {
-  Environment? environment;
-  //SINGLETON
+import 'package:flutter/material.dart';
 
-  AppConfig._internal();
-  static final AppConfig _instance = AppConfig._internal();
-  static AppConfig get instance => _instance;
-
-  // factory AppConfig() {
-  //   return _instance;
-  // }
-  void init({required Environment environment}) {
-    this.environment = environment;
-  }
-}
-
+// 1
 enum Environment { dev, prod }
+
+// 2
+class AppConfig extends InheritedWidget {
+  // 3
+  final Environment environment;
+
+  // 4
+  const AppConfig({
+    Key? key,
+    required Widget child,
+    required this.environment,
+  }) : super(
+          key: key,
+          child: child,
+        );
+
+  // 5
+  static AppConfig of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<AppConfig>()!;
+  }
+
+  // 6
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
+}
