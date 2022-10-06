@@ -1,5 +1,6 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/app/app_config.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
@@ -195,13 +196,13 @@ class _HomeScreenState extends State<HomeScreen>
                 children: [
                   GestureDetector(
                     child: Container(
-                      width: 36,
-                      height: 36,
+                      width: UtilSize.width(36, context),
+                      height: UtilSize.width(36, context),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: Colors.black,
-                          width: 1,
+                          width: UtilSize.width(1, context),
                         ),
                         color: const Color(0xffeae4fc),
                       ),
@@ -224,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen>
                     },
                   ),
                   SizedBox(
-                    width: size.width * 0.69,
+                    width: size.width * 0.68,
                     height: size.height * 0.047,
                     child: OutlineSearchBar(
                       borderRadius: BorderRadius.circular(100),
@@ -232,9 +233,9 @@ class _HomeScreenState extends State<HomeScreen>
                       searchButtonIconColor: const Color(0xff170658),
                       hideSearchButton: true,
                       hintText: 'Buscar Inversiones',
-                      hintStyle: const TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 13,
+                      hintStyle: TextStyle(
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(13, context),
                       ),
                     ),
                   ),
@@ -263,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen>
 
                   /// The color to paint behind th indicator.
                   indicatorBackgroundColor: Colors.transparent,
-                  height: size.height * 0.25,
+                  height: size.height * 0.3,
                   children: [
                     //tarjeta 1
                     Padding(
@@ -291,11 +292,11 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                               child: SizedBox(
                                 width: size.width * 0.432,
-                                child: const Text(
+                                child: Text(
                                   "Invierte en bienes y servicios tokenizados ¡con tarjeta! ",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: 15,
+                                    fontSize: UtilSize.width(15, context),
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -305,6 +306,7 @@ class _HomeScreenState extends State<HomeScreen>
                             SizedBox(
                               child: Image.asset(
                                 'assets/Vectores/Ilustraciones/Group 2189.png',
+                                width: UtilSize.width(359, context),
                               ),
                             ),
                           ],
@@ -373,8 +375,10 @@ class _HomeScreenState extends State<HomeScreen>
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Container(
-                                                      width: 16,
-                                                      height: 16,
+                                                      width: UtilSize.width(
+                                                          16, context),
+                                                      height: UtilSize.width(
+                                                          16, context),
                                                       decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
@@ -383,17 +387,23 @@ class _HomeScreenState extends State<HomeScreen>
                                                       child: SvgPicture.asset(
                                                         'assets/Vectores/Iconos/candado.svg',
                                                         color: Colors.white,
-                                                        width: 16,
+                                                        width: UtilSize.width(
+                                                            16, context),
                                                       ),
                                                     ),
-                                                    const SizedBox(width: 8),
+                                                    SizedBox(
+                                                        width: UtilSize.width(
+                                                            8, context)),
                                                     Row(
                                                       children: [
-                                                        const Text(
+                                                        Text(
                                                           "Balance Bloqueado ",
                                                           style: TextStyle(
                                                             color: Colors.white,
-                                                            fontSize: 11,
+                                                            fontSize:
+                                                                UtilSize.width(
+                                                                    11,
+                                                                    context),
                                                             fontFamily:
                                                                 "Archivo",
                                                             fontWeight:
@@ -402,21 +412,26 @@ class _HomeScreenState extends State<HomeScreen>
                                                         ),
                                                         Text(
                                                           snapshot.data ?? '',
-                                                          style:
-                                                              const TextStyle(
+                                                          style: TextStyle(
                                                             color: Colors.white,
-                                                            fontSize: 11,
+                                                            fontSize:
+                                                                UtilSize.width(
+                                                                    11,
+                                                                    context),
                                                             fontFamily:
                                                                 "Archivo",
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                           ),
                                                         ),
-                                                        const Text(
+                                                        Text(
                                                           ' EBL',
                                                           style: TextStyle(
                                                             color: Colors.white,
-                                                            fontSize: 11,
+                                                            fontSize:
+                                                                UtilSize.width(
+                                                                    11,
+                                                                    context),
                                                             fontFamily:
                                                                 "Archivo",
                                                             fontWeight:
@@ -434,11 +449,12 @@ class _HomeScreenState extends State<HomeScreen>
                                                         0.00985221674876847,
                                                     left: size.width *
                                                         0.0106666666666667),
-                                                child: const Text(
+                                                child: Text(
                                                   "BALANCE DISPONIBLE",
                                                   style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 11.59,
+                                                    fontSize: UtilSize.width(
+                                                        11.59, context),
                                                     fontFamily: "Archivo",
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -463,11 +479,13 @@ class _HomeScreenState extends State<HomeScreen>
                                                     SizedBox(
                                                         width:
                                                             size.width * 0.035),
-                                                    const Text(
+                                                    Text(
                                                       "EBL",
                                                       style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize: 18.55,
+                                                        fontSize:
+                                                            UtilSize.width(
+                                                                18.55, context),
                                                       ),
                                                     ),
                                                   ],
@@ -499,9 +517,11 @@ class _HomeScreenState extends State<HomeScreen>
                                                     children: [
                                                       Text(
                                                         "$usd USD",
-                                                        style: const TextStyle(
+                                                        style: TextStyle(
                                                           color: Colors.white,
-                                                          fontSize: 13,
+                                                          fontSize:
+                                                              UtilSize.width(
+                                                                  13, context),
                                                           fontFamily: "Archivo",
                                                           fontWeight:
                                                               FontWeight.w600,
@@ -545,10 +565,15 @@ class _HomeScreenState extends State<HomeScreen>
                                                     ),
                                                   ),
                                                   child: SvgPicture.asset(
-                                                      'assets/Vectores/Iconos/ebloqscoinb.svg'),
+                                                    'assets/Vectores/Iconos/ebloqscoinb.svg',
+                                                    width: UtilSize.width(
+                                                        20, context),
+                                                  ),
                                                 ),
                                                 SvgPicture.asset(
                                                   'assets/Vectores/Iconos/chevronright.svg',
+                                                  width: UtilSize.width(
+                                                      24, context),
                                                   color:
                                                       const Color(0xffffffff),
                                                 )
@@ -604,8 +629,9 @@ class _HomeScreenState extends State<HomeScreen>
                                                 BorderRadius.circular(100),
                                             color: const Color(0x14ffffff),
                                           ),
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 4,
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal:
+                                                UtilSize.width(4, context),
                                           ),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
@@ -615,8 +641,10 @@ class _HomeScreenState extends State<HomeScreen>
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Container(
-                                                width: 16,
-                                                height: 16,
+                                                width:
+                                                    UtilSize.width(16, context),
+                                                height:
+                                                    UtilSize.width(16, context),
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(8),
@@ -624,17 +652,19 @@ class _HomeScreenState extends State<HomeScreen>
                                                 child: SvgPicture.asset(
                                                   'assets/Vectores/Iconos/candado.svg',
                                                   color: Colors.white,
-                                                  width: 16,
+                                                  width: UtilSize.width(
+                                                      16, context),
                                                 ),
                                               ),
                                               const SizedBox(width: 8),
                                               Row(
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "Balance Bloqueado ",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 11,
+                                                      fontSize: UtilSize.width(
+                                                          11, context),
                                                       fontFamily: "Archivo",
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -644,7 +674,8 @@ class _HomeScreenState extends State<HomeScreen>
                                                     '0',
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 11,
+                                                      fontSize: UtilSize.width(
+                                                          11, context),
                                                       fontFamily: "Archivo",
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -654,7 +685,8 @@ class _HomeScreenState extends State<HomeScreen>
                                                     ' EBL',
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 11,
+                                                      fontSize: UtilSize.width(
+                                                          11, context),
                                                       fontFamily: "Archivo",
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -671,11 +703,12 @@ class _HomeScreenState extends State<HomeScreen>
                                                   0.00985221674876847,
                                               left: size.width *
                                                   0.0106666666666667),
-                                          child: const Text(
+                                          child: Text(
                                             "BALANCE DISPONIBLE",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 11.59,
+                                              fontSize: UtilSize.width(
+                                                  11.59, context),
                                               fontFamily: "Archivo",
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -690,20 +723,22 @@ class _HomeScreenState extends State<HomeScreen>
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
-                                              const Text(
+                                              Text(
                                                 '0',
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 36,
+                                                  fontSize: UtilSize.width(
+                                                      36, context),
                                                 ),
                                               ),
                                               SizedBox(
                                                   width: size.width * 0.035),
-                                              const Text(
+                                              Text(
                                                 "EBL",
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: 18.55,
+                                                  fontSize: UtilSize.width(
+                                                      18.55, context),
                                                 ),
                                               ),
                                             ],
@@ -727,12 +762,13 @@ class _HomeScreenState extends State<HomeScreen>
                                                   MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: const [
+                                              children: [
                                                 Text(
                                                   "0 USD",
                                                   style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 13,
+                                                    fontSize: UtilSize.width(
+                                                        13, context),
                                                     fontFamily: "Archivo",
                                                     fontWeight: FontWeight.w600,
                                                   ),
@@ -770,10 +806,13 @@ class _HomeScreenState extends State<HomeScreen>
                                               ),
                                             ),
                                             child: SvgPicture.asset(
-                                                'assets/Vectores/Iconos/ebloqscoinb.svg'),
+                                                'assets/Vectores/Iconos/ebloqscoinb.svg',
+                                                width: UtilSize.width(
+                                                    20, context)),
                                           ),
                                           SvgPicture.asset(
                                             'assets/Vectores/Iconos/chevronright.svg',
+                                            width: UtilSize.width(24, context),
                                             color: const Color(0xffffffff),
                                           )
                                         ],
@@ -835,11 +874,12 @@ class _HomeScreenState extends State<HomeScreen>
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: size.height * 0.027),
-                                        child: const Text(
+                                        child: Text(
                                           "INVIERTE EN TOKENS EBLOQS",
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 12,
+                                            fontSize:
+                                                UtilSize.width(12, context),
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -860,11 +900,12 @@ class _HomeScreenState extends State<HomeScreen>
                                           padding: EdgeInsets.only(
                                               top: size.height * 0.025,
                                               right: size.width * 0.05),
-                                          child: const Text(
+                                          child: Text(
                                             "Ronda privada",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 11.59,
+                                              fontSize: UtilSize.width(
+                                                  11.59, context),
                                               fontFamily: "Archivo",
                                               fontWeight: FontWeight.w600,
                                             ),
@@ -889,12 +930,13 @@ class _HomeScreenState extends State<HomeScreen>
                                                   MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: const [
+                                              children: [
                                                 Text(
                                                   "\$0,07 USD",
                                                   style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: 16.44,
+                                                    fontSize: UtilSize.width(
+                                                        16.44, context),
                                                     fontFamily: "Archivo",
                                                     fontWeight: FontWeight.w600,
                                                   ),
@@ -955,11 +997,12 @@ class _HomeScreenState extends State<HomeScreen>
                                         Padding(
                                           padding: EdgeInsets.only(
                                               top: size.height * 0.027),
-                                          child: const Text(
+                                          child: Text(
                                             "INVIERTE EN TOKENS EBLOQS",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 12,
+                                              fontSize:
+                                                  UtilSize.width(12, context),
                                               fontFamily: "Archivo",
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -980,11 +1023,12 @@ class _HomeScreenState extends State<HomeScreen>
                                             padding: EdgeInsets.only(
                                                 top: size.height * 0.025,
                                                 right: size.width * 0.05),
-                                            child: const Text(
+                                            child: Text(
                                               "Ronda privada",
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 11.59,
+                                                fontSize: UtilSize.width(
+                                                    11.59, context),
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -1010,12 +1054,13 @@ class _HomeScreenState extends State<HomeScreen>
                                                     MainAxisAlignment.start,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                children: const [
+                                                children: [
                                                   Text(
                                                     "\$0,07 USD",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: 16.44,
+                                                      fontSize: UtilSize.width(
+                                                          16.44, context),
                                                       fontFamily: "Archivo",
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -1049,11 +1094,11 @@ class _HomeScreenState extends State<HomeScreen>
               //Banner
 
               // Inversión destacadas
-              const Text(
+              Text(
                 "Inversión Destacadas",
                 style: TextStyle(
-                  color: Color(0xff170658),
-                  fontSize: 15,
+                  color: const Color(0xff170658),
+                  fontSize: UtilSize.width(15, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w600,
                 ),
@@ -1061,280 +1106,311 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: EdgeInsets.only(top: size.height * 0.02),
                 child: SizedBox(
-                  width: size.width * 0.95,
-                  height: size.height * 0.52,
+                  width: UtilSize.width(337, context),
+                  height: UtilSize.height(500, context),
                   child: ListView.builder(
                     itemCount: inversiones.length,
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
-                        child: Container(
-                          width: size.width * 0.95,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: const Color(0xffeae4fc),
-                              width: 0.88,
-                            ),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color(0x0f000000),
-                                blurRadius: 17.62,
-                                offset: Offset(0, 0),
-                              ),
-                            ],
-                            color: Colors.white,
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(5),
+                            topRight: Radius.circular(5),
                           ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Stack(
-                                children: [
-                                  Image.asset(inversiones[index]['imagen']),
-                                  Positioned(
-                                      top: size.height * 0.015,
-                                      right: size.width * 0.03,
-                                      child: SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Hearth.svg'))
-                                ],
+                          child: Container(
+                            width: UtilSize.width(337, context),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: const Color(0xffeae4fc),
+                                width: 0.88,
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * 0.017,
-                                    left: size.width * 0.032,
-                                    right: size.width * 0.032),
-                                child: Row(
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0x0f000000),
+                                  blurRadius: 17.62,
+                                  offset: Offset(0, 0),
+                                ),
+                              ],
+                              color: Colors.white,
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Stack(
                                   children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          inversiones[index]['inversion'],
-                                          style: const TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 15,
-                                            fontFamily: "Archivo",
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: size.width * 0.37,
-                                          child: Text(
-                                            inversiones[index]['sector'],
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 2,
-                                            style: const TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 13,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Expanded(child: Container()),
-                                    Container(
-                                      width: size.width * 0.4,
-                                      height: size.height * 0.063,
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: size.width * 0.025,
-                                          vertical: size.height * 0.009),
-                                      decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(4.40),
-                                        color: const Color(0xfff9f9fa),
-                                      ),
-                                      child: Column(
+                                    Image.asset(inversiones[index]['imagen'],
+                                        width: UtilSize.width(375, context)),
+                                    Positioned(
+                                        top: size.height * 0.015,
+                                        right: size.width * 0.03,
+                                        child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Hearth.svg',
+                                          width: UtilSize.width(30, context),
+                                        ))
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: size.height * 0.017,
+                                      left: size.width * 0.032,
+                                      right: size.width * 0.032),
+                                  child: Row(
+                                    children: [
+                                      Column(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                            MainAxisAlignment.start,
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.end,
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "Precio x Token \$${inversiones[index]['precio']}",
-                                            textAlign: TextAlign.center,
-                                            style: const TextStyle(
-                                              color: Color(0xff2504ca),
-                                              fontSize: 13,
+                                            inversiones[index]['inversion'],
+                                            style: TextStyle(
+                                              color: const Color(0xff170658),
+                                              fontSize:
+                                                  UtilSize.width(15, context),
                                               fontFamily: "Archivo",
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          const Text(
-                                            "1 Token",
-                                            textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 13,
+                                          SizedBox(
+                                            width: size.width * 0.37,
+                                            child: Text(
+                                              inversiones[index]['sector'],
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                              style: TextStyle(
+                                                color: const Color(0xff170658),
+                                                fontSize:
+                                                    UtilSize.width(13, context),
+                                              ),
                                             ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: size.width * 0.032,
-                                    vertical: size.height * 0.015),
-                                child: Center(
-                                  child: Container(
-                                    width: size.width * 0.9,
-                                    height: size.height * 0.001,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: const Color(0xff170658),
-                                        width: 0.12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.032,
-                                ),
-                                child: Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                        'assets/Vectores/Iconos/Building.svg'),
-                                    Text(
-                                      "${inversiones[index]['pisos']} Pisos ",
-                                      style: const TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    Expanded(child: Container()),
-                                    SvgPicture.asset(
-                                        'assets/Vectores/Iconos/Plus.svg'),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: size.width * 0.032,
-                                    vertical: size.height * 0.015),
-                                child: Center(
-                                  child: Container(
-                                    width: size.width * 0.9,
-                                    height: size.height * 0.001,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: const Color(0xff170658),
-                                        width: 0.12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: size.width * 0.032,
-                                ),
-                                child: Text(
-                                  "Rentabilidad acumulada promedio ${inversiones[index]['rentabilidad']}%",
-                                  style: const TextStyle(
-                                      fontSize: 12, color: Color(0xff170658)),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: size.width * 0.032,
-                                    vertical: size.height * 0.0152),
-                                child: Center(
-                                  child: Container(
-                                    width: size.width * 0.9,
-                                    height: size.height * 0.001,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: const Color(0xff170658),
-                                        width: 0.12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    bottom: size.height * 0.04,
-                                    left: size.width * 0.032,
-                                    right: size.width * 0.032),
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: size.width * 0.2,
-                                      height: size.height * 0.03,
-                                      child: Stack(
-                                        children: [
-                                          Container(
-                                            width: size.width * 0.065,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.asset(
-                                                'assets/avatares/2x/profile-1-2x.png'),
-                                          ),
-                                          Positioned(
-                                            left: size.width * 0.045,
-                                            child: Container(
-                                              width: size.width * 0.065,
-                                              decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
+                                      Expanded(child: Container()),
+                                      Container(
+                                        width: size.width * 0.4,
+                                        height: UtilSize.height(54, context),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: size.width * 0.025,
+                                            vertical: size.height * 0.009),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(4.40),
+                                          color: const Color(0xfff9f9fa),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              "Precio x Token \$${inversiones[index]['precio']}",
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: const Color(0xff2504ca),
+                                                fontSize:
+                                                    UtilSize.width(13, context),
+                                                fontFamily: "Archivo",
+                                                fontWeight: FontWeight.w600,
                                               ),
-                                              child: Image.asset(
-                                                  'assets/avatares/2x/profile-2-2x.png'),
                                             ),
-                                          ),
-                                          Positioned(
-                                            left: size.width * 0.09,
-                                            child: Container(
-                                              width: size.width * 0.065,
-                                              decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
+                                            Text(
+                                              "1 Token",
+                                              textAlign: TextAlign.right,
+                                              style: TextStyle(
+                                                color: const Color(0xff170658),
+                                                fontSize:
+                                                    UtilSize.width(13, context),
                                               ),
-                                              child: Image.asset(
-                                                  'assets/avatares/2x/profile-3-2x.png'),
                                             ),
-                                          ),
-                                          Positioned(
-                                            left: size.width * 0.13,
-                                            child: Container(
-                                              width: size.width * 0.065,
-                                              decoration: const BoxDecoration(
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Image.asset(
-                                                  'assets/avatares/2x/profile-4-2x.png'),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: size.width * 0.03),
-                                      child: SizedBox(
-                                        width: size.width * 0.57,
-                                        child: const Text(
-                                          '''+ 100 personas ya compraron
-                      tokens en esta propiedad.''',
-                                          style: TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 12,
-                                          ),
+                                          ],
                                         ),
                                       ),
-                                    )
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              )
-                            ],
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.032,
+                                      vertical: size.height * 0.015),
+                                  child: Center(
+                                    child: Container(
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.001,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xff170658),
+                                          width: 0.12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.032,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        'assets/Vectores/Iconos/Building.svg',
+                                        width: UtilSize.width(16, context),
+                                      ),
+                                      Text(
+                                        "${inversiones[index]['pisos']} Pisos ",
+                                        style: TextStyle(
+                                          color: const Color(0xff170658),
+                                          fontSize: UtilSize.width(12, context),
+                                        ),
+                                      ),
+                                      Expanded(child: Container()),
+                                      SvgPicture.asset(
+                                        'assets/Vectores/Iconos/Plus.svg',
+                                        width: UtilSize.width(16, context),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.032,
+                                      vertical: size.height * 0.015),
+                                  child: Center(
+                                    child: Container(
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.001,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xff170658),
+                                          width: 0.12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: size.width * 0.032,
+                                  ),
+                                  child: Text(
+                                    "Rentabilidad acumulada promedio ${inversiones[index]['rentabilidad']}%",
+                                    style: TextStyle(
+                                        fontSize: UtilSize.width(12, context),
+                                        color: const Color(0xff170658)),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: size.width * 0.032,
+                                      vertical: size.height * 0.0152),
+                                  child: Center(
+                                    child: Container(
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.001,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: const Color(0xff170658),
+                                          width: 0.12,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      bottom: size.height * 0.04,
+                                      left: size.width * 0.032,
+                                      right: size.width * 0.032),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: size.width * 0.2,
+                                        height: UtilSize.height(35, context),
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              width: size.width * 0.065,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.asset(
+                                                'assets/avatares/2x/profile-1-2x.png',
+                                                width:
+                                                    UtilSize.width(24, context),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              left: size.width * 0.045,
+                                              child: Container(
+                                                width: size.width * 0.065,
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.asset(
+                                                  'assets/avatares/2x/profile-2-2x.png',
+                                                  width: UtilSize.width(
+                                                      24, context),
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              left: size.width * 0.09,
+                                              child: Container(
+                                                width: size.width * 0.065,
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.asset(
+                                                  'assets/avatares/2x/profile-3-2x.png',
+                                                  width: UtilSize.width(
+                                                      24, context),
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                              left: size.width * 0.13,
+                                              child: Container(
+                                                width: size.width * 0.065,
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Image.asset(
+                                                  'assets/avatares/2x/profile-4-2x.png',
+                                                  width: UtilSize.width(
+                                                      24, context),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: size.width * 0.03),
+                                        child: SizedBox(
+                                          width: size.width * 0.57,
+                                          child: Text(
+                                            '''+ 100 personas ya compraron
+                        tokens en esta propiedad.''',
+                                            style: TextStyle(
+                                              color: const Color(0xff170658),
+                                              fontSize:
+                                                  UtilSize.width(12, context),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         onTap: () {
@@ -1352,15 +1428,16 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                 ),
               ),
-              //INVERSIONES CIUDAD 1
+
+              //INVERSIONES CIUDAD QUITO
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.105, bottom: size.height * 0.015),
-                child: const Text(
+                child: Text(
                   "Inversiones en Quito",
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 15,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(15, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -1368,7 +1445,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
 
               SizedBox(
-                height: size.height * 0.46,
+                height: UtilSize.height(435, context),
                 child: ListView.builder(
                   itemCount: inversionesQuito.length,
                   scrollDirection: Axis.horizontal,
@@ -1401,12 +1478,16 @@ class _HomeScreenState extends State<HomeScreen>
                               Stack(
                                 children: [
                                   Image.asset(
-                                      inversionesQuito[index2]['imagen']),
+                                    inversionesQuito[index2]['imagen'],
+                                    width: UtilSize.width(171, context),
+                                  ),
                                   Positioned(
                                     top: size.height * 0.008,
                                     right: size.width * 0.015,
                                     child: SvgPicture.asset(
-                                        'assets/Vectores/Iconos/Hearth.svg'),
+                                      'assets/Vectores/Iconos/Hearth.svg',
+                                      width: UtilSize.width(30, context),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -1418,9 +1499,9 @@ class _HomeScreenState extends State<HomeScreen>
                                     right: size.width * 0.032),
                                 child: Text(
                                   inversionesQuito[index2]['inversion'],
-                                  style: const TextStyle(
-                                    color: Color(0xff170658),
-                                    fontSize: 14,
+                                  style: TextStyle(
+                                    color: const Color(0xff170658),
+                                    fontSize: UtilSize.width(14, context),
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -1433,9 +1514,9 @@ class _HomeScreenState extends State<HomeScreen>
                                     bottom: size.height * 0.01),
                                 child: Text(
                                   inversionesQuito[index2]['sector'],
-                                  style: const TextStyle(
-                                    color: Color(0xff170658),
-                                    fontSize: 12,
+                                  style: TextStyle(
+                                    color: const Color(0xff170658),
+                                    fontSize: UtilSize.width(12, context),
                                   ),
                                 ),
                               ),
@@ -1444,7 +1525,7 @@ class _HomeScreenState extends State<HomeScreen>
                                     horizontal: size.width * 0.0098),
                                 child: Container(
                                   width: size.width * 0.5,
-                                  height: size.height * 0.06,
+                                  height: UtilSize.width(52, context),
                                   padding: EdgeInsets.symmetric(
                                       horizontal: size.width * 0.03,
                                       vertical: size.height * 0.007),
@@ -1456,12 +1537,12 @@ class _HomeScreenState extends State<HomeScreen>
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const Text(
+                                      Text(
                                         "Precio token",
                                         textAlign: TextAlign.right,
                                         style: TextStyle(
-                                          color: Color(0xff170658),
-                                          fontSize: 10,
+                                          color: const Color(0xff170658),
+                                          fontSize: UtilSize.width(10, context),
                                         ),
                                       ),
                                       Column(
@@ -1473,19 +1554,21 @@ class _HomeScreenState extends State<HomeScreen>
                                           Text(
                                             "USD\$ ${inversionesQuito[index2]['precio']}",
                                             textAlign: TextAlign.right,
-                                            style: const TextStyle(
-                                              color: Color(0xff2504ca),
-                                              fontSize: 13,
+                                            style: TextStyle(
+                                              color: const Color(0xff2504ca),
+                                              fontSize:
+                                                  UtilSize.width(13, context),
                                               fontFamily: "Archivo",
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          const Text(
+                                          Text(
                                             "1 Token",
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 13,
+                                              color: const Color(0xff170658),
+                                              fontSize:
+                                                  UtilSize.width(13, context),
                                             ),
                                           ),
                                         ],
@@ -1501,7 +1584,9 @@ class _HomeScreenState extends State<HomeScreen>
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
-                                        'assets/Vectores/Iconos/Building.svg'),
+                                      'assets/Vectores/Iconos/Building.svg',
+                                      width: UtilSize.width(16, context),
+                                    ),
                                     Padding(
                                       padding: EdgeInsets.only(
                                           left: size.width * 0.02),
@@ -1513,16 +1598,18 @@ class _HomeScreenState extends State<HomeScreen>
                                         children: [
                                           Text(
                                             "${inversionesQuito[index2]['pisos']} Pisos ",
-                                            style: const TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 12,
+                                            style: TextStyle(
+                                              color: const Color(0xff170658),
+                                              fontSize:
+                                                  UtilSize.width(12, context),
                                             ),
                                           ),
                                           Text(
                                             "${inversionesQuito[index2]['apartamentos']} Apartamentos ",
-                                            style: const TextStyle(
-                                              color: Color(0xff170658),
-                                              fontSize: 12,
+                                            style: TextStyle(
+                                              color: const Color(0xff170658),
+                                              fontSize:
+                                                  UtilSize.width(12, context),
                                             ),
                                           ),
                                         ],
@@ -1530,7 +1617,9 @@ class _HomeScreenState extends State<HomeScreen>
                                     ),
                                     Expanded(child: Container()),
                                     SvgPicture.asset(
-                                        'assets/Vectores/Iconos/Plus.svg'),
+                                      'assets/Vectores/Iconos/Plus.svg',
+                                      width: UtilSize.width(16, context),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -1556,18 +1645,18 @@ class _HomeScreenState extends State<HomeScreen>
                                 ),
                                 child: Row(
                                   children: [
-                                    const Text(
+                                    Text(
                                       "Rentabilidad",
                                       style: TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xff170658)),
+                                          fontSize: UtilSize.width(12, context),
+                                          color: const Color(0xff170658)),
                                     ),
                                     Expanded(child: Container()),
                                     Text(
                                       "${inversionesQuito[index2]['rentabilidad']}%",
-                                      style: const TextStyle(
-                                          fontSize: 12,
-                                          color: Color(0xff170658)),
+                                      style: TextStyle(
+                                          fontSize: UtilSize.width(12, context),
+                                          color: const Color(0xff170658)),
                                     ),
                                   ],
                                 ),
@@ -1590,15 +1679,15 @@ class _HomeScreenState extends State<HomeScreen>
                   },
                 ),
               ),
-              // Inversiones ciudad 2
+              // Inversiones ciudad Miami
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.105, bottom: size.height * 0.012),
-                child: const Text(
+                child: Text(
                   "Inversiones en Miami",
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 15,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(15, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -1606,7 +1695,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
 
               SizedBox(
-                height: size.height * 0.475,
+                height: UtilSize.height(420, context),
                 child: ListView.builder(
                   itemCount: inversionesMiami.length,
                   scrollDirection: Axis.horizontal,
@@ -1639,12 +1728,16 @@ class _HomeScreenState extends State<HomeScreen>
                                 Stack(
                                   children: [
                                     Image.asset(
-                                        inversionesMiami[index3]['imagen']),
+                                      inversionesMiami[index3]['imagen'],
+                                      width: UtilSize.width(171, context),
+                                    ),
                                     Positioned(
                                       top: size.height * 0.01,
                                       right: size.width * 0.015,
                                       child: SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Hearth.svg'),
+                                        'assets/Vectores/Iconos/Hearth.svg',
+                                        width: UtilSize.width(30, context),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -1656,9 +1749,9 @@ class _HomeScreenState extends State<HomeScreen>
                                       right: size.width * 0.02),
                                   child: Text(
                                     inversionesMiami[index3]['inversion'],
-                                    style: const TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 14,
+                                    style: TextStyle(
+                                      color: const Color(0xff170658),
+                                      fontSize: UtilSize.width(14, context),
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -1672,9 +1765,9 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                   child: Text(
                                     inversionesMiami[index3]['sector'],
-                                    style: const TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 12,
+                                    style: TextStyle(
+                                      color: const Color(0xff170658),
+                                      fontSize: UtilSize.width(12, context),
                                     ),
                                   ),
                                 ),
@@ -1684,7 +1777,7 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                   child: Container(
                                     width: size.width * 0.5,
-                                    height: size.height * 0.06,
+                                    height: UtilSize.height(52, context),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: size.width * 0.025,
                                         vertical: size.height * 0.007),
@@ -1696,12 +1789,13 @@ class _HomeScreenState extends State<HomeScreen>
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Text(
+                                        Text(
                                           "Precio token",
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 10,
+                                            color: const Color(0xff170658),
+                                            fontSize:
+                                                UtilSize.width(10, context),
                                           ),
                                         ),
                                         Column(
@@ -1713,19 +1807,21 @@ class _HomeScreenState extends State<HomeScreen>
                                             Text(
                                               "USD\$ ${inversionesMiami[index3]['precio']}",
                                               textAlign: TextAlign.right,
-                                              style: const TextStyle(
-                                                color: Color(0xff2504ca),
-                                                fontSize: 13,
+                                              style: TextStyle(
+                                                color: const Color(0xff2504ca),
+                                                fontSize:
+                                                    UtilSize.width(13, context),
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                            const Text(
+                                            Text(
                                               "1 Token",
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
-                                                color: Color(0xff170658),
-                                                fontSize: 13,
+                                                color: const Color(0xff170658),
+                                                fontSize:
+                                                    UtilSize.width(13, context),
                                               ),
                                             ),
                                           ],
@@ -1741,7 +1837,9 @@ class _HomeScreenState extends State<HomeScreen>
                                   child: Row(
                                     children: [
                                       SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Building.svg'),
+                                        'assets/Vectores/Iconos/Building.svg',
+                                        width: UtilSize.width(16, context),
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             left: size.width * 0.02),
@@ -1753,16 +1851,18 @@ class _HomeScreenState extends State<HomeScreen>
                                           children: [
                                             Text(
                                               "${inversionesMiami[index3]['pisos']} Pisos ",
-                                              style: const TextStyle(
-                                                color: Color(0xff170658),
-                                                fontSize: 12,
+                                              style: TextStyle(
+                                                color: const Color(0xff170658),
+                                                fontSize:
+                                                    UtilSize.width(12, context),
                                               ),
                                             ),
                                             Text(
                                               "${inversionesMiami[index3]['apartamentos']} Apartamentos ",
-                                              style: const TextStyle(
-                                                color: Color(0xff170658),
-                                                fontSize: 12,
+                                              style: TextStyle(
+                                                color: const Color(0xff170658),
+                                                fontSize:
+                                                    UtilSize.width(12, context),
                                               ),
                                             ),
                                           ],
@@ -1770,7 +1870,9 @@ class _HomeScreenState extends State<HomeScreen>
                                       ),
                                       Expanded(child: Container()),
                                       SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Plus.svg'),
+                                        'assets/Vectores/Iconos/Plus.svg',
+                                        width: UtilSize.width(16, context),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -1797,18 +1899,20 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                   child: Row(
                                     children: [
-                                      const Text(
+                                      Text(
                                         "Rentabilidad",
                                         style: TextStyle(
-                                            fontSize: 12,
-                                            color: Color(0xff170658)),
+                                            fontSize:
+                                                UtilSize.width(12, context),
+                                            color: const Color(0xff170658)),
                                       ),
                                       Expanded(child: Container()),
                                       Text(
                                         "${inversionesMiami[index3]['rentabilidad']}%",
-                                        style: const TextStyle(
-                                            fontSize: 12,
-                                            color: Color(0xff170658)),
+                                        style: TextStyle(
+                                            fontSize:
+                                                UtilSize.width(12, context),
+                                            color: const Color(0xff170658)),
                                       ),
                                     ],
                                   ),
@@ -1834,18 +1938,18 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.05, bottom: size.height * 0.02),
-                child: const Text(
+                child: Text(
                   "Inversión vehículos",
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 15,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(15, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               SizedBox(
-                height: size.height * 0.37,
+                height: UtilSize.height(350, context),
                 child: ListView.builder(
                   itemCount: inversionesVehiculos.length,
                   scrollDirection: Axis.horizontal,
@@ -1878,12 +1982,16 @@ class _HomeScreenState extends State<HomeScreen>
                                 Stack(
                                   children: [
                                     Image.asset(
-                                        inversionesVehiculos[index4]['imagen']),
+                                      inversionesVehiculos[index4]['imagen'],
+                                      width: UtilSize.width(278.28, context),
+                                    ),
                                     Positioned(
                                       top: size.height * 0.01,
                                       right: size.width * 0.01,
                                       child: SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Hearth.svg'),
+                                        'assets/Vectores/Iconos/Hearth.svg',
+                                        width: UtilSize.width(30, context),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -1894,9 +2002,9 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                   child: Text(
                                     inversionesVehiculos[index4]['inversion'],
-                                    style: const TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 14.57,
+                                    style: TextStyle(
+                                      color: const Color(0xff170658),
+                                      fontSize: UtilSize.width(14.57, context),
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -1911,14 +2019,15 @@ class _HomeScreenState extends State<HomeScreen>
                                     children: [
                                       Text(
                                         inversionesVehiculos[index4]['ratio'],
-                                        style: const TextStyle(
-                                          color: Color(0xff170658),
-                                          fontSize: 10.93,
+                                        style: TextStyle(
+                                          color: const Color(0xff170658),
+                                          fontSize:
+                                              UtilSize.width(10.93, context),
                                         ),
                                       ),
                                       SvgPicture.asset(
                                         'assets/Vectores/Iconos/star-fill1.svg',
-                                        width: size.width * 0.035,
+                                        width: UtilSize.width(14, context),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(
@@ -1927,9 +2036,10 @@ class _HomeScreenState extends State<HomeScreen>
                                         ),
                                         child: Text(
                                           "(${inversionesVehiculos[index4]['trips']} trips)",
-                                          style: const TextStyle(
-                                            color: Color(0xff170658),
-                                            fontSize: 10.93,
+                                          style: TextStyle(
+                                            color: const Color(0xff170658),
+                                            fontSize:
+                                                UtilSize.width(10.93, context),
                                           ),
                                         ),
                                       ),
@@ -1939,9 +2049,10 @@ class _HomeScreenState extends State<HomeScreen>
                                       ),
                                       Text(
                                         inversionesVehiculos[index4]['star'],
-                                        style: const TextStyle(
-                                          color: Color(0xff170658),
-                                          fontSize: 10.93,
+                                        style: TextStyle(
+                                          color: const Color(0xff170658),
+                                          fontSize:
+                                              UtilSize.width(10.93, context),
                                         ),
                                       ),
                                     ],
@@ -1972,17 +2083,19 @@ class _HomeScreenState extends State<HomeScreen>
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Plus.svg',
-                                          width: 18),
+                                        'assets/Vectores/Iconos/Plus.svg',
+                                        width: UtilSize.width(18, context),
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             left: size.width * 0.02,
                                             right: size.width * 0.04),
                                         child: Text(
                                           "\$${inversionesVehiculos[index4]['precio']}/day",
-                                          style: const TextStyle(
-                                            color: Color(0xff2504ca),
-                                            fontSize: 12.38,
+                                          style: TextStyle(
+                                            color: const Color(0xff2504ca),
+                                            fontSize:
+                                                UtilSize.width(12.38, context),
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w700,
                                           ),
@@ -2013,18 +2126,18 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.05, bottom: size.height * 0.02),
-                child: const Text(
+                child: Text(
                   "Inversión educación",
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 15,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(15, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               SizedBox(
-                height: size.height * 0.32,
+                height: UtilSize.height(305, context),
                 child: ListView.builder(
                   itemCount: inversionesEducacion.length,
                   scrollDirection: Axis.horizontal,
@@ -2058,13 +2171,15 @@ class _HomeScreenState extends State<HomeScreen>
                                   children: [
                                     Image.asset(
                                       inversionesEducacion[index5]['imagen'],
+                                      width: UtilSize.width(273.67, context),
                                     ),
                                     Positioned(
-                                      top: size.height * 0.007,
-                                      right: size.width * 0.015,
-                                      child: SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Hearth.svg'),
-                                    ),
+                                        top: size.height * 0.007,
+                                        right: size.width * 0.015,
+                                        child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Hearth.svg',
+                                          width: UtilSize.width(30, context),
+                                        )),
                                   ],
                                 ),
                                 Padding(
@@ -2074,9 +2189,9 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                   child: Text(
                                     inversionesEducacion[index5]['inversion'],
-                                    style: const TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 14.57,
+                                    style: TextStyle(
+                                      color: const Color(0xff170658),
+                                      fontSize: UtilSize.width(14.57, context),
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -2107,17 +2222,19 @@ class _HomeScreenState extends State<HomeScreen>
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Plus.svg',
-                                          width: 18),
+                                        'assets/Vectores/Iconos/Plus.svg',
+                                        width: UtilSize.width(18, context),
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             left: size.width * 0.025,
                                             right: size.width * 0.04),
                                         child: Text(
                                           "${inversionesEducacion[index5]['oferta']}",
-                                          style: const TextStyle(
-                                            color: Color(0xff2504ca),
-                                            fontSize: 12.38,
+                                          style: TextStyle(
+                                            color: const Color(0xff2504ca),
+                                            fontSize:
+                                                UtilSize.width(12.38, context),
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w700,
                                           ),
@@ -2147,18 +2264,18 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.05, bottom: size.height * 0.02),
-                child: const Text(
+                child: Text(
                   "Inversión eventos",
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 15,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(15, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               SizedBox(
-                height: size.height * 0.32,
+                height: UtilSize.height(305, context),
                 child: ListView.builder(
                   itemCount: inversionesEventos.length,
                   scrollDirection: Axis.horizontal,
@@ -2192,13 +2309,15 @@ class _HomeScreenState extends State<HomeScreen>
                                   children: [
                                     Image.asset(
                                       inversionesEventos[index5]['imagen'],
+                                      width: UtilSize.width(273.67, context),
                                     ),
                                     Positioned(
-                                      top: size.height * 0.007,
-                                      right: size.width * 0.015,
-                                      child: SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Hearth.svg'),
-                                    ),
+                                        top: size.height * 0.007,
+                                        right: size.width * 0.015,
+                                        child: SvgPicture.asset(
+                                          'assets/Vectores/Iconos/Hearth.svg',
+                                          width: UtilSize.width(30, context),
+                                        )),
                                   ],
                                 ),
                                 Padding(
@@ -2208,9 +2327,9 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                   child: Text(
                                     inversionesEventos[index5]['inversion'],
-                                    style: const TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 14.57,
+                                    style: TextStyle(
+                                      color: const Color(0xff170658),
+                                      fontSize: UtilSize.width(14.57, context),
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -2241,17 +2360,19 @@ class _HomeScreenState extends State<HomeScreen>
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       SvgPicture.asset(
-                                          'assets/Vectores/Iconos/Plus.svg',
-                                          width: 18),
+                                        'assets/Vectores/Iconos/Plus.svg',
+                                        width: UtilSize.width(18, context),
+                                      ),
                                       Padding(
                                         padding: EdgeInsets.only(
                                             left: size.width * 0.025,
                                             right: size.width * 0.04),
                                         child: Text(
                                           "${inversionesEventos[index5]['oferta']}",
-                                          style: const TextStyle(
-                                            color: Color(0xff2504ca),
-                                            fontSize: 12.38,
+                                          style: TextStyle(
+                                            color: const Color(0xff2504ca),
+                                            fontSize:
+                                                UtilSize.width(12.38, context),
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w700,
                                           ),

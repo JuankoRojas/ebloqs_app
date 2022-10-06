@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -34,11 +35,11 @@ class Onboard5Screen extends StatelessWidget {
                       height: 45,
                     ),
                     GestureDetector(
-                      child: const Text(
+                      child: Text(
                         'Salir',
                         style: TextStyle(
-                          color: Color(0xffffffff),
-                          fontSize: 15,
+                          color: const Color(0xffffffff),
+                          fontSize: UtilSize.width(15, context),
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w400,
                         ),
@@ -59,14 +60,14 @@ class Onboard5Screen extends StatelessWidget {
             child: SizedBox(
               width: size.width * 0.95,
               height: size.height * 0.162,
-              child: const Text(
+              child: Text(
                 '''También puedes invertir en
 nuestro token de utilidad
 ebloqs (EBL).''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: Color(0xff170658),
-                  fontSize: 25,
+                  color: const Color(0xff170658),
+                  fontSize: UtilSize.width(25, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w700,
                 ),
@@ -76,11 +77,11 @@ ebloqs (EBL).''',
           Positioned(
             top: size.height * 0.56,
             left: size.width * 0.078,
-            child: const Text(
+            child: Text(
               '05',
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 14,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(14, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w400,
               ),
@@ -104,11 +105,11 @@ ebloqs (EBL).''',
           Positioned(
             top: size.height * 0.582,
             left: size.width * 0.15,
-            child: const Text(
+            child: Text(
               '05',
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 14,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(14, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w400,
               ),

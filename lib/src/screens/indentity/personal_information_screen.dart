@@ -1,5 +1,6 @@
 import 'package:after_layout/after_layout.dart';
 import 'package:country_list_pick/country_list_pick.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/address_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
@@ -89,12 +90,12 @@ class _PersonalInformationState extends State<PersonalInformation>
             ),
           ),
         ),
-        title: const Text(
+        title: Text(
           "Información personal ",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Color(0xff170658),
-            fontSize: 17,
+            color: const Color(0xff170658),
+            fontSize: UtilSize.width(17, context),
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -113,13 +114,15 @@ class _PersonalInformationState extends State<PersonalInformation>
                 child: Row(
                   children: [
                     SvgPicture.asset('assets/Vectores/Iconos/id.svg'),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 16.0),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        left: UtilSize.width(16, context),
+                      ),
                       child: Text(
                         "Información general",
                         style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 13,
+                          color: const Color(0xff170658),
+                          fontSize: UtilSize.width(13, context),
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w400,
                         ),
@@ -135,14 +138,14 @@ class _PersonalInformationState extends State<PersonalInformation>
                     right: size.width * 0.0359342915811089),
                 child: Container(
                   width: size.width,
-                  height: 4,
+                  height: UtilSize.height(4, context),
                   padding: EdgeInsets.only(right: size.width * 0.67),
                   decoration: const BoxDecoration(
                       color: Color(0xffeae4fc),
                       borderRadius: BorderRadius.all(Radius.circular(3))),
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxWidth: 94,
+                    constraints: BoxConstraints(
+                      maxWidth: UtilSize.height(94, context),
                     ),
                     child: Container(
                         width: size.width * 0.217376940865544,
@@ -166,11 +169,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                       Padding(
                         padding: EdgeInsets.only(
                             left: size.width * 0.0359342915811089),
-                        child: const Text(
+                        child: Text(
                           "Nacionalidad",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 13,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(13, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -186,11 +189,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                               appBar: AppBar(
                                 backgroundColor: Colors.transparent,
                                 elevation: 0,
-                                title: const Text(
+                                title: Text(
                                   'Selecciona tu país',
                                   style: TextStyle(
-                                    color: Color(0xff170658),
-                                    fontSize: 17,
+                                    color: const Color(0xff170658),
+                                    fontSize: UtilSize.width(17, context),
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -199,7 +202,9 @@ class _PersonalInformationState extends State<PersonalInformation>
                                 leadingWidth: size.width * (44 / size.width),
                                 leading: Padding(
                                   padding: EdgeInsets.only(
-                                      left: size.width * (16 / size.width)),
+                                    left: size.width * (16 / size.width),
+                                    top: UtilSize.height(16, context),
+                                  ),
                                   child: GestureDetector(
                                     onTap: () {
                                       Navigator.pop(context);
@@ -213,7 +218,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                               pickerBuilder:
                                   (context, CountryCode? countryCode) {
                                 return Container(
-                                  height: size.height * 0.0655050016134237,
+                                  height: UtilSize.height(92, context),
                                   width: size.width,
                                   padding: EdgeInsets.only(
                                     top: size.height * (11 / size.height),
@@ -234,9 +239,9 @@ class _PersonalInformationState extends State<PersonalInformation>
                                     children: [
                                       Text(
                                         countryCode!.name!,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: Colors.black,
-                                          fontSize: 13,
+                                          fontSize: UtilSize.width(13, context),
                                           fontFamily: "Archivo",
                                           fontWeight: FontWeight.w400,
                                         ),
@@ -267,8 +272,9 @@ class _PersonalInformationState extends State<PersonalInformation>
                                       ),
                                       Expanded(child: Container()),
                                       SvgPicture.asset(
-                                          'assets/Vectores/Iconos/dwon chevron.svg',
-                                          width: 24),
+                                        'assets/Vectores/Iconos/dwon chevron.svg',
+                                        width: UtilSize.width(24, context),
+                                      ),
                                     ],
                                   ),
                                 );
@@ -303,11 +309,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                         padding: EdgeInsets.only(
                             top: size.height * 0.0187699011228423,
                             left: size.width * 0.0359342915811089),
-                        child: const Text(
+                        child: Text(
                           "Nombres",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 13,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(13, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -349,11 +355,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                           top: size.height * 0.0187699011228423,
                           left: size.width * 0.0359342915811089,
                         ),
-                        child: const Text(
+                        child: Text(
                           "Apellidos",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 13,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(13, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -392,14 +398,14 @@ class _PersonalInformationState extends State<PersonalInformation>
                       ),
                       Padding(
                         padding: EdgeInsets.only(
-                          top: 16,
+                          top: UtilSize.height(16, context),
                           left: size.width * 0.0359342915811089,
                         ),
-                        child: const Text(
+                        child: Text(
                           "Fecha de nacimiento",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 13,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(13, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -413,7 +419,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                         child: GestureDetector(
                           child: Container(
                             width: size.width,
-                            height: size.height * 0.0655050016134237,
+                            height: UtilSize.height(92, context),
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -428,9 +434,9 @@ class _PersonalInformationState extends State<PersonalInformation>
                               children: [
                                 Text(
                                   formattedDate,
-                                  style: const TextStyle(
-                                    color: Color(0xff383346),
-                                    fontSize: 14,
+                                  style: TextStyle(
+                                    color: const Color(0xff383346),
+                                    fontSize: UtilSize.width(14, context),
                                   ),
                                 ),
                                 Expanded(
@@ -454,8 +460,8 @@ class _PersonalInformationState extends State<PersonalInformation>
                                     content: StatefulBuilder(
                                       builder: (context, setState) {
                                         return Container(
-                                          width: 400.0,
-                                          height: 200.0,
+                                          width: UtilSize.width(400, context),
+                                          height: UtilSize.height(200, context),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(20),
@@ -487,11 +493,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                           top: size.height * 0.0187699011228423,
                           left: size.width * 0.0359342915811089,
                         ),
-                        child: const Text(
+                        child: Text(
                           "Número documento identidad",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 13,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(13, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -532,11 +538,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                           top: size.height * 0.0187699011228423,
                           left: size.width * 0.0359342915811089,
                         ),
-                        child: const Text(
+                        child: Text(
                           "Número de teléfono",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 13,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(13, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -596,10 +602,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                           )),
                       Padding(
                         padding: EdgeInsets.only(
-                            top: size.height * 0.046166529266282,
-                            left: size.width * 0.0359342915811089,
-                            right: size.width * 0.0359342915811089,
-                            bottom: 34),
+                          top: size.height * 0.046166529266282,
+                          left: size.width * 0.0359342915811089,
+                          right: size.width * 0.0359342915811089,
+                          bottom: UtilSize.height(34, context),
+                        ),
                         child: ButtonPrimary(
                             width: size.width,
                             title: 'Continuar',
@@ -607,7 +614,10 @@ class _PersonalInformationState extends State<PersonalInformation>
                               if (_formKey11.currentState!.validate() &&
                                   phoneNumber != null &&
                                   phoneNumber!.isNotEmpty) {
-                                isCompleted = true;
+                                setState(() {
+                                  isCompleted = true;
+                                  isLoadLogin = true;
+                                });
                                 final response = await AuthUserService()
                                     .personalData(
                                         accesstoken: Preferences.token!,
@@ -624,6 +634,9 @@ class _PersonalInformationState extends State<PersonalInformation>
                                   Future.delayed(Duration.zero).then((value) =>
                                       Navigator.pushNamed(
                                           context, AddressScreen.routeName));
+                                  setState(() {
+                                    isLoadLogin = false;
+                                  });
                                 }
                               } else {
                                 setState(() {

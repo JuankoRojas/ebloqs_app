@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android.dart';
@@ -122,13 +123,13 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                     allowDrawingOutsideViewBox: true,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 15.5),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15.5),
                   child: Text(
                     'Regresar',
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 14,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(14, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -137,10 +138,12 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: size.height * 0.072),
+              padding: EdgeInsets.only(top: UtilSize.height(48, context)),
               child: Center(
                 child: SvgPicture.asset(
-                    'assets/Vectores/Ilustraciones/Group1825.svg'),
+                  'assets/Vectores/Ilustraciones/Group1825.svg',
+                  width: UtilSize.width(242, context),
+                ),
               ),
             ),
             Padding(
@@ -148,21 +151,21 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                 top: size.height * 0.118,
                 bottom: size.height * 0.005,
               ),
-              child: const Text(
+              child: Text(
                 'Regístrate',
                 style: TextStyle(
-                  color: Color(0xff170658),
-                  fontSize: 17,
+                  color: const Color(0xff170658),
+                  fontSize: UtilSize.width(17, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w700,
                 ),
               ),
             ),
-            const Text(
+            Text(
               'Inicia sesión en ebloqs con tu cuenta favorita',
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w400,
               ),
@@ -241,11 +244,11 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: size.height * 0.016),
-                        child: const Text(
+                        child: Text(
                           'Facebook',
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 11.26,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(11.26, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),
@@ -337,11 +340,11 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: size.height * 0.016),
-                        child: const Text(
+                        child: Text(
                           'Google',
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 11.26,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(11.26, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),
@@ -364,11 +367,11 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: size.height * 0.016),
-                          child: const Text(
+                          child: Text(
                             'Apple',
                             style: TextStyle(
-                              color: Color(0xff000000),
-                              fontSize: 11.26,
+                              color: const Color(0xff000000),
+                              fontSize: UtilSize.width(11.26, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -394,11 +397,11 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: size.height * 0.016),
-                        child: const Text(
+                        child: Text(
                           'Correo',
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 11.26,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(11.26, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),

@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_2_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
 import 'package:flutter/material.dart';
@@ -50,11 +51,11 @@ class _Onboard1ScreenState extends State<Onboard1Screen> {
                       height: 45,
                     ),
                     GestureDetector(
-                      child: const Text(
+                      child: Text(
                         'Salir',
                         style: TextStyle(
-                          color: Color(0xffffffff),
-                          fontSize: 15,
+                          color: const Color(0xffffffff),
+                          fontSize: UtilSize.width(15, context),
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w400,
                         ),
@@ -81,16 +82,16 @@ class _Onboard1ScreenState extends State<Onboard1Screen> {
             left: size.width * 0.084,
             child: SizedBox(
               width: size.width * 0.79,
-              height: size.height * 0.162,
-              child: const Text(
+              height: UtilSize.height(167, context),
+              child: Text(
                 '''ebloqs® ecosistema
 de economía de
 tokens para bienes y
 servicios.''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: Color(0xffffffff),
-                  fontSize: 25,
+                  color: const Color(0xffffffff),
+                  fontSize: UtilSize.width(25, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w700,
                 ),
@@ -100,11 +101,11 @@ servicios.''',
           Positioned(
             top: size.height * 0.56,
             left: size.width * 0.078,
-            child: const Text(
+            child: Text(
               '01',
               style: TextStyle(
-                color: Color(0xffffffff),
-                fontSize: 14,
+                color: const Color(0xffffffff),
+                fontSize: UtilSize.width(14, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w400,
               ),
@@ -128,11 +129,11 @@ servicios.''',
           Positioned(
             top: size.height * 0.582,
             left: size.width * 0.15,
-            child: const Text(
+            child: Text(
               '05',
               style: TextStyle(
-                color: Color(0xffffffff),
-                fontSize: 14,
+                color: const Color(0xffffffff),
+                fontSize: UtilSize.width(14, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w400,
               ),

@@ -1,4 +1,3 @@
-import 'package:ebloqs_app/src/app/app_config.dart';
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/coin_market_provider.dart';
@@ -60,16 +59,13 @@ class _MyAppState extends State<MyApp> {
         //COINMARKET
         ChangeNotifierProvider(create: (context) => CoinMarketProvider()),
       ],
-      child: AppConfig(
-        environment: Environment.prod,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Ebloqs',
-          theme: ThemeData(
-              fontFamily: 'Archivo', scaffoldBackgroundColor: Colors.white),
-          initialRoute: OnBoardPageRoute.routeName,
-          routes: getApplicationRoutes(),
-        ),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Ebloqs',
+        theme: ThemeData(
+            fontFamily: 'Archivo', scaffoldBackgroundColor: Colors.white),
+        initialRoute: OnBoardPageRoute.routeName,
+        routes: getApplicationRoutes(),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/market/market_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -55,12 +56,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   borderRadius: BorderRadius.circular(100),
                   color: const Color(0xffeae4fc),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     "USD",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 12,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(12, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -74,12 +75,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   borderRadius: BorderRadius.circular(100),
                   color: const Color(0xffeae4fc),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     "24H %",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 12,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(12, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -93,12 +94,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   borderRadius: BorderRadius.circular(100),
                   color: const Color(0xffeae4fc),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     "Top 100",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 12,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(12, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -113,59 +114,71 @@ class _CoinsScreenState extends State<CoinsScreen> {
               left: size.width * 0.016, right: size.width * 0.016),
           child: Row(
             children: [
-              const Text(
+              Text(
                 "#",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Color(0xff170658),
-                  fontSize: 12,
+                  color: const Color(0xff170658),
+                  fontSize: UtilSize.width(12, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
+              SvgPicture.asset(
+                'assets/Vectores/Iconos/Polygon 3.svg',
+                width: UtilSize.width(10, context),
+              ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.016),
-                child: const Text(
+                child: Text(
                   "Market cap",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 12,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(12, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
+              SvgPicture.asset(
+                'assets/Vectores/Iconos/Polygon 3.svg',
+                width: UtilSize.width(10, context),
+              ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.197333333333333),
-                child: const Text(
+                child: Text(
                   "Precio (USD)",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 12,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(12, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
+              SvgPicture.asset(
+                'assets/Vectores/Iconos/Polygon 3.svg',
+                width: UtilSize.width(10, context),
+              ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0853333333333333),
-                child: const Text(
+                child: Text(
                   "24h %",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 12,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(12, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
+              SvgPicture.asset(
+                'assets/Vectores/Iconos/Polygon 3.svg',
+                width: UtilSize.width(10, context),
+              ),
             ],
           ),
         ),
@@ -202,10 +215,11 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     Text((index + 1).toString(),
-                                        style: const TextStyle(
-                                            color: Color(0xff170658),
+                                        style: TextStyle(
+                                            color: const Color(0xff170658),
                                             fontFamily: 'Archivo',
-                                            fontSize: 13,
+                                            fontSize:
+                                                UtilSize.width(13, context),
                                             fontWeight: FontWeight.w400)),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -241,7 +255,8 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                                         jsonDecode(
                                                             snapshotIcon.data);
                                                     return CircleAvatar(
-                                                      maxRadius: 20,
+                                                      maxRadius: UtilSize.width(
+                                                          18, context),
                                                       backgroundImage:
                                                           NetworkImage(datos[
                                                                       'data'][
@@ -264,18 +279,20 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                       children: [
                                         Text(
                                           snapshot.data!.data![index].name!,
-                                          style: const TextStyle(
-                                              color: Color(0xff170658),
+                                          style: TextStyle(
+                                              color: const Color(0xff170658),
                                               fontFamily: 'Archivo',
-                                              fontSize: 13,
+                                              fontSize:
+                                                  UtilSize.width(13, context),
                                               fontWeight: FontWeight.w600),
                                         ),
                                         Text(
                                           '${snapshot.data!.data![index].quote!.usd!.marketCap!.toStringAsFixed(2)} Bn',
-                                          style: const TextStyle(
-                                              color: Color(0xff8F8B9F),
+                                          style: TextStyle(
+                                              color: const Color(0xff8F8B9F),
                                               fontFamily: 'Archivo',
-                                              fontSize: 13,
+                                              fontSize:
+                                                  UtilSize.width(13, context),
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ],
@@ -285,10 +302,10 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                       snapshot
                                           .data!.data![index].quote!.usd!.price!
                                           .toStringAsFixed(3),
-                                      style: const TextStyle(
-                                          color: Color(0xff170658),
+                                      style: TextStyle(
+                                          color: const Color(0xff170658),
                                           fontFamily: 'Archivo',
-                                          fontSize: 13,
+                                          fontSize: UtilSize.width(13, context),
                                           fontWeight: FontWeight.w400),
                                     ),
                                     const Spacer(),
@@ -315,9 +332,15 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                                       .usd!.percentChange24H! >
                                                   0)
                                               ? SvgPicture.asset(
-                                                  'assets/Vectores/Iconos/Polygon 1.svg')
+                                                  'assets/Vectores/Iconos/Polygon 1.svg',
+                                                  width: UtilSize.width(
+                                                      10, context),
+                                                )
                                               : SvgPicture.asset(
-                                                  'assets/Vectores/Iconos/Polygon 2.svg'),
+                                                  'assets/Vectores/Iconos/Polygon 2.svg',
+                                                  width: UtilSize.width(
+                                                      10, context),
+                                                ),
                                           Text(
                                             '${snapshot.data!.data![index].quote!.usd!.percentChange24H!.toStringAsFixed(3)} %',
                                             style: TextStyle(
@@ -331,7 +354,8 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                                     ? const Color(0xff00C853)
                                                     : const Color(0xffEC4141),
                                                 fontFamily: 'Archivo',
-                                                fontSize: 12,
+                                                fontSize:
+                                                    UtilSize.width(12, context),
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ],

@@ -1,4 +1,6 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:ebloqs_app/src/app/app_config.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
@@ -15,7 +17,8 @@ class LocalAuthAndroid extends StatefulWidget {
   State<LocalAuthAndroid> createState() => _LocalAuthAndroidState();
 }
 
-class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
+class _LocalAuthAndroidState extends State<LocalAuthAndroid>
+    with AfterLayoutMixin<LocalAuthAndroid> {
   final LocalAuthentication auth = LocalAuthentication();
   _SupportState _supportState = _SupportState.unknown;
   bool? _canCheckBiometrics;
@@ -32,6 +35,10 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
               ? _SupportState.supported
               : _SupportState.unsupported),
         );
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
     setState(() {
       environment = AppConfig.of(context).environment;
     });
@@ -98,39 +105,51 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 142.0),
+            padding: EdgeInsets.only(top: UtilSize.height(142, context)),
             child: Center(
               child: SvgPicture.asset(
-                  'assets/Vectores/Ilustraciones/Group 2066.svg'),
+                'assets/Vectores/Ilustraciones/Group 2066.svg',
+                height: UtilSize.height(370, context),
+              ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 30.0, left: 15),
+          Padding(
+            padding: EdgeInsets.only(
+              top: UtilSize.height(30, context),
+              left: UtilSize.width(15, context),
+            ),
             child: Text(
               "Asegurar tu cuenta con Huella Digital",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 20,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(20, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w700,
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 8.0, left: 15),
+          Padding(
+            padding: EdgeInsets.only(
+              top: UtilSize.height(8, context),
+              left: UtilSize.width(15, context),
+            ),
             child: SizedBox(
-              width: 344,
+              width: UtilSize.width(344, context),
               child: Text(
                 "Así nos aseguramos que solo usted pueda tomar las decisiones",
                 style: TextStyle(
-                  color: Color(0xff170658),
-                  fontSize: 13,
+                  color: const Color(0xff170658),
+                  fontSize: UtilSize.width(13, context),
                 ),
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 40, right: 15, left: 15),
+            padding: EdgeInsets.only(
+              top: UtilSize.height(40, context),
+              right: UtilSize.width(15, context),
+              left: UtilSize.width(15, context),
+            ),
             child: GestureDetector(
               onTap: _authenticateWithBiometrics,
               child: Stack(
@@ -154,12 +173,12 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  const Center(
+                  Center(
                     child: Text(
                       "Habilitar huella digital",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 14,
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -170,21 +189,23 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 16.0),
+            padding: EdgeInsets.only(
+              top: UtilSize.height(16, context),
+            ),
             child: GestureDetector(
               child: Container(
                 width: size.width,
-                height: 52,
+                height: UtilSize.height(52, context),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: const Color(0xffF9F9FA),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
                     "En otro momento",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 14,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(14, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w700,
                     ),

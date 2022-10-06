@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_passport_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
@@ -38,12 +39,12 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
             ),
           ),
         ),
-        title: const Text(
+        title: Text(
           "Información personal",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Color(0xff170658),
-            fontSize: 17,
+            color: const Color(0xff170658),
+            fontSize: UtilSize.width(17, context),
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -66,11 +67,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     Padding(
                       padding: EdgeInsets.only(
                           left: size.width * 0.0384219554030875),
-                      child: const Text(
+                      child: Text(
                         "Documento de identidad",
                         style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 13,
+                          color: const Color(0xff170658),
+                          fontSize: UtilSize.width(13, context),
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w400,
                         ),
@@ -114,12 +115,12 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                 padding: EdgeInsets.only(
                     top: size.height * 0.0281218613993974,
                     left: size.width * 0.0384219554030875),
-                child: const Text(
+                child: Text(
                   "Use documento válido de su país",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 15,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(15, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -131,11 +132,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     left: size.width * 0.0384219554030875),
                 child: SizedBox(
                   width: size.width * 0.853601340033502,
-                  child: const Text(
+                  child: Text(
                     "solo se aceptarán los documentos a continuación, todos los demás documentos serán rechazados",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -166,11 +167,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     ),
                     child: Row(
                       children: [
-                        const Text(
+                        Text(
                           "Documento de identidad",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 14,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(14, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),
@@ -210,11 +211,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     ),
                     child: Row(
                       children: [
-                        const Text(
+                        Text(
                           "Pasaporte",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 14,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(14, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),
@@ -255,11 +256,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     ),
                     child: Row(
                       children: [
-                        const Text(
+                        Text(
                           "Licencia de conducir",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 14,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(14, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),

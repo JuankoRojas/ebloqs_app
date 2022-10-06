@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/screens/market/coins_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
@@ -545,8 +546,8 @@ class _MarketScreenState extends State<MarketScreen>
                 children: [
                   GestureDetector(
                     child: Container(
-                      width: 36,
-                      height: 36,
+                      width: UtilSize.width(36, context),
+                      height: UtilSize.width(36, context),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
@@ -574,7 +575,7 @@ class _MarketScreenState extends State<MarketScreen>
                     },
                   ),
                   SizedBox(
-                    width: size.width * 0.69,
+                    width: size.width * 0.68,
                     height: size.height * 0.047,
                     child: OutlineSearchBar(
                       borderRadius: BorderRadius.circular(100),
@@ -582,10 +583,9 @@ class _MarketScreenState extends State<MarketScreen>
                       searchButtonIconColor: const Color(0xff170658),
                       hideSearchButton: true,
                       hintText: 'Buscar Inversiones',
-                      hintStyle: const TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 13,
-                      ),
+                      hintStyle: TextStyle(
+                          color: const Color(0xff170658),
+                          fontSize: UtilSize.width(13, context)),
                     ),
                   ),
                   IconButton(
@@ -620,7 +620,7 @@ class _MarketScreenState extends State<MarketScreen>
                             color: (_selectedIndex == 0)
                                 ? const Color(0xff2504ca)
                                 : const Color(0xff170658),
-                            fontSize: 14,
+                            fontSize: UtilSize.width(14, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),

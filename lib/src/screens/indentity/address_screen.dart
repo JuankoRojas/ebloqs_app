@@ -1,4 +1,5 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/id_document_screen.dart';
 import 'package:ebloqs_app/src/services/address_services.dart';
@@ -87,12 +88,12 @@ class _AddressScreenState extends State<AddressScreen>
               ),
             ),
           ),
-          title: const Text(
+          title: Text(
             "Información personal",
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Color(0xff170658),
-              fontSize: 17,
+              color: const Color(0xff170658),
+              fontSize: UtilSize.width(17, context),
               fontFamily: "Archivo",
               fontWeight: FontWeight.w700,
             ),
@@ -115,11 +116,11 @@ class _AddressScreenState extends State<AddressScreen>
                       Padding(
                         padding: EdgeInsets.only(
                             left: size.width * 0.0384219554030875),
-                        child: const Text(
+                        child: Text(
                           "Domicilio",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 13,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(13, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),
@@ -135,18 +136,18 @@ class _AddressScreenState extends State<AddressScreen>
                       right: size.width * 0.0361072902338377),
                   child: Container(
                     width: size.width,
-                    height: 4,
+                    height: UtilSize.height(4, context),
                     padding: EdgeInsets.only(right: size.width * 0.4),
                     decoration: const BoxDecoration(
                         color: Color(0xffeae4fc),
                         borderRadius: BorderRadius.all(Radius.circular(3))),
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: 94,
+                      constraints: BoxConstraints(
+                        maxWidth: UtilSize.height(94, context),
                       ),
                       child: Container(
                           width: size.width * 0.220953660174614,
-                          height: 4,
+                          height: UtilSize.height(4, context),
                           padding: EdgeInsets.only(
                               right: size.width * 0.591383372601818),
                           decoration: const BoxDecoration(
@@ -164,13 +165,16 @@ class _AddressScreenState extends State<AddressScreen>
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 16, left: 15.0),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: UtilSize.height(16, context),
+                              left: UtilSize.width(15, context),
+                            ),
                             child: Text(
                               "País",
                               style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 13,
+                                color: const Color(0xff170658),
+                                fontSize: UtilSize.width(13, context),
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -210,11 +214,11 @@ class _AddressScreenState extends State<AddressScreen>
                             padding: EdgeInsets.only(
                                 top: size.height * 0.0188140433394927,
                                 left: size.width * 0.0361072902338377),
-                            child: const Text(
+                            child: Text(
                               "Ciudad",
                               style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 13,
+                                color: const Color(0xff170658),
+                                fontSize: UtilSize.width(13, context),
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -254,11 +258,11 @@ class _AddressScreenState extends State<AddressScreen>
                             padding: EdgeInsets.only(
                                 top: size.height * 0.0188140433394927,
                                 left: size.width * 0.0361072902338377),
-                            child: const Text(
+                            child: Text(
                               "Dirección de domicilio",
                               style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 13,
+                                color: const Color(0xff170658),
+                                fontSize: UtilSize.width(13, context),
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -294,11 +298,11 @@ class _AddressScreenState extends State<AddressScreen>
                             padding: EdgeInsets.only(
                                 top: size.height * 0.0188140433394927,
                                 left: size.width * 0.0361072902338377),
-                            child: const Text(
+                            child: Text(
                               "Código Postal",
                               style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 13,
+                                color: const Color(0xff170658),
+                                fontSize: UtilSize.width(13, context),
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -345,6 +349,9 @@ class _AddressScreenState extends State<AddressScreen>
                                 title: 'Continuar',
                                 onPressed: () async {
                                   if (_formKey12.currentState!.validate()) {
+                                    setState(() {
+                                      isLoadLogin = true;
+                                    });
                                     final response = await AddresServices()
                                         .saveNewAddress(
                                             country: locationProvider
@@ -361,6 +368,9 @@ class _AddressScreenState extends State<AddressScreen>
                                           (value) => Navigator.pushNamed(
                                               context,
                                               IdDocumentScreen.routeName));
+                                      setState(() {
+                                        isLoadLogin = false;
+                                      });
                                     }
                                   } else {
                                     setState(() {

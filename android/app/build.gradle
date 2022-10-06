@@ -82,7 +82,7 @@ android {
         }
         staging {
             dimension "default"
-            applicationIdSuffix ".stg"
+            applicationIdSuffix ""
             manifestPlaceholders = [appName: "[STG] Ebloqs"]
             versionCode 1
             versionName "1.0.0"
@@ -91,7 +91,7 @@ android {
         }
         development {
             dimension "default"
-            applicationIdSuffix ".dev"
+            applicationIdSuffix ""
             manifestPlaceholders = [appName: "[DEV] Ebloqs"]
             versionCode 1
             versionName "1.0.0"
