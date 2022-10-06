@@ -59,7 +59,7 @@ class Onboard3Screen extends StatelessWidget {
             top: size.height * 0.628,
             left: size.width * 0.084,
             child: SizedBox(
-              width: size.width * 0.85,
+              width: UtilSize.width(324, context),
               height: UtilSize.height(167, context),
               child: Text(
                 '''Compra y vende desde
@@ -67,7 +67,7 @@ cualquier parte del mundo.''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: const Color(0xff170658),
-                  fontSize: UtilSize.width(25, context),
+                  fontSize: UtilSize.width(22, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w700,
                 ),

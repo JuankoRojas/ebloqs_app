@@ -218,12 +218,12 @@ class _PersonalInformationState extends State<PersonalInformation>
                               pickerBuilder:
                                   (context, CountryCode? countryCode) {
                                 return Container(
-                                  height: UtilSize.height(92, context),
+                                  // height: UtilSize.height(58, context),
                                   width: size.width,
                                   padding: EdgeInsets.only(
-                                    top: size.height * (11 / size.height),
+                                    top: size.height * (16 / size.height),
                                     right: size.width * (6 / size.width),
-                                    bottom: size.height * (10 / size.height),
+                                    bottom: size.height * (16 / size.height),
                                     left: size.width * (7 / size.width),
                                   ),
                                   decoration: BoxDecoration(
@@ -419,7 +419,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                         child: GestureDetector(
                           child: Container(
                             width: size.width,
-                            height: UtilSize.height(92, context),
+                            // height: UtilSize.height(92, context),
                             padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               border: Border.all(

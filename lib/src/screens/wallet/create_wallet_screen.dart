@@ -108,8 +108,8 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Container(
-                            width: size.width * 0.92,
-                            height: size.height * 0.105,
+                            width: UtilSize.width(345, context),
+                            height: UtilSize.height(94, context),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               border: Border.all(
@@ -137,16 +137,21 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                                   ),
                                   child: SvgPicture.asset(
                                     'assets/Vectores/Iconos/candado.svg',
-                                    width: UtilSize.width(24, context),
+                                    width: UtilSize.width(20, context),
                                   ),
                                 ),
-                                SizedBox(width: size.width * 0.043),
+                                SizedBox(
+                                  width: UtilSize.width(16, context),
+                                ),
                                 SizedBox(
                                   width: size.width * 0.740,
                                   child: Text(
-                                    "Guarde estas 12 palabras en un lugar seguro, \ncomo un administrador de contraseñas, y \nnunca lo comparta con nadie.",
+                                    '''Guarde estas 12 palabras en un lugar seguro,
+como un administrador de contraseñas, y 
+nunca lo comparta con nadie.''',
                                     style: TextStyle(
                                       color: const Color(0xff170658),
+                                      fontFamily: "Archivo",
                                       fontSize: UtilSize.width(13, context),
                                     ),
                                   ),

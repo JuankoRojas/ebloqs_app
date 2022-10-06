@@ -59,16 +59,16 @@ class Onboard4Screen extends StatelessWidget {
             top: size.height * 0.628,
             left: size.width * 0.084,
             child: SizedBox(
-              width: size.width * 0.79,
+              width: UtilSize.width(334, context),
               height: size.height * 0.162,
               child: Text(
                 '''Alta rentabilidad, con 
-el mejor ratio de
-dividendos del mercado.''',
+el mejor ratio de dividendos
+del mercado.''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: const Color(0xff170658),
-                  fontSize: UtilSize.width(25, context),
+                  fontSize: UtilSize.width(22, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w700,
                 ),

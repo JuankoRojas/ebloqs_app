@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
 import 'package:ebloqs_app/src/services/transfer_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
@@ -94,12 +95,12 @@ class _IntroducirCantidadTarjetaScreenState
                     },
                   ),
                   Expanded(child: Container()),
-                  const Text(
+                  Text(
                     "Introduce la cantidad",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 17,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(17, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w700,
                     ),
@@ -114,11 +115,11 @@ class _IntroducirCantidadTarjetaScreenState
                 padding: EdgeInsets.only(
                   top: size.height * (32 / size.height),
                 ),
-                child: const Text(
+                child: Text(
                   "Cantidad",
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 13,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(13, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -148,12 +149,12 @@ class _IntroducirCantidadTarjetaScreenState
                               left: size.width * (10 / size.width),
                               right: size.width * (19 / size.width),
                             ),
-                            child: const Text(
+                            child: Text(
                               "USD",
                               textAlign: TextAlign.right,
                               style: TextStyle(
-                                color: Color(0xff2504ca),
-                                fontSize: 14,
+                                color: const Color(0xff2504ca),
+                                fontSize: UtilSize.width(14, context),
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -161,9 +162,9 @@ class _IntroducirCantidadTarjetaScreenState
                           ),
                         ],
                       ),
-                      labelStyle: const TextStyle(
-                        color: Color(0xff9B99A3),
-                        fontSize: 14,
+                      labelStyle: TextStyle(
+                        color: const Color(0xff9B99A3),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -186,12 +187,12 @@ class _IntroducirCantidadTarjetaScreenState
                 padding: EdgeInsets.only(
                   top: size.height * (39 / size.height),
                 ),
-                child: const Text(
+                child: Text(
                   "Recibes:",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 13,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(13, context),
                   ),
                 ),
               ),
@@ -203,18 +204,18 @@ class _IntroducirCantidadTarjetaScreenState
                   children: [
                     Text(
                       recibes.toString(),
-                      style: const TextStyle(
-                        color: Color(0xff2504ca),
-                        fontSize: 28,
+                      style: TextStyle(
+                        color: const Color(0xff2504ca),
+                        fontSize: UtilSize.width(28, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const Text(
+                    Text(
                       " USD",
                       style: TextStyle(
-                        color: Color(0xff2504ca),
-                        fontSize: 28,
+                        color: const Color(0xff2504ca),
+                        fontSize: UtilSize.width(28, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -228,20 +229,20 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     Text(
                       "Método de transacción:",
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(14, context),
                       ),
                     ),
                     Text(
                       "VISA",
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -256,19 +257,19 @@ class _IntroducirCantidadTarjetaScreenState
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "Comisión transacción:",
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(14, context),
                       ),
                     ),
                     Text(
                       "${comision.toString()} USD",
                       textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
+                      style: TextStyle(
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -292,19 +293,23 @@ class _IntroducirCantidadTarjetaScreenState
                     color: const Color(0xfff9f9fa),
                   ),
                   child: Container(
-                    padding: const EdgeInsets.only(
-                        top: 24.0, right: 13, bottom: 31, left: 13),
+                    padding: EdgeInsets.only(
+                      top: UtilSize.height(24, context),
+                      right: UtilSize.width(13, context),
+                      bottom: UtilSize.height(31, context),
+                      left: UtilSize.width(13, context),
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
                               "Añadir información de la tarjeta.",
                               style: TextStyle(
-                                color: Color(0xff2504ca),
-                                fontSize: 15,
+                                color: const Color(0xff2504ca),
+                                fontSize: UtilSize.width(15, context),
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -324,11 +329,11 @@ class _IntroducirCantidadTarjetaScreenState
                               Padding(
                                 padding: EdgeInsets.only(
                                     top: size.height * 0.0257142857142857),
-                                child: const Text(
+                                child: Text(
                                   "Nombre en Tarjeta",
                                   style: TextStyle(
-                                    color: Color(0xff170658),
-                                    fontSize: 13,
+                                    color: const Color(0xff170658),
+                                    fontSize: UtilSize.width(13, context),
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -347,9 +352,9 @@ class _IntroducirCantidadTarjetaScreenState
                                   ],
                                   decoration: InputDecoration(
                                     counterText: '',
-                                    labelStyle: const TextStyle(
-                                      color: Color(0xff9B99A3),
-                                      fontSize: 14,
+                                    labelStyle: TextStyle(
+                                      color: const Color(0xff9B99A3),
+                                      fontSize: UtilSize.width(14, context),
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -373,11 +378,11 @@ class _IntroducirCantidadTarjetaScreenState
                               Padding(
                                 padding: EdgeInsets.only(
                                     top: size.height * 0.0197044334975369),
-                                child: const Text(
+                                child: Text(
                                   "Número de la tarjeta",
                                   style: TextStyle(
-                                    color: Color(0xff170658),
-                                    fontSize: 13,
+                                    color: const Color(0xff170658),
+                                    fontSize: UtilSize.width(13, context),
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -395,9 +400,9 @@ class _IntroducirCantidadTarjetaScreenState
                                         RegExp("[0-9]"))
                                   ],
                                   decoration: InputDecoration(
-                                    labelStyle: const TextStyle(
-                                      color: Color(0xff9B99A3),
-                                      fontSize: 14,
+                                    labelStyle: TextStyle(
+                                      color: const Color(0xff9B99A3),
+                                      fontSize: UtilSize.width(14, context),
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -431,9 +436,9 @@ class _IntroducirCantidadTarjetaScreenState
                                   maxLength: 5,
                                   decoration: InputDecoration(
                                     hintText: "MM/AA",
-                                    labelStyle: const TextStyle(
-                                      color: Color(0xff9B99A3),
-                                      fontSize: 14,
+                                    labelStyle: TextStyle(
+                                      color: const Color(0xff9B99A3),
+                                      fontSize: UtilSize.width(14, context),
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -446,8 +451,20 @@ class _IntroducirCantidadTarjetaScreenState
                                       value = '';
                                     } else if (value.length == 1 &&
                                         (int.parse(value) < 10 &&
-                                            int.parse(value) > 1)) {
-                                      value = '0$value/';
+                                            int.parse(value) >= 1)) {
+                                      Future.delayed(
+                                          const Duration(milliseconds: 100),
+                                          () {
+                                        expirationDateController.text =
+                                            '0$value/';
+                                        expirationDateController.selection =
+                                            TextSelection.fromPosition(
+                                                TextPosition(
+                                                    offset:
+                                                        expirationDateController
+                                                            .text.length));
+                                      });
+                                      // value = '0$value/';
                                     } else if (value.length == 2 &&
                                         (value == '10' ||
                                             value == '11' ||
@@ -455,8 +472,9 @@ class _IntroducirCantidadTarjetaScreenState
                                       value += '/';
                                     } else if (!value.contains('/') &&
                                         value.length == 2) {
-                                      if (int.parse(value) > 12)
+                                      if (int.parse(value) > 12) {
                                         value = '${value[0]}/${value[1]}';
+                                      }
                                     }
                                     value.replaceAll('//', '/');
                                     setState(() {
@@ -514,7 +532,7 @@ class _IntroducirCantidadTarjetaScreenState
                         final response = await TransferService().transfer(
                             to: Preferences.public_key!,
                             amount: parsedAmount.toString());
-                        if (response.isNotEmpty) {
+                        if (response.isNotEmpty && response['data'] != null) {
                           setState(() {
                             setTransaction = false;
                             isLoadingTransfer = false;

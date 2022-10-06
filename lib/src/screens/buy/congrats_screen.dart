@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -28,17 +29,19 @@ class _CongratsScreenState extends State<CongratsScreen> {
               children: [
                 Center(
                     child: SvgPicture.asset(
-                        'assets/Vectores/Iconos/checkcircle.svg')),
+                  'assets/Vectores/Iconos/checkcircle.svg',
+                  width: UtilSize.width(60, context),
+                )),
                 Padding(
                   padding:
                       EdgeInsets.only(top: size.height * 0.018970189701897),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       "¡Felicitaciones eres propietario de!",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 15,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(15, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -51,9 +54,9 @@ class _CongratsScreenState extends State<CongratsScreen> {
                   child: Center(
                     child: Text(
                       "${widget.total.toString()} EBL",
-                      style: const TextStyle(
-                        color: Color(0xff2504ca),
-                        fontSize: 20,
+                      style: TextStyle(
+                        color: const Color(0xff2504ca),
+                        fontSize: UtilSize.width(20, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -64,11 +67,11 @@ class _CongratsScreenState extends State<CongratsScreen> {
                   padding: EdgeInsets.only(
                       top: size.height * 0.0853658536585366,
                       left: size.width * 0.0388888888888889),
-                  child: const Text(
+                  child: Text(
                     "Resumen de tu compra",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w600,
                     ),
@@ -81,7 +84,7 @@ class _CongratsScreenState extends State<CongratsScreen> {
                       right: size.width * 0.0388888888888889),
                   child: Container(
                     width: size.width,
-                    height: 163,
+                    height: UtilSize.height(163, context),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       border: Border.all(
@@ -99,11 +102,11 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              Text(
                                 "Precio USD",
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -112,9 +115,9 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               Text(
                                 "${(widget.total * 0.05)} USD",
                                 textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                style: TextStyle(
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -139,22 +142,22 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              Text(
                                 "Total FEES",
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
                               Expanded(child: Container()),
-                              const Text(
+                              Text(
                                 "\$4.67 USD",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -169,22 +172,22 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              Text(
                                 "Transacción FEE",
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
                               Expanded(child: Container()),
-                              const Text(
+                              Text(
                                 "\$3.52 USD",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -198,22 +201,22 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              Text(
                                 "Red FEE",
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
                               Expanded(child: Container()),
-                              const Text(
+                              Text(
                                 "\$1.15  USD",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -238,11 +241,11 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              Text(
                                 "Total",
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -251,9 +254,9 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               Text(
                                 "${(widget.total * 0.05 + 4.67)} USD",
                                 textAlign: TextAlign.right,
-                                style: const TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                style: TextStyle(
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(13, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -290,15 +293,15 @@ class _CongratsScreenState extends State<CongratsScreen> {
                     child: Row(
                       children: [
                         SvgPicture.asset('assets/Vectores/Iconos/wallet.svg'),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(
-                            left: 25,
+                            left: UtilSize.width(25, context),
                           ),
                           child: Text(
                             "Tus EBL se encuentran en tu billetera.",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 13,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(13, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -310,7 +313,7 @@ class _CongratsScreenState extends State<CongratsScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      top: size.height * 0.164429530201342,
+                      top: UtilSize.height(100, context),
                       left: size.width * 0.0359342915811089,
                       right: size.width * 0.0359342915811089,
                       bottom: size.height * 0.0563097033685269),

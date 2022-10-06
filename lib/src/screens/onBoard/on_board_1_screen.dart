@@ -81,7 +81,7 @@ class _Onboard1ScreenState extends State<Onboard1Screen> {
             top: size.height * 0.63,
             left: size.width * 0.084,
             child: SizedBox(
-              width: size.width * 0.79,
+              width: UtilSize.width(324, context),
               height: UtilSize.height(167, context),
               child: Text(
                 '''ebloqs® ecosistema
@@ -91,7 +91,7 @@ servicios.''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: const Color(0xffffffff),
-                  fontSize: UtilSize.width(25, context),
+                  fontSize: UtilSize.width(22, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w700,
                 ),

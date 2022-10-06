@@ -60,16 +60,16 @@ class Onboard2Screen extends StatelessWidget {
             top: size.height * 0.628,
             left: size.width * 0.084,
             child: SizedBox(
-              width: size.width * 0.79,
+              width: UtilSize.width(330, context),
               height: UtilSize.height(167, context),
               child: Text(
                 '''Se dueño de tokens que
-representan una
-propiedad o servicio.''',
+representan una propiedad o
+servicio.''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: const Color(0xffffffff),
-                  fontSize: UtilSize.width(25, context),
+                  fontSize: UtilSize.width(22, context),
                   fontFamily: "Archivo",
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w700,

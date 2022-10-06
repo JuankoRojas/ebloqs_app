@@ -58,7 +58,7 @@ class Onboard5Screen extends StatelessWidget {
             top: size.height * 0.628,
             left: size.width * 0.07,
             child: SizedBox(
-              width: size.width * 0.95,
+              width: UtilSize.width(324, context),
               height: size.height * 0.162,
               child: Text(
                 '''También puedes invertir en
@@ -67,7 +67,7 @@ ebloqs (EBL).''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   color: const Color(0xff170658),
-                  fontSize: UtilSize.width(25, context),
+                  fontSize: UtilSize.width(22, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w700,
                 ),

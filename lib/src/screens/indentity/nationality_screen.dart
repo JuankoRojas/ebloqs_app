@@ -292,7 +292,7 @@ class _NationalityScreenState extends State<NationalityScreen>
                       ),
                       Positioned(
                         top: size.height * 0.0137075718015666,
-                        left: size.width * 0.155298013245033,
+                        left: UtilSize.width(48, context),
                         child: Text(
                           "Verificación identidad",
                           style: TextStyle(
@@ -305,9 +305,9 @@ class _NationalityScreenState extends State<NationalityScreen>
                       ),
                       Positioned(
                         top: size.height * 0.0684596577017115,
-                        left: size.width * 0.155298013245033,
+                        left: UtilSize.width(48, context),
                         child: Container(
-                          width: size.width * 0.77,
+                          width: UtilSize.width(303, context),
                           height: size.height * 0.0433083686095735,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
@@ -358,9 +358,9 @@ class _NationalityScreenState extends State<NationalityScreen>
                       ),
                       Positioned(
                         top: size.height * 0.122946820621239,
-                        left: size.width * 0.156751336898396,
+                        left: UtilSize.width(48, context),
                         child: Container(
-                          width: size.width * 0.77,
+                          width: UtilSize.width(303, context),
                           height: size.height * 0.0440105890138981,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
@@ -451,7 +451,7 @@ class _NationalityScreenState extends State<NationalityScreen>
                       ),
                       Positioned(
                         top: size.height * 0.198541329011345,
-                        left: size.width * 0.155298013245033,
+                        left: UtilSize.width(48, context),
                         child: Text(
                           "Domicilio",
                           style: TextStyle(
@@ -462,9 +462,9 @@ class _NationalityScreenState extends State<NationalityScreen>
                       ),
                       Positioned(
                         top: size.height * 0.232313420754412,
-                        left: size.width * 0.155298013245033,
+                        left: UtilSize.width(48, context),
                         child: Container(
-                          width: size.width * 0.77,
+                          width: UtilSize.width(303, context),
                           height: size.height * 0.0440105890138981,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),

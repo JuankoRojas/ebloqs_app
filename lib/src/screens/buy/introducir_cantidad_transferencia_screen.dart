@@ -1,6 +1,8 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/transferir_ebloqs_screen.dart';
+import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -81,12 +83,12 @@ class _IntroducirCantidadTransferenciaScreenState
                     },
                   ),
                   Expanded(child: Container()),
-                  const Text(
+                  Text(
                     "Introduce la cantidad",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 17,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(17, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w700,
                     ),
@@ -101,11 +103,11 @@ class _IntroducirCantidadTransferenciaScreenState
                 padding: EdgeInsets.only(
                   top: size.height * (32 / size.height),
                 ),
-                child: const Text(
+                child: Text(
                   "Cantidad",
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 13,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(13, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -135,12 +137,12 @@ class _IntroducirCantidadTransferenciaScreenState
                               left: size.width * (10 / size.width),
                               right: size.width * (19 / size.width),
                             ),
-                            child: const Text(
+                            child: Text(
                               "USD",
                               textAlign: TextAlign.right,
                               style: TextStyle(
-                                color: Color(0xff2504ca),
-                                fontSize: 14,
+                                color: const Color(0xff2504ca),
+                                fontSize: UtilSize.width(14, context),
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -148,9 +150,9 @@ class _IntroducirCantidadTransferenciaScreenState
                           ),
                         ],
                       ),
-                      labelStyle: const TextStyle(
-                        color: Color(0xff9B99A3),
-                        fontSize: 14,
+                      labelStyle: TextStyle(
+                        color: const Color(0xff9B99A3),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -192,12 +194,12 @@ class _IntroducirCantidadTransferenciaScreenState
                 padding: EdgeInsets.only(
                   top: size.height * (39 / size.height),
                 ),
-                child: const Text(
+                child: Text(
                   "Recibes:",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 13,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(13, context),
                   ),
                 ),
               ),
@@ -209,18 +211,18 @@ class _IntroducirCantidadTransferenciaScreenState
                   children: [
                     Text(
                       recibes.toString(),
-                      style: const TextStyle(
-                        color: Color(0xff2504ca),
-                        fontSize: 28,
+                      style: TextStyle(
+                        color: const Color(0xff2504ca),
+                        fontSize: UtilSize.width(28, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const Text(
+                    Text(
                       " USD",
                       style: TextStyle(
-                        color: Color(0xff2504ca),
-                        fontSize: 28,
+                        color: const Color(0xff2504ca),
+                        fontSize: UtilSize.width(28, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -234,20 +236,20 @@ class _IntroducirCantidadTransferenciaScreenState
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     Text(
                       "Método de transacción:",
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(14, context),
                       ),
                     ),
                     Text(
                       "Banco (SWIFT)",
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -262,19 +264,19 @@ class _IntroducirCantidadTransferenciaScreenState
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       "Comisión transacción:",
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(14, context),
                       ),
                     ),
                     Text(
                       "${comision.toString()} USD",
                       textAlign: TextAlign.right,
-                      style: const TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
+                      style: TextStyle(
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -315,96 +317,69 @@ class _IntroducirCantidadTransferenciaScreenState
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(
-                  top: size.height * (100 / size.height),
-                  bottom: size.height * (56 / size.height),
-                ),
-                child: GestureDetector(
-                  child: Stack(
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Container(
-                        height: size.height * (52 / size.height),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x3f000000),
-                              blurRadius: 4,
-                              offset: Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Image.asset(
-                          'assets/png/buttongradient.png',
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      const Center(
-                        child: Text(
-                          "Continuar",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      )
-                    ],
+                  padding: EdgeInsets.only(
+                    top: size.height * (100 / size.height),
+                    bottom: size.height * (56 / size.height),
                   ),
-                  onTap: () {
-                    if (_current == 2 &&
-                        Provider.of<AccountInfoProvider>(context, listen: false)
-                                .checkedBankInfo ==
-                            true &&
-                        Provider.of<AccountInfoProvider>(context, listen: false)
-                                .checkedtransactInfo ==
-                            true) {
-                      if (formKey9.currentState!.validate()) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => TransferirEbloqsScreen(
-                                cantidadTransferencia: recibes.toString()),
-                          ),
-                        );
-                      } else {
-                        setState(() {
-                          errorValidation =
-                              'Por favor,  debes completar todos los registros para continuar';
-                        });
-                        customModalBottomAlert(
-                            context, size, errorValidation, isLoading, '', () {
-                          Navigator.pop(context);
-                        });
+                  child: ButtonPrimary(
+                    width: double.infinity,
+                    title: "Continuar",
+                    onPressed: () {
+                      if (_current == 2 &&
+                          Provider.of<AccountInfoProvider>(context,
+                                      listen: false)
+                                  .checkedBankInfo ==
+                              true &&
+                          Provider.of<AccountInfoProvider>(context,
+                                      listen: false)
+                                  .checkedtransactInfo ==
+                              true) {
+                        if (formKey9.currentState!.validate()) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TransferirEbloqsScreen(
+                                  cantidadTransferencia: recibes.toString()),
+                            ),
+                          );
+                        } else {
+                          setState(() {
+                            errorValidation =
+                                'Por favor,  debes completar todos los registros para continuar';
+                          });
+                          customModalBottomAlert(
+                              context, size, errorValidation, isLoading, '',
+                              () {
+                            Navigator.pop(context);
+                          });
+                        }
                       }
-                    }
-                    if (_current == 1) {
-                      if (formKey10.currentState!.validate()) {
+                      if (_current == 1) {
+                        if (formKey10.currentState!.validate()) {
+                          setState(() {
+                            controller.jumpToPage(_current + 1);
+                          });
+                        } else {
+                          setState(() {
+                            errorValidation =
+                                'Por favor,  debes completar todos los registros para continuar';
+                          });
+                          customModalBottomAlert(
+                              context, size, errorValidation, isLoading, '',
+                              () {
+                            Navigator.pop(context);
+                          });
+                        }
+                      }
+                      if (_current == 0) {
                         setState(() {
                           controller.jumpToPage(_current + 1);
                         });
-                      } else {
-                        setState(() {
-                          errorValidation =
-                              'Por favor,  debes completar todos los registros para continuar';
-                        });
-                        customModalBottomAlert(
-                            context, size, errorValidation, isLoading, '', () {
-                          Navigator.pop(context);
-                        });
                       }
-                    }
-                    if (_current == 0) {
-                      setState(() {
-                        controller.jumpToPage(_current + 1);
-                      });
-                    }
-                  },
-                ),
-              ),
+                    },
+                    load: isLoading,
+                    disabled: isLoading,
+                  )),
             ],
           ),
         ),
@@ -441,7 +416,7 @@ class _PageFormState extends State<PageForm> {
       padding: EdgeInsets.only(
         top: size.height * (24 / size.height),
         right: size.width * (13 / size.width),
-        bottom: size.height * (31 / size.height),
+        bottom: UtilSize.height(31, context),
         left: size.width * (13 / size.width),
       ),
       decoration: BoxDecoration(
@@ -459,11 +434,11 @@ class _PageFormState extends State<PageForm> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 "Añadir información de la cuenta.",
                 style: TextStyle(
-                  color: Color(0xff2504ca),
-                  fontSize: 15,
+                  color: const Color(0xff2504ca),
+                  fontSize: UtilSize.width(15, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w600,
                 ),
@@ -487,11 +462,11 @@ class _PageFormState extends State<PageForm> {
                   padding: EdgeInsets.only(
                     top: size.height * (29 / size.height),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Nombre del titular",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w600,
                     ),
@@ -510,9 +485,9 @@ class _PageFormState extends State<PageForm> {
                     ],
                     decoration: InputDecoration(
                       counterText: '',
-                      labelStyle: const TextStyle(
-                        color: Color(0xff9B99A3),
-                        fontSize: 14,
+                      labelStyle: TextStyle(
+                        color: const Color(0xff9B99A3),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -544,11 +519,11 @@ class _PageFormState extends State<PageForm> {
                   padding: EdgeInsets.only(
                     top: size.height * (16 / size.height),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Nombre del Banco",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w600,
                     ),
@@ -567,9 +542,9 @@ class _PageFormState extends State<PageForm> {
                     ],
                     decoration: InputDecoration(
                       counterText: '',
-                      labelStyle: const TextStyle(
-                        color: Color(0xff9B99A3),
-                        fontSize: 14,
+                      labelStyle: TextStyle(
+                        color: const Color(0xff9B99A3),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -601,11 +576,11 @@ class _PageFormState extends State<PageForm> {
                   padding: EdgeInsets.only(
                     top: size.height * (16 / size.height),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Número de la cuenta",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w600,
                     ),
@@ -624,9 +599,9 @@ class _PageFormState extends State<PageForm> {
                     ],
                     decoration: InputDecoration(
                       counterText: '',
-                      labelStyle: const TextStyle(
-                        color: Color(0xff9B99A3),
-                        fontSize: 14,
+                      labelStyle: TextStyle(
+                        color: const Color(0xff9B99A3),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -701,11 +676,11 @@ class _PageConfirmState extends State<PageConfirm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "Confirmar información de la cuenta",
             style: TextStyle(
-              color: Color(0xff170658),
-              fontSize: 14,
+              color: const Color(0xff170658),
+              fontSize: UtilSize.width(14, context),
               fontFamily: "Archivo",
               fontWeight: FontWeight.w600,
             ),
@@ -714,11 +689,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (3 / size.height),
             ),
-            child: const Text(
+            child: Text(
               "Confirma la información a continuación y marca la casilla de descarga de responsabilidad.",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
               ),
             ),
           ),
@@ -726,11 +701,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (24 / size.height),
             ),
-            child: const Text(
+            child: Text(
               "Nombre del titular",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 14,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(14, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -742,9 +717,9 @@ class _PageConfirmState extends State<PageConfirm> {
             ),
             child: Text(
               nombreTitular ?? '',
-              style: const TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+              style: TextStyle(
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
               ),
             ),
           ),
@@ -752,11 +727,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (20 / size.height),
             ),
-            child: const Text(
+            child: Text(
               "Nombre del banco",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 14,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(14, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -768,9 +743,9 @@ class _PageConfirmState extends State<PageConfirm> {
             ),
             child: Text(
               nombreBanco ?? '',
-              style: const TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+              style: TextStyle(
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
               ),
             ),
           ),
@@ -778,11 +753,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (20 / size.height),
             ),
-            child: const Text(
+            child: Text(
               "Número de cuenta",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 14,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(14, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -794,9 +769,9 @@ class _PageConfirmState extends State<PageConfirm> {
             ),
             child: Text(
               numeroCuenta.toString(),
-              style: const TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+              style: TextStyle(
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
               ),
             ),
           ),
@@ -819,8 +794,8 @@ class _PageConfirmState extends State<PageConfirm> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
-                  width: size.width * (22 / size.width),
-                  height: size.height * (22 / size.height),
+                  width: UtilSize.width(22, context),
+                  height: UtilSize.height(22, context),
                   child: Checkbox(
                       value: isCheckedBankInfo,
                       visualDensity: VisualDensity.compact,
@@ -845,11 +820,11 @@ class _PageConfirmState extends State<PageConfirm> {
                   padding: EdgeInsets.only(
                     left: size.width * (12 / size.width),
                   ),
-                  child: const Text(
+                  child: Text(
                     "Confirma la información de la cuenta bancaria.",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                     ),
                   ),
                 ),
@@ -866,8 +841,8 @@ class _PageConfirmState extends State<PageConfirm> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
-                  width: size.width * (22 / size.width),
-                  height: size.height * (22 / size.height),
+                  width: UtilSize.width(22, context),
+                  height: UtilSize.height(22, context),
                   child: Checkbox(
                       value: isCheckedtransactInfo,
                       visualDensity: VisualDensity.compact,
@@ -893,13 +868,14 @@ class _PageConfirmState extends State<PageConfirm> {
                     left: size.width * (12 / size.width),
                   ),
                   child: SizedBox(
-                    width: size.width * (271 / size.width),
+                    width: UtilSize.width(260, context),
                     height: size.height * (36 / size.height),
-                    child: const Text(
-                      "Confirmo que la información de la cuenta bancaria se usará para la transacción",
+                    child: Text(
+                      '''Confirmo que la información de la cuenta
+bancaria se usará para la transacción''',
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 13,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(13, context),
                       ),
                     ),
                   ),
