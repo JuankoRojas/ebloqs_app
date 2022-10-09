@@ -317,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen>
                     (Preferences.public_key != null)
                         ? Padding(
                             padding: EdgeInsets.only(
-                                top: size.height * 0.02,
+                                top: UtilSize.height(15, context),
                                 bottom: size.height * 0.03),
                             child: FutureBuilder(
                               future: BalanceService().getBalanceOf(
@@ -332,9 +332,9 @@ class _HomeScreenState extends State<HomeScreen>
                                   return GestureDetector(
                                     child: Container(
                                       width: size.width * 0.95,
-                                      height: size.height * 0.1,
+                                      height: UtilSize.height(812, context),
                                       padding: EdgeInsets.only(
-                                          top: size.height * 0.0184729064039409,
+                                          top: UtilSize.height(18, context),
                                           left: size.width * 0.043,
                                           right: size.width * 0.034),
                                       decoration: BoxDecoration(
@@ -354,93 +354,103 @@ class _HomeScreenState extends State<HomeScreen>
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100),
-                                                  color:
-                                                      const Color(0x14ffffff),
-                                                ),
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                  horizontal: 4,
-                                                ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.min,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: UtilSize.width(
-                                                          16, context),
-                                                      height: UtilSize.width(
-                                                          16, context),
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
-                                                      child: SvgPicture.asset(
-                                                        'assets/Vectores/Iconos/candado.svg',
-                                                        color: Colors.white,
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: UtilSize.height(
+                                                        12, context)),
+                                                child: Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
+                                                    color:
+                                                        const Color(0x14ffffff),
+                                                  ),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                    horizontal: 4,
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Container(
                                                         width: UtilSize.width(
                                                             16, context),
+                                                        height: UtilSize.width(
+                                                            16, context),
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(8),
+                                                        ),
+                                                        child: SvgPicture.asset(
+                                                          'assets/Vectores/Iconos/candado.svg',
+                                                          color: Colors.white,
+                                                          width: UtilSize.width(
+                                                              16, context),
+                                                        ),
                                                       ),
-                                                    ),
-                                                    SizedBox(
-                                                        width: UtilSize.width(
-                                                            8, context)),
-                                                    Row(
-                                                      children: [
-                                                        Text(
-                                                          "Balance Bloqueado ",
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize:
-                                                                UtilSize.width(
-                                                                    11,
-                                                                    context),
-                                                            fontFamily:
-                                                                "Archivo",
-                                                            fontWeight:
-                                                                FontWeight.w600,
+                                                      SizedBox(
+                                                          width: UtilSize.width(
+                                                              8, context)),
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "Balance Bloqueado ",
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: UtilSize
+                                                                  .width(11,
+                                                                      context),
+                                                              fontFamily:
+                                                                  "Archivo",
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Text(
-                                                          snapshot.data ?? '',
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize:
-                                                                UtilSize.width(
-                                                                    11,
-                                                                    context),
-                                                            fontFamily:
-                                                                "Archivo",
-                                                            fontWeight:
-                                                                FontWeight.w600,
+                                                          Text(
+                                                            snapshot.data ?? '',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: UtilSize
+                                                                  .width(11,
+                                                                      context),
+                                                              fontFamily:
+                                                                  "Archivo",
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Text(
-                                                          ' EBL',
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize:
-                                                                UtilSize.width(
-                                                                    11,
-                                                                    context),
-                                                            fontFamily:
-                                                                "Archivo",
-                                                            fontWeight:
-                                                                FontWeight.w600,
+                                                          Text(
+                                                            ' EBL',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: UtilSize
+                                                                  .width(11,
+                                                                      context),
+                                                              fontFamily:
+                                                                  "Archivo",
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
                                               Padding(
@@ -543,31 +553,37 @@ class _HomeScreenState extends State<HomeScreen>
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
                                               children: [
-                                                Container(
-                                                  width: size.width * 0.15,
-                                                  height: size.width * 0.15,
-                                                  padding: EdgeInsets.all(
-                                                      size.width * 0.02),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100),
-                                                    gradient: LinearGradient(
-                                                      begin:
-                                                          Alignment.topCenter,
-                                                      end: Alignment
-                                                          .bottomCenter,
-                                                      colors: [
-                                                        Colors.white
-                                                            .withOpacity(0.7),
-                                                        const Color(0x00ffffff)
-                                                      ],
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: UtilSize.height(
+                                                          12, context)),
+                                                  child: Container(
+                                                    width: size.width * 0.15,
+                                                    height: size.width * 0.15,
+                                                    padding: EdgeInsets.all(
+                                                        size.width * 0.02),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100),
+                                                      gradient: LinearGradient(
+                                                        begin:
+                                                            Alignment.topCenter,
+                                                        end: Alignment
+                                                            .bottomCenter,
+                                                        colors: [
+                                                          Colors.white
+                                                              .withOpacity(0.7),
+                                                          const Color(
+                                                              0x00ffffff)
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                  child: SvgPicture.asset(
-                                                    'assets/Vectores/Iconos/ebloqscoinb.svg',
-                                                    width: UtilSize.width(
-                                                        20, context),
+                                                    child: SvgPicture.asset(
+                                                      'assets/Vectores/Iconos/ebloqscoinb.svg',
+                                                      width: UtilSize.width(
+                                                          20, context),
+                                                    ),
                                                   ),
                                                 ),
                                                 SvgPicture.asset(
@@ -879,7 +895,7 @@ class _HomeScreenState extends State<HomeScreen>
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize:
-                                                UtilSize.width(12, context),
+                                                UtilSize.width(10, context),
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -1002,7 +1018,7 @@ class _HomeScreenState extends State<HomeScreen>
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize:
-                                                  UtilSize.width(12, context),
+                                                  UtilSize.width(10, context),
                                               fontFamily: "Archivo",
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -1215,7 +1231,7 @@ class _HomeScreenState extends State<HomeScreen>
                                               style: TextStyle(
                                                 color: const Color(0xff2504ca),
                                                 fontSize:
-                                                    UtilSize.width(13, context),
+                                                    UtilSize.width(11, context),
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -1542,7 +1558,7 @@ class _HomeScreenState extends State<HomeScreen>
                                         textAlign: TextAlign.right,
                                         style: TextStyle(
                                           color: const Color(0xff170658),
-                                          fontSize: UtilSize.width(10, context),
+                                          fontSize: UtilSize.width(8, context),
                                         ),
                                       ),
                                       Column(
@@ -1795,7 +1811,7 @@ class _HomeScreenState extends State<HomeScreen>
                                           style: TextStyle(
                                             color: const Color(0xff170658),
                                             fontSize:
-                                                UtilSize.width(10, context),
+                                                UtilSize.width(8, context),
                                           ),
                                         ),
                                         Column(
@@ -1862,7 +1878,7 @@ class _HomeScreenState extends State<HomeScreen>
                                               style: TextStyle(
                                                 color: const Color(0xff170658),
                                                 fontSize:
-                                                    UtilSize.width(12, context),
+                                                    UtilSize.width(10, context),
                                               ),
                                             ),
                                           ],
@@ -2014,7 +2030,7 @@ class _HomeScreenState extends State<HomeScreen>
                                   padding: EdgeInsets.only(
                                       top: size.height * 0.01,
                                       left: size.width * 0.04,
-                                      right: size.width * 0.21),
+                                      right: size.width * 0.11),
                                   child: Row(
                                     children: [
                                       Text(

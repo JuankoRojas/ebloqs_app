@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:after_layout/after_layout.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/widgets/custom_appbar_pop_question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class DeviceManagementScreen extends StatefulWidget {
   static const String routeName = 'DeviceManagementScreen';
@@ -25,16 +27,22 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) async {
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+    IosDeviceInfo? iosInfo;
+    AndroidDeviceInfo? androidInfo;
+    if (Platform.isAndroid) {
+      androidInfo = await deviceInfo.androidInfo;
+    }
+    if (Platform.isIOS) {
+      iosInfo = await deviceInfo.iosInfo;
+    }
     printIps();
     setState(() {
       if (Platform.isAndroid) {
-        brand = androidInfo.brand;
+        brand = androidInfo!.brand;
         device = androidInfo.device;
         imei = androidInfo.id;
       } else if (Platform.isIOS) {
-        brand = iosInfo.name;
+        brand = iosInfo!.name;
         device = iosInfo.model;
         imei = iosInfo.identifierForVendor;
       }
@@ -59,7 +67,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    var userInformation = Provider.of<UserInfoProvider>(context).userInfoget;
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
@@ -124,7 +132,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                   ),
                   const Spacer(),
                   Text(
-                    "22/08/2022 - 19:25 PM",
+                    userInformation['create'],
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       color: const Color(0xff170658).withOpacity(0.6),
@@ -150,7 +158,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                   ),
                   const Spacer(),
                   Text(
-                    "Quito-Ecuador",
+                    userInformation['city'],
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       color: const Color(0xff170658).withOpacity(0.6),

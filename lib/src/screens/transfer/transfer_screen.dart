@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:after_layout/after_layout.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/services/get_all_user_service.dart';
@@ -72,12 +73,12 @@ class _TransferScreenState extends State<TransferScreen>
                       },
                     ),
                     Expanded(child: Container()),
-                    const Text(
+                    Text(
                       "Transferir",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 17,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(17, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -100,12 +101,12 @@ class _TransferScreenState extends State<TransferScreen>
                         color: (current == 0)
                             ? const Color(0xfff6f4fd)
                             : const Color(0xfff9f9fa),
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             "Dinero",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 15,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(15, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
@@ -134,12 +135,12 @@ class _TransferScreenState extends State<TransferScreen>
                         color: (current == 1)
                             ? const Color(0xfff6f4fd)
                             : const Color(0xfff9f9fa),
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             "Tokens",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 15,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(15, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
@@ -171,7 +172,7 @@ class _TransferScreenState extends State<TransferScreen>
                   right: size.width * 0.0413194444444445,
                 ),
                 child: SizedBox(
-                  height: size.height * 0.800492610837438,
+                  height: UtilSize.height(830, context),
                   width: double.infinity,
                   child: PageView(
                     controller: pageController,
@@ -203,7 +204,10 @@ class _TransferScreenState extends State<TransferScreen>
                           width: size.width,
                           title: 'Continuar',
                           onPressed: () {
-                            if (_formKey13.currentState!.validate()) {
+                            if (_formKey13.currentState != null &&
+                                    _formKey13.currentState!.validate() ||
+                                _formKey14.currentState != null &&
+                                    _formKey14.currentState!.validate()) {
                               customModalBottomAlert(
                                   context,
                                   size,
@@ -236,11 +240,11 @@ class _TransferScreenState extends State<TransferScreen>
                               left: size.width * 0.0413194444444445,
                               right: size.width * 0.0413194444444445,
                             ),
-                            child: const Text(
+                            child: Text(
                               "Tiempo estimado de 1 hora",
                               style: TextStyle(
-                                color: Color(0xff2504ca),
-                                fontSize: 13,
+                                color: const Color(0xff2504ca),
+                                fontSize: UtilSize.width(13, context),
                               ),
                             )),
                         Padding(
@@ -328,6 +332,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
   @override
   void afterFirstLayout(BuildContext context) {
     getAllUser();
+    
   }
 
   getAllUser() async {
@@ -349,11 +354,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
+          Text(
             "Moneda",
             style: TextStyle(
-              color: Color(0xff170658),
-              fontSize: 13,
+              color: const Color(0xff170658),
+              fontSize: UtilSize.width(13, context),
               fontFamily: "Archivo",
               fontWeight: FontWeight.w600,
             ),
@@ -366,6 +371,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                 icon:
                     SvgPicture.asset('assets/Vectores/Iconos/dwon chevron.svg'),
                 decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(
+                      top: UtilSize.height(14, context),
+                      bottom: UtilSize.height(14, context),
+                      left: UtilSize.width(16, context),
+                      right: UtilSize.width(16, context)),
                   enabledBorder: OutlineInputBorder(
                     borderSide:
                         const BorderSide(color: Color(0xffcdccd1), width: 1),
@@ -400,11 +410,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: const Text(
+            child: Text(
               "Cantidad",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -432,7 +442,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                 ),
               ),
               validator: (value) {
-                if (value == null) {
+                if (value == null || widget.quantityController.text.isEmpty) {
                   setState(() {
                     widget.errorValidation =
                         'Por favor,  debes completar todos los registros para continuar';
@@ -448,11 +458,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: const Text(
+            child: Text(
               "De:",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -464,7 +474,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
               ),
               child: Container(
                 width: size.width,
-                height: size.height * 0.0640394088669951,
+                height: UtilSize.height(72, context),
                 padding: EdgeInsets.only(
                     left: size.width * 0.0426666666666667,
                     top: size.height * 0.0197044334975369,
@@ -479,9 +489,9 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                 ),
                 child: Text(
                   Preferences.userName!,
-                  style: const TextStyle(
-                    color: Color(0xff383346),
-                    fontSize: 14,
+                  style: TextStyle(
+                    color: const Color(0xff383346),
+                    fontSize: UtilSize.width(16, context),
                   ),
                 ),
               )),
@@ -489,11 +499,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: const Text(
+            child: Text(
               "Para:",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -596,11 +606,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: const Text(
+            child: Text(
               "Descripción",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -680,11 +690,11 @@ class _TokensState extends State<Tokens> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
+          Text(
             "Tokens",
             style: TextStyle(
-              color: Color(0xff170658),
-              fontSize: 13,
+              color: const Color(0xff170658),
+              fontSize: UtilSize.width(13, context),
               fontFamily: "Archivo",
               fontWeight: FontWeight.w600,
             ),
@@ -731,11 +741,11 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: const Text(
+            child: Text(
               "Cantidad",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -779,11 +789,11 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: const Text(
+            child: Text(
               "De:",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -793,7 +803,7 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(top: size.height * 0.00948509485094851),
             child: Container(
               width: size.width,
-              height: size.height * 0.0616531165311653,
+              // height: UtilSize.height(52, context),
               padding: EdgeInsets.symmetric(
                   horizontal: size.width * 0.0388888888888889),
               decoration: BoxDecoration(
@@ -828,11 +838,11 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: const Text(
+            child: Text(
               "Para:",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -889,11 +899,11 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: const Text(
+            child: Text(
               "Descripción",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 13,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(13, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),

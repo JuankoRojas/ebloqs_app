@@ -135,7 +135,7 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: const Color(0xff170658),
-                    fontSize: UtilSize.width(12, context),
+                    fontSize: UtilSize.width(10, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -152,7 +152,7 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: const Color(0xff170658),
-                    fontSize: UtilSize.width(12, context),
+                    fontSize: UtilSize.width(10, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -169,7 +169,7 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: const Color(0xff170658),
-                    fontSize: UtilSize.width(12, context),
+                    fontSize: UtilSize.width(10, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -292,7 +292,7 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                               color: const Color(0xff8F8B9F),
                                               fontFamily: 'Archivo',
                                               fontSize:
-                                                  UtilSize.width(13, context),
+                                                  UtilSize.width(10, context),
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ],

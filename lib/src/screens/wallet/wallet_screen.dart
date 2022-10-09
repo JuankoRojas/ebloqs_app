@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:after_layout/after_layout.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
@@ -63,7 +64,9 @@ class _WalletScreenState extends State<WalletScreen>
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: size.width * 0.035, vertical: size.height * 0.07),
+            horizontal: UtilSize.width(12, context),
+            vertical: UtilSize.height(56, context),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,8 +76,8 @@ class _WalletScreenState extends State<WalletScreen>
                 children: [
                   GestureDetector(
                     child: Container(
-                      width: 32,
-                      height: 32,
+                      width: UtilSize.width(32, context),
+                      height: UtilSize.width(32, context),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
@@ -106,9 +109,9 @@ class _WalletScreenState extends State<WalletScreen>
                       searchButtonIconColor: const Color(0xff170658),
                       hideSearchButton: true,
                       hintText: 'Buscar Propiedades',
-                      hintStyle: const TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 13,
+                      hintStyle: TextStyle(
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(13, context),
                       ),
                     ),
                   ),
@@ -124,7 +127,9 @@ class _WalletScreenState extends State<WalletScreen>
                 ],
               ),
               Padding(
-                padding: EdgeInsets.only(top: size.height * (16 / size.height)),
+                padding: EdgeInsets.only(
+                  top: UtilSize.height(15, context),
+                ),
                 child: FutureBuilder(
                   future: BalanceService().getBalanceOf(
                       accesstoken: Preferences.token!,
@@ -137,13 +142,14 @@ class _WalletScreenState extends State<WalletScreen>
                       ebl = snapshot.data;
 
                       return Container(
-                        width: size.width,
-                        height: size.height * (175 / size.height),
+                        width: size.width * 0.95,
+                        height: UtilSize.height(215, context),
                         padding: EdgeInsets.only(
-                            top: size.height * 0.0172413793103448,
-                            right: size.width * (12 / size.width),
-                            bottom: size.height * (10 / size.height),
-                            left: size.width * (16 / size.width)),
+                          top: size.height * 0.0172413793103448,
+                          right: UtilSize.width(12, context),
+                          bottom: UtilSize.height(10, context),
+                          left: UtilSize.width(16, context),
+                        ),
                         decoration: BoxDecoration(
                           image: const DecorationImage(
                             image: AssetImage('assets/Imagenes/Mask group.png'),
@@ -156,78 +162,87 @@ class _WalletScreenState extends State<WalletScreen>
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: const Color(0x14ffffff),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: UtilSize.height(15, context),
                                   ),
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 4,
-                                    vertical: 4,
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        width: 16,
-                                        height: 16,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      color: const Color(0x14ffffff),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 4,
+                                      vertical: 4,
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: UtilSize.width(16, context),
+                                          height: UtilSize.width(16, context),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: SvgPicture.asset(
+                                            'assets/Vectores/Iconos/candado.svg',
+                                            color: Colors.white,
+                                            width: UtilSize.width(16, context),
+                                          ),
                                         ),
-                                        child: SvgPicture.asset(
-                                          'assets/Vectores/Iconos/candado.svg',
-                                          color: Colors.white,
-                                          width: 16,
+                                        const SizedBox(width: 8),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Balance Bloqueado ",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize:
+                                                    UtilSize.width(11, context),
+                                                fontFamily: "Archivo",
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              snapshot.data ?? '',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize:
+                                                    UtilSize.width(11, context),
+                                                fontFamily: "Archivo",
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              ' EBL',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize:
+                                                    UtilSize.width(11, context),
+                                                fontFamily: "Archivo",
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Row(
-                                        children: [
-                                          const Text(
-                                            "Balance Bloqueado ",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 11,
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          Text(
-                                            snapshot.data ?? '',
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 11,
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          const Text(
-                                            ' EBL',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 11,
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
                                       top: size.height * 0.00985221674876847,
                                       left: size.width * 0.0106666666666667),
-                                  child: const Text(
+                                  child: Text(
                                     "BALANCE DISPONIBLE",
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 11.59,
+                                      fontSize: UtilSize.width(11.59, context),
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -242,17 +257,18 @@ class _WalletScreenState extends State<WalletScreen>
                                     children: [
                                       Text(
                                         snapshot.data ?? '',
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 36,
+                                          fontSize: UtilSize.width(36, context),
                                         ),
                                       ),
                                       SizedBox(width: size.width * 0.035),
-                                      const Text(
+                                      Text(
                                         "EBL",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 18.55,
+                                          fontSize:
+                                              UtilSize.width(18.55, context),
                                         ),
                                       ),
                                     ],
@@ -281,9 +297,10 @@ class _WalletScreenState extends State<WalletScreen>
                                           children: [
                                             Text(
                                               "$usd USD",
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 13,
+                                                fontSize:
+                                                    UtilSize.width(13, context),
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -295,11 +312,12 @@ class _WalletScreenState extends State<WalletScreen>
                                         padding: EdgeInsets.only(
                                             left:
                                                 size.width * 0.138666666666667),
-                                        child: const Text(
+                                        child: Text(
                                           "WALLET ID",
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize: 11.59,
+                                            fontSize:
+                                                UtilSize.width(11.59, context),
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -313,23 +331,28 @@ class _WalletScreenState extends State<WalletScreen>
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Container(
-                                  width: size.width * 0.15,
-                                  height: size.width * 0.15,
-                                  padding: EdgeInsets.all(size.width * 0.02),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Colors.white.withOpacity(0.7),
-                                        const Color(0x00ffffff)
-                                      ],
-                                    ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    top: UtilSize.height(15, context),
                                   ),
-                                  child: SvgPicture.asset(
-                                      'assets/Vectores/Iconos/ebloqscoinb.svg'),
+                                  child: Container(
+                                    width: size.width * 0.15,
+                                    height: size.width * 0.15,
+                                    padding: EdgeInsets.all(size.width * 0.02),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [
+                                          Colors.white.withOpacity(0.7),
+                                          const Color(0x00ffffff)
+                                        ],
+                                      ),
+                                    ),
+                                    child: SvgPicture.asset(
+                                        'assets/Vectores/Iconos/ebloqscoinb.svg'),
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
@@ -397,13 +420,15 @@ class _WalletScreenState extends State<WalletScreen>
                                                                 CrossAxisAlignment
                                                                     .center,
                                                             children: [
-                                                              const Text(
+                                                              Text(
                                                                 "Wallet ID",
                                                                 style:
                                                                     TextStyle(
-                                                                  color: Color(
+                                                                  color: const Color(
                                                                       0xff2504ca),
-                                                                  fontSize: 20,
+                                                                  fontSize: UtilSize
+                                                                      .width(20,
+                                                                          context),
                                                                   fontFamily:
                                                                       "Archivo",
                                                                   fontWeight:
@@ -436,11 +461,13 @@ class _WalletScreenState extends State<WalletScreen>
                                                                   Preferences
                                                                       .public_key!,
                                                                   style:
-                                                                      const TextStyle(
+                                                                      TextStyle(
                                                                     color: Colors
                                                                         .black,
-                                                                    fontSize:
-                                                                        13,
+                                                                    fontSize: UtilSize
+                                                                        .width(
+                                                                            13,
+                                                                            context),
                                                                   ),
                                                                 ),
                                                               ),
@@ -511,7 +538,7 @@ class _WalletScreenState extends State<WalletScreen>
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      const Center(
+                                                                      Center(
                                                                         child:
                                                                             Text(
                                                                           "Compartir",
@@ -520,7 +547,7 @@ class _WalletScreenState extends State<WalletScreen>
                                                                             color:
                                                                                 Colors.white,
                                                                             fontSize:
-                                                                                14,
+                                                                                UtilSize.width(14, context),
                                                                             fontFamily:
                                                                                 "Archivo",
                                                                             fontWeight:
@@ -569,16 +596,17 @@ class _WalletScreenState extends State<WalletScreen>
                                                                           0xfff9f9fa),
                                                                     ),
                                                                     child:
-                                                                        const Center(
+                                                                        Center(
                                                                       child:
                                                                           Text(
                                                                         "Cerrar",
                                                                         style:
                                                                             TextStyle(
                                                                           color:
-                                                                              Color(0xff170658),
-                                                                          fontSize:
+                                                                              const Color(0xff170658),
+                                                                          fontSize: UtilSize.width(
                                                                               14,
+                                                                              context),
                                                                           fontFamily:
                                                                               "Archivo",
                                                                           fontWeight:
@@ -654,11 +682,11 @@ class _WalletScreenState extends State<WalletScreen>
                         children: [
                           SvgPicture.asset(
                               'assets/Vectores/Iconos/Depositar.svg'),
-                          const Text(
+                          Text(
                             "Depositar",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 12,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(12, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -681,11 +709,11 @@ class _WalletScreenState extends State<WalletScreen>
                         children: [
                           SvgPicture.asset(
                               'assets/Vectores/Iconos/Retirar.svg'),
-                          const Text(
+                          Text(
                             "Retirar",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 12,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(12, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -710,11 +738,11 @@ Espérala pronto!!''',
                         children: [
                           SvgPicture.asset(
                               'assets/Vectores/Iconos/Transferir.svg'),
-                          const Text(
+                          Text(
                             "Transferir",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 12,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(12, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -730,11 +758,11 @@ Espérala pronto!!''',
                         children: [
                           SvgPicture.asset(
                               'assets/Vectores/Iconos/Comprar.svg'),
-                          const Text(
+                          Text(
                             "Comprar",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 12,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(12, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -755,12 +783,12 @@ Espérala pronto!!''',
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
-                      width: size.width * (284 / size.width),
-                      child: const Text(
+                      width: UtilSize.width(284, context),
+                      child: Text(
                         "Tú acreditación de tokens puede tardar de 5 minutos hasta 1 hora. Para conocer el estatus de clic en refrescar.",
                         style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 12,
+                          color: const Color(0xff170658),
+                          fontSize: UtilSize.width(12, context),
                         ),
                       ),
                     ),
@@ -776,11 +804,11 @@ Espérala pronto!!''',
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (21 / size.height)),
-                child: const Text(
+                child: Text(
                   "Saldos disponibles",
                   style: TextStyle(
-                    color: Color(0xff2504ca),
-                    fontSize: 15,
+                    color: const Color(0xff2504ca),
+                    fontSize: UtilSize.width(15, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -1026,11 +1054,11 @@ Espérala pronto!!''',
                   Padding(
                     padding:
                         EdgeInsets.only(top: size.height * (16 / size.height)),
-                    child: const Text(
+                    child: Text(
                       "Criptomonedas",
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(14, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -1064,12 +1092,12 @@ Espérala pronto!!''',
                               left: size.width * (12 / size.width)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
                                 "Ebloqs",
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 14,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(14, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -1077,8 +1105,8 @@ Espérala pronto!!''',
                               Text(
                                 "EBL",
                                 style: TextStyle(
-                                  color: Color(0xff8F8B9F),
-                                  fontSize: 14,
+                                  color: const Color(0xff8F8B9F),
+                                  fontSize: UtilSize.width(14, context),
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -1090,9 +1118,9 @@ Espérala pronto!!''',
                         Text(
                           ebl ?? '0.00',
                           textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 14,
+                          style: TextStyle(
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(14, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),

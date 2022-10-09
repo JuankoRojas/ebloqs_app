@@ -98,7 +98,7 @@ class _ComprarScreenState extends State<ComprarScreen>
                       "Comprar",
                       style: TextStyle(
                         color: const Color(0xff170658),
-                        fontSize: UtilSize.width(17, context),
+                        fontSize: UtilSize.width(16, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -178,7 +178,7 @@ class _ComprarScreenState extends State<ComprarScreen>
                                   countryCode.code!,
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: UtilSize.width(13, context),
+                                    fontSize: UtilSize.width(12, context),
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w400,
                                   ),
