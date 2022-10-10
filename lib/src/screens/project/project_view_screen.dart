@@ -1,3 +1,5 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
+import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -11,10 +13,18 @@ class ProjectViewScreen extends StatefulWidget {
 }
 
 class _ProjectViewScreenState extends State<ProjectViewScreen> {
-  int? currentIndex;
+  int currentIndex = 0;
+  Widget? image;
+  var item;
+  bool isLoading = false;
+  bool showProjectData = false;
+  bool showTokenomics = false;
+  bool showDescription = false;
+  bool showPromoterData = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    print(size.height);
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -25,8 +35,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: size.width,
-                  height: size.height * 0.56,
+                  // width: double.infinity,
+                  height: (size.height < 750)
+                      ? UtilSize.height(590, context)
+                      : UtilSize.height(498, context),
                   child: ExtendedImageGesturePageView.builder(
                     itemBuilder: (BuildContext context, int index) {
                       List imagenes = [
@@ -37,8 +49,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                         'assets/Imagenes/Group 2149.jpg',
                         'assets/Imagenes/Group 2149.jpg',
                       ];
-                      var item = imagenes[index];
-                      Widget image = ExtendedImage.asset(
+                      item = imagenes[index];
+                      image = ExtendedImage.asset(
                         item,
                         fit: BoxFit.contain,
                         mode: ExtendedImageMode.gesture,
@@ -56,39 +68,41 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       if (index == currentIndex) {
                         return Hero(
                           tag: item + index.toString(),
-                          child: image,
+                          child: image!,
                         );
                       } else {
-                        return image;
+                        return image!;
                       }
                     },
                     itemCount: 5,
                     scrollDirection: Axis.horizontal,
                     controller:
-                        ExtendedPageController(initialPage: currentIndex ?? 0),
+                        ExtendedPageController(initialPage: currentIndex),
                     onPageChanged: (int index) {
-                      currentIndex = index;
-                      setState(() {});
+                      setState(() {
+                        currentIndex = index;
+                      });
                     },
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      top: size.height * (178 / size.height),
-                      right: size.width * (15 / size.width),
-                      left: size.width * (15 / size.width)),
+                    top: UtilSize.height(128, context),
+                    right: size.width * (15 / size.width),
+                    left: size.width * (15 / size.width),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             "Precio edificio",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 14,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(14, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
@@ -96,8 +110,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                           Text(
                             "USD \$4.700.000",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 14,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(14, context),
                             ),
                           ),
                         ],
@@ -119,12 +133,12 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             "Tokens emitidos",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 14,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(14, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
@@ -132,8 +146,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                           Text(
                             "9.400",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 14,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(14, context),
                             ),
                           )
                         ],
@@ -155,12 +169,12 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             "Tokens disponibles",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 14,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(14, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
@@ -168,8 +182,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                           Text(
                             "7.857",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 14,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(14, context),
                             ),
                           )
                         ],
@@ -239,12 +253,12 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                               Positioned(
                                 left: size.width * (134 / size.width),
                                 child: SizedBox(
-                                  width: size.width * (210 / size.width),
-                                  child: const Text(
+                                  width: UtilSize.width(200, context),
+                                  child: Text(
                                     "Únete y sé dueño de las  mejores oportunidades  de inversión inmobiliarias",
                                     style: TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 13,
+                                      color: const Color(0xff170658),
+                                      fontSize: UtilSize.width(12, context),
                                     ),
                                   ),
                                 ),
@@ -256,1099 +270,1375 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: size.height * (10 / size.height)),
-                        child: Container(
-                          width: size.width,
-                          height: size.height * (440 / size.height),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: const Color(0xffccc6dc),
-                              width: 1,
-                            ),
-                            color: const Color(0xfff9f9fa),
-                          ),
-                          padding: EdgeInsets.only(
-                            left: size.width * (13 / size.width),
-                            right: size.width * (18 / size.width),
-                            top: size.height * (23 / size.height),
-                            bottom: size.height * (34 / size.height),
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "Datos del proyecto",
-                                    style: TextStyle(
-                                      color: Color(0xff2504ca),
-                                      fontSize: 17,
-                                      fontFamily: "Archivo",
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Chevron.svg')
-                                ],
+                        child: GestureDetector(
+                          child: Container(
+                            width: size.width,
+                            // height: size.height * (440 / size.height),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: const Color(0xffccc6dc),
+                                width: 1,
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (33 / size.height),
-                                ),
-                                child: Row(
+                              color: const Color(0xfff9f9fa),
+                            ),
+                            padding: EdgeInsets.only(
+                              left: size.width * (13 / size.width),
+                              right: size.width * (18 / size.width),
+                              top: size.height * (23 / size.height),
+                              bottom: size.height * (34 / size.height),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SvgPicture.asset(
-                                        'assets/Vectores/Iconos/inversiones.svg'),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: size.width * (8 / size.width)),
-                                      child: const Text(
-                                        "Tipo de proyecto",
-                                        style: TextStyle(
-                                          color: Color(0xff170658),
-                                          fontSize: 14,
-                                          fontFamily: "Archivo",
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (11 / size.height),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
                                     Text(
-                                      "Edificio superficie (m2)",
+                                      "Datos del proyecto",
                                       style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
+                                        color: const Color(0xff2504ca),
+                                        fontSize: UtilSize.width(17, context),
+                                        fontFamily: "Archivo",
+                                        fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    Text(
-                                      " 3.437",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
+                                    showProjectData
+                                        ? SvgPicture.asset(
+                                            'assets/Vectores/Iconos/Chevron.svg')
+                                        : SvgPicture.asset(
+                                            'assets/Vectores/Iconos/dwon chevron.svg')
                                   ],
                                 ),
+                                showProjectData
+                                    ? Column(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (33 / size.height),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                SvgPicture.asset(
+                                                    'assets/Vectores/Iconos/inversiones.svg'),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: size.width *
+                                                          (8 / size.width)),
+                                                  child: Text(
+                                                    "Tipo de proyecto",
+                                                    style: TextStyle(
+                                                      color: const Color(
+                                                          0xff170658),
+                                                      fontSize: UtilSize.width(
+                                                          14, context),
+                                                      fontFamily: "Archivo",
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (11 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Edificio superficie (m2)",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " 3.437",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (9 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Número departamentos",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "34",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (9 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                const Text(
+                                                  "Número amenidades",
+                                                  style: TextStyle(
+                                                    color: Color(0xff170658),
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "10",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (9 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Electrolineras",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "2",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (9 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Vehículo eléctrico comunal",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "1",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (9 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Concierge edificio",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "1",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (30 / size.height),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                SvgPicture.asset(
+                                                    'assets/Vectores/Iconos/PC.svg'),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: size.width *
+                                                          (8 / size.width)),
+                                                  child: Text(
+                                                    "Validación",
+                                                    style: TextStyle(
+                                                      color: const Color(
+                                                          0xff170658),
+                                                      fontSize: UtilSize.width(
+                                                          14, context),
+                                                      fontFamily: "Archivo",
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (11 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Certificación EDGE",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "Ok",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (9 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Fideicomiso ",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "Ok",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (9 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Planos aprobados",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "Ok",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                              top: size.height *
+                                                  (9 / size.height),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Licencia de construcción",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "Ok",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : const SizedBox(),
+                              ],
+                            ),
+                          ),
+                          onTap: () {
+                            setState(() {
+                              showProjectData = !showProjectData;
+                            });
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: size.height * (24 / size.height)),
+                        child: GestureDetector(
+                          child: Container(
+                            width: size.width,
+                            // height: size.height * (460 / size.height),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: const Color(0xffccc6dc),
+                                width: 1,
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (9 / size.height),
-                                ),
-                                child: Row(
+                              color: const Color(0xfff9f9fa),
+                            ),
+                            padding: EdgeInsets.only(
+                              left: size.width * (13 / size.width),
+                              right: size.width * (18 / size.width),
+                              top: size.height * (23 / size.height),
+                              bottom: size.height * (34 / size.height),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Número departamentos",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "34",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (9 / size.height),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Número amenidades",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "10",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (9 / size.height),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Electrolineras",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "2",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (9 / size.height),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Vehículo eléctrico comunal",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "1",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (9 / size.height),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Concierge edificio",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "1",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (30 / size.height),
-                                ),
-                                child: Row(
                                   children: [
-                                    SvgPicture.asset(
-                                        'assets/Vectores/Iconos/PC.svg'),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: size.width * (8 / size.width)),
-                                      child: const Text(
-                                        "Validación",
-                                        style: TextStyle(
-                                          color: Color(0xff170658),
-                                          fontSize: 14,
-                                          fontFamily: "Archivo",
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (11 / size.height),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
                                     Text(
-                                      "Certificación EDGE",
+                                      "Tokenomics del proyecto",
                                       style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
+                                        color: const Color(0xff2504ca),
+                                        fontSize: UtilSize.width(17, context),
+                                        fontFamily: "Archivo",
+                                        fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                    Text(
-                                      "Ok",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
+                                    showTokenomics
+                                        ? SvgPicture.asset(
+                                            'assets/Vectores/Iconos/Chevron.svg')
+                                        : SvgPicture.asset(
+                                            'assets/Vectores/Iconos/dwon chevron.svg')
                                   ],
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (9 / size.height),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Fideicomiso ",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Ok",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (9 / size.height),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Planos aprobados",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Ok",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: size.height * (9 / size.height),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Licencia de construcción",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "Ok",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
+                                showTokenomics
+                                    ? Column(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (30 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Interés durante construcción",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "USD \$215.000",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (30 / size.height)),
+                                            child: Row(children: [
+                                              SvgPicture.asset(
+                                                  'assets/Vectores/Iconos/trending up.svg'),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: size.width *
+                                                        (8 / size.width)),
+                                                child: Text(
+                                                  "Alquiler",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (13 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Renting anual",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "\$430.000",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (3 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Gasto anual",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " \$100.000",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (3 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Beneficio neto anual",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " \$330.000",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (33 / size.height)),
+                                            child: Row(children: [
+                                              SvgPicture.asset(
+                                                  'assets/Vectores/Iconos/trending up.svg'),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: size.width *
+                                                        (8 / size.width)),
+                                                child: Text(
+                                                  "Rentabilidad estimada",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (13 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Interés construcción (1 año)",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "\$215.000",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (3 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Renting neto (2 años)",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "\$660.000",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (3 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Plusvalía (3 años)",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "\$435.000",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (3 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Neto (3 años)",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "\$1.310.000",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (30 / size.height)),
+                                            child: SizedBox(
+                                              width: size.width *
+                                                  (318 / size.width),
+                                              child: Text(
+                                                "*Los intereses son promedios, su naturaleza es especulativa, implican un grado de riesgo. El pago es trimestral, anual y al final de la inversión.",
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color(0xff170658),
+                                                  fontSize: UtilSize.width(
+                                                      11, context),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : const SizedBox()
+                              ],
+                            ),
                           ),
+                          onTap: () {
+                            setState(() {
+                              showTokenomics = !showTokenomics;
+                            });
+                          },
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
                             top: size.height * (24 / size.height)),
-                        child: Container(
-                          width: size.width,
-                          height: size.height * (460 / size.height),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: const Color(0xffccc6dc),
-                              width: 1,
+                        child: GestureDetector(
+                          child: Container(
+                            width: size.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: const Color(0xffccc6dc),
+                                width: 1,
+                              ),
+                              color: const Color(0xfff9f9fa),
                             ),
-                            color: const Color(0xfff9f9fa),
-                          ),
-                          padding: EdgeInsets.only(
-                            left: size.width * (13 / size.width),
-                            right: size.width * (18 / size.width),
-                            top: size.height * (23 / size.height),
-                            bottom: size.height * (34 / size.height),
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "Tokenomics del proyecto",
-                                    style: TextStyle(
-                                      color: Color(0xff2504ca),
-                                      fontSize: 17,
-                                      fontFamily: "Archivo",
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Chevron.svg')
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (30 / size.height)),
-                                child: Row(
+                            padding: EdgeInsets.only(
+                              left: size.width * (13 / size.width),
+                              right: size.width * (18 / size.width),
+                              top: size.height * (23 / size.height),
+                              bottom: size.height * (34 / size.height),
+                            ),
+                            child: Column(
+                              children: [
+                                Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: const [
+                                  children: [
                                     Text(
-                                      "Interés durante construcción",
+                                      "Descripción de la zona",
                                       style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "USD \$215.000",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (30 / size.height)),
-                                child: Row(children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/trending up.svg'),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * (8 / size.width)),
-                                    child: const Text(
-                                      "Alquiler",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
+                                        color: const Color(0xff2504ca),
+                                        fontSize: UtilSize.width(17, context),
                                         fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w700,
                                       ),
                                     ),
-                                  ),
-                                ]),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (13 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Renting anual",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "\$430.000",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
+                                    showDescription
+                                        ? SvgPicture.asset(
+                                            'assets/Vectores/Iconos/Chevron.svg')
+                                        : SvgPicture.asset(
+                                            'assets/Vectores/Iconos/dwon chevron.svg')
                                   ],
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (3 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Gasto anual",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      " \$100.000",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (3 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Beneficio neto anual",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      " \$330.000",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (33 / size.height)),
-                                child: Row(children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/trending up.svg'),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * (8 / size.width)),
-                                    child: const Text(
-                                      "Rentabilidad estimada",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (13 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Interés construcción (1 año)",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "\$215.000",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (3 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Renting neto (2 años)",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "\$660.000",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (3 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Plusvalía (3 años)",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "\$435.000",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (3 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Neto (3 años)",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "\$1.310.000",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (30 / size.height)),
-                                child: SizedBox(
-                                  width: size.width * (318 / size.width),
-                                  child: const Text(
-                                    "*Los intereses son promedios, su naturaleza es especulativa, implican un grado de riesgo. El pago es trimestral, anual y al final de la inversión.",
-                                    style: TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 11,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
+                                showDescription
+                                    ? Column(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (33 / size.height)),
+                                            child: Row(children: [
+                                              SvgPicture.asset(
+                                                  'assets/Vectores/Iconos/trending up.svg'),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: size.width *
+                                                        (8 / size.width)),
+                                                child: Text(
+                                                  "Centros comerciales",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (11 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Mall el Jardín",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "5 min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (6 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Quicentro shopping",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " 8 min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (6 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "CCI",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " 9 min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (6 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "CCNU",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " 9 min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (33 / size.height)),
+                                            child: Row(children: [
+                                              SvgPicture.asset(
+                                                  'assets/Vectores/Iconos/trending up.svg'),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: size.width *
+                                                        (8 / size.width)),
+                                                child: Text(
+                                                  "Supermercados",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (11 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Megamaxi",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "7 min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (6 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Mi Comisariato",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " 9 min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (6 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Coral Hipermercado",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " 12min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (33 / size.height)),
+                                            child: Row(children: [
+                                              SvgPicture.asset(
+                                                  'assets/Vectores/Iconos/trending up.svg'),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: size.width *
+                                                        (8 / size.width)),
+                                                child: Text(
+                                                  "Parques",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (11 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "La Carolina",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "4 min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (6 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Metropolitano",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  " 7 min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (33 / size.height)),
+                                            child: Row(children: [
+                                              SvgPicture.asset(
+                                                  'assets/Vectores/Iconos/trending up.svg'),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: size.width *
+                                                        (8 / size.width)),
+                                                child: Text(
+                                                  "Metrovía",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            ]),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (11 / size.height)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  "Estación la carolina",
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "5 min",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color:
+                                                        const Color(0xff170658),
+                                                    fontSize: UtilSize.width(
+                                                        14, context),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : const SizedBox()
+                              ],
+                            ),
                           ),
+                          onTap: () {
+                            setState(() {
+                              showDescription = !showDescription;
+                            });
+                          },
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(
                             top: size.height * (24 / size.height)),
-                        child: Container(
-                          width: size.width,
-                          height: size.height * (545 / size.height),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: const Color(0xffccc6dc),
-                              width: 1,
+                        child: GestureDetector(
+                          child: Container(
+                            width: size.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: const Color(0xffccc6dc),
+                                width: 1,
+                              ),
+                              color: const Color(0xfff9f9fa),
                             ),
-                            color: const Color(0xfff9f9fa),
-                          ),
-                          padding: EdgeInsets.only(
-                            left: size.width * (13 / size.width),
-                            right: size.width * (18 / size.width),
-                            top: size.height * (23 / size.height),
-                            bottom: size.height * (34 / size.height),
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "Descripción de la zona",
-                                    style: TextStyle(
-                                      color: Color(0xff2504ca),
-                                      fontSize: 17,
-                                      fontFamily: "Archivo",
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Chevron.svg')
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (33 / size.height)),
-                                child: Row(children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/trending up.svg'),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * (8 / size.width)),
-                                    child: const Text(
-                                      "Centros comerciales",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (11 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Mall el Jardín",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "5 min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (6 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Quicentro shopping",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      " 8 min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (6 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "CCI",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      " 9 min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (6 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "CCNU",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      " 9 min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (33 / size.height)),
-                                child: Row(children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/trending up.svg'),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * (8 / size.width)),
-                                    child: const Text(
-                                      "Supermercados",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (11 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Megamaxi",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "7 min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (6 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Mi Comisariato",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      " 9 min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (6 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Coral Hipermercado",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      " 12min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (33 / size.height)),
-                                child: Row(children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/trending up.svg'),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * (8 / size.width)),
-                                    child: const Text(
-                                      "Parques",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (11 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "La Carolina",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "4 min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (6 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Metropolitano",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      " 7 min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (33 / size.height)),
-                                child: Row(children: [
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/trending up.svg'),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * (8 / size.width)),
-                                    child: const Text(
-                                      "Metrovía",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (11 / size.height)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: const [
-                                    Text(
-                                      "Estación la carolina",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                    Text(
-                                      "5 min",
-                                      textAlign: TextAlign.right,
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 14,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: size.height * (24 / size.height)),
-                        child: Container(
-                          width: size.width,
-                          height: size.height * (204 / size.height),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: const Color(0xffccc6dc),
-                              width: 1,
+                            padding: EdgeInsets.only(
+                              left: size.width * (13 / size.width),
+                              right: size.width * (18 / size.width),
+                              top: size.height * (23 / size.height),
+                              bottom: size.height * (34 / size.height),
                             ),
-                            color: const Color(0xfff9f9fa),
-                          ),
-                          padding: EdgeInsets.only(
-                            left: size.width * (13 / size.width),
-                            right: size.width * (18 / size.width),
-                            top: size.height * (23 / size.height),
-                            bottom: size.height * (34 / size.height),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(
-                                    "Datos del promotor",
-                                    style: TextStyle(
-                                      color: Color(0xff2504ca),
-                                      fontSize: 17,
-                                      fontFamily: "Archivo",
-                                      fontWeight: FontWeight.w700,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Datos del promotor",
+                                      style: TextStyle(
+                                        color: const Color(0xff2504ca),
+                                        fontSize: UtilSize.width(17, context),
+                                        fontFamily: "Archivo",
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                     ),
-                                  ),
-                                  SvgPicture.asset(
-                                      'assets/Vectores/Iconos/Chevron.svg')
-                                ],
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (34 / size.height)),
-                                child: const Text(
-                                  "MASCONSTRU SAS",
-                                  style: TextStyle(
-                                    color: Color(0xff170658),
-                                    fontSize: 14,
-                                    fontFamily: "Archivo",
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                    showPromoterData
+                                        ? SvgPicture.asset(
+                                            'assets/Vectores/Iconos/Chevron.svg')
+                                        : SvgPicture.asset(
+                                            'assets/Vectores/Iconos/dwon chevron.svg')
+                                  ],
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: size.height * (11 / size.height)),
-                                child: SizedBox(
-                                  width: size.width * (308 / size.width),
-                                  child: const Text(
-                                    "La constructora se ha caracterizado por ofrecer al mercado de Quito, proyectos de vanguardia con dinámica social, moderna y sostenible.",
-                                    style: TextStyle(
-                                      color: Color(0xff170658),
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
+                                showPromoterData
+                                    ? Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (34 / size.height)),
+                                            child: Text(
+                                              "MASCONSTRU SAS",
+                                              style: TextStyle(
+                                                color: const Color(0xff170658),
+                                                fontSize:
+                                                    UtilSize.width(14, context),
+                                                fontFamily: "Archivo",
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(
+                                                top: size.height *
+                                                    (11 / size.height)),
+                                            child: SizedBox(
+                                              width: size.width *
+                                                  (308 / size.width),
+                                              child: Text(
+                                                "La constructora se ha caracterizado por ofrecer al mercado de Quito, proyectos de vanguardia con dinámica social, moderna y sostenible.",
+                                                style: TextStyle(
+                                                  color:
+                                                      const Color(0xff170658),
+                                                  fontSize: UtilSize.width(
+                                                      14, context),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : const SizedBox()
+                              ],
+                            ),
                           ),
+                          onTap: () {
+                            setState(() {
+                              showPromoterData = !showPromoterData;
+                            });
+                          },
                         ),
                       ),
                     ],
@@ -1357,12 +1647,14 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
               ],
             ),
             Positioned(
-              top: size.height * (410 / size.height),
+              top: (size.height < 750)
+                  ? UtilSize.height(480, context)
+                  : UtilSize.height(410, context),
               left: size.width * (15 / size.width),
               right: size.width * (15 / size.width),
               child: Container(
                 width: size.width * (345 / size.width),
-                height: size.height * (176 / size.height),
+                height: UtilSize.height(210, context),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: const [
@@ -1382,11 +1674,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       padding: EdgeInsets.only(
                           top: size.height * (13 / size.height),
                           left: size.width * (13 / size.width)),
-                      child: const Text(
+                      child: Text(
                         "Proyecto",
                         style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 14,
+                          color: const Color(0xff170658),
+                          fontSize: UtilSize.width(14, context),
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w600,
                         ),
@@ -1395,11 +1687,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                     Padding(
                       padding:
                           EdgeInsets.only(left: size.width * (13 / size.width)),
-                      child: const Text(
+                      child: Text(
                         "Heráldica",
                         style: TextStyle(
-                          color: Color(0xff2504ca),
-                          fontSize: 22,
+                          color: const Color(0xff2504ca),
+                          fontSize: UtilSize.width(22, context),
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w700,
                         ),
@@ -1416,12 +1708,12 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             padding: EdgeInsets.only(
                                 left: size.width * (11.57 / size.width)),
                             child: SizedBox(
-                              width: size.width * (301 / size.width),
-                              child: const Text(
+                              width: UtilSize.width(290, context),
+                              child: Text(
                                 "Sector González Suárez, pasaje Juan Pareja y Jiménez de la Espada.",
                                 style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
+                                  color: const Color(0xff170658),
+                                  fontSize: UtilSize.width(12, context),
                                 ),
                               ),
                             ),
@@ -1446,7 +1738,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                     ),
                     Container(
                       width: size.width * (345 / size.width),
-                      height: size.height * (89 / size.height),
+                      height: UtilSize.height(89, context),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(0),
@@ -1473,11 +1765,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 padding: EdgeInsets.only(
                                     top: size.height * (18 / size.height),
                                     left: size.width * (13 / size.width)),
-                                child: const Text(
+                                child: Text(
                                   "USD \$500",
                                   style: TextStyle(
-                                    color: Color(0xff2504ca),
-                                    fontSize: 17,
+                                    color: const Color(0xff2504ca),
+                                    fontSize: UtilSize.width(15, context),
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -1486,11 +1778,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: size.width * (13 / size.width)),
-                                child: const Text(
+                                child: Text(
                                   "Precio token",
                                   style: TextStyle(
-                                    color: Color(0xff170658),
-                                    fontSize: 14,
+                                    color: const Color(0xff170658),
+                                    fontSize: UtilSize.width(12, context),
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -1499,61 +1791,32 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: size.width * (13 / size.width)),
-                                child: const Text(
+                                child: Text(
                                   "1 EBL-HERALD-01",
                                   style: TextStyle(
-                                    color: Color(0xff170658),
-                                    fontSize: 12,
+                                    color: const Color(0xff170658),
+                                    fontSize: UtilSize.width(12, context),
                                   ),
                                 ),
                               )
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsets.only(
-                              right: size.width * (10 / size.width),
-                            ),
-                            child: GestureDetector(
-                              child: Stack(
-                                alignment: AlignmentDirectional.center,
-                                children: [
-                                  Container(
-                                    height: size.height * (52 / size.height),
-                                    width: size.width * (139 / size.width),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Color(0x3f000000),
-                                          blurRadius: 4,
-                                          offset: Offset(0, 4),
-                                        ),
-                                      ],
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image.asset(
-                                        'assets/png/buttongradient.png',
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                  const Center(
-                                    child: Text(
-                                      "Invertir",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                    ),
-                                  )
-                                ],
+                              padding: EdgeInsets.only(
+                                right: UtilSize.width(10, context),
+                                top: UtilSize.height(20, context),
+                                bottom: UtilSize.height(20, context),
                               ),
-                              onTap: () {},
-                            ),
-                          ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: ButtonPrimary(
+                                  width: UtilSize.width(139, context),
+                                  title: 'Invertir',
+                                  onPressed: () {},
+                                  load: isLoading,
+                                  disabled: isLoading,
+                                ),
+                              )),
                         ],
                       ),
                     )
@@ -1587,10 +1850,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       Text(
-                        "1/5",
-                        style: TextStyle(
+                        "${(currentIndex + 1)}/5",
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,
                           fontFamily: "Archivo",
@@ -1601,14 +1864,45 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                   ),
                 )),
             Positioned(
-              top: size.height * (306 / size.height),
+              top: (size.height < 750)
+                  ? UtilSize.height(321, context)
+                  : UtilSize.height(300, context),
               right: size.width * (13 / size.width),
               child: Column(
                 children: [
                   GestureDetector(
                     child: SvgPicture.asset(
                         'assets/Vectores/Iconos/Group 149.svg'),
-                    onTap: () {},
+                    onTap: () {
+                      print('zoom');
+                      showDialog(
+                          context: context,
+                          builder: ((context) {
+                            return Dialog(
+                              backgroundColor: Colors.transparent,
+                              elevation: 0,
+                              child: ExtendedImage.asset(
+                                item,
+                                fit: BoxFit.contain,
+                                //enableLoadState: false,
+                                mode: ExtendedImageMode.gesture,
+                                initGestureConfigHandler: (state) {
+                                  return GestureConfig(
+                                    minScale: 0.9,
+                                    animationMinScale: 0.7,
+                                    maxScale: 3.0,
+                                    animationMaxScale: 3.5,
+                                    speed: 1.0,
+                                    inertialSpeed: 100.0,
+                                    initialScale: 1.0,
+                                    inPageView: false,
+                                    initialAlignment: InitialAlignment.center,
+                                  );
+                                },
+                              ),
+                            );
+                          }));
+                    },
                   ),
                   Padding(
                     padding:
@@ -1616,7 +1910,9 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                     child: GestureDetector(
                       child: SvgPicture.asset(
                           'assets/Vectores/Iconos/Group 198.svg'),
-                      onTap: () {},
+                      onTap: () {
+                        print('like');
+                      },
                     ),
                   ),
                 ],

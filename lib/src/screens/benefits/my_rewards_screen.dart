@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -35,11 +36,11 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(right: size.width * 0.373333333333333),
-                  child: const Text(
+                  child: Text(
                     "Beneficios",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 17,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(17, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w700,
                     ),
@@ -49,12 +50,12 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.00985221674876847),
-              child: const Text(
+              child: Text(
                 "Recomienda amigos y gana tokens EBL",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Color(0xff170658),
-                  fontSize: 15,
+                  color: const Color(0xff170658),
+                  fontSize: UtilSize.width(15, context),
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w600,
                 ),
@@ -63,7 +64,9 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.11576354679803),
               child: SvgPicture.asset(
-                  'assets/Vectores/Ilustraciones/Group 1950.svg'),
+                'assets/Vectores/Ilustraciones/Group 1950.svg',
+                height: UtilSize.height(206, context),
+              ),
             ),
             Padding(
               padding: EdgeInsets.only(
@@ -89,11 +92,11 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "Mis recompensas",
                         style: TextStyle(
-                          color: Color(0xff2504ca),
-                          fontSize: 15,
+                          color: const Color(0xff2504ca),
+                          fontSize: UtilSize.width(15, context),
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w600,
                         ),
@@ -103,11 +106,11 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
                             top: size.height * 0.00985221674876847),
                         child: SizedBox(
                           width: size.width * 0.781333333333333,
-                          child: const Text(
+                          child: Text(
                             "Las recompensas se repartirán en un periodo de 48 horas.",
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 13,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(13, context),
                             ),
                           ),
                         ),
@@ -118,14 +121,16 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
                             bottom: size.height * 0.0147783251231527),
                         child: Center(
                             child: SvgPicture.asset(
-                                'assets/Vectores/Iconos/Group 1948.svg')),
+                          'assets/Vectores/Iconos/Group 1948.svg',
+                          height: UtilSize.height(66, context),
+                        )),
                       ),
-                      const Center(
+                      Center(
                         child: Text(
                           "No se han encontrado recompensas",
                           style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 13,
+                            color: const Color(0xff170658),
+                            fontSize: UtilSize.width(13, context),
                           ),
                         ),
                       ),

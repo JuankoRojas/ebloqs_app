@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,13 +37,13 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(top: size.height * 0.0197044334975369),
-                  child: const Center(
+                  child: Center(
                     child: Text(
                       "¡Felicitaciones has acumulado puntos!",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 15,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(15, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -60,13 +61,13 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                         borderRadius: BorderRadius.circular(100),
                         color: const Color(0xfff6f4fd),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
                           "2000 pts",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Color(0xff2504ca),
-                            fontSize: 34,
+                            color: const Color(0xff2504ca),
+                            fontSize: UtilSize.width(34, context),
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w700,
                           ),
@@ -78,11 +79,11 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(top: size.height * 0.0431034482758621),
-                  child: const Text(
+                  child: Text(
                     "Canjea tus puntos",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w600,
                     ),
@@ -93,7 +94,7 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                       EdgeInsets.only(top: size.height * 0.0197044334975369),
                   child: Container(
                     width: size.width,
-                    height: size.height * 0.264778325123153,
+                    height: UtilSize.height(265, context),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       border: Border.all(
@@ -116,12 +117,12 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                           right: size.width * 0.064),
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             "Tus puntos te dan derecho a un cupón de",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 15,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(15, context),
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
@@ -137,13 +138,13 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                                 borderRadius: BorderRadius.circular(100),
                                 color: const Color(0xfff6f4fd),
                               ),
-                              child: const Center(
+                              child: Center(
                                 child: Text(
                                   "50 EBL",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: Color(0xff2504ca),
-                                    fontSize: 34,
+                                    color: const Color(0xff2504ca),
+                                    fontSize: UtilSize.width(34, context),
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -187,12 +188,12 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                             child: SvgPicture.asset(
                                 'assets/Vectores/Iconos/wallet.svg'),
                           ),
-                          const Text(
+                          Text(
                             "Tus ebloqs se encuentran en tu billetera",
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 13,
+                              color: const Color(0xff170658),
+                              fontSize: UtilSize.width(13, context),
                             ),
                           )
                         ],

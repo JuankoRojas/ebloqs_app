@@ -74,6 +74,7 @@ class _LocalAuthState extends State<LocalAuth> {
     });
     if (message == 'Authorized') {
       Preferences.local_auth = message;
+
       (environment == Environment.prod)
           ? Navigator.of(context)
               .pushNamed(HomeScreen.routeName)

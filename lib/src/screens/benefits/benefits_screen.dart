@@ -1,3 +1,4 @@
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/benefits/exchange_screen.dart';
 import 'package:ebloqs_app/src/screens/benefits/my_referrals_screen.dart';
 import 'package:ebloqs_app/src/screens/benefits/my_rewards_screen.dart';
@@ -36,11 +37,11 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
               const Expanded(child: SizedBox()),
               Padding(
                 padding: EdgeInsets.only(right: size.width * 0.373333333333333),
-                child: const Text(
+                child: Text(
                   "Beneficios",
                   style: TextStyle(
-                    color: Color(0xff170658),
-                    fontSize: 17,
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(17, context),
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w700,
                   ),
@@ -50,12 +51,12 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(top: size.height * 0.00985221674876847),
-            child: const Text(
+            child: Text(
               "Para la comunidad ebloqs",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 15,
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(15, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -64,7 +65,9 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
           Padding(
             padding: EdgeInsets.only(top: size.height * 0.11576354679803),
             child: SvgPicture.asset(
-                'assets/Vectores/Ilustraciones/Group 1950.svg'),
+              'assets/Vectores/Ilustraciones/Group 1950.svg',
+              height: UtilSize.height(206, context),
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(
@@ -98,11 +101,11 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                         Navigator.pushNamed(context, MyRewardsScreen.routeName);
                       },
                     ),
-                    const Text(
+                    Text(
                       "Recompensas",
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 11.26,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(11.26, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -119,11 +122,11 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                             context, MyReferralsScreen.routeName);
                       },
                     ),
-                    const Text(
+                    Text(
                       "Referidos",
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 11.26,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(11.26, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -139,11 +142,11 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                         Navigator.pushNamed(context, ExchangeScreen.routeName);
                       },
                     ),
-                    const Text(
+                    Text(
                       "Canje",
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 11.26,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(11.26, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -153,11 +156,11 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                 Column(
                   children: [
                     SvgPicture.asset('assets/Vectores/Iconos/QRig.svg'),
-                    const Text(
+                    Text(
                       "QR",
                       style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 11.26,
+                        color: const Color(0xff170658),
+                        fontSize: UtilSize.width(11.26, context),
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
