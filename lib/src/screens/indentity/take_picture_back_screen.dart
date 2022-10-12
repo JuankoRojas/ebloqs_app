@@ -6,6 +6,8 @@ import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../global/util_size.dart';
+
 class TakePictureBack extends StatefulWidget {
   static const routeName = 'TakePictureBack';
   const TakePictureBack({Key? key}) : super(key: key);
@@ -86,7 +88,7 @@ class _TakePictureBackState extends State<TakePictureBack> {
             },
           ),
           Positioned(
-            top: size.height * 0.652054794520548,
+            top: UtilSize.height(530, context),
             left: size.width * 0.0359342915811089,
             child: const Text(
               "Lado reverso",
@@ -99,7 +101,7 @@ class _TakePictureBackState extends State<TakePictureBack> {
             ),
           ),
           Positioned(
-            top: size.height * 0.672730199613651,
+            top: UtilSize.height(560, context),
             left: size.width * 0.0359342915811089,
             child: const Text(
               "Muestra tu documento de identidad del lado reverso",

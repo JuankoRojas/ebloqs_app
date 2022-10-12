@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/models/camera_models.dart';
 import 'package:ebloqs_app/src/providers/images_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_back_screen.dart';
@@ -53,12 +54,12 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
             ),
           ),
         ),
-        title: const Text(
+        title: Text(
           "Verificación Identidad",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Color(0xff170658),
-            fontSize: 17,
+            color: const Color(0xff170658),
+            fontSize: UtilSize.width(17, context),
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -77,11 +78,11 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0382383065892797),
-                  child: const Text(
+                  child: Text(
                     "Documento de identidad",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -154,11 +155,14 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                 ),
                 color: const Color(0xfff9f9fa),
               ),
-              child: const Text(
-                "Lado Reverso",
-                style: TextStyle(
-                  color: Color(0xff170658),
-                  fontSize: 14,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Lado Reverso",
+                  style: TextStyle(
+                    color: const Color(0xff170658),
+                    fontSize: UtilSize.width(14, context),
+                  ),
                 ),
               ),
             ),
@@ -167,12 +171,12 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
             padding: EdgeInsets.only(
                 top: size.width * 0.028023352793995,
                 left: size.width * 0.0359342915811089),
-            child: const Text(
+            child: Text(
               "Para el reconocimiento, tu foto debe ser:",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 16,
-                fontFamily: "Inter",
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(16, context),
+                fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -194,11 +198,11 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0194444444444445),
-                  child: const Text(
+                  child: Text(
                     "Legible, clara y no borrosa",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                     ),
                   ),
                 )
@@ -222,11 +226,11 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0194444444444445),
-                  child: const Text(
+                  child: Text(
                     "No reflectiva, ni muy oscura",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                     ),
                   ),
                 )
@@ -250,11 +254,11 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0194444444444445),
-                  child: const Text(
+                  child: Text(
                     "A color, no a blanco y negro",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                     ),
                   ),
                 )
@@ -272,7 +276,7 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                 GestureDetector(
                   child: Container(
                     width: size.width * 0.42,
-                    height: size.height * 0.0592818428184282,
+                    height: UtilSize.height(72, context),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
@@ -280,13 +284,13 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                         width: 2,
                       ),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         "Tomar otra foto",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 14,
+                          color: const Color(0xff170658),
+                          fontSize: UtilSize.width(14, context),
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w600,
                         ),
@@ -303,12 +307,18 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                       width: size.width * 0.42,
                       title: 'Continuar',
                       onPressed: () async {
-                        final response = await AuthUserService().documents(
-                            accesstoken: Preferences.token!,
-                            type: 'Documento de identidad',
-                            front: frontImage,
-                            rever: widget.file);
+                        setState(() {
+                          isLoadLogin = true;
+                        });
+                        final response = await AuthUserService()
+                            .uploadReverseDocument(
+                                accesstoken: Preferences.token!,
+                                type: 'Documento de identidad',
+                                rever: widget.file);
                         if (response['message'] == "documentos cargados") {
+                          setState(() {
+                            isLoadLogin = false;
+                          });
                           Future.delayed(Duration.zero).then((_) =>
                               Navigator.pushNamed(
                                   context, UploadDocumentScreen.routeName));

@@ -853,258 +853,253 @@ class _HomeScreenState extends State<HomeScreen>
                     Padding(
                       padding: EdgeInsets.only(
                           top: size.height * 0.02, bottom: size.height * 0.03),
-                      child: (environment == Environment.prod)
-                          ? Container(
-                              width: size.width * 0.9,
-                              height: size.height * 0.1,
-                              padding: EdgeInsets.only(
-                                  top: size.height * 0.03,
-                                  left: size.width * 0.04,
-                                  right: size.width * 0.032),
-                              decoration: BoxDecoration(
-                                image: const DecorationImage(
-                                  image: AssetImage(
-                                      'assets/Imagenes/Mask group.png'),
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                      child:
+                          // (environment == Environment.prod)
+                          //     ?
+                          // Container(
+                          //     width: size.width * 0.9,
+                          //     height: size.height * 0.1,
+                          //     padding: EdgeInsets.only(
+                          //         top: size.height * 0.03,
+                          //         left: size.width * 0.04,
+                          //         right: size.width * 0.032),
+                          //     decoration: BoxDecoration(
+                          //       image: const DecorationImage(
+                          //         image: AssetImage(
+                          //             'assets/Imagenes/Mask group.png'),
+                          //       ),
+                          //       borderRadius: BorderRadius.circular(10),
+                          //     ),
+                          //     child: Row(
+                          //       mainAxisAlignment:
+                          //           MainAxisAlignment.spaceBetween,
+                          //       children: [
+                          //         Column(
+                          //           mainAxisAlignment: MainAxisAlignment.start,
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             Padding(
+                          //               padding: EdgeInsets.only(
+                          //                   top: size.height * 0.006,
+                          //                   left: size.width * 0.11),
+                          //               child: Image.asset(
+                          //                 'assets/Imagenes/Group 2066.png',
+                          //                 width: size.width * 0.2,
+                          //                 height: size.height * 0.09,
+                          //               ),
+                          //             ),
+                          //             Padding(
+                          //               padding: EdgeInsets.only(
+                          //                   top: size.height * 0.027),
+                          //               child: Text(
+                          //                 "INVIERTE EN TOKENS EBLOQS",
+                          //                 style: TextStyle(
+                          //                   color: Colors.white,
+                          //                   fontSize:
+                          //                       UtilSize.width(10, context),
+                          //                   fontFamily: "Archivo",
+                          //                   fontWeight: FontWeight.w400,
+                          //                 ),
+                          //               ),
+                          //             ),
+                          //           ],
+                          //         ),
+                          //         Padding(
+                          //           padding: EdgeInsets.only(
+                          //               bottom: size.height * 0.022),
+                          //           child: Column(
+                          //             mainAxisAlignment:
+                          //                 MainAxisAlignment.spaceBetween,
+                          //             crossAxisAlignment:
+                          //                 CrossAxisAlignment.end,
+                          //             children: [
+                          //               Padding(
+                          //                 padding: EdgeInsets.only(
+                          //                     top: size.height * 0.025,
+                          //                     right: size.width * 0.05),
+                          //                 child: Text(
+                          //                   "Ronda privada",
+                          //                   style: TextStyle(
+                          //                     color: Colors.white,
+                          //                     fontSize: UtilSize.width(
+                          //                         11.59, context),
+                          //                     fontFamily: "Archivo",
+                          //                     fontWeight: FontWeight.w600,
+                          //                   ),
+                          //                 ),
+                          //               ),
+                          //               Padding(
+                          //                 padding: EdgeInsets.only(
+                          //                     right: size.width * 0.04),
+                          //                 child: Container(
+                          //                   decoration: BoxDecoration(
+                          //                     borderRadius:
+                          //                         BorderRadius.circular(126.47),
+                          //                     color: const Color(0xff170658),
+                          //                   ),
+                          //                   padding: EdgeInsets.symmetric(
+                          //                     horizontal: size.width * 0.04,
+                          //                     vertical: size.width * 0.03,
+                          //                   ),
+                          //                   child: Row(
+                          //                     mainAxisSize: MainAxisSize.min,
+                          //                     mainAxisAlignment:
+                          //                         MainAxisAlignment.start,
+                          //                     crossAxisAlignment:
+                          //                         CrossAxisAlignment.start,
+                          //                     children: [
+                          //                       Text(
+                          //                         "\$0,07 USD",
+                          //                         style: TextStyle(
+                          //                           color: Colors.white,
+                          //                           fontSize: UtilSize.width(
+                          //                               16.44, context),
+                          //                           fontFamily: "Archivo",
+                          //                           fontWeight: FontWeight.w600,
+                          //                         ),
+                          //                       ),
+                          //                     ],
+                          //                   ),
+                          //                 ),
+                          //               ),
+                          //               Padding(
+                          //                 padding: EdgeInsets.only(
+                          //                     right: size.width * 0.025),
+                          //                 child: SvgPicture.asset(
+                          //                   'assets/Vectores/Iconos/chevronright.svg',
+                          //                   color: const Color(0xffffffff),
+                          //                 ),
+                          //               )
+                          //             ],
+                          //           ),
+                          //         )
+                          //       ],
+                          //     ),
+                          //   )
+                          // :
+                          GestureDetector(
+                        child: Container(
+                          width: size.width * 0.9,
+                          height: size.height * 0.1,
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.03,
+                              left: size.width * 0.04,
+                              right: size.width * 0.032),
+                          decoration: BoxDecoration(
+                            image: const DecorationImage(
+                              image:
+                                  AssetImage('assets/Imagenes/Mask group.png'),
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: size.height * 0.006,
-                                            left: size.width * 0.11),
-                                        child: Image.asset(
-                                          'assets/Imagenes/Group 2066.png',
-                                          width: size.width * 0.2,
-                                          height: size.height * 0.09,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: size.height * 0.027),
-                                        child: Text(
-                                          "INVIERTE EN TOKENS EBLOQS",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize:
-                                                UtilSize.width(10, context),
-                                            fontFamily: "Archivo",
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        top: size.height * 0.006,
+                                        left: size.width * 0.11),
+                                    child: Image.asset(
+                                      'assets/Imagenes/Group 2066.png',
+                                      width: size.width * 0.2,
+                                      height: size.height * 0.09,
+                                    ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                        bottom: size.height * 0.022),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: size.height * 0.025,
-                                              right: size.width * 0.05),
-                                          child: Text(
-                                            "Ronda privada",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: UtilSize.width(
-                                                  11.59, context),
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              right: size.width * 0.04),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(126.47),
-                                              color: const Color(0xff170658),
-                                            ),
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: size.width * 0.04,
-                                              vertical: size.width * 0.03,
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "\$0,07 USD",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: UtilSize.width(
-                                                        16.44, context),
-                                                    fontFamily: "Archivo",
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              right: size.width * 0.025),
-                                          child: SvgPicture.asset(
-                                            'assets/Vectores/Iconos/chevronright.svg',
-                                            color: const Color(0xffffffff),
-                                          ),
-                                        )
-                                      ],
+                                        top: size.height * 0.027),
+                                    child: Text(
+                                      "INVIERTE EN TOKENS EBLOQS",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: UtilSize.width(10, context),
+                                        fontFamily: "Archivo",
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
-                            )
-                          : GestureDetector(
-                              child: Container(
-                                width: size.width * 0.9,
-                                height: size.height * 0.1,
+                              Padding(
                                 padding: EdgeInsets.only(
-                                    top: size.height * 0.03,
-                                    left: size.width * 0.04,
-                                    right: size.width * 0.032),
-                                decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                    image: AssetImage(
-                                        'assets/Imagenes/Mask group.png'),
-                                  ),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Row(
+                                    bottom: size.height * 0.022),
+                                child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: size.height * 0.006,
-                                              left: size.width * 0.11),
-                                          child: Image.asset(
-                                            'assets/Imagenes/Group 2066.png',
-                                            width: size.width * 0.2,
-                                            height: size.height * 0.09,
-                                          ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          top: size.height * 0.025,
+                                          right: size.width * 0.05),
+                                      child: Text(
+                                        "Ronda privada",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize:
+                                              UtilSize.width(11.59, context),
+                                          fontFamily: "Archivo",
+                                          fontWeight: FontWeight.w600,
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: size.height * 0.027),
-                                          child: Text(
-                                            "INVIERTE EN TOKENS EBLOQS",
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize:
-                                                  UtilSize.width(10, context),
-                                              fontFamily: "Archivo",
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          bottom: size.height * 0.022),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height * 0.025,
-                                                right: size.width * 0.05),
-                                            child: Text(
-                                              "Ronda privada",
+                                          right: size.width * 0.04),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(126.47),
+                                          color: const Color(0xff170658),
+                                        ),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: size.width * 0.04,
+                                          vertical: size.width * 0.03,
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "\$0,07 USD",
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: UtilSize.width(
-                                                    11.59, context),
+                                                    16.44, context),
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                right: size.width * 0.04),
-                                            child: Container(
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        126.47),
-                                                color: const Color(0xff170658),
-                                              ),
-                                              padding: EdgeInsets.symmetric(
-                                                horizontal: size.width * 0.04,
-                                                vertical: size.width * 0.03,
-                                              ),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    "\$0,07 USD",
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: UtilSize.width(
-                                                          16.44, context),
-                                                      fontFamily: "Archivo",
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                right: size.width * 0.025),
-                                            child: SvgPicture.asset(
-                                              'assets/Vectores/Iconos/chevronright.svg',
-                                              color: const Color(0xffffffff),
-                                            ),
-                                          )
-                                        ],
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          right: size.width * 0.025),
+                                      child: SvgPicture.asset(
+                                        'assets/Vectores/Iconos/chevronright.svg',
+                                        color: const Color(0xffffffff),
                                       ),
                                     )
                                   ],
                                 ),
-                              ),
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, ComprarScreen.routeName);
-                              },
-                            ),
+                              )
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.pushNamed(context, ComprarScreen.routeName);
+                        },
+                      ),
                     )
                   ]),
               //Banner

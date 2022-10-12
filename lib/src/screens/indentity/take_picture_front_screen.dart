@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/camera/camera_overlay.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/models/camera_models.dart';
 import 'package:ebloqs_app/src/screens/indentity/verification_front_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
@@ -41,12 +42,12 @@ class _TakePictureFrontState extends State<TakePictureFront> {
             ),
           ),
         ),
-        title: const Text(
+        title: Text(
           "Documento de identidad",
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
-            fontSize: 17,
+            fontSize: UtilSize.width(17, context),
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -86,26 +87,26 @@ class _TakePictureFrontState extends State<TakePictureFront> {
             },
           ),
           Positioned(
-            top: size.height * 0.652054794520548,
+            top: UtilSize.height(530, context),
             left: size.width * 0.0359342915811089,
-            child: const Text(
+            child: Text(
               "Lado frontal",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 15,
+                fontSize: UtilSize.width(15, context),
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
             ),
           ),
           Positioned(
-            top: size.height * 0.672730199613651,
+            top: UtilSize.height(550, context),
             left: size.width * 0.0359342915811089,
-            child: const Text(
+            child: Text(
               "Muestra tu documento de identidad del lado frontal",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 13,
+                fontSize: UtilSize.width(13, context),
               ),
             ),
           )

@@ -108,21 +108,81 @@ class AuthUserService with ChangeNotifier {
     }
   }
 
-  Future documents({
+  Future getUserInfo({required String accesstoken}) async {
+    try {
+      final response = await http.post(
+          Uri.parse('https://www.api.ebloqs.com/user/me'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': 'Bearer $accesstoken',
+          });
+      debugPrint(response.body);
+
+      if (response.statusCode == 201) {
+        Map jsonRespon = await jsonDecode(response.body);
+        debugPrint(jsonRespon['id']);
+        return jsonRespon;
+      } else {
+        return {};
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+
+      throw Exception(e);
+    }
+  }
+
+// Future documents({
+  //   required String accesstoken,
+  //   XFile? front,
+  //   XFile? rever,
+  //   required String type,
+  // }) async {
+  //   try {
+  //     final formData = FormData.fromMap({
+  //       "front":
+  //           await MultipartFile.fromFile(front!.path, filename: "front.jpg"),
+  //       "rever":
+  //           await MultipartFile.fromFile(rever!.path, filename: "rever.jpg"),
+  //       "type": type,
+  //     });
+  //     final uri = Uri.parse('https://www.api.ebloqs.com/user/documents');
+  //     final response = await Dio().post(uri.toString(),
+  //         data: formData,
+  //         options: Options(
+  //           headers: {
+  //             'Content-Type': 'multipart/form-data',
+  //             'Authorization': 'Bearer $accesstoken',
+  //           },
+  //         ));
+  //     print(response.data);
+  //     switch (response.statusCode) {
+  //       case 201:
+  //         final jsonString = jsonEncode(response.data);
+  //         var jsonResponse = jsonDecode(jsonString) as Map<String, dynamic>;
+  //         return jsonResponse;
+  //       case 401:
+  //         return "No Se han guardado las Imágenes";
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //     throw Exception(e);
+  //   }
+  // }
+
+  Future uploadFrontDocument({
     required String accesstoken,
     XFile? front,
-    XFile? rever,
     required String type,
   }) async {
     try {
       final formData = FormData.fromMap({
         "front":
             await MultipartFile.fromFile(front!.path, filename: "front.jpg"),
-        "rever":
-            await MultipartFile.fromFile(rever!.path, filename: "rever.jpg"),
         "type": type,
       });
-      final uri = Uri.parse('https://www.api.ebloqs.com/user/documents');
+      final uri = Uri.parse('https://www.api.ebloqs.com/user/documents/front');
       final response = await Dio().post(uri.toString(),
           data: formData,
           options: Options(
@@ -146,27 +206,37 @@ class AuthUserService with ChangeNotifier {
     }
   }
 
-  Future getUserInfo({required String accesstoken}) async {
+  Future uploadReverseDocument({
+    required String accesstoken,
+    XFile? rever,
+    required String type,
+  }) async {
     try {
-      final response = await http.post(
-          Uri.parse('https://www.api.ebloqs.com/user/me'),
-          headers: <String, String>{
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Access-Control-Allow-Origin': '*',
-            'Authorization': 'Bearer $accesstoken',
-          });
-      debugPrint(response.body);
-
-      if (response.statusCode == 201) {
-        Map jsonRespon = await jsonDecode(response.body);
-        debugPrint(jsonRespon['id']);
-        return jsonRespon;
-      } else {
-        return {};
+      final formData = FormData.fromMap({
+        "rever":
+            await MultipartFile.fromFile(rever!.path, filename: "front.jpg"),
+        "type": type,
+      });
+      final uri = Uri.parse('https://www.api.ebloqs.com/user/documents/rever');
+      final response = await Dio().post(uri.toString(),
+          data: formData,
+          options: Options(
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': 'Bearer $accesstoken',
+            },
+          ));
+      print(response.data);
+      switch (response.statusCode) {
+        case 201:
+          final jsonString = jsonEncode(response.data);
+          var jsonResponse = jsonDecode(jsonString) as Map<String, dynamic>;
+          return jsonResponse;
+        case 401:
+          return "No Se han guardado las Imágenes";
       }
     } catch (e) {
-      debugPrint(e.toString());
-
+      print(e);
       throw Exception(e);
     }
   }

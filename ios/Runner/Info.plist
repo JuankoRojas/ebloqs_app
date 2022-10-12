@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>FlutterDeepLinkingEnabled</key>
+<true/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -27,8 +29,11 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+<string>18.117.101.148</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>ebloqsurl</string>
 				<string>fb596612445474540</string>
 				<string>com.googleusercontent.apps.479067570571-cnpu8vbkiqfaou5modgft4nb9kdkdfar</string>
 			</array>

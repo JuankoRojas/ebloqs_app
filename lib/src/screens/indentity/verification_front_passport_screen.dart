@@ -1,9 +1,12 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/models/camera_models.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_passport_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/upload_document_screen.dart';
+import 'package:ebloqs_app/src/services/auth_user_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -47,12 +50,12 @@ class _VerificationFrontPassportScreenState
             ),
           ),
         ),
-        title: const Text(
+        title: Text(
           "Verificación Identidad",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Color(0xff170658),
-            fontSize: 17,
+            color: const Color(0xff170658),
+            fontSize: UtilSize.width(17, context),
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -71,11 +74,11 @@ class _VerificationFrontPassportScreenState
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0388888888888889),
-                  child: const Text(
+                  child: Text(
                     "Documento de identidad",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -149,11 +152,11 @@ class _VerificationFrontPassportScreenState
                 ),
                 color: const Color(0xfff9f9fa),
               ),
-              child: const Text(
+              child: Text(
                 "Lado Frontal",
                 style: TextStyle(
-                  color: Color(0xff170658),
-                  fontSize: 14,
+                  color: const Color(0xff170658),
+                  fontSize: UtilSize.width(14, context),
                 ),
               ),
             ),
@@ -162,12 +165,12 @@ class _VerificationFrontPassportScreenState
             padding: EdgeInsets.only(
                 top: size.height * 0.0284552845528455,
                 left: size.width * 0.0364583333333334),
-            child: const Text(
+            child: Text(
               "Para el reconocimiento, tu foto debe ser:",
               style: TextStyle(
-                color: Color(0xff170658),
-                fontSize: 16,
-                fontFamily: "Inter",
+                color: const Color(0xff170658),
+                fontSize: UtilSize.width(16, context),
+                fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -189,11 +192,11 @@ class _VerificationFrontPassportScreenState
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0194444444444445),
-                  child: const Text(
+                  child: Text(
                     "Legible, clara y no borrosa",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                     ),
                   ),
                 )
@@ -217,11 +220,11 @@ class _VerificationFrontPassportScreenState
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0194444444444445),
-                  child: const Text(
+                  child: Text(
                     "No reflectiva, ni muy oscura",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                     ),
                   ),
                 )
@@ -245,11 +248,11 @@ class _VerificationFrontPassportScreenState
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0194444444444445),
-                  child: const Text(
+                  child: Text(
                     "A color, no a blanco y negro",
                     style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
+                      color: const Color(0xff170658),
+                      fontSize: UtilSize.width(13, context),
                     ),
                   ),
                 )
@@ -275,13 +278,13 @@ class _VerificationFrontPassportScreenState
                         width: 2,
                       ),
                     ),
-                    child: const Center(
+                    child: Center(
                       child: Text(
                         "Tomar otra foto",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 14,
+                          color: const Color(0xff170658),
+                          fontSize: UtilSize.width(14, context),
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w600,
                         ),
@@ -298,9 +301,24 @@ class _VerificationFrontPassportScreenState
                   child: ButtonPrimary(
                       width: size.width * 0.42,
                       title: 'Continuar',
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, UploadDocumentScreen.routeName);
+                      onPressed: () async {
+                        setState(() {
+                          isLoadLogin = true;
+                        });
+                        final response = await AuthUserService()
+                            .uploadFrontDocument(
+                                accesstoken: Preferences.token!,
+                                type: 'Pasaporte',
+                                front: widget.file);
+                        if (response['message'] == "documentos cargados") {
+                          print('response: $response');
+                          setState(() {
+                            isLoadLogin = false;
+                          });
+                          Future.delayed(Duration.zero).then((_) =>
+                              Navigator.pushNamed(
+                                  context, UploadDocumentScreen.routeName));
+                        }
                       },
                       load: isLoadLogin!,
                       disabled: isLoadLogin!),

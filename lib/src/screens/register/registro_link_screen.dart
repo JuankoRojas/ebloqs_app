@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:device_apps/device_apps.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
+import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android.dart';
+import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -20,7 +23,8 @@ class RegistroLinkScreen extends StatefulWidget {
   State<RegistroLinkScreen> createState() => _RegistroLinkScreenState();
 }
 
-class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
+class _RegistroLinkScreenState extends State<RegistroLinkScreen>
+    with WidgetsBindingObserver {
   String splitEmail = '';
   bool isValidated = false;
 
@@ -30,6 +34,20 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
   // variables para el control de validacion
   bool? isValidateAgain = false;
   bool? validating = false;
+  AppLifecycleState? _lastState;
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print('estado de la app :$state');
+    if (state == AppLifecycleState.resumed &&
+        _lastState == AppLifecycleState.paused) {
+      //TODO:validar que si se verificó
+      Platform.isIOS
+          ? Navigator.pushNamed(context, LocalAuth.routeName)
+          : Navigator.pushNamed(context, LocalAuthAndroid.routeName);
+    }
+    _lastState = state;
+  }
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
@@ -94,11 +112,13 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen> {
   void initState() {
     startTimer();
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
     _timer!.cancel();
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 

@@ -1,6 +1,5 @@
 import 'package:ebloqs_app/src/app/app_config.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
-import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -75,13 +74,14 @@ class _LocalAuthState extends State<LocalAuth> {
     if (message == 'Authorized') {
       Preferences.local_auth = message;
 
-      (environment == Environment.prod)
-          ? Navigator.of(context)
-              .pushNamed(HomeScreen.routeName)
-              .whenComplete(_cancelAuthentication)
-          : Navigator.of(context)
-              .pushNamed(NationalityScreen.routeName)
-              .whenComplete(_cancelAuthentication);
+      // (environment == Environment.prod)
+      //     ? Navigator.of(context)
+      //         .pushNamed(HomeScreen.routeName)
+      //         .whenComplete(_cancelAuthentication)
+      //     :
+      Navigator.of(context)
+          .pushNamed(NationalityScreen.routeName)
+          .whenComplete(_cancelAuthentication);
     }
   }
 
@@ -200,13 +200,14 @@ class _LocalAuthState extends State<LocalAuth> {
               ),
               onTap: () {
                 Preferences.local_auth = 'Not Authorized';
-                (environment == Environment.prod)
-                    ? Navigator.of(context)
-                        .pushNamed(HomeScreen.routeName)
-                        .whenComplete(_cancelAuthentication)
-                    : Navigator.of(context)
-                        .pushNamed(NationalityScreen.routeName)
-                        .whenComplete(_cancelAuthentication);
+                // (environment == Environment.prod)
+                //     ? Navigator.of(context)
+                //         .pushNamed(HomeScreen.routeName)
+                //         .whenComplete(_cancelAuthentication)
+                //     :
+                Navigator.of(context)
+                    .pushNamed(NationalityScreen.routeName)
+                    .whenComplete(_cancelAuthentication);
               },
             ),
           )
