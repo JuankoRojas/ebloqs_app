@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>FlutterDeepLinkingEnabled</key>
-<true/>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -30,7 +28,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-<string>18.117.101.148</string>
+			<string>18.117.101.148</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ebloqsurl</string>
@@ -47,6 +45,8 @@
 	<string>990e187ef5982400f207f68327ec6b18</string>
 	<key>FacebookDisplayName</key>
 	<string>Ebloqs</string>
+	<key>FlutterDeepLinkingEnabled</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
