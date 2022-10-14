@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/services/get_all_user_service.dart';
@@ -73,12 +75,12 @@ class _TransferScreenState extends State<TransferScreen>
                       },
                     ),
                     Expanded(child: Container()),
-                    Text(
+                    const AutoSizeText(
                       "Transferir",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(17, context),
+                        color: Color(0xff170658),
+                        fontSize: 17,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -101,12 +103,12 @@ class _TransferScreenState extends State<TransferScreen>
                         color: (current == 0)
                             ? const Color(0xfff6f4fd)
                             : const Color(0xfff9f9fa),
-                        child: Center(
-                          child: Text(
+                        child: const Center(
+                          child: AutoSizeText(
                             "Dinero",
                             style: TextStyle(
-                              color: const Color(0xff170658),
-                              fontSize: UtilSize.width(15, context),
+                              color: Color(0xff170658),
+                              fontSize: 15,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
@@ -135,12 +137,12 @@ class _TransferScreenState extends State<TransferScreen>
                         color: (current == 1)
                             ? const Color(0xfff6f4fd)
                             : const Color(0xfff9f9fa),
-                        child: Center(
-                          child: Text(
+                        child: const Center(
+                          child: AutoSizeText(
                             "Tokens",
                             style: TextStyle(
-                              color: const Color(0xff170658),
-                              fontSize: UtilSize.width(15, context),
+                              color: Color(0xff170658),
+                              fontSize: 15,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
@@ -171,11 +173,12 @@ class _TransferScreenState extends State<TransferScreen>
                   left: size.width * 0.0413194444444445,
                   right: size.width * 0.0413194444444445,
                 ),
-                child: SizedBox(
-                  height: UtilSize.height(830, context),
-                  width: double.infinity,
+                child: ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(maxHeight: 650, minHeight: 375),
                   child: PageView(
                     controller: pageController,
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
                       Dinero(
                         formKey13: _formKey13,
@@ -196,7 +199,6 @@ class _TransferScreenState extends State<TransferScreen>
               (current == 0)
                   ? Padding(
                       padding: EdgeInsets.only(
-                          top: size.height * 0.0426829268292683,
                           left: size.width * 0.0364583333333334,
                           right: size.width * 0.0364583333333334,
                           bottom: size.height * 0.0569105691056911),
@@ -240,16 +242,15 @@ class _TransferScreenState extends State<TransferScreen>
                               left: size.width * 0.0413194444444445,
                               right: size.width * 0.0413194444444445,
                             ),
-                            child: Text(
+                            child: const AutoSizeText(
                               "Tiempo estimado de 1 hora",
                               style: TextStyle(
-                                color: const Color(0xff2504ca),
-                                fontSize: UtilSize.width(13, context),
+                                color: Color(0xff2504ca),
+                                fontSize: 13,
                               ),
                             )),
                         Padding(
                           padding: EdgeInsets.only(
-                              top: size.height * 0.0248983739837399,
                               left: size.width * 0.0413194444444445,
                               right: size.width * 0.0413194444444445,
                               bottom: size.height * 0.0569105691056911),
@@ -314,15 +315,16 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
   String? toValue;
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(value: "USD", child: Text("USD")),
-      const DropdownMenuItem(value: "EUR", child: Text("EUR")),
+      const DropdownMenuItem(value: "USD", child: AutoSizeText("USD")),
+      const DropdownMenuItem(value: "EUR", child: AutoSizeText("EUR")),
     ];
     return menuItems;
   }
 
   List<DropdownMenuItem<String>> get byItems {
     List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(value: "Aldo Mora", child: Text("Aldo Mora")),
+      const DropdownMenuItem(
+          value: "Aldo Mora", child: AutoSizeText("Aldo Mora")),
     ];
     return menuItems;
   }
@@ -332,7 +334,6 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
   @override
   void afterFirstLayout(BuildContext context) {
     getAllUser();
-    
   }
 
   getAllUser() async {
@@ -354,11 +355,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          const AutoSizeText(
             "Moneda",
             style: TextStyle(
-              color: const Color(0xff170658),
-              fontSize: UtilSize.width(13, context),
+              color: Color(0xff170658),
+              fontSize: 13,
               fontFamily: "Archivo",
               fontWeight: FontWeight.w600,
             ),
@@ -410,11 +411,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Cantidad",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+                color: Color(0xff170658),
+                fontSize: 13,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -458,11 +459,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: Text(
+            child: const AutoSizeText(
               "De:",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+                color: Color(0xff170658),
+                fontSize: 13,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -474,7 +475,6 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
               ),
               child: Container(
                 width: size.width,
-                height: UtilSize.height(72, context),
                 padding: EdgeInsets.only(
                     left: size.width * 0.0426666666666667,
                     top: size.height * 0.0197044334975369,
@@ -487,11 +487,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                   ),
                   color: Colors.white,
                 ),
-                child: Text(
+                child: AutoSizeText(
                   Preferences.userName!,
-                  style: TextStyle(
-                    color: const Color(0xff383346),
-                    fontSize: UtilSize.width(16, context),
+                  style: const TextStyle(
+                    color: Color(0xff383346),
+                    fontSize: 16,
                   ),
                 ),
               )),
@@ -499,11 +499,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Para:",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+                color: Color(0xff170658),
+                fontSize: 13,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -579,7 +579,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                         itemBuilder: (BuildContext context, int index) {
                           if (index >= options.length) {
                             return TextButton(
-                              child: const Text('clear'),
+                              child: const AutoSizeText('clear'),
                               onPressed: () {
                                 _textFieldController.clear();
                               },
@@ -591,7 +591,7 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
                               onSelected(option);
                             },
                             child: ListTile(
-                              title: Text(option),
+                              title: AutoSizeText(option),
                             ),
                           );
                         },
@@ -606,11 +606,11 @@ class _DineroState extends State<Dinero> with AfterLayoutMixin<Dinero> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Descripción",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+                color: Color(0xff170658),
+                fontSize: 13,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -673,9 +673,9 @@ class _TokensState extends State<Tokens> {
 
   List<DropdownMenuItem<String>> get dropdownItems2 {
     List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(value: "EBL", child: Text("EBL")),
-      // const DropdownMenuItem(value: "EBL2", child: Text("EBL2")),
-      // const DropdownMenuItem(value: "EBL3", child: Text("EBL3")),
+      const DropdownMenuItem(value: "EBL", child: AutoSizeText("EBL")),
+      // const DropdownMenuItem(value: "EBL2", child: AutoSizeText("EBL2")),
+      // const DropdownMenuItem(value: "EBL3", child: AutoSizeText("EBL3")),
     ];
     return menuItems;
   }
@@ -690,11 +690,11 @@ class _TokensState extends State<Tokens> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          const AutoSizeText(
             "Tokens",
             style: TextStyle(
-              color: const Color(0xff170658),
-              fontSize: UtilSize.width(13, context),
+              color: Color(0xff170658),
+              fontSize: 13,
               fontFamily: "Archivo",
               fontWeight: FontWeight.w600,
             ),
@@ -741,11 +741,11 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Cantidad",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+                color: Color(0xff170658),
+                fontSize: 13,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -789,11 +789,11 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: Text(
+            child: const AutoSizeText(
               "De:",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+                color: Color(0xff170658),
+                fontSize: 13,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -803,7 +803,7 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(top: size.height * 0.00948509485094851),
             child: Container(
               width: size.width,
-              // height: UtilSize.height(52, context),
+              height: UtilSize.height(52, context),
               padding: EdgeInsets.symmetric(
                   horizontal: size.width * 0.0388888888888889),
               decoration: BoxDecoration(
@@ -838,11 +838,11 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Para:",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+                color: Color(0xff170658),
+                fontSize: 13,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -899,11 +899,11 @@ class _TokensState extends State<Tokens> {
             padding: EdgeInsets.only(
               top: size.height * 0.018970189701897,
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Descripción",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+                color: Color(0xff170658),
+                fontSize: 13,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),

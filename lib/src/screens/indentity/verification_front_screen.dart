@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/models/camera_models.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_back_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
@@ -49,12 +51,12 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
             ),
           ),
         ),
-        title: Text(
+        title: const AutoSizeText(
           "Verificación Identidad",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: const Color(0xff170658),
-            fontSize: UtilSize.width(17, context),
+            color: Color(0xff170658),
+            fontSize: 17,
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -73,11 +75,11 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0388888888888889),
-                  child: Text(
+                  child: const AutoSizeText(
                     "Documento de identidad",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -151,13 +153,13 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
                 ),
                 color: const Color(0xfff9f9fa),
               ),
-              child: Align(
+              child: const Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
+                child: AutoSizeText(
                   "Lado Frontal",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(14, context),
+                    color: Color(0xff170658),
+                    fontSize: 14,
                   ),
                 ),
               ),
@@ -167,11 +169,11 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
             padding: EdgeInsets.only(
                 top: size.height * 0.0284552845528455,
                 left: size.width * 0.0364583333333334),
-            child: Text(
+            child: const AutoSizeText(
               "Para el reconocimiento, tu foto debe ser:",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(16, context),
+                color: Color(0xff170658),
+                fontSize: 16,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -194,11 +196,11 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0194444444444445),
-                  child: Text(
+                  child: const AutoSizeText(
                     "Legible, clara y no borrosa",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                     ),
                   ),
                 )
@@ -222,11 +224,11 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0194444444444445),
-                  child: Text(
+                  child: const AutoSizeText(
                     "No reflectiva, ni muy oscura",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                     ),
                   ),
                 )
@@ -250,11 +252,11 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0194444444444445),
-                  child: Text(
+                  child: const AutoSizeText(
                     "A color, no a blanco y negro",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                     ),
                   ),
                 )
@@ -272,7 +274,7 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
                 GestureDetector(
                   child: Container(
                     width: size.width * 0.42,
-                    height: UtilSize.height(72, context),
+                    height: UtilSize.height(52, context),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(
@@ -280,13 +282,13 @@ class _VerificationFrontScreenState extends State<VerificationFrontScreen> {
                         width: 2,
                       ),
                     ),
-                    child: Center(
-                      child: Text(
+                    child: const Center(
+                      child: AutoSizeText(
                         "Tomar otra foto",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: const Color(0xff170658),
-                          fontSize: UtilSize.width(14, context),
+                          color: Color(0xff170658),
+                          fontSize: 14,
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w600,
                         ),

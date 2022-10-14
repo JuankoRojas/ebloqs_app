@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/widgets/custom_appbar_pop_question.dart';
 import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                   Padding(
                     padding:
                         EdgeInsets.only(top: size.height * 0.0257142857142857),
-                    child: const Text(
+                    child: const AutoSizeText(
                       "Nombre en Tarjeta",
                       style: TextStyle(
                         color: Color(0xff170658),
@@ -110,7 +111,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                   Padding(
                     padding:
                         EdgeInsets.only(top: size.height * 0.0197044334975369),
-                    child: const Text(
+                    child: const AutoSizeText(
                       "Número de la tarjeta",
                       style: TextStyle(
                         color: Color(0xff170658),
@@ -166,7 +167,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              const AutoSizeText(
                                 "F. Vencimiento",
                                 style: TextStyle(
                                   color: Color(0xff170658),
@@ -219,7 +220,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                              const AutoSizeText(
                                 "CVV",
                                 style: TextStyle(
                                   color: Color(0xff170658),
@@ -300,7 +301,7 @@ class _AddCardAcreenState extends State<AddCardAcreen> {
                     ),
                   ),
                   const Center(
-                    child: Text(
+                    child: AutoSizeText(
                       "Agregar Tarjeta",
                       style: TextStyle(
                         color: Colors.white,

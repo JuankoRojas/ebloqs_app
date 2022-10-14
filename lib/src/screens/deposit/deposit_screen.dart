@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/screens/deposit/deposit_methods_screen.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _DepositScreenState extends State<DepositScreen> {
                       },
                     ),
                     Expanded(child: Container()),
-                    const Text(
+                    const AutoSizeText(
                       "Depositar",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -68,7 +69,7 @@ class _DepositScreenState extends State<DepositScreen> {
                         height: size.height * 0.0626865671641791,
                         color: const Color(0xfff6f4fd),
                         child: const Center(
-                          child: Text(
+                          child: AutoSizeText(
                             "Efectivo",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -94,7 +95,7 @@ class _DepositScreenState extends State<DepositScreen> {
                         height: size.height * 0.0626865671641791,
                         color: const Color(0xfff9f9fa),
                         child: const Center(
-                          child: Text(
+                          child: AutoSizeText(
                             "Criptomoneda",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -155,7 +156,7 @@ class _DepositScreenState extends State<DepositScreen> {
                           left: size.width * 0.0361944157187177,
                           right: size.width * 0.0361944157187177,
                           bottom: size.height * 0.0559813395534822),
-                      child: const Text(
+                      child: const AutoSizeText(
                         "Por el momento no podrá depositar a su billetera criptomonedas ",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -192,7 +193,7 @@ class _EfectivoState extends State<Efectivo> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                const AutoSizeText(
                   "Historial",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -204,7 +205,7 @@ class _EfectivoState extends State<Efectivo> {
                 Padding(
                   padding:
                       EdgeInsets.only(top: size.height * 0.0118143459915612),
-                  child: const Text(
+                  child: const AutoSizeText(
                     "USD",
                     style: TextStyle(
                       color: Color(0xff2504ca),
@@ -221,7 +222,7 @@ class _EfectivoState extends State<Efectivo> {
         ),
         Padding(
           padding: EdgeInsets.only(top: size.height * 0.0485870104115023),
-          child: const Text(
+          child: const AutoSizeText(
             "Lista de divisas",
             style: TextStyle(
               color: Color(0xff170658),
@@ -241,7 +242,7 @@ class _EfectivoState extends State<Efectivo> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
-                child: const Text(
+                child: const AutoSizeText(
                   "Real Brasileño",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -277,7 +278,7 @@ class _EfectivoState extends State<Efectivo> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
-                child: const Text(
+                child: const AutoSizeText(
                   "Peso Colombiano",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -313,7 +314,7 @@ class _EfectivoState extends State<Efectivo> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
-                child: const Text(
+                child: const AutoSizeText(
                   "Sol Peruano",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -349,7 +350,7 @@ class _EfectivoState extends State<Efectivo> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
-                child: const Text(
+                child: const AutoSizeText(
                   "Euro",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -385,7 +386,7 @@ class _EfectivoState extends State<Efectivo> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
-                child: const Text(
+                child: const AutoSizeText(
                   "Dólar Americano",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -421,7 +422,7 @@ class _EfectivoState extends State<Efectivo> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0284071694284748),
-                child: const Text(
+                child: const AutoSizeText(
                   "Peso Chileno",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -459,7 +460,7 @@ class _CriptomonedaState extends State<Criptomoneda> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                const AutoSizeText(
                   "Historial",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -471,7 +472,7 @@ class _CriptomonedaState extends State<Criptomoneda> {
                 Padding(
                   padding:
                       EdgeInsets.only(top: size.height * 0.0118143459915612),
-                  child: const Text(
+                  child: const AutoSizeText(
                     "BTC",
                     style: TextStyle(
                       color: Color(0xff2504ca),
@@ -488,7 +489,7 @@ class _CriptomonedaState extends State<Criptomoneda> {
         ),
         Padding(
           padding: EdgeInsets.only(top: size.height * 0.0489266100848727),
-          child: const Text(
+          child: const AutoSizeText(
             "Lista de Criptomonedas",
             style: TextStyle(
               color: Color(0xff170658),
@@ -517,7 +518,7 @@ class _CriptomonedaState extends State<Criptomoneda> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text(
+                    AutoSizeText(
                       "Ebloqs",
                       style: TextStyle(
                         color: Color(0xff170658),
@@ -526,7 +527,7 @@ class _CriptomonedaState extends State<Criptomoneda> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Text(
+                    AutoSizeText(
                       "EBL",
                       style: TextStyle(
                         color: Color(0xff8F8B9F),
@@ -539,7 +540,7 @@ class _CriptomonedaState extends State<Criptomoneda> {
                 ),
               ),
               Expanded(child: Container()),
-              const Text(
+              const AutoSizeText(
                 "0.0000150",
                 textAlign: TextAlign.right,
                 style: TextStyle(

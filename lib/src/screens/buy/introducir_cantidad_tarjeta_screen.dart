@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
 import 'package:ebloqs_app/src/services/transfer_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
@@ -7,7 +9,6 @@ import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 
 class IntroducirCantidadTarjetaScreen extends StatefulWidget {
   static const String routeName = 'IntroducirCantidadTarjetaScreen';
@@ -95,12 +96,12 @@ class _IntroducirCantidadTarjetaScreenState
                     },
                   ),
                   Expanded(child: Container()),
-                  Text(
+                  const AutoSizeText(
                     "Introduce la cantidad",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(17, context),
+                      color: Color(0xff170658),
+                      fontSize: 17,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w700,
                     ),
@@ -115,11 +116,11 @@ class _IntroducirCantidadTarjetaScreenState
                 padding: EdgeInsets.only(
                   top: size.height * (32 / size.height),
                 ),
-                child: Text(
+                child: const AutoSizeText(
                   "Cantidad",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff170658),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -149,12 +150,12 @@ class _IntroducirCantidadTarjetaScreenState
                               left: size.width * (10 / size.width),
                               right: size.width * (19 / size.width),
                             ),
-                            child: Text(
+                            child: const AutoSizeText(
                               "USD",
                               textAlign: TextAlign.right,
                               style: TextStyle(
-                                color: const Color(0xff2504ca),
-                                fontSize: UtilSize.width(14, context),
+                                color: Color(0xff2504ca),
+                                fontSize: 14,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -187,12 +188,12 @@ class _IntroducirCantidadTarjetaScreenState
                 padding: EdgeInsets.only(
                   top: size.height * (39 / size.height),
                 ),
-                child: Text(
+                child: const AutoSizeText(
                   "Recibes:",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff170658),
+                    fontSize: 13,
                   ),
                 ),
               ),
@@ -202,20 +203,20 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
                 child: Row(
                   children: [
-                    Text(
+                    AutoSizeText(
                       recibes.toString(),
-                      style: TextStyle(
-                        color: const Color(0xff2504ca),
-                        fontSize: UtilSize.width(28, context),
+                      style: const TextStyle(
+                        color: Color(0xff2504ca),
+                        fontSize: 28,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Text(
+                    const AutoSizeText(
                       " USD",
                       style: TextStyle(
-                        color: const Color(0xff2504ca),
-                        fontSize: UtilSize.width(28, context),
+                        color: Color(0xff2504ca),
+                        fontSize: 28,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -229,20 +230,20 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
+                  children: const [
+                    AutoSizeText(
                       "Método de transacción:",
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                        color: Color(0xff170658),
+                        fontSize: 14,
                       ),
                     ),
-                    Text(
+                    AutoSizeText(
                       "VISA",
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                        color: Color(0xff170658),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -257,19 +258,19 @@ class _IntroducirCantidadTarjetaScreenState
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const AutoSizeText(
                       "Comisión transacción:",
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                        color: Color(0xff170658),
+                        fontSize: 14,
                       ),
                     ),
-                    Text(
+                    AutoSizeText(
                       "${comision.toString()} USD",
                       textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                      style: const TextStyle(
+                        color: Color(0xff170658),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -283,7 +284,6 @@ class _IntroducirCantidadTarjetaScreenState
                 ),
                 child: Container(
                   width: size.width,
-                  height: size.height * (447 / size.height),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
@@ -304,12 +304,12 @@ class _IntroducirCantidadTarjetaScreenState
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
+                          children: const [
+                            AutoSizeText(
                               "Añadir información de la tarjeta.",
                               style: TextStyle(
-                                color: const Color(0xff2504ca),
-                                fontSize: UtilSize.width(15, context),
+                                color: Color(0xff2504ca),
+                                fontSize: 15,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -329,11 +329,11 @@ class _IntroducirCantidadTarjetaScreenState
                               Padding(
                                 padding: EdgeInsets.only(
                                     top: size.height * 0.0257142857142857),
-                                child: Text(
+                                child: const AutoSizeText(
                                   "Nombre en Tarjeta",
                                   style: TextStyle(
-                                    color: const Color(0xff170658),
-                                    fontSize: UtilSize.width(13, context),
+                                    color: Color(0xff170658),
+                                    fontSize: 13,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -378,11 +378,11 @@ class _IntroducirCantidadTarjetaScreenState
                               Padding(
                                 padding: EdgeInsets.only(
                                     top: size.height * 0.0197044334975369),
-                                child: Text(
+                                child: const AutoSizeText(
                                   "Número de la tarjeta",
                                   style: TextStyle(
-                                    color: const Color(0xff170658),
-                                    fontSize: UtilSize.width(13, context),
+                                    color: Color(0xff170658),
+                                    fontSize: 13,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -447,61 +447,72 @@ class _IntroducirCantidadTarjetaScreenState
                                     ),
                                   ),
                                   onChanged: (String? value) {
-                                    if (value!.length < dateExpired.length) {
-                                      value = '';
-                                    } else if (value.length == 1 &&
-                                        (int.parse(value) < 10 &&
-                                            int.parse(value) >= 1)) {
-                                      Future.delayed(
-                                          const Duration(milliseconds: 100),
-                                          () {
-                                        expirationDateController.text =
-                                            '0$value/';
-                                        expirationDateController.selection =
-                                            TextSelection.fromPosition(
-                                                TextPosition(
-                                                    offset:
-                                                        expirationDateController
-                                                            .text.length));
+                                    // if (value!.length < dateExpired.length) {
+                                    //   value = '';
+                                    // } else if (value.length == 1 &&
+                                    //     (int.parse(value) < 10 &&
+                                    //         int.parse(value) >= 1)) {
+                                    //   Future.delayed(
+                                    //       const Duration(milliseconds: 100),
+                                    //       () {
+                                    //     expirationDateController.text =
+                                    //         '0$value/';
+                                    //     expirationDateController.selection =
+                                    //         TextSelection.fromPosition(
+                                    //             TextPosition(
+                                    //                 offset:
+                                    //                     expirationDateController
+                                    //                         .text.length));
+                                    //   });
+                                    //   // value = '0$value/';
+                                    // } else if (value.length == 2 &&
+                                    //     (value == '10' ||
+                                    //         value == '11' ||
+                                    //         value == '12')) {
+                                    //   value += '/';
+                                    // } else if (!value.contains('/') &&
+                                    //     value.length == 2) {
+                                    //   if (int.parse(value) > 12) {
+                                    //     value = '${value[0]}/${value[1]}';
+                                    //   }
+                                    // }
+                                    // value.replaceAll('//', '/');
+                                    // setState(() {
+                                    //   expirationDateController.text = value!;
+                                    //   dateExpired = value;
+                                    //   expirationDateController.selection =
+                                    //       TextSelection.fromPosition(
+                                    //           TextPosition(
+                                    //               offset:
+                                    //                   expirationDateController
+                                    //                       .text.length));
+                                    // });
+                                    // if (expirationDateController.text.length ==
+                                    //     5) {
+                                    //   try {
+                                    //     DateTime date = DateFormat("MM/yyyy")
+                                    //         .parseStrict(value);
+                                    //     if (date.isBefore(DateTime.now())) {
+                                    //       setState(() {
+                                    //         errorValidation = 'Fecha vencida';
+                                    //       });
+                                    //       print(errorValidation);
+                                    //     }
+                                    //   } catch (e) {
+                                    //     return print(e);
+                                    //   }
+                                    // }
+                                  },
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      setState(() {
+                                        errorValidation =
+                                            'Por favor,  debes completar todos los registros para continuar';
                                       });
-                                      // value = '0$value/';
-                                    } else if (value.length == 2 &&
-                                        (value == '10' ||
-                                            value == '11' ||
-                                            value == '12')) {
-                                      value += '/';
-                                    } else if (!value.contains('/') &&
-                                        value.length == 2) {
-                                      if (int.parse(value) > 12) {
-                                        value = '${value[0]}/${value[1]}';
-                                      }
+
+                                      return '';
                                     }
-                                    value.replaceAll('//', '/');
-                                    setState(() {
-                                      expirationDateController.text = value!;
-                                      dateExpired = value;
-                                      expirationDateController.selection =
-                                          TextSelection.fromPosition(
-                                              TextPosition(
-                                                  offset:
-                                                      expirationDateController
-                                                          .text.length));
-                                    });
-                                    if (expirationDateController.text.length ==
-                                        5) {
-                                      try {
-                                        DateTime date = DateFormat("MM/yyyy")
-                                            .parseStrict(value);
-                                        if (date.isBefore(DateTime.now())) {
-                                          setState(() {
-                                            errorValidation = 'Fecha vencida';
-                                          });
-                                          print(errorValidation);
-                                        }
-                                      } catch (e) {
-                                        return print(e);
-                                      }
-                                    }
+                                    return null;
                                   },
                                 ),
                               ),

@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/screens/market/coins_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
@@ -613,7 +615,7 @@ class _MarketScreenState extends State<MarketScreen>
                     tabs: [
                       Tab(
                         icon: null,
-                        child: Text(
+                        child: AutoSizeText(
                           "Monedas",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -628,7 +630,7 @@ class _MarketScreenState extends State<MarketScreen>
                       ),
                       // Tab(
                       //   icon: null,
-                      //   child: Text(
+                      //   child: AutoSizeText(
                       //     "Categorías",
                       //     textAlign: TextAlign.center,
                       //     style: TextStyle(
@@ -643,7 +645,7 @@ class _MarketScreenState extends State<MarketScreen>
                       // ),
                       // Tab(
                       //   icon: null,
-                      //   child: Text(
+                      //   child: AutoSizeText(
                       //     "Intercambios",
                       //     textAlign: TextAlign.center,
                       //     style: TextStyle(

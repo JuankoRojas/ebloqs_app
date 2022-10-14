@@ -1,6 +1,8 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/address_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
@@ -90,12 +92,12 @@ class _PersonalInformationState extends State<PersonalInformation>
             ),
           ),
         ),
-        title: Text(
+        title: const AutoSizeText(
           "Información personal ",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: const Color(0xff170658),
-            fontSize: UtilSize.width(17, context),
+            color: Color(0xff170658),
+            fontSize: 17,
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -118,11 +120,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                       padding: EdgeInsets.only(
                         left: UtilSize.width(16, context),
                       ),
-                      child: Text(
+                      child: const AutoSizeText(
                         "Información general",
                         style: TextStyle(
-                          color: const Color(0xff170658),
-                          fontSize: UtilSize.width(13, context),
+                          color: Color(0xff170658),
+                          fontSize: 13,
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w400,
                         ),
@@ -169,11 +171,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                       Padding(
                         padding: EdgeInsets.only(
                             left: size.width * 0.0359342915811089),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Nacionalidad",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(13, context),
+                            color: Color(0xff170658),
+                            fontSize: 13,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -189,11 +191,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                               appBar: AppBar(
                                 backgroundColor: Colors.transparent,
                                 elevation: 0,
-                                title: Text(
+                                title: const AutoSizeText(
                                   'Selecciona tu país',
                                   style: TextStyle(
-                                    color: const Color(0xff170658),
-                                    fontSize: UtilSize.width(17, context),
+                                    color: Color(0xff170658),
+                                    fontSize: 17,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -237,11 +239,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
+                                      AutoSizeText(
                                         countryCode!.name!,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
-                                          fontSize: UtilSize.width(13, context),
+                                          fontSize: 13,
                                           fontFamily: "Archivo",
                                           fontWeight: FontWeight.w400,
                                         ),
@@ -309,11 +311,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                         padding: EdgeInsets.only(
                             top: size.height * 0.0187699011228423,
                             left: size.width * 0.0359342915811089),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Nombres",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(13, context),
+                            color: Color(0xff170658),
+                            fontSize: 13,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -355,11 +357,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                           top: size.height * 0.0187699011228423,
                           left: size.width * 0.0359342915811089,
                         ),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Apellidos",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(13, context),
+                            color: Color(0xff170658),
+                            fontSize: 13,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -401,11 +403,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                           top: UtilSize.height(16, context),
                           left: size.width * 0.0359342915811089,
                         ),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Fecha de nacimiento",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(13, context),
+                            color: Color(0xff170658),
+                            fontSize: 13,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -432,11 +434,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                             ),
                             child: Row(
                               children: [
-                                Text(
+                                AutoSizeText(
                                   formattedDate,
-                                  style: TextStyle(
-                                    color: const Color(0xff383346),
-                                    fontSize: UtilSize.width(14, context),
+                                  style: const TextStyle(
+                                    color: Color(0xff383346),
+                                    fontSize: 14,
                                   ),
                                 ),
                                 Expanded(
@@ -493,11 +495,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                           top: size.height * 0.0187699011228423,
                           left: size.width * 0.0359342915811089,
                         ),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Número documento identidad",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(13, context),
+                            color: Color(0xff170658),
+                            fontSize: 13,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -538,11 +540,11 @@ class _PersonalInformationState extends State<PersonalInformation>
                           top: size.height * 0.0187699011228423,
                           left: size.width * 0.0359342915811089,
                         ),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Número de teléfono",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(13, context),
+                            color: Color(0xff170658),
+                            fontSize: 13,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),

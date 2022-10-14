@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -38,7 +40,7 @@ class _ButtonPrimaryState extends State<ButtonPrimary> {
           alignment: AlignmentDirectional.center,
           children: [
             Container(
-              height: UtilSize.height(72, context),
+              height: UtilSize.height(52, context),
               width: widget.width,
               decoration: BoxDecoration(
                 color: const Color(0xFFF6F4FD),
@@ -56,19 +58,20 @@ class _ButtonPrimaryState extends State<ButtonPrimary> {
               child: !widget.disabled
                   ? Image.asset(
                       'assets/png/buttongradient.png',
+                      width: UtilSize.width(348, context),
                       fit: BoxFit.cover,
                     )
                   : const SizedBox(),
             ),
             Center(
               child: !widget.load
-                  ? Text(
+                  ? AutoSizeText(
                       widget.title,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color:
                             !widget.disabled ? Colors.white : Colors.grey[600],
-                        fontSize: UtilSize.width(14, context),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),

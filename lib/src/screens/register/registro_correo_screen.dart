@@ -1,4 +1,4 @@
-import 'package:ebloqs_app/src/global/util_size.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/register/registro_link_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
@@ -59,13 +59,13 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                       allowDrawingOutsideViewBox: true,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15.5),
-                    child: Text(
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15.5),
+                    child: AutoSizeText(
                       'Regresar',
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                        color: Color(0xff170658),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -86,21 +86,21 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                   top: size.height * 0.115,
                   bottom: size.height * 0.007,
                 ),
-                child: Text(
+                child: const AutoSizeText(
                   'Regístrate',
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(17, context),
+                    color: Color(0xff170658),
+                    fontSize: 17,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
-              Text(
+              const AutoSizeText(
                 'Inicia sesión en ebloqs con tu correo',
                 style: TextStyle(
-                  color: const Color(0xff170658),
-                  fontSize: UtilSize.width(13, context),
+                  color: Color(0xff170658),
+                  fontSize: 13,
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w400,
                 ),
@@ -114,9 +114,9 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      labelStyle: TextStyle(
-                        color: const Color(0xff9B99A3),
-                        fontSize: UtilSize.width(14, context),
+                      labelStyle: const TextStyle(
+                        color: Color(0xff9B99A3),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),

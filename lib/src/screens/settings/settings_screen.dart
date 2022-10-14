@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/settings/avatar_selection_screen.dart';
@@ -68,7 +69,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        AutoSizeText(
                           Preferences.userName ?? '',
                           style: const TextStyle(
                             color: Color(0xff170658),
@@ -77,7 +78,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Text(
+                        AutoSizeText(
                           "ID: ${user["DniNumber"] ?? ''}",
                           style: const TextStyle(
                             color: Color(0xff170658),
@@ -98,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               ),
                               child: (user["verify"] == "true")
                                   ? const Center(
-                                      child: Text(
+                                      child: AutoSizeText(
                                         "Verificado",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -110,7 +111,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       ),
                                     )
                                   : const Center(
-                                      child: Text(
+                                      child: AutoSizeText(
                                         "No verificado",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
@@ -230,7 +231,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     color: const Color(0xfff6f4fd),
                   ),
                   child: const Center(
-                    child: Text(
+                    child: AutoSizeText(
                       "Cerrar sesión",
                       style: TextStyle(
                         color: Color(0xff2504ca),

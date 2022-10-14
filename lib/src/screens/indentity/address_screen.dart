@@ -1,5 +1,7 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/id_document_screen.dart';
 import 'package:ebloqs_app/src/services/address_services.dart';
@@ -88,12 +90,12 @@ class _AddressScreenState extends State<AddressScreen>
               ),
             ),
           ),
-          title: Text(
+          title: const AutoSizeText(
             "Información personal",
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: const Color(0xff170658),
-              fontSize: UtilSize.width(17, context),
+              color: Color(0xff170658),
+              fontSize: 17,
               fontFamily: "Archivo",
               fontWeight: FontWeight.w700,
             ),
@@ -116,11 +118,11 @@ class _AddressScreenState extends State<AddressScreen>
                       Padding(
                         padding: EdgeInsets.only(
                             left: size.width * 0.0384219554030875),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Domicilio",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(13, context),
+                            color: Color(0xff170658),
+                            fontSize: 13,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),
@@ -170,11 +172,11 @@ class _AddressScreenState extends State<AddressScreen>
                               top: UtilSize.height(16, context),
                               left: UtilSize.width(15, context),
                             ),
-                            child: Text(
+                            child: const AutoSizeText(
                               "País",
                               style: TextStyle(
-                                color: const Color(0xff170658),
-                                fontSize: UtilSize.width(13, context),
+                                color: Color(0xff170658),
+                                fontSize: 13,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -214,11 +216,11 @@ class _AddressScreenState extends State<AddressScreen>
                             padding: EdgeInsets.only(
                                 top: size.height * 0.0188140433394927,
                                 left: size.width * 0.0361072902338377),
-                            child: Text(
+                            child: const AutoSizeText(
                               "Ciudad",
                               style: TextStyle(
-                                color: const Color(0xff170658),
-                                fontSize: UtilSize.width(13, context),
+                                color: Color(0xff170658),
+                                fontSize: 13,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -258,11 +260,11 @@ class _AddressScreenState extends State<AddressScreen>
                             padding: EdgeInsets.only(
                                 top: size.height * 0.0188140433394927,
                                 left: size.width * 0.0361072902338377),
-                            child: Text(
+                            child: const AutoSizeText(
                               "Dirección de domicilio",
                               style: TextStyle(
-                                color: const Color(0xff170658),
-                                fontSize: UtilSize.width(13, context),
+                                color: Color(0xff170658),
+                                fontSize: 13,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -298,11 +300,11 @@ class _AddressScreenState extends State<AddressScreen>
                             padding: EdgeInsets.only(
                                 top: size.height * 0.0188140433394927,
                                 left: size.width * 0.0361072902338377),
-                            child: Text(
+                            child: const AutoSizeText(
                               "Código Postal",
                               style: TextStyle(
-                                color: const Color(0xff170658),
-                                fontSize: UtilSize.width(13, context),
+                                color: Color(0xff170658),
+                                fontSize: 13,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),

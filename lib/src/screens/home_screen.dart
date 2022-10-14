@@ -1,6 +1,8 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/app/app_config.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
@@ -233,9 +235,9 @@ class _HomeScreenState extends State<HomeScreen>
                       searchButtonIconColor: const Color(0xff170658),
                       hideSearchButton: true,
                       hintText: 'Buscar Inversiones',
-                      hintStyle: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(13, context),
+                      hintStyle: const TextStyle(
+                        color: Color(0xff170658),
+                        fontSize: 13,
                       ),
                     ),
                   ),
@@ -279,7 +281,9 @@ class _HomeScreenState extends State<HomeScreen>
                             right: size.width * 0.032),
                         decoration: BoxDecoration(
                           image: const DecorationImage(
-                            image: AssetImage('assets/Imagenes/Mask group.png'),
+                            image: AssetImage(
+                              'assets/Imagenes/Mask group.png',
+                            ),
                           ),
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -292,11 +296,11 @@ class _HomeScreenState extends State<HomeScreen>
                               ),
                               child: SizedBox(
                                 width: size.width * 0.432,
-                                child: Text(
+                                child: const AutoSizeText(
                                   "Invierte en bienes y servicios tokenizados ¡con tarjeta! ",
                                   style: TextStyle(
                                     color: Colors.white,
-                                    fontSize: UtilSize.width(15, context),
+                                    fontSize: 15,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -402,14 +406,12 @@ class _HomeScreenState extends State<HomeScreen>
                                                               8, context)),
                                                       Row(
                                                         children: [
-                                                          Text(
+                                                          const AutoSizeText(
                                                             "Balance Bloqueado ",
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.white,
-                                                              fontSize: UtilSize
-                                                                  .width(11,
-                                                                      context),
+                                                              fontSize: 11,
                                                               fontFamily:
                                                                   "Archivo",
                                                               fontWeight:
@@ -417,14 +419,13 @@ class _HomeScreenState extends State<HomeScreen>
                                                                       .w600,
                                                             ),
                                                           ),
-                                                          Text(
+                                                          AutoSizeText(
                                                             snapshot.data ?? '',
-                                                            style: TextStyle(
+                                                            style:
+                                                                const TextStyle(
                                                               color:
                                                                   Colors.white,
-                                                              fontSize: UtilSize
-                                                                  .width(11,
-                                                                      context),
+                                                              fontSize: 11,
                                                               fontFamily:
                                                                   "Archivo",
                                                               fontWeight:
@@ -432,14 +433,12 @@ class _HomeScreenState extends State<HomeScreen>
                                                                       .w600,
                                                             ),
                                                           ),
-                                                          Text(
+                                                          const AutoSizeText(
                                                             ' EBL',
                                                             style: TextStyle(
                                                               color:
                                                                   Colors.white,
-                                                              fontSize: UtilSize
-                                                                  .width(11,
-                                                                      context),
+                                                              fontSize: 11,
                                                               fontFamily:
                                                                   "Archivo",
                                                               fontWeight:
@@ -459,12 +458,11 @@ class _HomeScreenState extends State<HomeScreen>
                                                         0.00985221674876847,
                                                     left: size.width *
                                                         0.0106666666666667),
-                                                child: Text(
+                                                child: const AutoSizeText(
                                                   "BALANCE DISPONIBLE",
                                                   style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: UtilSize.width(
-                                                        11.59, context),
+                                                    fontSize: 11.59,
                                                     fontFamily: "Archivo",
                                                     fontWeight: FontWeight.w400,
                                                   ),
@@ -479,7 +477,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.end,
                                                   children: [
-                                                    Text(
+                                                    AutoSizeText(
                                                       snapshot.data ?? '',
                                                       style: const TextStyle(
                                                         color: Colors.white,
@@ -489,13 +487,11 @@ class _HomeScreenState extends State<HomeScreen>
                                                     SizedBox(
                                                         width:
                                                             size.width * 0.035),
-                                                    Text(
+                                                    const AutoSizeText(
                                                       "EBL",
                                                       style: TextStyle(
                                                         color: Colors.white,
-                                                        fontSize:
-                                                            UtilSize.width(
-                                                                18.55, context),
+                                                        fontSize: 18.55,
                                                       ),
                                                     ),
                                                   ],
@@ -525,13 +521,11 @@ class _HomeScreenState extends State<HomeScreen>
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Text(
+                                                      AutoSizeText(
                                                         "$usd USD",
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                           color: Colors.white,
-                                                          fontSize:
-                                                              UtilSize.width(
-                                                                  13, context),
+                                                          fontSize: 13,
                                                           fontFamily: "Archivo",
                                                           fontWeight:
                                                               FontWeight.w600,
@@ -674,35 +668,32 @@ class _HomeScreenState extends State<HomeScreen>
                                               ),
                                               const SizedBox(width: 8),
                                               Row(
-                                                children: [
-                                                  Text(
+                                                children: const [
+                                                  AutoSizeText(
                                                     "Balance Bloqueado ",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: UtilSize.width(
-                                                          11, context),
+                                                      fontSize: 11,
                                                       fontFamily: "Archivo",
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
                                                   ),
-                                                  Text(
+                                                  AutoSizeText(
                                                     '0',
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: UtilSize.width(
-                                                          11, context),
+                                                      fontSize: 11,
                                                       fontFamily: "Archivo",
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
                                                   ),
-                                                  Text(
+                                                  AutoSizeText(
                                                     ' EBL',
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: UtilSize.width(
-                                                          11, context),
+                                                      fontSize: 11,
                                                       fontFamily: "Archivo",
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -719,12 +710,11 @@ class _HomeScreenState extends State<HomeScreen>
                                                   0.00985221674876847,
                                               left: size.width *
                                                   0.0106666666666667),
-                                          child: Text(
+                                          child: const AutoSizeText(
                                             "BALANCE DISPONIBLE",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: UtilSize.width(
-                                                  11.59, context),
+                                              fontSize: 11.59,
                                               fontFamily: "Archivo",
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -739,22 +729,20 @@ class _HomeScreenState extends State<HomeScreen>
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
-                                              Text(
+                                              const AutoSizeText(
                                                 '0',
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: UtilSize.width(
-                                                      36, context),
+                                                  fontSize: 36,
                                                 ),
                                               ),
                                               SizedBox(
                                                   width: size.width * 0.035),
-                                              Text(
+                                              const AutoSizeText(
                                                 "EBL",
                                                 style: TextStyle(
                                                   color: Colors.white,
-                                                  fontSize: UtilSize.width(
-                                                      18.55, context),
+                                                  fontSize: 18.55,
                                                 ),
                                               ),
                                             ],
@@ -778,13 +766,12 @@ class _HomeScreenState extends State<HomeScreen>
                                                   MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
+                                              children: const [
+                                                AutoSizeText(
                                                   "0 USD",
                                                   style: TextStyle(
                                                     color: Colors.white,
-                                                    fontSize: UtilSize.width(
-                                                        13, context),
+                                                    fontSize: 13,
                                                     fontFamily: "Archivo",
                                                     fontWeight: FontWeight.w600,
                                                   ),
@@ -892,7 +879,7 @@ class _HomeScreenState extends State<HomeScreen>
                           //             Padding(
                           //               padding: EdgeInsets.only(
                           //                   top: size.height * 0.027),
-                          //               child: Text(
+                          //               child: AutoSizeText(
                           //                 "INVIERTE EN TOKENS EBLOQS",
                           //                 style: TextStyle(
                           //                   color: Colors.white,
@@ -918,7 +905,7 @@ class _HomeScreenState extends State<HomeScreen>
                           //                 padding: EdgeInsets.only(
                           //                     top: size.height * 0.025,
                           //                     right: size.width * 0.05),
-                          //                 child: Text(
+                          //                 child: AutoSizeText(
                           //                   "Ronda privada",
                           //                   style: TextStyle(
                           //                     color: Colors.white,
@@ -949,7 +936,7 @@ class _HomeScreenState extends State<HomeScreen>
                           //                     crossAxisAlignment:
                           //                         CrossAxisAlignment.start,
                           //                     children: [
-                          //                       Text(
+                          //                       AutoSizeText(
                           //                         "\$0,07 USD",
                           //                         style: TextStyle(
                           //                           color: Colors.white,
@@ -1013,11 +1000,11 @@ class _HomeScreenState extends State<HomeScreen>
                                   Padding(
                                     padding: EdgeInsets.only(
                                         top: size.height * 0.027),
-                                    child: Text(
+                                    child: const AutoSizeText(
                                       "INVIERTE EN TOKENS EBLOQS",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: UtilSize.width(10, context),
+                                        fontSize: 10,
                                         fontFamily: "Archivo",
                                         fontWeight: FontWeight.w400,
                                       ),
@@ -1037,12 +1024,11 @@ class _HomeScreenState extends State<HomeScreen>
                                       padding: EdgeInsets.only(
                                           top: size.height * 0.025,
                                           right: size.width * 0.05),
-                                      child: Text(
+                                      child: const AutoSizeText(
                                         "Ronda privada",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize:
-                                              UtilSize.width(11.59, context),
+                                          fontSize: 11.59,
                                           fontFamily: "Archivo",
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -1067,13 +1053,12 @@ class _HomeScreenState extends State<HomeScreen>
                                               MainAxisAlignment.start,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
+                                          children: const [
+                                            AutoSizeText(
                                               "\$0,07 USD",
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize: UtilSize.width(
-                                                    16.44, context),
+                                                fontSize: 16.44,
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -1105,20 +1090,21 @@ class _HomeScreenState extends State<HomeScreen>
               //Banner
 
               // Inversión destacadas
-              Text(
+              const AutoSizeText(
                 "Inversión Destacadas",
                 style: TextStyle(
-                  color: const Color(0xff170658),
-                  fontSize: UtilSize.width(15, context),
+                  color: Color(0xff170658),
+                  fontSize: 15,
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w600,
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * 0.02),
-                child: SizedBox(
-                  width: UtilSize.width(337, context),
-                  height: UtilSize.height(500, context),
+                child: ConstrainedBox(
+                  constraints:
+                      const BoxConstraints(maxHeight: 445, minHeight: 358.0),
+                  // height: UtilSize.height(500, context),
                   child: ListView.builder(
                     itemCount: inversiones.length,
                     scrollDirection: Axis.horizontal,
@@ -1177,26 +1163,24 @@ class _HomeScreenState extends State<HomeScreen>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
+                                          AutoSizeText(
                                             inversiones[index]['inversion'],
-                                            style: TextStyle(
-                                              color: const Color(0xff170658),
-                                              fontSize:
-                                                  UtilSize.width(15, context),
+                                            style: const TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 15,
                                               fontFamily: "Archivo",
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           SizedBox(
                                             width: size.width * 0.37,
-                                            child: Text(
+                                            child: AutoSizeText(
                                               inversiones[index]['sector'],
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 2,
-                                              style: TextStyle(
-                                                color: const Color(0xff170658),
-                                                fontSize:
-                                                    UtilSize.width(13, context),
+                                              style: const TextStyle(
+                                                color: Color(0xff170658),
+                                                fontSize: 13,
                                               ),
                                             ),
                                           ),
@@ -1220,24 +1204,22 @@ class _HomeScreenState extends State<HomeScreen>
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                           children: [
-                                            Text(
+                                            AutoSizeText(
                                               "Precio x Token \$${inversiones[index]['precio']}",
                                               textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: const Color(0xff2504ca),
-                                                fontSize:
-                                                    UtilSize.width(11, context),
+                                              style: const TextStyle(
+                                                color: Color(0xff2504ca),
+                                                fontSize: 11,
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                            Text(
+                                            const AutoSizeText(
                                               "1 Token",
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
-                                                color: const Color(0xff170658),
-                                                fontSize:
-                                                    UtilSize.width(13, context),
+                                                color: Color(0xff170658),
+                                                fontSize: 13,
                                               ),
                                             ),
                                           ],
@@ -1273,11 +1255,11 @@ class _HomeScreenState extends State<HomeScreen>
                                         'assets/Vectores/Iconos/Building.svg',
                                         width: UtilSize.width(16, context),
                                       ),
-                                      Text(
+                                      AutoSizeText(
                                         "${inversiones[index]['pisos']} Pisos ",
-                                        style: TextStyle(
-                                          color: const Color(0xff170658),
-                                          fontSize: UtilSize.width(12, context),
+                                        style: const TextStyle(
+                                          color: Color(0xff170658),
+                                          fontSize: 12,
                                         ),
                                       ),
                                       Expanded(child: Container()),
@@ -1309,11 +1291,10 @@ class _HomeScreenState extends State<HomeScreen>
                                   padding: EdgeInsets.symmetric(
                                     horizontal: size.width * 0.032,
                                   ),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     "Rentabilidad acumulada promedio ${inversiones[index]['rentabilidad']}%",
-                                    style: TextStyle(
-                                        fontSize: UtilSize.width(12, context),
-                                        color: const Color(0xff170658)),
+                                    style: const TextStyle(
+                                        fontSize: 12, color: Color(0xff170658)),
                                   ),
                                 ),
                                 Padding(
@@ -1406,13 +1387,12 @@ class _HomeScreenState extends State<HomeScreen>
                                             left: size.width * 0.03),
                                         child: SizedBox(
                                           width: size.width * 0.57,
-                                          child: Text(
+                                          child: const AutoSizeText(
                                             '''+ 100 personas ya compraron
-                        tokens en esta propiedad.''',
+tokens en esta propiedad.''',
                                             style: TextStyle(
-                                              color: const Color(0xff170658),
-                                              fontSize:
-                                                  UtilSize.width(12, context),
+                                              color: Color(0xff170658),
+                                              fontSize: 12,
                                             ),
                                           ),
                                         ),
@@ -1444,19 +1424,20 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.105, bottom: size.height * 0.015),
-                child: Text(
+                child: const AutoSizeText(
                   "Inversiones en Quito",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(15, context),
+                    color: Color(0xff170658),
+                    fontSize: 15,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
 
-              SizedBox(
-                height: UtilSize.height(435, context),
+              ConstrainedBox(
+                constraints:
+                    const BoxConstraints(maxHeight: 375, minHeight: 339.0),
                 child: ListView.builder(
                   itemCount: inversionesQuito.length,
                   scrollDirection: Axis.horizontal,
@@ -1508,11 +1489,11 @@ class _HomeScreenState extends State<HomeScreen>
                                     bottom: size.height * 0.003,
                                     left: size.width * 0.032,
                                     right: size.width * 0.032),
-                                child: Text(
+                                child: AutoSizeText(
                                   inversionesQuito[index2]['inversion'],
-                                  style: TextStyle(
-                                    color: const Color(0xff170658),
-                                    fontSize: UtilSize.width(14, context),
+                                  style: const TextStyle(
+                                    color: Color(0xff170658),
+                                    fontSize: 14,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -1523,11 +1504,11 @@ class _HomeScreenState extends State<HomeScreen>
                                     left: size.width * 0.032,
                                     right: size.width * 0.032,
                                     bottom: size.height * 0.01),
-                                child: Text(
+                                child: AutoSizeText(
                                   inversionesQuito[index2]['sector'],
-                                  style: TextStyle(
-                                    color: const Color(0xff170658),
-                                    fontSize: UtilSize.width(12, context),
+                                  style: const TextStyle(
+                                    color: Color(0xff170658),
+                                    fontSize: 12,
                                   ),
                                 ),
                               ),
@@ -1548,12 +1529,12 @@ class _HomeScreenState extends State<HomeScreen>
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
+                                      const AutoSizeText(
                                         "Precio token",
                                         textAlign: TextAlign.right,
                                         style: TextStyle(
-                                          color: const Color(0xff170658),
-                                          fontSize: UtilSize.width(8, context),
+                                          color: Color(0xff170658),
+                                          fontSize: 8,
                                         ),
                                       ),
                                       Column(
@@ -1562,24 +1543,22 @@ class _HomeScreenState extends State<HomeScreen>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.end,
                                         children: [
-                                          Text(
+                                          AutoSizeText(
                                             "USD\$ ${inversionesQuito[index2]['precio']}",
                                             textAlign: TextAlign.right,
-                                            style: TextStyle(
-                                              color: const Color(0xff2504ca),
-                                              fontSize:
-                                                  UtilSize.width(13, context),
+                                            style: const TextStyle(
+                                              color: Color(0xff2504ca),
+                                              fontSize: 13,
                                               fontFamily: "Archivo",
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          Text(
+                                          const AutoSizeText(
                                             "1 Token",
                                             textAlign: TextAlign.right,
                                             style: TextStyle(
-                                              color: const Color(0xff170658),
-                                              fontSize:
-                                                  UtilSize.width(13, context),
+                                              color: Color(0xff170658),
+                                              fontSize: 13,
                                             ),
                                           ),
                                         ],
@@ -1607,20 +1586,18 @@ class _HomeScreenState extends State<HomeScreen>
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
+                                          AutoSizeText(
                                             "${inversionesQuito[index2]['pisos']} Pisos ",
-                                            style: TextStyle(
-                                              color: const Color(0xff170658),
-                                              fontSize:
-                                                  UtilSize.width(12, context),
+                                            style: const TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 12,
                                             ),
                                           ),
-                                          Text(
+                                          AutoSizeText(
                                             "${inversionesQuito[index2]['apartamentos']} Apartamentos ",
-                                            style: TextStyle(
-                                              color: const Color(0xff170658),
-                                              fontSize:
-                                                  UtilSize.width(12, context),
+                                            style: const TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 12,
                                             ),
                                           ),
                                         ],
@@ -1656,18 +1633,18 @@ class _HomeScreenState extends State<HomeScreen>
                                 ),
                                 child: Row(
                                   children: [
-                                    Text(
+                                    const AutoSizeText(
                                       "Rentabilidad",
                                       style: TextStyle(
-                                          fontSize: UtilSize.width(12, context),
-                                          color: const Color(0xff170658)),
+                                          fontSize: 12,
+                                          color: Color(0xff170658)),
                                     ),
                                     Expanded(child: Container()),
-                                    Text(
+                                    AutoSizeText(
                                       "${inversionesQuito[index2]['rentabilidad']}%",
-                                      style: TextStyle(
-                                          fontSize: UtilSize.width(12, context),
-                                          color: const Color(0xff170658)),
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          color: Color(0xff170658)),
                                     ),
                                   ],
                                 ),
@@ -1694,19 +1671,20 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.105, bottom: size.height * 0.012),
-                child: Text(
+                child: const AutoSizeText(
                   "Inversiones en Miami",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(15, context),
+                    color: Color(0xff170658),
+                    fontSize: 15,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
 
-              SizedBox(
-                height: UtilSize.height(420, context),
+              ConstrainedBox(
+                constraints:
+                    const BoxConstraints(maxHeight: 375, minHeight: 339.0),
                 child: ListView.builder(
                   itemCount: inversionesMiami.length,
                   scrollDirection: Axis.horizontal,
@@ -1758,11 +1736,11 @@ class _HomeScreenState extends State<HomeScreen>
                                       bottom: size.height * 0.007,
                                       left: size.width * 0.02,
                                       right: size.width * 0.02),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     inversionesMiami[index3]['inversion'],
-                                    style: TextStyle(
-                                      color: const Color(0xff170658),
-                                      fontSize: UtilSize.width(14, context),
+                                    style: const TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 14,
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -1774,11 +1752,11 @@ class _HomeScreenState extends State<HomeScreen>
                                     right: size.width * 0.034,
                                     bottom: size.height * 0.01,
                                   ),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     inversionesMiami[index3]['sector'],
-                                    style: TextStyle(
-                                      color: const Color(0xff170658),
-                                      fontSize: UtilSize.width(12, context),
+                                    style: const TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 12,
                                     ),
                                   ),
                                 ),
@@ -1800,13 +1778,12 @@ class _HomeScreenState extends State<HomeScreen>
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
+                                        const AutoSizeText(
                                           "Precio token",
                                           textAlign: TextAlign.right,
                                           style: TextStyle(
-                                            color: const Color(0xff170658),
-                                            fontSize:
-                                                UtilSize.width(8, context),
+                                            color: Color(0xff170658),
+                                            fontSize: 8,
                                           ),
                                         ),
                                         Column(
@@ -1815,24 +1792,22 @@ class _HomeScreenState extends State<HomeScreen>
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                           children: [
-                                            Text(
+                                            AutoSizeText(
                                               "USD\$ ${inversionesMiami[index3]['precio']}",
                                               textAlign: TextAlign.right,
-                                              style: TextStyle(
-                                                color: const Color(0xff2504ca),
-                                                fontSize:
-                                                    UtilSize.width(13, context),
+                                              style: const TextStyle(
+                                                color: Color(0xff2504ca),
+                                                fontSize: 13,
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                            Text(
+                                            const AutoSizeText(
                                               "1 Token",
                                               textAlign: TextAlign.right,
                                               style: TextStyle(
-                                                color: const Color(0xff170658),
-                                                fontSize:
-                                                    UtilSize.width(13, context),
+                                                color: Color(0xff170658),
+                                                fontSize: 13,
                                               ),
                                             ),
                                           ],
@@ -1860,20 +1835,18 @@ class _HomeScreenState extends State<HomeScreen>
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
+                                            AutoSizeText(
                                               "${inversionesMiami[index3]['pisos']} Pisos ",
-                                              style: TextStyle(
-                                                color: const Color(0xff170658),
-                                                fontSize:
-                                                    UtilSize.width(12, context),
+                                              style: const TextStyle(
+                                                color: Color(0xff170658),
+                                                fontSize: 12,
                                               ),
                                             ),
-                                            Text(
+                                            AutoSizeText(
                                               "${inversionesMiami[index3]['apartamentos']} Apartamentos ",
-                                              style: TextStyle(
-                                                color: const Color(0xff170658),
-                                                fontSize:
-                                                    UtilSize.width(10, context),
+                                              style: const TextStyle(
+                                                color: Color(0xff170658),
+                                                fontSize: 10,
                                               ),
                                             ),
                                           ],
@@ -1910,20 +1883,18 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                   child: Row(
                                     children: [
-                                      Text(
+                                      const AutoSizeText(
                                         "Rentabilidad",
                                         style: TextStyle(
-                                            fontSize:
-                                                UtilSize.width(12, context),
-                                            color: const Color(0xff170658)),
+                                            fontSize: 12,
+                                            color: Color(0xff170658)),
                                       ),
                                       Expanded(child: Container()),
-                                      Text(
+                                      AutoSizeText(
                                         "${inversionesMiami[index3]['rentabilidad']}%",
-                                        style: TextStyle(
-                                            fontSize:
-                                                UtilSize.width(12, context),
-                                            color: const Color(0xff170658)),
+                                        style: const TextStyle(
+                                            fontSize: 12,
+                                            color: Color(0xff170658)),
                                       ),
                                     ],
                                   ),
@@ -1949,18 +1920,19 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.05, bottom: size.height * 0.02),
-                child: Text(
+                child: const AutoSizeText(
                   "Inversión vehículos",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(15, context),
+                    color: Color(0xff170658),
+                    fontSize: 15,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              SizedBox(
-                height: UtilSize.height(350, context),
+              ConstrainedBox(
+                constraints:
+                    const BoxConstraints(maxHeight: 305, minHeight: 267.36),
                 child: ListView.builder(
                   itemCount: inversionesVehiculos.length,
                   scrollDirection: Axis.horizontal,
@@ -2011,11 +1983,11 @@ class _HomeScreenState extends State<HomeScreen>
                                     top: size.height * 0.023,
                                     left: size.width * 0.04,
                                   ),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     inversionesVehiculos[index4]['inversion'],
-                                    style: TextStyle(
-                                      color: const Color(0xff170658),
-                                      fontSize: UtilSize.width(14.57, context),
+                                    style: const TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 14.57,
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -2028,12 +2000,11 @@ class _HomeScreenState extends State<HomeScreen>
                                       right: size.width * 0.11),
                                   child: Row(
                                     children: [
-                                      Text(
+                                      AutoSizeText(
                                         inversionesVehiculos[index4]['ratio'],
-                                        style: TextStyle(
-                                          color: const Color(0xff170658),
-                                          fontSize:
-                                              UtilSize.width(10.93, context),
+                                        style: const TextStyle(
+                                          color: Color(0xff170658),
+                                          fontSize: 10.93,
                                         ),
                                       ),
                                       SvgPicture.asset(
@@ -2045,12 +2016,11 @@ class _HomeScreenState extends State<HomeScreen>
                                           left: size.width * 0.032,
                                           right: size.width * 0.032,
                                         ),
-                                        child: Text(
+                                        child: AutoSizeText(
                                           "(${inversionesVehiculos[index4]['trips']} trips)",
-                                          style: TextStyle(
-                                            color: const Color(0xff170658),
-                                            fontSize:
-                                                UtilSize.width(10.93, context),
+                                          style: const TextStyle(
+                                            color: Color(0xff170658),
+                                            fontSize: 10.93,
                                           ),
                                         ),
                                       ),
@@ -2058,12 +2028,11 @@ class _HomeScreenState extends State<HomeScreen>
                                         'assets/Vectores/Iconos/Award.svg',
                                         width: size.width * 0.035,
                                       ),
-                                      Text(
+                                      AutoSizeText(
                                         inversionesVehiculos[index4]['star'],
-                                        style: TextStyle(
-                                          color: const Color(0xff170658),
-                                          fontSize:
-                                              UtilSize.width(10.93, context),
+                                        style: const TextStyle(
+                                          color: Color(0xff170658),
+                                          fontSize: 10.93,
                                         ),
                                       ),
                                     ],
@@ -2101,12 +2070,11 @@ class _HomeScreenState extends State<HomeScreen>
                                         padding: EdgeInsets.only(
                                             left: size.width * 0.02,
                                             right: size.width * 0.04),
-                                        child: Text(
+                                        child: AutoSizeText(
                                           "\$${inversionesVehiculos[index4]['precio']}/day",
-                                          style: TextStyle(
-                                            color: const Color(0xff2504ca),
-                                            fontSize:
-                                                UtilSize.width(12.38, context),
+                                          style: const TextStyle(
+                                            color: Color(0xff2504ca),
+                                            fontSize: 12.38,
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w700,
                                           ),
@@ -2137,18 +2105,19 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.05, bottom: size.height * 0.02),
-                child: Text(
+                child: const AutoSizeText(
                   "Inversión educación",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(15, context),
+                    color: Color(0xff170658),
+                    fontSize: 15,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              SizedBox(
-                height: UtilSize.height(305, context),
+              ConstrainedBox(
+                constraints:
+                    const BoxConstraints(maxHeight: 285, minHeight: 267.36),
                 child: ListView.builder(
                   itemCount: inversionesEducacion.length,
                   scrollDirection: Axis.horizontal,
@@ -2198,11 +2167,11 @@ class _HomeScreenState extends State<HomeScreen>
                                     top: size.height * 0.023,
                                     left: size.width * 0.04,
                                   ),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     inversionesEducacion[index5]['inversion'],
-                                    style: TextStyle(
-                                      color: const Color(0xff170658),
-                                      fontSize: UtilSize.width(14.57, context),
+                                    style: const TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 14.57,
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -2240,12 +2209,11 @@ class _HomeScreenState extends State<HomeScreen>
                                         padding: EdgeInsets.only(
                                             left: size.width * 0.025,
                                             right: size.width * 0.04),
-                                        child: Text(
+                                        child: AutoSizeText(
                                           "${inversionesEducacion[index5]['oferta']}",
-                                          style: TextStyle(
-                                            color: const Color(0xff2504ca),
-                                            fontSize:
-                                                UtilSize.width(12.38, context),
+                                          style: const TextStyle(
+                                            color: Color(0xff2504ca),
+                                            fontSize: 12.38,
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w700,
                                           ),
@@ -2275,18 +2243,19 @@ class _HomeScreenState extends State<HomeScreen>
               Padding(
                 padding: EdgeInsets.only(
                     top: size.height * 0.05, bottom: size.height * 0.02),
-                child: Text(
+                child: const AutoSizeText(
                   "Inversión eventos",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(15, context),
+                    color: Color(0xff170658),
+                    fontSize: 15,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
-              SizedBox(
-                height: UtilSize.height(305, context),
+              ConstrainedBox(
+                constraints:
+                    const BoxConstraints(maxHeight: 285, minHeight: 267.36),
                 child: ListView.builder(
                   itemCount: inversionesEventos.length,
                   scrollDirection: Axis.horizontal,
@@ -2336,11 +2305,11 @@ class _HomeScreenState extends State<HomeScreen>
                                     top: size.height * 0.023,
                                     left: size.width * 0.04,
                                   ),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     inversionesEventos[index5]['inversion'],
-                                    style: TextStyle(
-                                      color: const Color(0xff170658),
-                                      fontSize: UtilSize.width(14.57, context),
+                                    style: const TextStyle(
+                                      color: Color(0xff170658),
+                                      fontSize: 14.57,
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -2378,12 +2347,11 @@ class _HomeScreenState extends State<HomeScreen>
                                         padding: EdgeInsets.only(
                                             left: size.width * 0.025,
                                             right: size.width * 0.04),
-                                        child: Text(
+                                        child: AutoSizeText(
                                           "${inversionesEventos[index5]['oferta']}",
-                                          style: TextStyle(
-                                            color: const Color(0xff2504ca),
-                                            fontSize:
-                                                UtilSize.width(12.38, context),
+                                          style: const TextStyle(
+                                            color: Color(0xff2504ca),
+                                            fontSize: 12.38,
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w700,
                                           ),

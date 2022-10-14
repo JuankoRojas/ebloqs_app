@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:share_plus/share_plus.dart';
@@ -36,7 +38,7 @@ class _ReferralsScreenState extends State<ReferralsScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(right: size.width * 0.373333333333333),
-                  child: Text(
+                  child: AutoSizeText(
                     "Referidos",
                     style: TextStyle(
                       color: const Color(0xff170658),
@@ -73,7 +75,7 @@ class _ReferralsScreenState extends State<ReferralsScreen> {
                         decoration:
                             const BoxDecoration(color: Color(0xff2504CA)),
                         child: Center(
-                          child: Text(
+                          child: AutoSizeText(
                             "MYX9PIA3",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -105,14 +107,14 @@ class _ReferralsScreenState extends State<ReferralsScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text(
+                    AutoSizeText(
                       "Id. de la oferta de referido",
                       style: TextStyle(
                         color: const Color(0xff170658),
                         fontSize: UtilSize.width(13, context),
                       ),
                     ),
-                    Text(
+                    AutoSizeText(
                       "MYX9PIA3",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -135,7 +137,7 @@ class _ReferralsScreenState extends State<ReferralsScreen> {
                 },
               ),
             ),
-            Text(
+            AutoSizeText(
               "Compartir",
               textAlign: TextAlign.center,
               style: TextStyle(

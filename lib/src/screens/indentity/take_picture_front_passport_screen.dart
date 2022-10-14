@@ -1,5 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/camera/camera_overlay.dart';
+
 import 'package:ebloqs_app/src/models/camera_models.dart';
 import 'package:ebloqs_app/src/screens/indentity/verification_front_passport_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
@@ -42,7 +44,7 @@ class _TakePicturePassportFrontState extends State<TakePicturePassportFront> {
             ),
           ),
         ),
-        title: const Text(
+        title: const AutoSizeText(
           "Documento de identidad",
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -63,7 +65,7 @@ class _TakePicturePassportFrontState extends State<TakePicturePassportFront> {
                 if (snapshot.data == null || snapshot.data.isEmpty) {
                   return const Align(
                       alignment: Alignment.center,
-                      child: Text(
+                      child: AutoSizeText(
                         'No camera found',
                         style: TextStyle(color: Colors.white),
                       ));
@@ -79,7 +81,7 @@ class _TakePicturePassportFrontState extends State<TakePicturePassportFront> {
               } else {
                 return const Align(
                     alignment: Alignment.center,
-                    child: Text(
+                    child: AutoSizeText(
                       'Obteniendo Camara',
                       style: TextStyle(color: Colors.black),
                     ));
@@ -89,7 +91,7 @@ class _TakePicturePassportFrontState extends State<TakePicturePassportFront> {
           Positioned(
             top: size.height * 0.652054794520548,
             left: size.width * 0.0359342915811089,
-            child: const Text(
+            child: const AutoSizeText(
               "Lado frontal",
               style: TextStyle(
                 color: Colors.white,
@@ -102,7 +104,7 @@ class _TakePicturePassportFrontState extends State<TakePicturePassportFront> {
           Positioned(
             top: size.height * 0.672730199613651,
             left: size.width * 0.0359342915811089,
-            child: const Text(
+            child: const AutoSizeText(
               "Muestra tu documento de identidad del lado frontal",
               style: TextStyle(
                 color: Colors.white,

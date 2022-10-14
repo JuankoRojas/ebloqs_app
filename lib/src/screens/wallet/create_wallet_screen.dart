@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -55,14 +57,14 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                             'assets/Vectores/Iconos/Arrow left.svg'),
                       ),
                       Expanded(child: Container()),
-                      Align(
+                      const Align(
                         alignment: Alignment.center,
                         child: Center(
-                          child: Text(
+                          child: AutoSizeText(
                             "Crea tu billetera",
                             style: TextStyle(
-                              color: const Color(0xff170658),
-                              fontSize: UtilSize.width(17, context),
+                              color: Color(0xff170658),
+                              fontSize: 17,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w700,
                             ),
@@ -74,11 +76,11 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: size.height * 0.055),
-                    child: Text(
+                    child: const AutoSizeText(
                       "Respalda tu billetera",
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(20, context),
+                        color: Color(0xff170658),
+                        fontSize: 20,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -88,11 +90,11 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                     padding: EdgeInsets.only(top: size.height * 0.013),
                     child: SizedBox(
                       width: size.width * 0.91,
-                      child: Text(
+                      child: const AutoSizeText(
                         "Su frase de recuperación secreta se usa para  recuperar su cripto si pierde su teléfono o cambia a una billetera diferente.",
                         style: TextStyle(
-                          color: const Color(0xff170658),
-                          fontSize: UtilSize.width(14, context),
+                          color: Color(0xff170658),
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -145,14 +147,14 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                                 ),
                                 SizedBox(
                                   width: size.width * 0.740,
-                                  child: Text(
+                                  child: const AutoSizeText(
                                     '''Guarde estas 12 palabras en un lugar seguro,
 como un administrador de contraseñas, y 
 nunca lo comparta con nadie.''',
                                     style: TextStyle(
-                                      color: const Color(0xff170658),
+                                      color: Color(0xff170658),
                                       fontFamily: "Archivo",
-                                      fontSize: UtilSize.width(13, context),
+                                      fontSize: 13,
                                     ),
                                   ),
                                 ),
@@ -165,7 +167,7 @@ nunca lo comparta con nadie.''',
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: size.height * 0.036),
-                    child: const Text(
+                    child: const AutoSizeText(
                       "Tu Frase",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -195,7 +197,7 @@ nunca lo comparta con nadie.''',
                           SizedBox(
                             width: size.width * 0.74,
                             child: (visible == true)
-                                ? Text(
+                                ? AutoSizeText(
                                     Preferences.mnemonic!,
                                     style: const TextStyle(
                                       color: Color(0xff170658),
@@ -206,7 +208,7 @@ nunca lo comparta con nadie.''',
                                     imageFilter: ImageFilter.blur(
                                         sigmaX: (visible == true) ? 0 : 5,
                                         sigmaY: (visible == true) ? 0 : 5),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       Preferences.mnemonic!,
                                       style: const TextStyle(
                                         color: Color(0xff170658),
@@ -253,7 +255,7 @@ nunca lo comparta con nadie.''',
                           SvgPicture.asset('assets/Vectores/Iconos/Copy 2.svg'),
                           Padding(
                             padding: EdgeInsets.only(left: size.width * 0.023),
-                            child: const Text(
+                            child: const AutoSizeText(
                               "COPIAR",
                               style: TextStyle(
                                 color: Color(0xff2504ca),
@@ -286,11 +288,11 @@ nunca lo comparta con nadie.''',
                               padding: EdgeInsets.only(
                                   top: size.height * 0.00985221674876847,
                                   bottom: size.height * 0.00985221674876847),
-                              child: Text(
+                              child: const AutoSizeText(
                                 "Copiado en portapapeles",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: UtilSize.width(12, context),
+                                  fontSize: 12,
                                   fontFamily: 'Archivo',
                                   fontWeight: FontWeight.w400,
                                 ),

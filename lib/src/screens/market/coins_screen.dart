@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/market/market_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -56,12 +58,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   borderRadius: BorderRadius.circular(100),
                   color: const Color(0xffeae4fc),
                 ),
-                child: Center(
-                  child: Text(
+                child: const Center(
+                  child: AutoSizeText(
                     "USD",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(12, context),
+                      color: Color(0xff170658),
+                      fontSize: 12,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -75,12 +77,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   borderRadius: BorderRadius.circular(100),
                   color: const Color(0xffeae4fc),
                 ),
-                child: Center(
-                  child: Text(
+                child: const Center(
+                  child: AutoSizeText(
                     "24H %",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(12, context),
+                      color: Color(0xff170658),
+                      fontSize: 12,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -94,12 +96,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
                   borderRadius: BorderRadius.circular(100),
                   color: const Color(0xffeae4fc),
                 ),
-                child: Center(
-                  child: Text(
+                child: const Center(
+                  child: AutoSizeText(
                     "Top 100",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(12, context),
+                      color: Color(0xff170658),
+                      fontSize: 12,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -114,12 +116,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
               left: size.width * 0.016, right: size.width * 0.016),
           child: Row(
             children: [
-              Text(
+              const AutoSizeText(
                 "#",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: const Color(0xff170658),
-                  fontSize: UtilSize.width(12, context),
+                  color: Color(0xff170658),
+                  fontSize: 12,
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w600,
                 ),
@@ -130,12 +132,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.016),
-                child: Text(
+                child: const AutoSizeText(
                   "Market cap",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(10, context),
+                    color: Color(0xff170658),
+                    fontSize: 10,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -147,12 +149,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.197333333333333),
-                child: Text(
+                child: const AutoSizeText(
                   "Precio (USD)",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(10, context),
+                    color: Color(0xff170658),
+                    fontSize: 10,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -164,12 +166,12 @@ class _CoinsScreenState extends State<CoinsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0853333333333333),
-                child: Text(
+                child: const AutoSizeText(
                   "24h %",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(10, context),
+                    color: Color(0xff170658),
+                    fontSize: 10,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -188,14 +190,14 @@ class _CoinsScreenState extends State<CoinsScreen> {
             builder: (context, AsyncSnapshot<Payload> snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
-                  return const Text('none');
+                  return const AutoSizeText('none');
                 case ConnectionState.waiting:
                   return const Center(child: SizedBox());
                 case ConnectionState.active:
-                  return const Text('');
+                  return const AutoSizeText('');
                 case ConnectionState.done:
                   if (snapshot.hasError) {
-                    return Text(
+                    return AutoSizeText(
                       '${snapshot.error}',
                       style: const TextStyle(color: Colors.red),
                     );
@@ -214,12 +216,11 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
-                                    Text((index + 1).toString(),
-                                        style: TextStyle(
-                                            color: const Color(0xff170658),
+                                    AutoSizeText((index + 1).toString(),
+                                        style: const TextStyle(
+                                            color: Color(0xff170658),
                                             fontFamily: 'Archivo',
-                                            fontSize:
-                                                UtilSize.width(13, context),
+                                            fontSize: 13,
                                             fontWeight: FontWeight.w400)),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -235,15 +236,16 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                             switch (
                                                 snapshotIcon.connectionState) {
                                               case ConnectionState.none:
-                                                return const Text('none');
+                                                return const AutoSizeText(
+                                                    'none');
                                               case ConnectionState.waiting:
                                                 return const Center(
                                                     child: SizedBox());
                                               case ConnectionState.active:
-                                                return const Text('');
+                                                return const AutoSizeText('');
                                               case ConnectionState.done:
                                                 if (snapshotIcon.hasError) {
-                                                  return Text(
+                                                  return AutoSizeText(
                                                     '${snapshotIcon.error}',
                                                     style: const TextStyle(
                                                         color: Colors.red),
@@ -277,35 +279,33 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        AutoSizeText(
                                           snapshot.data!.data![index].name!,
-                                          style: TextStyle(
-                                              color: const Color(0xff170658),
+                                          style: const TextStyle(
+                                              color: Color(0xff170658),
                                               fontFamily: 'Archivo',
-                                              fontSize:
-                                                  UtilSize.width(13, context),
+                                              fontSize: 13,
                                               fontWeight: FontWeight.w600),
                                         ),
-                                        Text(
+                                        AutoSizeText(
                                           '${snapshot.data!.data![index].quote!.usd!.marketCap!.toStringAsFixed(2)} Bn',
-                                          style: TextStyle(
-                                              color: const Color(0xff8F8B9F),
+                                          style: const TextStyle(
+                                              color: Color(0xff8F8B9F),
                                               fontFamily: 'Archivo',
-                                              fontSize:
-                                                  UtilSize.width(10, context),
+                                              fontSize: 10,
                                               fontWeight: FontWeight.w600),
                                         ),
                                       ],
                                     ),
                                     const Spacer(),
-                                    Text(
+                                    AutoSizeText(
                                       snapshot
                                           .data!.data![index].quote!.usd!.price!
                                           .toStringAsFixed(3),
-                                      style: TextStyle(
-                                          color: const Color(0xff170658),
+                                      style: const TextStyle(
+                                          color: Color(0xff170658),
                                           fontFamily: 'Archivo',
-                                          fontSize: UtilSize.width(13, context),
+                                          fontSize: 13,
                                           fontWeight: FontWeight.w400),
                                     ),
                                     const Spacer(),
@@ -341,7 +341,7 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                                   width: UtilSize.width(
                                                       10, context),
                                                 ),
-                                          Text(
+                                          AutoSizeText(
                                             '${snapshot.data!.data![index].quote!.usd!.percentChange24H!.toStringAsFixed(3)} %',
                                             style: TextStyle(
                                                 color: (snapshot
@@ -354,8 +354,7 @@ class _CoinsScreenState extends State<CoinsScreen> {
                                                     ? const Color(0xff00C853)
                                                     : const Color(0xffEC4141),
                                                 fontFamily: 'Archivo',
-                                                fontSize:
-                                                    UtilSize.width(12, context),
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ],

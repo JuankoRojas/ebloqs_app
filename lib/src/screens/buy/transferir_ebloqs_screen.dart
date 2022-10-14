@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/congrats_screen_transfer.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
@@ -113,12 +115,12 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                     },
                   ),
                   Expanded(child: Container()),
-                  Text(
+                  const AutoSizeText(
                     "Transferir a la cuenta ebloqs",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(17, context),
+                      color: Color(0xff170658),
+                      fontSize: 17,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w700,
                     ),
@@ -134,21 +136,21 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const AutoSizeText(
                       "USD",
                       style: TextStyle(
-                        color: const Color(0xff2504ca),
-                        fontSize: UtilSize.width(28, context),
+                        color: Color(0xff2504ca),
+                        fontSize: 28,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Text(
+                    AutoSizeText(
                       widget.cantidadTransferencia ?? '',
                       textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: const Color(0xff2504ca),
-                        fontSize: UtilSize.width(28, context),
+                      style: const TextStyle(
+                        color: Color(0xff2504ca),
+                        fontSize: 28,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -160,22 +162,22 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: SizedBox(
                   width: size.width * (340 / size.width),
-                  child: Text(
+                  child: AutoSizeText(
                     "Transfiere tus fondos  a la cuenta que indica a continuación desde tu cuenta bancaria: $subCuenta*******$subCuenta2",
-                    style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                    style: const TextStyle(
+                      color: Color(0xff170658),
+                      fontSize: 13,
                     ),
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (53 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Datos de la cuenta bancaria Ebloqs",
                   style: TextStyle(
-                    color: const Color(0xff2504ca),
-                    fontSize: UtilSize.width(15, context),
+                    color: Color(0xff2504ca),
+                    fontSize: 15,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -205,20 +207,20 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const AutoSizeText(
                             "Nº De referencia",
                             style: TextStyle(
-                              color: const Color(0xff170658),
-                              fontSize: UtilSize.width(15, context),
+                              color: Color(0xff170658),
+                              fontSize: 15,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          Text(
+                          AutoSizeText(
                             referencia,
-                            style: TextStyle(
-                              color: const Color(0xff2504ca),
-                              fontSize: UtilSize.width(20, context),
+                            style: const TextStyle(
+                              color: Color(0xff2504ca),
+                              fontSize: 20,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w700,
                             ),
@@ -261,22 +263,22 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 padding: EdgeInsets.only(top: size.height * (16 / size.height)),
                 child: SizedBox(
                   width: size.width * (341 / size.width),
-                  child: Text(
+                  child: const AutoSizeText(
                     "Incluye tu código de referencia en los comentarios: La transacción sin código, o un código incorrecto será rechazada.",
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: UtilSize.width(12, context),
+                      fontSize: 12,
                     ),
                   ),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (32 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Nombre del Beneficiario de la cuenta",
                   style: TextStyle(
-                    color: const Color(0xff92959e),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff92959e),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -287,11 +289,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    AutoSizeText(
                       nombreBenf,
-                      style: TextStyle(
-                        color: const Color(0xff2c3e50),
-                        fontSize: UtilSize.width(15, context),
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
                       ),
                     ),
                     (copiedBenef)
@@ -325,11 +327,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (18 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Número de cuenta del beneficiario",
                   style: TextStyle(
-                    color: const Color(0xff92959e),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff92959e),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -340,11 +342,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    AutoSizeText(
                       numCuentBenf,
-                      style: TextStyle(
-                        color: const Color(0xff2c3e50),
-                        fontSize: UtilSize.width(15, context),
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
                       ),
                     ),
                     (copiedAccBenef)
@@ -378,11 +380,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (18 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Dirección de Beneficiario",
                   style: TextStyle(
-                    color: const Color(0xff92959e),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff92959e),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -393,11 +395,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    AutoSizeText(
                       direccBenf,
-                      style: TextStyle(
-                        color: const Color(0xff2c3e50),
-                        fontSize: UtilSize.width(15, context),
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
                       ),
                     ),
                     (copiedDirBenef)
@@ -431,11 +433,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (18 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Código SWITF",
                   style: TextStyle(
-                    color: const Color(0xff92959e),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff92959e),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -446,11 +448,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    AutoSizeText(
                       codSwift,
-                      style: TextStyle(
-                        color: const Color(0xff2c3e50),
-                        fontSize: UtilSize.width(15, context),
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
                       ),
                     ),
                     (copiedCodSwift)
@@ -484,11 +486,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (18 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Nombre del Banco receptor",
                   style: TextStyle(
-                    color: const Color(0xff92959e),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff92959e),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -499,11 +501,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    AutoSizeText(
                       nomBancRecep,
-                      style: TextStyle(
-                        color: const Color(0xff2c3e50),
-                        fontSize: UtilSize.width(15, context),
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
                       ),
                     ),
                     (copiedBancRec)
@@ -537,11 +539,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (18 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Dirección del Banco receptor",
                   style: TextStyle(
-                    color: const Color(0xff92959e),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff92959e),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -552,11 +554,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    AutoSizeText(
                       dirBancRecep,
-                      style: TextStyle(
-                        color: const Color(0xff2c3e50),
-                        fontSize: UtilSize.width(15, context),
+                      style: const TextStyle(
+                        color: Color(0xff2c3e50),
+                        fontSize: 15,
                       ),
                     ),
                     (copiedDireccBanc)
@@ -614,11 +616,11 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                             Padding(
                               padding:
                                   EdgeInsets.only(left: size.width * 0.032),
-                              child: Text(
+                              child: const AutoSizeText(
                                 "Copiado correctamente",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: UtilSize.width(12, context),
+                                  fontSize: 12,
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w600,
                                 ),

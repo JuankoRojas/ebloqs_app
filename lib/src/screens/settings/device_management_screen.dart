@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/widgets/custom_appbar_pop_question.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +87,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
               padding: EdgeInsets.only(top: size.height * 0.0344827586206897),
               child: SizedBox(
                 width: size.width * 0.92,
-                child: const Text(
+                child: const AutoSizeText(
                   "Estos dispositivos están actualmente autorizados para acceder a tu cuenta. ",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -102,7 +104,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
               child: Row(
                 children: [
                   SvgPicture.asset('assets/Vectores/Iconos/phone.svg'),
-                  Text(
+                  AutoSizeText(
                     device?.toUpperCase() ?? '',
                     style: const TextStyle(
                       color: Color(0xff170658),
@@ -123,7 +125,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                   right: size.width * 0.0426666666666667),
               child: Row(
                 children: [
-                  const Text(
+                  const AutoSizeText(
                     "Fecha:",
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -131,7 +133,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                     ),
                   ),
                   const Spacer(),
-                  Text(
+                  AutoSizeText(
                     userInformation['create'],
                     textAlign: TextAlign.right,
                     style: TextStyle(
@@ -149,7 +151,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                   right: size.width * 0.0426666666666667),
               child: Row(
                 children: [
-                  const Text(
+                  const AutoSizeText(
                     "Ubicación:",
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -157,7 +159,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                     ),
                   ),
                   const Spacer(),
-                  Text(
+                  AutoSizeText(
                     userInformation['city'],
                     textAlign: TextAlign.right,
                     style: TextStyle(
@@ -177,7 +179,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                   // (ip!.isNotEmpty)
                   //     ? Row(
                   //         children: [
-                  //           const Text(
+                  //           const AutoSizeText(
                   //             "Dirección IP:",
                   //             style: TextStyle(
                   //               color: Color(0xff170658),
@@ -185,7 +187,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                   //             ),
                   //           ),
                   //           const Spacer(),
-                  //           Text(
+                  //           AutoSizeText(
                   //             ip ?? '',
                   //             textAlign: TextAlign.right,
                   //             style: TextStyle(
@@ -198,7 +200,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                   //     :
                   Row(
                 children: [
-                  const Text(
+                  const AutoSizeText(
                     "IMEI:",
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -206,7 +208,7 @@ class _DeviceManagementScreenState extends State<DeviceManagementScreen>
                     ),
                   ),
                   const Spacer(),
-                  Text(
+                  AutoSizeText(
                     imei ?? '',
                     textAlign: TextAlign.right,
                     style: TextStyle(

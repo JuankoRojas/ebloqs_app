@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomPersonalInfo extends StatelessWidget {
@@ -17,14 +18,14 @@ class CustomPersonalInfo extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            AutoSizeText(
               field,
               style: const TextStyle(
                 color: Color(0xff8f8b9f),
                 fontSize: 13,
               ),
             ),
-            Text(
+            AutoSizeText(
               value,
               style: const TextStyle(
                 color: Color(0xff170658),
@@ -38,7 +39,7 @@ class CustomPersonalInfo extends StatelessWidget {
         ),
         GestureDetector(
           onTap: onTap,
-          child: const Text(
+          child: const AutoSizeText(
             "Editar",
             textAlign: TextAlign.right,
             style: TextStyle(

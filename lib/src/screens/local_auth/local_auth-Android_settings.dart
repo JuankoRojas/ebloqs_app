@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,7 @@ class _LocalAuthAndroidSettingsState extends State<LocalAuthAndroidSettings> {
           ),
           const Padding(
             padding: EdgeInsets.only(top: 30.0, left: 15),
-            child: Text(
+            child: AutoSizeText(
               "Asegurar tu cuenta con Huella Digital",
               style: TextStyle(
                 color: Color(0xff170658),
@@ -111,7 +112,7 @@ class _LocalAuthAndroidSettingsState extends State<LocalAuthAndroidSettings> {
             padding: EdgeInsets.only(top: 8.0, left: 15),
             child: SizedBox(
               width: 344,
-              child: Text(
+              child: AutoSizeText(
                 "Así nos aseguramos que solo usted pueda tomar las decisiones",
                 style: TextStyle(
                   color: Color(0xff170658),
@@ -146,7 +147,7 @@ class _LocalAuthAndroidSettingsState extends State<LocalAuthAndroidSettings> {
                     ),
                   ),
                   const Center(
-                    child: Text(
+                    child: AutoSizeText(
                       "Habilitar huella digital",
                       style: TextStyle(
                         color: Colors.white,
@@ -171,7 +172,7 @@ class _LocalAuthAndroidSettingsState extends State<LocalAuthAndroidSettings> {
                   color: const Color(0xffF9F9FA),
                 ),
                 child: const Center(
-                  child: Text(
+                  child: AutoSizeText(
                     "En otro momento",
                     style: TextStyle(
                       color: Color(0xff170658),

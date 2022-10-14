@@ -7,7 +7,7 @@ import 'package:ebloqs_app/src/providers/qr_info_provider.dart';
 import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
-import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
+import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
 import 'package:ebloqs_app/src/services/apple_signin_service.dart';
 import 'package:ebloqs_app/src/services/coin_market_cap_service.dart';
 import 'package:flutter/material.dart';
@@ -36,9 +36,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
-    String? isoCountryCode = systemLocales.first.countryCode;
-
     return MultiProvider(
       providers: [
         //USER
@@ -64,7 +61,7 @@ class _MyAppState extends State<MyApp> {
         title: 'Ebloqs',
         theme: ThemeData(
             fontFamily: 'Archivo', scaffoldBackgroundColor: Colors.white),
-        initialRoute: OnBoardPageRoute.routeName,
+        initialRoute: ProjectViewScreen.routeName,
         routes: getApplicationRoutes(),
       ),
     );

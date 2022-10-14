@@ -13,7 +13,7 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '25'
+    flutterVersionCode = '26'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
@@ -55,7 +55,7 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 25
+        versionCode 26
         versionName "1.0.0"
         multiDexEnabled true
     }
@@ -75,7 +75,7 @@ android {
             dimension "default"
             applicationIdSuffix ""
             manifestPlaceholders = [appName: "Ebloqs"]
-            versionCode 25
+            versionCode 26
             versionName "1.0.0"
             signingConfig signingConfigs.release
            

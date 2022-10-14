@@ -1,5 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/camera/overlay_shape.dart';
+
 import 'package:ebloqs_app/src/models/camera_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,7 +68,7 @@ class _FlutterCameraOverlayState extends State<CameraOverlay> {
           width: double.infinity,
           child: const Align(
             alignment: Alignment.center,
-            child: Text('loading camera'),
+            child: AutoSizeText('loading camera'),
           ),
         );
 
@@ -95,7 +97,7 @@ class _FlutterCameraOverlayState extends State<CameraOverlay> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (widget.label != null)
-                      Text(
+                      AutoSizeText(
                         widget.label!,
                         style: const TextStyle(
                             color: Colors.white,
@@ -104,7 +106,7 @@ class _FlutterCameraOverlayState extends State<CameraOverlay> {
                       ),
                     if (widget.info != null)
                       Flexible(
-                        child: Text(
+                        child: AutoSizeText(
                           widget.info!,
                           style: const TextStyle(color: Colors.white),
                         ),

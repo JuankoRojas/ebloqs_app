@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                   padding:
                       EdgeInsets.only(top: size.height * 0.018970189701897),
                   child: const Center(
-                    child: Text(
+                    child: AutoSizeText(
                       "¡En 72 horas verificaremos tu transferencia para acreditar los!",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -50,7 +51,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                   padding:
                       EdgeInsets.only(top: size.height * 0.0142276422764228),
                   child: Center(
-                    child: Text(
+                    child: AutoSizeText(
                       "${widget.total.toString()} EBL",
                       style: const TextStyle(
                         color: Color(0xff2504ca),
@@ -65,7 +66,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                   padding: EdgeInsets.only(
                       top: size.height * 0.0853658536585366,
                       left: size.width * 0.0388888888888889),
-                  child: const Text(
+                  child: const AutoSizeText(
                     "Resumen de tu compra",
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -100,7 +101,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              const AutoSizeText(
                                 "Precio USD",
                                 style: TextStyle(
                                   color: Color(0xff170658),
@@ -110,7 +111,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                                 ),
                               ),
                               Expanded(child: Container()),
-                              Text(
+                              AutoSizeText(
                                 "${(widget.total * 0.05)} USD",
                                 textAlign: TextAlign.right,
                                 style: const TextStyle(
@@ -140,7 +141,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              const AutoSizeText(
                                 "Total FEES",
                                 style: TextStyle(
                                   color: Color(0xff170658),
@@ -150,7 +151,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                                 ),
                               ),
                               Expanded(child: Container()),
-                              const Text(
+                              const AutoSizeText(
                                 "\$4.67 USD",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
@@ -170,7 +171,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              const AutoSizeText(
                                 "Transacción FEE",
                                 style: TextStyle(
                                   color: Color(0xff170658),
@@ -180,7 +181,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                                 ),
                               ),
                               Expanded(child: Container()),
-                              const Text(
+                              const AutoSizeText(
                                 "\$3.52 USD",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
@@ -199,7 +200,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              const AutoSizeText(
                                 "Red FEE",
                                 style: TextStyle(
                                   color: Color(0xff170658),
@@ -209,7 +210,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                                 ),
                               ),
                               Expanded(child: Container()),
-                              const Text(
+                              const AutoSizeText(
                                 "\$1.15  USD",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
@@ -239,7 +240,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                               right: size.width * 0.0315972222222223),
                           child: Row(
                             children: [
-                              const Text(
+                              const AutoSizeText(
                                 "Total",
                                 style: TextStyle(
                                   color: Color(0xff170658),
@@ -249,7 +250,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                                 ),
                               ),
                               Expanded(child: Container()),
-                              Text(
+                              AutoSizeText(
                                 "${(widget.total * 0.05 + 4.67)} USD",
                                 textAlign: TextAlign.right,
                                 style: const TextStyle(
@@ -295,7 +296,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                           padding: EdgeInsets.only(
                             left: 25,
                           ),
-                          child: Text(
+                          child: AutoSizeText(
                             "Tus EBL se encuentran en tu billetera.",
                             style: TextStyle(
                               color: Color(0xff170658),

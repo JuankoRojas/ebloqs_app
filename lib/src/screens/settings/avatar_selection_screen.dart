@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -40,7 +41,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                         Navigator.pop(context);
                       },
                     ),
-                    const Text(
+                    const AutoSizeText(
                       "Selecciona un avatar",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -82,7 +83,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                 padding: EdgeInsets.only(
                     top: size.height * 0.0566502463054187,
                     left: size.width * 0.04),
-                child: const Text(
+                child: const AutoSizeText(
                   "Selecciona tu avatar favorito",
                   style: TextStyle(
                     color: Color(0xff170658),

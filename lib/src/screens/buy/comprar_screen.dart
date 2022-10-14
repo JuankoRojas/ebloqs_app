@@ -1,6 +1,8 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_tarjeta_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_transferencia_screen.dart';
@@ -94,11 +96,11 @@ class _ComprarScreenState extends State<ComprarScreen>
                   Padding(
                     padding:
                         EdgeInsets.only(left: size.width * (40 / size.width)),
-                    child: Text(
+                    child: const AutoSizeText(
                       "Comprar",
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(16, context),
+                        color: Color(0xff170658),
+                        fontSize: 16,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -109,11 +111,11 @@ class _ComprarScreenState extends State<ComprarScreen>
                       appBar: AppBar(
                         backgroundColor: Colors.transparent,
                         elevation: 0,
-                        title: Text(
+                        title: const AutoSizeText(
                           'Selecciona tu país',
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(17, context),
+                            color: Color(0xff170658),
+                            fontSize: 17,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w700,
                           ),
@@ -174,11 +176,11 @@ class _ComprarScreenState extends State<ComprarScreen>
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: size.width * (4 / size.width)),
-                                child: Text(
+                                child: AutoSizeText(
                                   countryCode.code!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.black,
-                                    fontSize: UtilSize.width(12, context),
+                                    fontSize: 12,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -217,11 +219,11 @@ class _ComprarScreenState extends State<ComprarScreen>
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (27 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Vas a comprar",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff170658),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -259,14 +261,14 @@ class _ComprarScreenState extends State<ComprarScreen>
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
+                              children: const [
                                 Expanded(
                                   child: SizedBox(
-                                    child: Text(
+                                    child: AutoSizeText(
                                       "ebloqs",
                                       style: TextStyle(
-                                        color: const Color(0xff383346),
-                                        fontSize: UtilSize.width(14, context),
+                                        color: Color(0xff383346),
+                                        fontSize: 14,
                                       ),
                                     ),
                                   ),
@@ -275,14 +277,14 @@ class _ComprarScreenState extends State<ComprarScreen>
                             ),
                           ),
                           SizedBox(width: size.width * (10 / size.width)),
-                          Expanded(
+                          const Expanded(
                             child: SizedBox(
-                              child: Text(
+                              child: AutoSizeText(
                                 "EBL",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  color: const Color(0xff383346),
-                                  fontSize: UtilSize.width(14, context),
+                                  color: Color(0xff383346),
+                                  fontSize: 14,
                                 ),
                               ),
                             ),
@@ -305,11 +307,11 @@ class _ComprarScreenState extends State<ComprarScreen>
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (18 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Cantidad",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff170658),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -339,14 +341,14 @@ class _ComprarScreenState extends State<ComprarScreen>
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Expanded(
                               child: SizedBox(
-                                child: Text(
+                                child: AutoSizeText(
                                   "USD",
                                   style: TextStyle(
-                                    color: const Color(0xff383346),
-                                    fontSize: UtilSize.width(14, context),
+                                    color: Color(0xff383346),
+                                    fontSize: 14,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -361,11 +363,11 @@ class _ComprarScreenState extends State<ComprarScreen>
                       ),
                       Expanded(
                         child: SizedBox(
-                          child: Text(
+                          child: AutoSizeText(
                             text,
-                            style: TextStyle(
-                              color: const Color(0xff383346),
-                              fontSize: UtilSize.width(14, context),
+                            style: const TextStyle(
+                              color: Color(0xff383346),
+                              fontSize: 14,
                             ),
                           ),
                         ),
@@ -373,14 +375,14 @@ class _ComprarScreenState extends State<ComprarScreen>
                       SizedBox(
                         width: size.width * (10 / size.width),
                       ),
-                      Expanded(
+                      const Expanded(
                         child: SizedBox(
-                          child: Text(
+                          child: AutoSizeText(
                             "USD",
                             textAlign: TextAlign.right,
                             style: TextStyle(
-                              color: const Color(0xff383346),
-                              fontSize: UtilSize.width(14, context),
+                              color: Color(0xff383346),
+                              fontSize: 14,
                             ),
                           ),
                         ),
@@ -405,11 +407,11 @@ class _ComprarScreenState extends State<ComprarScreen>
                 padding: EdgeInsets.only(
                   top: size.height * (18 / size.height),
                 ),
-                child: Text(
+                child: const AutoSizeText(
                   "Total EBL",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff170658),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -441,14 +443,14 @@ class _ComprarScreenState extends State<ComprarScreen>
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Expanded(
                               child: SizedBox(
-                                child: Text(
+                                child: AutoSizeText(
                                   "EBL",
                                   style: TextStyle(
-                                    color: const Color(0xff383346),
-                                    fontSize: UtilSize.width(14, context),
+                                    color: Color(0xff383346),
+                                    fontSize: 14,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -463,11 +465,11 @@ class _ComprarScreenState extends State<ComprarScreen>
                       ),
                       Expanded(
                         child: SizedBox(
-                          child: Text(
+                          child: AutoSizeText(
                             total.toString(),
-                            style: TextStyle(
-                              color: const Color(0xff383346),
-                              fontSize: UtilSize.width(14, context),
+                            style: const TextStyle(
+                              color: Color(0xff383346),
+                              fontSize: 14,
                             ),
                           ),
                         ),
@@ -495,12 +497,12 @@ class _ComprarScreenState extends State<ComprarScreen>
                           color: Colors.white,
                         ),
                         padding: const EdgeInsets.all(16),
-                        child: SizedBox(
-                          child: Text(
+                        child: const SizedBox(
+                          child: AutoSizeText(
                             "\$50",
                             style: TextStyle(
-                              color: const Color(0xff383346),
-                              fontSize: UtilSize.width(14, context),
+                              color: Color(0xff383346),
+                              fontSize: 14,
                             ),
                           ),
                         ),
@@ -523,12 +525,12 @@ class _ComprarScreenState extends State<ComprarScreen>
                           color: Colors.white,
                         ),
                         padding: const EdgeInsets.all(16),
-                        child: SizedBox(
-                          child: Text(
+                        child: const SizedBox(
+                          child: AutoSizeText(
                             "\$100",
                             style: TextStyle(
-                              color: const Color(0xff383346),
-                              fontSize: UtilSize.width(14, context),
+                              color: Color(0xff383346),
+                              fontSize: 14,
                             ),
                           ),
                         ),
@@ -551,12 +553,12 @@ class _ComprarScreenState extends State<ComprarScreen>
                           color: Colors.white,
                         ),
                         padding: const EdgeInsets.all(16),
-                        child: SizedBox(
-                          child: Text(
+                        child: const SizedBox(
+                          child: AutoSizeText(
                             "\$200",
                             style: TextStyle(
-                              color: const Color(0xff383346),
-                              fontSize: UtilSize.width(14, context),
+                              color: Color(0xff383346),
+                              fontSize: 14,
                             ),
                           ),
                         ),
@@ -579,12 +581,12 @@ class _ComprarScreenState extends State<ComprarScreen>
                           color: Colors.white,
                         ),
                         padding: const EdgeInsets.all(16),
-                        child: SizedBox(
-                          child: Text(
+                        child: const SizedBox(
+                          child: AutoSizeText(
                             "\$400",
                             style: TextStyle(
-                              color: const Color(0xff383346),
-                              fontSize: UtilSize.width(14, context),
+                              color: Color(0xff383346),
+                              fontSize: 14,
                             ),
                           ),
                         ),
@@ -640,11 +642,11 @@ class _ComprarScreenState extends State<ComprarScreen>
                 ),
                 child: SizedBox(
                   width: size.width * (342 / size.width),
-                  child: Text(
+                  child: const AutoSizeText(
                     "Método de Pago",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(15, context),
+                      color: Color(0xff170658),
+                      fontSize: 15,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w600,
                     ),
@@ -690,19 +692,19 @@ class _ComprarScreenState extends State<ComprarScreen>
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              AutoSizeText(
                                 "Transferencia Bancaria",
                                 style: TextStyle(
                                   color: (transferSelect)
                                       ? const Color(0xff170658)
                                       : const Color(0xff170658)
                                           .withOpacity(0.5),
-                                  fontSize: UtilSize.width(15, context),
+                                  fontSize: 15,
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              Text(
+                              AutoSizeText(
                                 "Desde tus bancos favoritos",
                                 style: TextStyle(
                                   color: (transferSelect)
@@ -770,26 +772,26 @@ class _ComprarScreenState extends State<ComprarScreen>
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              AutoSizeText(
                                 "Tarjeta Bancaria",
                                 style: TextStyle(
                                   color: (bankSelect)
                                       ? const Color(0xff170658)
                                       : const Color(0xff170658)
                                           .withOpacity(0.5),
-                                  fontSize: UtilSize.width(15, context),
+                                  fontSize: 15,
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              Text(
+                              AutoSizeText(
                                 "Tarjeta de crédito o tarjeta de débito",
                                 style: TextStyle(
                                   color: (bankSelect)
                                       ? const Color(0xff170658)
                                       : const Color(0xff170658)
                                           .withOpacity(0.5),
-                                  fontSize: UtilSize.width(13, context),
+                                  fontSize: 13,
                                 ),
                               )
                             ],

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -25,7 +26,7 @@ Future<void> customModalBottomAlert(BuildContext context, Size size,
                     padding:
                         EdgeInsets.only(top: size.height * 0.04064039408867),
                     child: (icon == null || icon.isEmpty)
-                        ? const Text(
+                        ? const AutoSizeText(
                             "!Hey!",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -42,7 +43,7 @@ Future<void> customModalBottomAlert(BuildContext context, Size size,
                         top: size.height * 0.0147783251231527,
                         left: size.width * 0.138666666666667,
                         right: size.width * 0.138666666666667),
-                    child: Text(
+                    child: AutoSizeText(
                       errorValidation ?? '',
                       textAlign: TextAlign.center,
                       style: const TextStyle(

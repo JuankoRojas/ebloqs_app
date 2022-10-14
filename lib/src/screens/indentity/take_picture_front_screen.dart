@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/src/camera/camera_overlay.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/models/camera_models.dart';
 import 'package:ebloqs_app/src/screens/indentity/verification_front_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
@@ -42,12 +44,12 @@ class _TakePictureFrontState extends State<TakePictureFront> {
             ),
           ),
         ),
-        title: Text(
+        title: const AutoSizeText(
           "Documento de identidad",
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
-            fontSize: UtilSize.width(17, context),
+            fontSize: 17,
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -63,7 +65,7 @@ class _TakePictureFrontState extends State<TakePictureFront> {
                 if (snapshot.data == null || snapshot.data.isEmpty) {
                   return const Align(
                       alignment: Alignment.center,
-                      child: Text(
+                      child: AutoSizeText(
                         'No camera found',
                         style: TextStyle(color: Colors.white),
                       ));
@@ -79,7 +81,7 @@ class _TakePictureFrontState extends State<TakePictureFront> {
               } else {
                 return const Align(
                     alignment: Alignment.center,
-                    child: Text(
+                    child: AutoSizeText(
                       'Obteniendo Camara',
                       style: TextStyle(color: Colors.black),
                     ));
@@ -89,11 +91,11 @@ class _TakePictureFrontState extends State<TakePictureFront> {
           Positioned(
             top: UtilSize.height(530, context),
             left: size.width * 0.0359342915811089,
-            child: Text(
+            child: const AutoSizeText(
               "Lado frontal",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: UtilSize.width(15, context),
+                fontSize: 15,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -102,11 +104,11 @@ class _TakePictureFrontState extends State<TakePictureFront> {
           Positioned(
             top: UtilSize.height(550, context),
             left: size.width * 0.0359342915811089,
-            child: Text(
+            child: const AutoSizeText(
               "Muestra tu documento de identidad del lado frontal",
               style: TextStyle(
                 color: Colors.white,
-                fontSize: UtilSize.width(13, context),
+                fontSize: 13,
               ),
             ),
           )

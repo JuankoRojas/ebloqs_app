@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -35,7 +36,7 @@ class _MyReferralsScreenState extends State<MyReferralsScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(right: size.width * 0.373333333333333),
-                  child: const Text(
+                  child: const AutoSizeText(
                     "Beneficios",
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -49,7 +50,7 @@ class _MyReferralsScreenState extends State<MyReferralsScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.00985221674876847),
-              child: const Text(
+              child: const AutoSizeText(
                 "Recomienda amigos y gana tokens EBL",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -89,7 +90,7 @@ class _MyReferralsScreenState extends State<MyReferralsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      const AutoSizeText(
                         "Mis referidos",
                         style: TextStyle(
                           color: Color(0xff2504ca),
@@ -107,7 +108,7 @@ class _MyReferralsScreenState extends State<MyReferralsScreen> {
                                 'assets/Vectores/Iconos/Group 1948.svg')),
                       ),
                       const Center(
-                        child: Text(
+                        child: AutoSizeText(
                           "No se han encontrado referidos",
                           style: TextStyle(
                             color: Color(0xff170658),

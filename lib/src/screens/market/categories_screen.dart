@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/screens/market/market_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -95,14 +96,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 builder: (context, AsyncSnapshot snapshot) {
                   switch (snapshot.connectionState) {
                     case ConnectionState.none:
-                      return const Text('none');
+                      return const AutoSizeText('none');
                     case ConnectionState.waiting:
                       return const Center(child: SizedBox());
                     case ConnectionState.active:
-                      return const Text('');
+                      return const AutoSizeText('');
                     case ConnectionState.done:
                       if (snapshot.hasError) {
-                        return Text(
+                        return AutoSizeText(
                           '${snapshot.error}',
                           style: const TextStyle(color: Colors.red),
                         );
@@ -124,7 +125,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Text(
+                                              AutoSizeText(
                                                 datos['data'][index]['name'],
                                                 style: const TextStyle(
                                                   color: Color(0xff170658),
@@ -133,7 +134,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              Text(
+                                              AutoSizeText(
                                                 '${datos['data'][index]["num_tokens"].toString()} Tokens',
                                                 style: const TextStyle(
                                                   color: Color(0xffb3b3b3),
@@ -147,7 +148,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.end,
                                             children: [
-                                              Text(
+                                              AutoSizeText(
                                                 '${datos['data'][index]['market_cap'].toStringAsFixed(2)} Bn',
                                                 style: const TextStyle(
                                                   color: Color(0xff170658),
@@ -156,7 +157,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              Text(
+                                              AutoSizeText(
                                                 '${datos['data'][index]["avg_price_change"].toStringAsFixed(2)} %',
                                                 style: TextStyle(
                                                   color: (datos['data'][index][
@@ -179,7 +180,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                 0.0184729064039409),
                                         child: Row(
                                           children: [
-                                            const Text(
+                                            const AutoSizeText(
                                               "Trending Token",
                                               style: TextStyle(
                                                 color: Color(0xffb3b3b3),
@@ -199,17 +200,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                   switch (snapshotCategory
                                                       .connectionState) {
                                                     case ConnectionState.none:
-                                                      return const Text('none');
+                                                      return const AutoSizeText(
+                                                          'none');
                                                     case ConnectionState
                                                         .waiting:
                                                       return const Center(
                                                           child: SizedBox());
                                                     case ConnectionState.active:
-                                                      return const Text('');
+                                                      return const AutoSizeText(
+                                                          '');
                                                     case ConnectionState.done:
                                                       if (snapshotCategory
                                                           .hasError) {
-                                                        return Text(
+                                                        return AutoSizeText(
                                                           '${snapshotCategory.error}',
                                                           style:
                                                               const TextStyle(
@@ -241,7 +244,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                                         .connectionState) {
                                                                       case ConnectionState
                                                                           .none:
-                                                                        return const Text(
+                                                                        return const AutoSizeText(
                                                                             'none');
                                                                       case ConnectionState
                                                                           .waiting:
@@ -250,13 +253,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                                                 SizedBox());
                                                                       case ConnectionState
                                                                           .active:
-                                                                        return const Text(
+                                                                        return const AutoSizeText(
                                                                             '');
                                                                       case ConnectionState
                                                                           .done:
                                                                         if (snapshotCryptoIcons
                                                                             .hasError) {
-                                                                          return Text(
+                                                                          return AutoSizeText(
                                                                             '${snapshotCryptoIcons.error}',
                                                                             style:
                                                                                 const TextStyle(color: Colors.red),
@@ -285,7 +288,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                                     right: size
                                                                             .width *
                                                                         0.00533333333333333),
-                                                                child: Text(
+                                                                child:
+                                                                    AutoSizeText(
                                                                   datos['data'][
                                                                           'coins']
                                                                       [
@@ -304,7 +308,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                                                                   ),
                                                                 ),
                                                               ),
-                                                              Text(
+                                                              AutoSizeText(
                                                                 "(${datos['data']['coins'][0]['symbol']})",
                                                                 style:
                                                                     const TextStyle(

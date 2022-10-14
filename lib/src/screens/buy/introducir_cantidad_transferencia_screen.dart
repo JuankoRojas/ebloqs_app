@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/transferir_ebloqs_screen.dart';
@@ -83,12 +85,12 @@ class _IntroducirCantidadTransferenciaScreenState
                     },
                   ),
                   Expanded(child: Container()),
-                  Text(
+                  const AutoSizeText(
                     "Introduce la cantidad",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(17, context),
+                      color: Color(0xff170658),
+                      fontSize: 17,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w700,
                     ),
@@ -103,11 +105,11 @@ class _IntroducirCantidadTransferenciaScreenState
                 padding: EdgeInsets.only(
                   top: size.height * (32 / size.height),
                 ),
-                child: Text(
+                child: const AutoSizeText(
                   "Cantidad",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff170658),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -137,12 +139,12 @@ class _IntroducirCantidadTransferenciaScreenState
                               left: size.width * (10 / size.width),
                               right: size.width * (19 / size.width),
                             ),
-                            child: Text(
+                            child: const AutoSizeText(
                               "USD",
                               textAlign: TextAlign.right,
                               style: TextStyle(
-                                color: const Color(0xff2504ca),
-                                fontSize: UtilSize.width(14, context),
+                                color: Color(0xff2504ca),
+                                fontSize: 14,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -194,12 +196,12 @@ class _IntroducirCantidadTransferenciaScreenState
                 padding: EdgeInsets.only(
                   top: size.height * (39 / size.height),
                 ),
-                child: Text(
+                child: const AutoSizeText(
                   "Recibes:",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff170658),
+                    fontSize: 13,
                   ),
                 ),
               ),
@@ -209,20 +211,20 @@ class _IntroducirCantidadTransferenciaScreenState
                 ),
                 child: Row(
                   children: [
-                    Text(
+                    AutoSizeText(
                       recibes.toString(),
-                      style: TextStyle(
-                        color: const Color(0xff2504ca),
-                        fontSize: UtilSize.width(28, context),
+                      style: const TextStyle(
+                        color: Color(0xff2504ca),
+                        fontSize: 28,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Text(
+                    const AutoSizeText(
                       " USD",
                       style: TextStyle(
-                        color: const Color(0xff2504ca),
-                        fontSize: UtilSize.width(28, context),
+                        color: Color(0xff2504ca),
+                        fontSize: 28,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -236,20 +238,20 @@ class _IntroducirCantidadTransferenciaScreenState
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
+                  children: const [
+                    AutoSizeText(
                       "Método de transacción:",
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                        color: Color(0xff170658),
+                        fontSize: 14,
                       ),
                     ),
-                    Text(
+                    AutoSizeText(
                       "Banco (SWIFT)",
                       textAlign: TextAlign.right,
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                        color: Color(0xff170658),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -264,19 +266,19 @@ class _IntroducirCantidadTransferenciaScreenState
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const AutoSizeText(
                       "Comisión transacción:",
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                        color: Color(0xff170658),
+                        fontSize: 14,
                       ),
                     ),
-                    Text(
+                    AutoSizeText(
                       "${comision.toString()} USD",
                       textAlign: TextAlign.right,
-                      style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                      style: const TextStyle(
+                        color: Color(0xff170658),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -434,11 +436,11 @@ class _PageFormState extends State<PageForm> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const AutoSizeText(
                 "Añadir información de la cuenta.",
                 style: TextStyle(
-                  color: const Color(0xff2504ca),
-                  fontSize: UtilSize.width(15, context),
+                  color: Color(0xff2504ca),
+                  fontSize: 15,
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w600,
                 ),
@@ -462,11 +464,11 @@ class _PageFormState extends State<PageForm> {
                   padding: EdgeInsets.only(
                     top: size.height * (29 / size.height),
                   ),
-                  child: Text(
+                  child: const AutoSizeText(
                     "Nombre del titular",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w600,
                     ),
@@ -485,9 +487,9 @@ class _PageFormState extends State<PageForm> {
                     ],
                     decoration: InputDecoration(
                       counterText: '',
-                      labelStyle: TextStyle(
-                        color: const Color(0xff9B99A3),
-                        fontSize: UtilSize.width(14, context),
+                      labelStyle: const TextStyle(
+                        color: Color(0xff9B99A3),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w400,
                       ),
@@ -519,11 +521,11 @@ class _PageFormState extends State<PageForm> {
                   padding: EdgeInsets.only(
                     top: size.height * (16 / size.height),
                   ),
-                  child: Text(
+                  child: const AutoSizeText(
                     "Nombre del Banco",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w600,
                     ),
@@ -576,11 +578,11 @@ class _PageFormState extends State<PageForm> {
                   padding: EdgeInsets.only(
                     top: size.height * (16 / size.height),
                   ),
-                  child: Text(
+                  child: const AutoSizeText(
                     "Número de la cuenta",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w600,
                     ),
@@ -676,11 +678,11 @@ class _PageConfirmState extends State<PageConfirm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const AutoSizeText(
             "Confirmar información de la cuenta",
             style: TextStyle(
-              color: const Color(0xff170658),
-              fontSize: UtilSize.width(14, context),
+              color: Color(0xff170658),
+              fontSize: 14,
               fontFamily: "Archivo",
               fontWeight: FontWeight.w600,
             ),
@@ -689,11 +691,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (3 / size.height),
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Confirma la información a continuación y marca la casilla de descarga de responsabilidad.",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+                color: Color(0xff170658),
+                fontSize: 13,
               ),
             ),
           ),
@@ -701,11 +703,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (24 / size.height),
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Nombre del titular",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(14, context),
+                color: Color(0xff170658),
+                fontSize: 14,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -715,11 +717,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (3 / size.height),
             ),
-            child: Text(
+            child: AutoSizeText(
               nombreTitular ?? '',
-              style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+              style: const TextStyle(
+                color: Color(0xff170658),
+                fontSize: 13,
               ),
             ),
           ),
@@ -727,11 +729,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (20 / size.height),
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Nombre del banco",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(14, context),
+                color: Color(0xff170658),
+                fontSize: 14,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -741,11 +743,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (3 / size.height),
             ),
-            child: Text(
+            child: AutoSizeText(
               nombreBanco ?? '',
-              style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+              style: const TextStyle(
+                color: Color(0xff170658),
+                fontSize: 13,
               ),
             ),
           ),
@@ -753,11 +755,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (20 / size.height),
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Número de cuenta",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(14, context),
+                color: Color(0xff170658),
+                fontSize: 14,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w600,
               ),
@@ -767,11 +769,11 @@ class _PageConfirmState extends State<PageConfirm> {
             padding: EdgeInsets.only(
               top: size.height * (3 / size.height),
             ),
-            child: Text(
+            child: AutoSizeText(
               numeroCuenta.toString(),
-              style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(13, context),
+              style: const TextStyle(
+                color: Color(0xff170658),
+                fontSize: 13,
               ),
             ),
           ),
@@ -820,11 +822,11 @@ class _PageConfirmState extends State<PageConfirm> {
                   padding: EdgeInsets.only(
                     left: size.width * (12 / size.width),
                   ),
-                  child: Text(
+                  child: const AutoSizeText(
                     "Confirma la información de la cuenta bancaria.",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                     ),
                   ),
                 ),
@@ -870,12 +872,12 @@ class _PageConfirmState extends State<PageConfirm> {
                   child: SizedBox(
                     width: UtilSize.width(260, context),
                     height: size.height * (36 / size.height),
-                    child: Text(
+                    child: const AutoSizeText(
                       '''Confirmo que la información de la cuenta
 bancaria se usará para la transacción''',
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(13, context),
+                        color: Color(0xff170658),
+                        fontSize: 13,
                       ),
                     ),
                   ),

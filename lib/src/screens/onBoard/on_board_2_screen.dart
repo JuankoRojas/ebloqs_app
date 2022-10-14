@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/onBoard/on_board_3_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
 import 'package:flutter/material.dart';
@@ -37,11 +39,11 @@ class Onboard2Screen extends StatelessWidget {
                       height: 45,
                     ),
                     GestureDetector(
-                      child: Text(
+                      child: const AutoSizeText(
                         'Salir',
                         style: TextStyle(
-                          color: const Color(0xffffffff),
-                          fontSize: UtilSize.width(15, context),
+                          color: Color(0xffffffff),
+                          fontSize: 15,
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w400,
                         ),
@@ -62,14 +64,14 @@ class Onboard2Screen extends StatelessWidget {
             child: SizedBox(
               width: UtilSize.width(330, context),
               height: UtilSize.height(167, context),
-              child: Text(
+              child: const AutoSizeText(
                 '''Se dueño de tokens que
 representan una propiedad o
 servicio.''',
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: const Color(0xffffffff),
-                  fontSize: UtilSize.width(22, context),
+                  color: Color(0xffffffff),
+                  fontSize: 22,
                   fontFamily: "Archivo",
                   fontStyle: FontStyle.normal,
                   fontWeight: FontWeight.w700,
@@ -80,11 +82,11 @@ servicio.''',
           Positioned(
             top: size.height * 0.56,
             left: size.width * 0.078,
-            child: Text(
+            child: const AutoSizeText(
               '02',
               style: TextStyle(
-                color: const Color(0xffffffff),
-                fontSize: UtilSize.width(14, context),
+                color: Color(0xffffffff),
+                fontSize: 14,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w400,
               ),
@@ -108,11 +110,11 @@ servicio.''',
           Positioned(
             top: size.height * 0.582,
             left: size.width * 0.15,
-            child: Text(
+            child: const AutoSizeText(
               '05',
               style: TextStyle(
-                color: const Color(0xffffffff),
-                fontSize: UtilSize.width(14, context),
+                color: Color(0xffffffff),
+                fontSize: 14,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w400,
               ),

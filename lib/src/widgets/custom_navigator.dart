@@ -53,7 +53,7 @@ class _CustomNavigatorState extends State<CustomNavigator>
                             ? const Color(0xff2504CA)
                             : const Color(0xff170658),
                       )),
-                  Text(
+                  AutoSizeText(
                     'Principal',
                     style: TextStyle(
                         color: (currentPath == 'HomeScreen')
@@ -97,7 +97,7 @@ class _CustomNavigatorState extends State<CustomNavigator>
                       },
                       icon: SvgPicture.asset(
                           'assets/Vectores/Iconos/inversiones.svg')),
-                  const Text(
+                  const AutoSizeText(
                     'Inversiones',
                     style: TextStyle(
                         color: Color(0xff170658),
@@ -144,7 +144,7 @@ class _CustomNavigatorState extends State<CustomNavigator>
                             ? const Color(0xff2504CA)
                             : const Color(0xff170658),
                       )),
-                  Text(
+                  AutoSizeText(
                     'Billetera',
                     style: TextStyle(
                         color: (currentPath == 'WalletScreen')
@@ -174,7 +174,7 @@ class _CustomNavigatorState extends State<CustomNavigator>
                             ? const Color(0xff2504CA)
                             : const Color(0xff170658)),
                   ),
-                  Text(
+                  AutoSizeText(
                     'Mercado',
                     style: TextStyle(
                         color: (currentPath == 'MarketScreen')
@@ -209,7 +209,7 @@ class _CustomNavigatorState extends State<CustomNavigator>
                       },
                       icon: SvgPicture.asset(
                           'assets/Vectores/Iconos/referidos(2).svg')),
-                  const Text(
+                  const AutoSizeText(
                     'Beneficios',
                     style: TextStyle(
                         color: Color(0xff170658),

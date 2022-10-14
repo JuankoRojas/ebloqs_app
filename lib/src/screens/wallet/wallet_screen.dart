@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
@@ -198,32 +200,29 @@ class _WalletScreenState extends State<WalletScreen>
                                         const SizedBox(width: 8),
                                         Row(
                                           children: [
-                                            Text(
+                                            const AutoSizeText(
                                               "Balance Bloqueado ",
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize:
-                                                    UtilSize.width(11, context),
+                                                fontSize: 11,
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                            Text(
+                                            AutoSizeText(
                                               snapshot.data ?? '',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.white,
-                                                fontSize:
-                                                    UtilSize.width(11, context),
+                                                fontSize: 11,
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                            Text(
+                                            const AutoSizeText(
                                               ' EBL',
                                               style: TextStyle(
                                                 color: Colors.white,
-                                                fontSize:
-                                                    UtilSize.width(11, context),
+                                                fontSize: 11,
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -238,11 +237,11 @@ class _WalletScreenState extends State<WalletScreen>
                                   padding: EdgeInsets.only(
                                       top: size.height * 0.00985221674876847,
                                       left: size.width * 0.0106666666666667),
-                                  child: Text(
+                                  child: const AutoSizeText(
                                     "BALANCE DISPONIBLE",
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: UtilSize.width(11.59, context),
+                                      fontSize: 11.59,
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -255,20 +254,19 @@ class _WalletScreenState extends State<WalletScreen>
                                   child: Row(
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
-                                      Text(
+                                      AutoSizeText(
                                         snapshot.data ?? '',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.white,
-                                          fontSize: UtilSize.width(36, context),
+                                          fontSize: 36,
                                         ),
                                       ),
                                       SizedBox(width: size.width * 0.035),
-                                      Text(
+                                      const AutoSizeText(
                                         "EBL",
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize:
-                                              UtilSize.width(18.55, context),
+                                          fontSize: 18.55,
                                         ),
                                       ),
                                     ],
@@ -295,12 +293,11 @@ class _WalletScreenState extends State<WalletScreen>
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
+                                            AutoSizeText(
                                               "$usd USD",
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Colors.white,
-                                                fontSize:
-                                                    UtilSize.width(13, context),
+                                                fontSize: 13,
                                                 fontFamily: "Archivo",
                                                 fontWeight: FontWeight.w600,
                                               ),
@@ -312,12 +309,11 @@ class _WalletScreenState extends State<WalletScreen>
                                         padding: EdgeInsets.only(
                                             left:
                                                 size.width * 0.138666666666667),
-                                        child: Text(
+                                        child: const AutoSizeText(
                                           "WALLET ID",
                                           style: TextStyle(
                                             color: Colors.white,
-                                            fontSize:
-                                                UtilSize.width(11.59, context),
+                                            fontSize: 11.59,
                                             fontFamily: "Archivo",
                                             fontWeight: FontWeight.w400,
                                           ),
@@ -420,15 +416,13 @@ class _WalletScreenState extends State<WalletScreen>
                                                                 CrossAxisAlignment
                                                                     .center,
                                                             children: [
-                                                              Text(
+                                                              const AutoSizeText(
                                                                 "Wallet ID",
                                                                 style:
                                                                     TextStyle(
-                                                                  color: const Color(
+                                                                  color: Color(
                                                                       0xff2504ca),
-                                                                  fontSize: UtilSize
-                                                                      .width(20,
-                                                                          context),
+                                                                  fontSize: 20,
                                                                   fontFamily:
                                                                       "Archivo",
                                                                   fontWeight:
@@ -457,17 +451,16 @@ class _WalletScreenState extends State<WalletScreen>
                                                                             .height *
                                                                         (25 /
                                                                             size.height)),
-                                                                child: Text(
+                                                                child:
+                                                                    AutoSizeText(
                                                                   Preferences
                                                                       .public_key!,
                                                                   style:
-                                                                      TextStyle(
+                                                                      const TextStyle(
                                                                     color: Colors
                                                                         .black,
-                                                                    fontSize: UtilSize
-                                                                        .width(
-                                                                            13,
-                                                                            context),
+                                                                    fontSize:
+                                                                        13,
                                                                   ),
                                                                 ),
                                                               ),
@@ -538,16 +531,16 @@ class _WalletScreenState extends State<WalletScreen>
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      Center(
+                                                                      const Center(
                                                                         child:
-                                                                            Text(
+                                                                            AutoSizeText(
                                                                           "Compartir",
                                                                           style:
                                                                               TextStyle(
                                                                             color:
                                                                                 Colors.white,
                                                                             fontSize:
-                                                                                UtilSize.width(14, context),
+                                                                                14,
                                                                             fontFamily:
                                                                                 "Archivo",
                                                                             fontWeight:
@@ -596,17 +589,16 @@ class _WalletScreenState extends State<WalletScreen>
                                                                           0xfff9f9fa),
                                                                     ),
                                                                     child:
-                                                                        Center(
+                                                                        const Center(
                                                                       child:
-                                                                          Text(
+                                                                          AutoSizeText(
                                                                         "Cerrar",
                                                                         style:
                                                                             TextStyle(
                                                                           color:
-                                                                              const Color(0xff170658),
-                                                                          fontSize: UtilSize.width(
+                                                                              Color(0xff170658),
+                                                                          fontSize:
                                                                               14,
-                                                                              context),
                                                                           fontFamily:
                                                                               "Archivo",
                                                                           fontWeight:
@@ -682,11 +674,11 @@ class _WalletScreenState extends State<WalletScreen>
                         children: [
                           SvgPicture.asset(
                               'assets/Vectores/Iconos/Depositar.svg'),
-                          Text(
+                          const AutoSizeText(
                             "Depositar",
                             style: TextStyle(
-                              color: const Color(0xff170658),
-                              fontSize: UtilSize.width(12, context),
+                              color: Color(0xff170658),
+                              fontSize: 12,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -709,11 +701,11 @@ class _WalletScreenState extends State<WalletScreen>
                         children: [
                           SvgPicture.asset(
                               'assets/Vectores/Iconos/Retirar.svg'),
-                          Text(
+                          const AutoSizeText(
                             "Retirar",
                             style: TextStyle(
-                              color: const Color(0xff170658),
-                              fontSize: UtilSize.width(12, context),
+                              color: Color(0xff170658),
+                              fontSize: 12,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -738,11 +730,11 @@ Espérala pronto!!''',
                         children: [
                           SvgPicture.asset(
                               'assets/Vectores/Iconos/Transferir.svg'),
-                          Text(
+                          const AutoSizeText(
                             "Transferir",
                             style: TextStyle(
-                              color: const Color(0xff170658),
-                              fontSize: UtilSize.width(12, context),
+                              color: Color(0xff170658),
+                              fontSize: 12,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -758,11 +750,11 @@ Espérala pronto!!''',
                         children: [
                           SvgPicture.asset(
                               'assets/Vectores/Iconos/Comprar.svg'),
-                          Text(
+                          const AutoSizeText(
                             "Comprar",
                             style: TextStyle(
-                              color: const Color(0xff170658),
-                              fontSize: UtilSize.width(12, context),
+                              color: Color(0xff170658),
+                              fontSize: 12,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             ),
@@ -784,11 +776,11 @@ Espérala pronto!!''',
                   children: [
                     SizedBox(
                       width: UtilSize.width(284, context),
-                      child: Text(
+                      child: const AutoSizeText(
                         "Tú acreditación de tokens puede tardar de 5 minutos hasta 1 hora. Para conocer el estatus de clic en refrescar.",
                         style: TextStyle(
-                          color: const Color(0xff170658),
-                          fontSize: UtilSize.width(12, context),
+                          color: Color(0xff170658),
+                          fontSize: 12,
                         ),
                       ),
                     ),
@@ -804,11 +796,11 @@ Espérala pronto!!''',
               ),
               Padding(
                 padding: EdgeInsets.only(top: size.height * (21 / size.height)),
-                child: Text(
+                child: const AutoSizeText(
                   "Saldos disponibles",
                   style: TextStyle(
-                    color: const Color(0xff2504ca),
-                    fontSize: UtilSize.width(15, context),
+                    color: Color(0xff2504ca),
+                    fontSize: 15,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -825,7 +817,7 @@ Espérala pronto!!''',
               //             Padding(
               //               padding: EdgeInsets.only(
               //                   top: size.height * (12 / size.height)),
-              //               child: const Text(
+              //               child: const AutoSizeText(
               //                 "Tokens",
               //                 style: TextStyle(
               //                   color: Color(0xff170658),
@@ -853,7 +845,7 @@ Espérala pronto!!''',
               //                 child: Column(
               //                   crossAxisAlignment: CrossAxisAlignment.start,
               //                   children: const [
-              //                     Text(
+              //                     AutoSizeText(
               //                       "Ebloqs",
               //                       style: TextStyle(
               //                         color: Color(0xff170658),
@@ -862,7 +854,7 @@ Espérala pronto!!''',
               //                         fontWeight: FontWeight.w600,
               //                       ),
               //                     ),
-              //                     Text(
+              //                     AutoSizeText(
               //                       "EBL-HERALD-01.",
               //                       style: TextStyle(
               //                         color: Color(0xff8F8B9F),
@@ -882,7 +874,7 @@ Espérala pronto!!''',
               //     Column(
               //       crossAxisAlignment: CrossAxisAlignment.end,
               //       children: [
-              //         const Text(
+              //         const AutoSizeText(
               //           "Disponibles",
               //           style: TextStyle(
               //             color: Color(0xff170658),
@@ -897,7 +889,7 @@ Espérala pronto!!''',
               //         Padding(
               //           padding: EdgeInsets.only(
               //               top: size.height * (21 / size.height)),
-              //           child: const Text(
+              //           child: const AutoSizeText(
               //             "50",
               //             textAlign: TextAlign.right,
               //             style: TextStyle(
@@ -926,7 +918,7 @@ Espérala pronto!!''',
                   // Padding(
                   //   padding:
                   //       EdgeInsets.only(top: size.height * (16 / size.height)),
-                  //   child: const Text(
+                  //   child: const AutoSizeText(
                   //     "Dinero",
                   //     style: TextStyle(
                   //       color: Color(0xff170658),
@@ -952,7 +944,7 @@ Espérala pronto!!''',
                   //         child: Column(
                   //           crossAxisAlignment: CrossAxisAlignment.start,
                   //           children: const [
-                  //             Text(
+                  //             AutoSizeText(
                   //               "Dólares",
                   //               style: TextStyle(
                   //                 color: Color(0xff170658),
@@ -961,7 +953,7 @@ Espérala pronto!!''',
                   //                 fontWeight: FontWeight.w600,
                   //               ),
                   //             ),
-                  //             Text(
+                  //             AutoSizeText(
                   //               "USD",
                   //               style: TextStyle(
                   //                 color: Color(0xff8F8B9F),
@@ -974,7 +966,7 @@ Espérala pronto!!''',
                   //         ),
                   //       ),
                   //       Expanded(child: Container()),
-                  //       const Text(
+                  //       const AutoSizeText(
                   //         "1,500.00",
                   //         textAlign: TextAlign.right,
                   //         style: TextStyle(
@@ -1003,7 +995,7 @@ Espérala pronto!!''',
                   //         child: Column(
                   //           crossAxisAlignment: CrossAxisAlignment.start,
                   //           children: const [
-                  //             Text(
+                  //             AutoSizeText(
                   //               "Euros",
                   //               style: TextStyle(
                   //                 color: Color(0xff170658),
@@ -1012,7 +1004,7 @@ Espérala pronto!!''',
                   //                 fontWeight: FontWeight.w600,
                   //               ),
                   //             ),
-                  //             Text(
+                  //             AutoSizeText(
                   //               "EUR",
                   //               style: TextStyle(
                   //                 color: Color(0xff8F8B9F),
@@ -1025,7 +1017,7 @@ Espérala pronto!!''',
                   //         ),
                   //       ),
                   //       Expanded(child: Container()),
-                  //       const Text(
+                  //       const AutoSizeText(
                   //         "135.00",
                   //         textAlign: TextAlign.right,
                   //         style: TextStyle(
@@ -1054,11 +1046,11 @@ Espérala pronto!!''',
                   Padding(
                     padding:
                         EdgeInsets.only(top: size.height * (16 / size.height)),
-                    child: Text(
+                    child: const AutoSizeText(
                       "Criptomonedas",
                       style: TextStyle(
-                        color: const Color(0xff170658),
-                        fontSize: UtilSize.width(14, context),
+                        color: Color(0xff170658),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w600,
                       ),
@@ -1092,21 +1084,21 @@ Espérala pronto!!''',
                               left: size.width * (12 / size.width)),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
+                            children: const [
+                              AutoSizeText(
                                 "Ebloqs",
                                 style: TextStyle(
-                                  color: const Color(0xff170658),
-                                  fontSize: UtilSize.width(14, context),
+                                  color: Color(0xff170658),
+                                  fontSize: 14,
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              Text(
+                              AutoSizeText(
                                 "EBL",
                                 style: TextStyle(
-                                  color: const Color(0xff8F8B9F),
-                                  fontSize: UtilSize.width(14, context),
+                                  color: Color(0xff8F8B9F),
+                                  fontSize: 14,
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -1115,12 +1107,12 @@ Espérala pronto!!''',
                           ),
                         ),
                         Expanded(child: Container()),
-                        Text(
+                        AutoSizeText(
                           ebl ?? '0.00',
                           textAlign: TextAlign.right,
-                          style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(14, context),
+                          style: const TextStyle(
+                            color: Color(0xff170658),
+                            fontSize: 14,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),
@@ -1144,7 +1136,7 @@ Espérala pronto!!''',
                   //         child: Column(
                   //           crossAxisAlignment: CrossAxisAlignment.start,
                   //           children: const [
-                  //             Text(
+                  //             AutoSizeText(
                   //               "Bitcoin",
                   //               style: TextStyle(
                   //                 color: Color(0xff170658),
@@ -1153,7 +1145,7 @@ Espérala pronto!!''',
                   //                 fontWeight: FontWeight.w600,
                   //               ),
                   //             ),
-                  //             Text(
+                  //             AutoSizeText(
                   //               "BTC",
                   //               style: TextStyle(
                   //                 color: Color(0xff8F8B9F),
@@ -1166,7 +1158,7 @@ Espérala pronto!!''',
                   //         ),
                   //       ),
                   //       Expanded(child: Container()),
-                  //       const Text(
+                  //       const AutoSizeText(
                   //         "0.00004378",
                   //         textAlign: TextAlign.right,
                   //         style: TextStyle(
@@ -1195,7 +1187,7 @@ Espérala pronto!!''',
                   //         child: Column(
                   //           crossAxisAlignment: CrossAxisAlignment.start,
                   //           children: const [
-                  //             Text(
+                  //             AutoSizeText(
                   //               "Ethereum",
                   //               style: TextStyle(
                   //                 color: Color(0xff170658),
@@ -1204,7 +1196,7 @@ Espérala pronto!!''',
                   //                 fontWeight: FontWeight.w600,
                   //               ),
                   //             ),
-                  //             Text(
+                  //             AutoSizeText(
                   //               "ETH",
                   //               style: TextStyle(
                   //                 color: Color(0xff8F8B9F),
@@ -1217,7 +1209,7 @@ Espérala pronto!!''',
                   //         ),
                   //       ),
                   //       Expanded(child: Container()),
-                  //       const Text(
+                  //       const AutoSizeText(
                   //         "0.00000398",
                   //         textAlign: TextAlign.right,
                   //         style: TextStyle(

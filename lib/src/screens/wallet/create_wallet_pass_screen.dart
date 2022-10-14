@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/legal/therms_conditions_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_screen.dart';
 import 'package:ebloqs_app/src/services/create_wallet_service.dart';
@@ -67,14 +69,14 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                               'assets/Vectores/Iconos/Arrow left.svg'),
                         ),
                         Expanded(child: Container()),
-                        Align(
+                        const Align(
                           alignment: Alignment.center,
                           child: Center(
-                            child: Text(
+                            child: AutoSizeText(
                               "Crea tu billetera",
                               style: TextStyle(
-                                color: const Color(0xff170658),
-                                fontSize: UtilSize.width(17, context),
+                                color: Color(0xff170658),
+                                fontSize: 17,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w700,
                               ),
@@ -86,11 +88,11 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: size.height * 0.055),
-                      child: Text(
+                      child: const AutoSizeText(
                         "Crear contraseña",
                         style: TextStyle(
-                          color: const Color(0xff170658),
-                          fontSize: UtilSize.width(20, context),
+                          color: Color(0xff170658),
+                          fontSize: 20,
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w700,
                         ),
@@ -101,11 +103,11 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                       child: SizedBox(
                         width: size.width * 0.91,
                         height: UtilSize.height(85, context),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Establezca una contraseña para su copia de seguridad en la nube y guárdela en un lugar seguro. No podemos restablecer la contraseña por usted. No reutilices tu contraseña de la nube.",
                           style: TextStyle(
-                              color: const Color(0xff170658),
-                              fontSize: UtilSize.width(14, context),
+                              color: Color(0xff170658),
+                              fontSize: 14,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                               height: 1.2),
@@ -121,11 +123,11 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const AutoSizeText(
                               "Ingresa tu contraseña",
                               style: TextStyle(
-                                color: const Color(0xff170658),
-                                fontSize: UtilSize.width(13, context),
+                                color: Color(0xff170658),
+                                fontSize: 13,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w400,
                               ),
@@ -194,11 +196,11 @@ una minúscula, un número y un carácter especial''';
                             Padding(
                               padding:
                                   EdgeInsets.only(top: size.height * 0.035),
-                              child: Text(
+                              child: const AutoSizeText(
                                 "Ingresa una vez más tu contraseña",
                                 style: TextStyle(
-                                  color: const Color(0xff170658),
-                                  fontSize: UtilSize.width(13, context),
+                                  color: Color(0xff170658),
+                                  fontSize: 13,
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -317,11 +319,11 @@ una minúscula, un número y un carácter especial''';
                                     padding: EdgeInsets.only(
                                         left: size.width * 0.03),
                                     child: GestureDetector(
-                                      child: Text(
+                                      child: const AutoSizeText(
                                         "Acepto términos y condiciones ebloqs",
                                         style: TextStyle(
-                                          color: const Color(0xff170658),
-                                          fontSize: UtilSize.width(13, context),
+                                          color: Color(0xff170658),
+                                          fontSize: 13,
                                           fontFamily: "Archivo",
                                           fontWeight: FontWeight.w400,
                                         ),

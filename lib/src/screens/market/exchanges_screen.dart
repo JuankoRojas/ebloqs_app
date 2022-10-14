@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/screens/market/market_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ class _ExchangesScreenState extends State<ExchangesScreen> {
               right: size.width * 0.016),
           child: Row(
             children: [
-              const Text(
+              const AutoSizeText(
                 "#",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -80,7 +81,7 @@ class _ExchangesScreenState extends State<ExchangesScreen> {
               SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.016),
-                child: const Text(
+                child: const AutoSizeText(
                   "Intercambio",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -94,7 +95,7 @@ class _ExchangesScreenState extends State<ExchangesScreen> {
               SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.128),
-                child: const Text(
+                child: const AutoSizeText(
                   "24h Volume",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -108,7 +109,7 @@ class _ExchangesScreenState extends State<ExchangesScreen> {
               SvgPicture.asset('assets/Vectores/Iconos/Polygon 3.svg'),
               Padding(
                 padding: EdgeInsets.only(left: size.width * 0.0853333333333333),
-                child: const Text(
+                child: const AutoSizeText(
                   "Puntuación",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -129,14 +130,14 @@ class _ExchangesScreenState extends State<ExchangesScreen> {
                 builder: (context, AsyncSnapshot<Payload> snapshot) {
                   switch (snapshot.connectionState) {
                     case ConnectionState.none:
-                      return const Text('none');
+                      return const AutoSizeText('none');
                     case ConnectionState.waiting:
                       return const Center(child: SizedBox());
                     case ConnectionState.active:
-                      return const Text('');
+                      return const AutoSizeText('');
                     case ConnectionState.done:
                       if (snapshot.hasError) {
-                        return Text(
+                        return AutoSizeText(
                           '${snapshot.error}',
                           style: const TextStyle(color: Colors.red),
                         );
@@ -151,14 +152,14 @@ class _ExchangesScreenState extends State<ExchangesScreen> {
                                       AsyncSnapshot snapshotCategory) {
                                     switch (snapshotCategory.connectionState) {
                                       case ConnectionState.none:
-                                        return const Text('none');
+                                        return const AutoSizeText('none');
                                       case ConnectionState.waiting:
                                         return const Center(child: SizedBox());
                                       case ConnectionState.active:
-                                        return const Text('');
+                                        return const AutoSizeText('');
                                       case ConnectionState.done:
                                         if (snapshotCategory.hasError) {
-                                          return Text(
+                                          return AutoSizeText(
                                             '${snapshotCategory.error}',
                                             style: const TextStyle(
                                                 color: Colors.red),
@@ -182,16 +183,18 @@ class _ExchangesScreenState extends State<ExchangesScreen> {
                                                 switch (snapshotExchange
                                                     .connectionState) {
                                                   case ConnectionState.none:
-                                                    return const Text('none');
+                                                    return const AutoSizeText(
+                                                        'none');
                                                   case ConnectionState.waiting:
                                                     return const Center(
                                                         child: SizedBox());
                                                   case ConnectionState.active:
-                                                    return const Text('');
+                                                    return const AutoSizeText(
+                                                        '');
                                                   case ConnectionState.done:
                                                     if (snapshotExchange
                                                         .hasError) {
-                                                      return Text(
+                                                      return AutoSizeText(
                                                         '${snapshotExchange.error}',
                                                         style: const TextStyle(
                                                             color: Colors.red),

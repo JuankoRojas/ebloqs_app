@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:device_apps/device_apps.dart';
+
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android.dart';
@@ -150,7 +152,7 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen>
                 ),
                 const Padding(
                   padding: EdgeInsets.only(left: 15.5),
-                  child: Text(
+                  child: AutoSizeText(
                     'Regresar',
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -193,7 +195,7 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen>
                 Padding(
                   padding: EdgeInsets.only(top: size.height * 0.025),
                   child: Center(
-                    child: Text(
+                    child: AutoSizeText(
                       email ?? '',
                       style: const TextStyle(
                         color: Color(0xff170658),
@@ -215,7 +217,7 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen>
                       color: const Color(0xfff9f9fa),
                     ),
                     child: const Center(
-                      child: Text(
+                      child: AutoSizeText(
                         '''Hemos enviado un link a tu correo para
 continuar el proceso de registro en Ebloqs''',
                         style: TextStyle(
@@ -288,7 +290,7 @@ continuar el proceso de registro en Ebloqs''',
                               Padding(
                                 padding:
                                     EdgeInsets.only(top: size.height * 0.1),
-                                child: const Text(
+                                child: const AutoSizeText(
                                   "Correo no verificado",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -305,7 +307,7 @@ continuar el proceso de registro en Ebloqs''',
                                   padding: EdgeInsets.only(
                                     top: size.height * 0.015,
                                   ),
-                                  child: const Text(
+                                  child: const AutoSizeText(
                                     "Reintentar",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -327,7 +329,7 @@ continuar el proceso de registro en Ebloqs''',
                                   padding: EdgeInsets.only(
                                     top: size.height * 0.1,
                                   ),
-                                  child: const Text(
+                                  child: const AutoSizeText(
                                     "Verificando...",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
@@ -342,7 +344,7 @@ continuar el proceso de registro en Ebloqs''',
                                     Padding(
                                       padding: EdgeInsets.only(
                                           top: size.height * 0.1),
-                                      child: Text(
+                                      child: AutoSizeText(
                                         "Validamos en $_startCount segundos",
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
@@ -358,7 +360,7 @@ continuar el proceso de registro en Ebloqs''',
                                       child: Padding(
                                         padding: EdgeInsets.only(
                                             top: size.height * 0.015),
-                                        child: const Text(
+                                        child: const AutoSizeText(
                                           "Ya validé mi correo",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(

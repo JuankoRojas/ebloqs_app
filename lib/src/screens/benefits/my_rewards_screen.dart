@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -36,7 +38,7 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(right: size.width * 0.373333333333333),
-                  child: Text(
+                  child: AutoSizeText(
                     "Beneficios",
                     style: TextStyle(
                       color: const Color(0xff170658),
@@ -50,7 +52,7 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.00985221674876847),
-              child: Text(
+              child: AutoSizeText(
                 "Recomienda amigos y gana tokens EBL",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -92,7 +94,7 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      AutoSizeText(
                         "Mis recompensas",
                         style: TextStyle(
                           color: const Color(0xff2504ca),
@@ -106,7 +108,7 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
                             top: size.height * 0.00985221674876847),
                         child: SizedBox(
                           width: size.width * 0.781333333333333,
-                          child: Text(
+                          child: AutoSizeText(
                             "Las recompensas se repartirán en un periodo de 48 horas.",
                             style: TextStyle(
                               color: const Color(0xff170658),
@@ -126,7 +128,7 @@ class _MyRewardsScreenState extends State<MyRewardsScreen> {
                         )),
                       ),
                       Center(
-                        child: Text(
+                        child: AutoSizeText(
                           "No se han encontrado recompensas",
                           style: TextStyle(
                             color: const Color(0xff170658),

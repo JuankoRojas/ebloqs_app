@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -59,7 +60,7 @@ class CustomPaymentMethod extends StatelessWidget {
                   Padding(
                     padding:
                         EdgeInsets.only(left: size.width * 0.0533333333333333),
-                    child: Text(
+                    child: AutoSizeText(
                       "●●●",
                       style: TextStyle(
                         color: const Color(0xff757575).withOpacity(0.5),
@@ -71,7 +72,7 @@ class CustomPaymentMethod extends StatelessWidget {
                   Padding(
                     padding:
                         EdgeInsets.only(left: size.width * 0.0186666666666667),
-                    child: Text(
+                    child: AutoSizeText(
                       number,
                       style: const TextStyle(
                         color: Color(0xff170658),
@@ -94,7 +95,7 @@ class CustomPaymentMethod extends StatelessWidget {
                   CupertinoSwitch(value: principal, onChanged: (value) {}),
                   Padding(
                     padding: EdgeInsets.only(left: size.width * 0.04),
-                    child: Text(
+                    child: AutoSizeText(
                       method,
                       style: const TextStyle(
                         color: Color(0xff170658),

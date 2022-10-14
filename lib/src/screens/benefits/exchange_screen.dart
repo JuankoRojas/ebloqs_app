@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/benefits/accumulated_points_screen.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +39,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(right: size.width * 0.373333333333333),
-                  child: Text(
+                  child: AutoSizeText(
                     "Beneficios",
                     style: TextStyle(
                       color: const Color(0xff170658),
@@ -51,7 +53,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
             ),
             Padding(
               padding: EdgeInsets.only(top: size.height * 0.00985221674876847),
-              child: Text(
+              child: AutoSizeText(
                 "Canjea tus tokens EBL por beneficios",
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -95,7 +97,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      AutoSizeText(
                         "Canje",
                         style: TextStyle(
                           color: const Color(0xff2504ca),
@@ -107,7 +109,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: size.height * 0.020935960591133),
-                        child: Text(
+                        child: AutoSizeText(
                           "¿Cómo ganar EBL con tus referidos?",
                           style: TextStyle(
                             color: const Color(0xff170658),
@@ -123,7 +125,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            AutoSizeText(
                               "▪",
                               style: TextStyle(
                                 color: const Color(0xff170658),
@@ -135,7 +137,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                                   left: size.width * 0.0213333333333333),
                               child: SizedBox(
                                 width: UtilSize.width(280, context),
-                                child: Text(
+                                child: AutoSizeText(
                                   "Comparte el código que te asignamos en tus redes sociales.",
                                   style: TextStyle(
                                     color: const Color(0xff170658),
@@ -153,7 +155,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            AutoSizeText(
                               "▪",
                               style: TextStyle(
                                 color: const Color(0xff170658),
@@ -165,7 +167,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                                   left: size.width * 0.0213333333333333),
                               child: SizedBox(
                                 width: UtilSize.width(280, context),
-                                child: Text(
+                                child: AutoSizeText(
                                   "Si tu referido invierte más de USD 1.000 obtendrás beneficios.",
                                   style: TextStyle(
                                     color: const Color(0xff170658),
@@ -180,7 +182,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                       Padding(
                         padding: EdgeInsets.only(
                             top: size.height * 0.020935960591133),
-                        child: Text(
+                        child: AutoSizeText(
                           "¿Cómo canjeas tus recompensas?",
                           style: TextStyle(
                             color: const Color(0xff170658),
@@ -196,7 +198,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            AutoSizeText(
                               "▪",
                               style: TextStyle(
                                 color: const Color(0xff170658),
@@ -208,7 +210,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
                                   left: size.width * 0.0213333333333333),
                               child: SizedBox(
                                 width: UtilSize.width(280, context),
-                                child: Text(
+                                child: AutoSizeText(
                                   "Puedes invertir tus EBLs en la tokenización de activos.",
                                   style: TextStyle(
                                     color: const Color(0xff170658),

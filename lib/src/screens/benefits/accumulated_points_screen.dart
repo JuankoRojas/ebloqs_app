@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -38,7 +40,7 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                   padding:
                       EdgeInsets.only(top: size.height * 0.0197044334975369),
                   child: Center(
-                    child: Text(
+                    child: AutoSizeText(
                       "¡Felicitaciones has acumulado puntos!",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -62,7 +64,7 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                         color: const Color(0xfff6f4fd),
                       ),
                       child: Center(
-                        child: Text(
+                        child: AutoSizeText(
                           "2000 pts",
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -79,7 +81,7 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(top: size.height * 0.0431034482758621),
-                  child: Text(
+                  child: AutoSizeText(
                     "Canjea tus puntos",
                     style: TextStyle(
                       color: const Color(0xff170658),
@@ -117,7 +119,7 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                           right: size.width * 0.064),
                       child: Column(
                         children: [
-                          Text(
+                          AutoSizeText(
                             "Tus puntos te dan derecho a un cupón de",
                             textAlign: TextAlign.center,
                             style: TextStyle(
@@ -139,7 +141,7 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                                 color: const Color(0xfff6f4fd),
                               ),
                               child: Center(
-                                child: Text(
+                                child: AutoSizeText(
                                   "50 EBL",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -188,7 +190,7 @@ class _AccumulatedPointsScreenState extends State<AccumulatedPointsScreen> {
                             child: SvgPicture.asset(
                                 'assets/Vectores/Iconos/wallet.svg'),
                           ),
-                          Text(
+                          AutoSizeText(
                             "Tus ebloqs se encuentran en tu billetera",
                             textAlign: TextAlign.center,
                             style: TextStyle(

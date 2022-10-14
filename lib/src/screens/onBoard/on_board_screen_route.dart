@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_1_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_2_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_3_screen.dart';
@@ -195,10 +194,10 @@ Future checkPersistenceState(BuildContext context) async {
   //       .userInfoSet(infoModel);
   // }
 
-  if (uid != null || token != null) {
-    // compute<GetMyInfoModel, void>(
-    //     heavyTask, await AuthUserService().getUserInfo(accesstoken: token!));
-    Future.delayed(Duration.zero)
-        .then((_) => Navigator.pushNamed(context, HomeScreen.routeName));
-  }
+  // if (uid != null || token != null) {
+  //   // compute<GetMyInfoModel, void>(
+  //   //     heavyTask, await AuthUserService().getUserInfo(accesstoken: token!));
+  //   Future.delayed(Duration.zero)
+  //       .then((_) => Navigator.pushNamed(context, HomeScreen.routeName));
+  // }
 }

@@ -1,4 +1,5 @@
-import 'package:ebloqs_app/src/global/util_size.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_passport_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
@@ -39,12 +40,12 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
             ),
           ),
         ),
-        title: Text(
+        title: const AutoSizeText(
           "Información personal",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: const Color(0xff170658),
-            fontSize: UtilSize.width(17, context),
+            color: Color(0xff170658),
+            fontSize: 17,
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -67,11 +68,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     Padding(
                       padding: EdgeInsets.only(
                           left: size.width * 0.0384219554030875),
-                      child: Text(
+                      child: const AutoSizeText(
                         "Documento de identidad",
                         style: TextStyle(
-                          color: const Color(0xff170658),
-                          fontSize: UtilSize.width(13, context),
+                          color: Color(0xff170658),
+                          fontSize: 13,
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w400,
                         ),
@@ -115,12 +116,12 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                 padding: EdgeInsets.only(
                     top: size.height * 0.0281218613993974,
                     left: size.width * 0.0384219554030875),
-                child: Text(
+                child: const AutoSizeText(
                   "Use documento válido de su país",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(15, context),
+                    color: Color(0xff170658),
+                    fontSize: 15,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -132,11 +133,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     left: size.width * 0.0384219554030875),
                 child: SizedBox(
                   width: size.width * 0.853601340033502,
-                  child: Text(
+                  child: const AutoSizeText(
                     "solo se aceptarán los documentos a continuación, todos los demás documentos serán rechazados",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -167,11 +168,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     ),
                     child: Row(
                       children: [
-                        Text(
+                        const AutoSizeText(
                           "Documento de identidad",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(14, context),
+                            color: Color(0xff170658),
+                            fontSize: 14,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),
@@ -211,11 +212,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     ),
                     child: Row(
                       children: [
-                        Text(
+                        const AutoSizeText(
                           "Pasaporte",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(14, context),
+                            color: Color(0xff170658),
+                            fontSize: 14,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),
@@ -256,11 +257,11 @@ class _IdDocumentScreenState extends State<IdDocumentScreen> {
                     ),
                     child: Row(
                       children: [
-                        Text(
+                        const AutoSizeText(
                           "Licencia de conducir",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(14, context),
+                            color: Color(0xff170658),
+                            fontSize: 14,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w400,
                           ),

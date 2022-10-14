@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android_settings.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth_settings.dart';
 // import 'package:ebloqs_app/src/screens/market/market_screen.dart';
@@ -71,7 +72,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
             ),
             child: SizedBox(
               width: size.width * 0.92,
-              child: const Text(
+              child: const AutoSizeText(
                 "Para proteger tu cuenta se recomienda activar el menos un doble factor de seguridad.",
                 style: TextStyle(
                   color: Color(0xff170658),
@@ -87,7 +88,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
                 right: size.width * 0.0426666666666667),
             child: Row(
               children: [
-                const Text(
+                const AutoSizeText(
                   "ID Facial",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -121,7 +122,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
             child: GestureDetector(
               child: Row(
                 children: [
-                  const Text(
+                  const AutoSizeText(
                     "Gestión de dispositivos",
                     style: TextStyle(
                       color: Color(0xff170658),
@@ -146,7 +147,7 @@ class _SecurityScreenState extends State<SecurityScreen> {
             child: GestureDetector(
               child: Row(
                 children: [
-                  const Text(
+                  const AutoSizeText(
                     "Eliminar cuenta",
                     style: TextStyle(
                       color: Color(0xff170658),

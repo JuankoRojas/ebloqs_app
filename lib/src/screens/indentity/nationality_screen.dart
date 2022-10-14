@@ -1,8 +1,10 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 
 import 'package:dotted_line/dotted_line.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/personal_information_screen.dart';
@@ -74,12 +76,12 @@ class _NationalityScreenState extends State<NationalityScreen>
             ),
           ),
         ),
-        title: Text(
+        title: const AutoSizeText(
           "Identidad",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: const Color(0xff170658),
-            fontSize: UtilSize.width(17, context),
+            color: Color(0xff170658),
+            fontSize: 17,
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -95,11 +97,11 @@ class _NationalityScreenState extends State<NationalityScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const AutoSizeText(
                 "Selecciona tu país de residencia",
                 style: TextStyle(
-                  color: const Color(0xff170658),
-                  fontSize: UtilSize.width(17, context),
+                  color: Color(0xff170658),
+                  fontSize: 17,
                   fontFamily: "Archivo",
                   fontWeight: FontWeight.w700,
                 ),
@@ -110,13 +112,13 @@ class _NationalityScreenState extends State<NationalityScreen>
                 ),
                 child: SizedBox(
                   width: size.width * 0.805268422807603,
-                  child: Text(
+                  child: const AutoSizeText(
                     "Asegúrese de que su país de residencia coincida con su identificación válida.  Su identidad podría no ser validada según la selección.",
                     style: TextStyle(
-                      color: const Color(0xff170658),
+                      color: Color(0xff170658),
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
-                      fontSize: UtilSize.width(13, context),
+                      fontSize: 13,
                     ),
                   ),
                 ),
@@ -125,11 +127,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                 padding: EdgeInsets.only(
                   top: size.height * 0.0206320615686917,
                 ),
-                child: Text(
+                child: const AutoSizeText(
                   "Nacionalidad",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(15, context),
+                    color: Color(0xff170658),
+                    fontSize: 15,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -143,11 +145,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                     appBar: AppBar(
                       backgroundColor: Colors.transparent,
                       elevation: 0,
-                      title: Text(
+                      title: const AutoSizeText(
                         'Selecciona tu país',
                         style: TextStyle(
-                          color: const Color(0xff170658),
-                          fontSize: UtilSize.width(17, context),
+                          color: Color(0xff170658),
+                          fontSize: 17,
                           fontFamily: "Archivo",
                           fontWeight: FontWeight.w700,
                         ),
@@ -187,11 +189,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            AutoSizeText(
                               countryCode!.name!,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
-                                fontSize: UtilSize.width(13, context),
+                                fontSize: 13,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w400,
                               ),
@@ -250,12 +252,12 @@ class _NationalityScreenState extends State<NationalityScreen>
                 padding: EdgeInsets.only(
                   top: size.height * 0.0373208930356548,
                 ),
-                child: Text(
+                child: const AutoSizeText(
                   "Proceso de verificación",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(14, context),
+                    color: Color(0xff170658),
+                    fontSize: 14,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w600,
                   ),
@@ -277,13 +279,13 @@ class _NationalityScreenState extends State<NationalityScreen>
                           color: Color(0xff2504ca),
                           shape: BoxShape.circle,
                         ),
-                        child: Center(
-                          child: Text(
+                        child: const Center(
+                          child: AutoSizeText(
                             "1",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: UtilSize.width(15, context),
+                              fontSize: 15,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w600,
                             ),
@@ -293,11 +295,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                       Positioned(
                         top: size.height * 0.0137075718015666,
                         left: UtilSize.width(48, context),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Verificación identidad",
                           style: TextStyle(
-                            color: const Color(0xff2504ca),
-                            fontSize: UtilSize.width(14, context),
+                            color: Color(0xff2504ca),
+                            fontSize: 14,
                             fontFamily: "Archivo",
                             fontWeight: FontWeight.w600,
                           ),
@@ -329,11 +331,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                                   width: UtilSize.width(24, context),
                                 ),
                               ),
-                              Text(
+                              const AutoSizeText(
                                 "Documento de identidad",
                                 style: TextStyle(
-                                  color: const Color(0xff170658),
-                                  fontSize: UtilSize.width(13, context),
+                                  color: Color(0xff170658),
+                                  fontSize: 13,
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -342,11 +344,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                                 padding: EdgeInsets.only(
                                     left: size.width * 0.0878757846052198,
                                     right: size.width * 0.0327540106951872),
-                                child: Text(
+                                child: const AutoSizeText(
                                   "Pendiente",
                                   style: TextStyle(
-                                    color: const Color(0xffeb4040),
-                                    fontSize: UtilSize.width(11, context),
+                                    color: Color(0xffeb4040),
+                                    fontSize: 11,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -382,11 +384,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                                   width: UtilSize.width(24, context),
                                 ),
                               ),
-                              Text(
+                              const AutoSizeText(
                                 "Identificación facial",
                                 style: TextStyle(
-                                  color: const Color(0xff170658),
-                                  fontSize: UtilSize.width(13, context),
+                                  color: Color(0xff170658),
+                                  fontSize: 13,
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -395,11 +397,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                                 padding: EdgeInsets.only(
                                     left: size.width * 0.161502966381015,
                                     right: size.width * 0.0327540106951872),
-                                child: Text(
+                                child: const AutoSizeText(
                                   "Pendiente",
                                   style: TextStyle(
-                                    color: const Color(0xffeb4040),
-                                    fontSize: UtilSize.width(11, context),
+                                    color: Color(0xffeb4040),
+                                    fontSize: 11,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -435,13 +437,13 @@ class _NationalityScreenState extends State<NationalityScreen>
                               border: Border.all(
                                 color: const Color(0xff2504ca),
                               )),
-                          child: Center(
-                            child: Text(
+                          child: const Center(
+                            child: AutoSizeText(
                               "2",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: const Color(0xff170658),
-                                fontSize: UtilSize.width(15, context),
+                                color: Color(0xff170658),
+                                fontSize: 15,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w600,
                               ),
@@ -452,11 +454,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                       Positioned(
                         top: size.height * 0.198541329011345,
                         left: UtilSize.width(48, context),
-                        child: Text(
+                        child: const AutoSizeText(
                           "Domicilio",
                           style: TextStyle(
-                            color: const Color(0xff170658),
-                            fontSize: UtilSize.width(14, context),
+                            color: Color(0xff170658),
+                            fontSize: 14,
                           ),
                         ),
                       ),
@@ -486,11 +488,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                                   width: UtilSize.width(20, context),
                                 ),
                               ),
-                              Text(
+                              const AutoSizeText(
                                 "Dirección de domicilio",
                                 style: TextStyle(
-                                  color: const Color(0xff170658),
-                                  fontSize: UtilSize.width(13, context),
+                                  color: Color(0xff170658),
+                                  fontSize: 13,
                                   fontFamily: "Archivo",
                                   fontWeight: FontWeight.w400,
                                 ),
@@ -499,11 +501,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                                 padding: EdgeInsets.only(
                                     left: size.width * 0.132896890343699,
                                     right: size.width * 0.0327540106951872),
-                                child: Text(
+                                child: const AutoSizeText(
                                   "Pendiente",
                                   style: TextStyle(
-                                    color: const Color(0xffeb4040),
-                                    fontSize: UtilSize.width(11, context),
+                                    color: Color(0xffeb4040),
+                                    fontSize: 11,
                                     fontFamily: "Archivo",
                                     fontWeight: FontWeight.w400,
                                   ),
@@ -521,11 +523,11 @@ class _NationalityScreenState extends State<NationalityScreen>
                 padding: EdgeInsets.only(
                   top: size.height * 0.0396183699870634,
                 ),
-                child: Text(
+                child: const AutoSizeText(
                   "Tiempo de revisión máxima: 72 horas laborables.",
                   style: TextStyle(
-                    color: const Color(0xff170658),
-                    fontSize: UtilSize.width(13, context),
+                    color: Color(0xff170658),
+                    fontSize: 13,
                     fontFamily: "Archivo",
                     fontWeight: FontWeight.w400,
                   ),

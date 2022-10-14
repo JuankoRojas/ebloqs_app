@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,9 +19,9 @@ class _DepositMethodsScreenState extends State<DepositMethodsScreen> {
   String? method;
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
-      const DropdownMenuItem(value: "USD", child: Text("USD")),
-      const DropdownMenuItem(value: "Euros", child: Text("Euros")),
-      const DropdownMenuItem(value: "Pesos", child: Text("Pesos")),
+      const DropdownMenuItem(value: "USD", child: AutoSizeText("USD")),
+      const DropdownMenuItem(value: "Euros", child: AutoSizeText("Euros")),
+      const DropdownMenuItem(value: "Pesos", child: AutoSizeText("Pesos")),
     ];
     return menuItems;
   }
@@ -54,7 +55,7 @@ class _DepositMethodsScreenState extends State<DepositMethodsScreen> {
                       },
                     ),
                     Expanded(child: Container()),
-                    const Text(
+                    const AutoSizeText(
                       "Depositar",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -75,7 +76,7 @@ class _DepositMethodsScreenState extends State<DepositMethodsScreen> {
                 padding: EdgeInsets.only(
                     top: size.height * 0.0386223039625481,
                     left: size.width * 0.0404349303431873),
-                child: const Text(
+                child: const AutoSizeText(
                   "Divisas",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -119,7 +120,7 @@ class _DepositMethodsScreenState extends State<DepositMethodsScreen> {
                     top: size.height * 0.0607172643869892,
                     left: size.width * 0.0409215955983494,
                     right: size.width * 0.0409215955983494),
-                child: const Text(
+                child: const AutoSizeText(
                   "Métodos para depositar",
                   style: TextStyle(
                     color: Color(0xff170658),
@@ -164,7 +165,7 @@ class _DepositMethodsScreenState extends State<DepositMethodsScreen> {
                       padding: EdgeInsets.only(
                         left: size.width * 0.0261016949152543,
                       ),
-                      child: const Text(
+                      child: const AutoSizeText(
                         "Transferencia Bancaria",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -212,7 +213,7 @@ class _DepositMethodsScreenState extends State<DepositMethodsScreen> {
                       padding: EdgeInsets.only(
                         left: size.width * 0.0261016949152543,
                       ),
-                      child: const Text(
+                      child: const AutoSizeText(
                         "Apple o Google Pay",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -260,7 +261,7 @@ class _DepositMethodsScreenState extends State<DepositMethodsScreen> {
                       padding: EdgeInsets.only(
                         left: size.width * 0.0261016949152543,
                       ),
-                      child: const Text(
+                      child: const AutoSizeText(
                         "Tarjeta crédito o debito.",
                         style: TextStyle(
                           color: Color(0xff170658),

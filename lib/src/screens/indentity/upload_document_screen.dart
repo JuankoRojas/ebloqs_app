@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -37,12 +39,12 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
             ),
           ),
         ),
-        title: Text(
+        title: const AutoSizeText(
           "Verificación Identidad",
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: const Color(0xff170658),
-            fontSize: UtilSize.width(17, context),
+            color: Color(0xff170658),
+            fontSize: 17,
             fontFamily: "Archivo",
             fontWeight: FontWeight.w700,
           ),
@@ -61,11 +63,11 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
                 Padding(
                   padding:
                       EdgeInsets.only(left: size.width * 0.0382383065892797),
-                  child: Text(
+                  child: const AutoSizeText(
                     "Documento de identidad",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(13, context),
+                      color: Color(0xff170658),
+                      fontSize: 13,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w400,
                     ),
@@ -113,20 +115,20 @@ class _UploadDocumentScreenState extends State<UploadDocumentScreen> {
               ),
             ),
           ),
-          Center(
-            child: Text(
+          const Center(
+            child: AutoSizeText(
               "Documento cargado",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(22, context),
+                color: Color(0xff170658),
+                fontSize: 22,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w700,
               ),
             ),
           ),
           // const Center(
-          //   child: Text(
+          //   child: AutoSizeText(
           //     "Continuemos y añade un selfie",
           //     style: TextStyle(
           //       color: Color(0xff170658),

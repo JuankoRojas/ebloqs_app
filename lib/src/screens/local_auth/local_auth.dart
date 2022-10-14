@@ -1,5 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/app/app_config.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -108,11 +110,11 @@ class _LocalAuthState extends State<LocalAuth> {
             padding: EdgeInsets.only(
                 top: UtilSize.height(30, context),
                 left: UtilSize.width(15, context)),
-            child: Text(
+            child: const AutoSizeText(
               "Asegura tu cuenta con Face ID",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(20, context),
+                color: Color(0xff170658),
+                fontSize: 20,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w700,
               ),
@@ -122,13 +124,13 @@ class _LocalAuthState extends State<LocalAuth> {
             padding: EdgeInsets.only(
                 top: UtilSize.height(8, context),
                 left: UtilSize.width(15, context)),
-            child: SizedBox(
+            child: const SizedBox(
               width: 344,
-              child: Text(
+              child: AutoSizeText(
                 "Así nos aseguramos que solo usted pueda tomar las decisiones",
                 style: TextStyle(
-                  color: const Color(0xff170658),
-                  fontSize: UtilSize.width(13, context),
+                  color: Color(0xff170658),
+                  fontSize: 13,
                 ),
               ),
             ),
@@ -161,12 +163,12 @@ class _LocalAuthState extends State<LocalAuth> {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Center(
-                    child: Text(
+                  const Center(
+                    child: AutoSizeText(
                       "Habilitar Face ID",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: UtilSize.width(14, context),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -186,12 +188,12 @@ class _LocalAuthState extends State<LocalAuth> {
                   borderRadius: BorderRadius.circular(5),
                   color: const Color(0xffF9F9FA),
                 ),
-                child: Center(
-                  child: Text(
+                child: const Center(
+                  child: AutoSizeText(
                     "En otro momento",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(14, context),
+                      color: Color(0xff170658),
+                      fontSize: 14,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w700,
                     ),

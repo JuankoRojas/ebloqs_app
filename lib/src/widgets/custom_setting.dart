@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -32,7 +33,7 @@ class CustomSetting extends StatelessWidget {
               left: size.width * 0.048, right: size.width * 0.048),
           child: Row(
             children: [
-              Text(
+              AutoSizeText(
                 setting,
                 style: const TextStyle(
                   color: Color(0xff170658),

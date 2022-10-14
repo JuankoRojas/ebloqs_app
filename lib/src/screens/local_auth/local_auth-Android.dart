@@ -1,6 +1,8 @@
 import 'package:after_layout/after_layout.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/app/app_config.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -118,11 +120,11 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid>
               top: UtilSize.height(30, context),
               left: UtilSize.width(15, context),
             ),
-            child: Text(
+            child: const AutoSizeText(
               "Asegurar tu cuenta con Huella Digital",
               style: TextStyle(
-                color: const Color(0xff170658),
-                fontSize: UtilSize.width(20, context),
+                color: Color(0xff170658),
+                fontSize: 20,
                 fontFamily: "Archivo",
                 fontWeight: FontWeight.w700,
               ),
@@ -135,11 +137,11 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid>
             ),
             child: SizedBox(
               width: UtilSize.width(344, context),
-              child: Text(
+              child: const AutoSizeText(
                 "Así nos aseguramos que solo usted pueda tomar las decisiones",
                 style: TextStyle(
-                  color: const Color(0xff170658),
-                  fontSize: UtilSize.width(13, context),
+                  color: Color(0xff170658),
+                  fontSize: 13,
                 ),
               ),
             ),
@@ -173,12 +175,12 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid>
                       fit: BoxFit.cover,
                     ),
                   ),
-                  Center(
-                    child: Text(
+                  const Center(
+                    child: AutoSizeText(
                       "Habilitar huella digital",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: UtilSize.width(14, context),
+                        fontSize: 14,
                         fontFamily: "Archivo",
                         fontWeight: FontWeight.w700,
                       ),
@@ -191,6 +193,8 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid>
           Padding(
             padding: EdgeInsets.only(
               top: UtilSize.height(16, context),
+              right: UtilSize.width(15, context),
+              left: UtilSize.width(15, context),
             ),
             child: GestureDetector(
               child: Container(
@@ -200,12 +204,12 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid>
                   borderRadius: BorderRadius.circular(5),
                   color: const Color(0xffF9F9FA),
                 ),
-                child: Center(
-                  child: Text(
+                child: const Center(
+                  child: AutoSizeText(
                     "En otro momento",
                     style: TextStyle(
-                      color: const Color(0xff170658),
-                      fontSize: UtilSize.width(14, context),
+                      color: Color(0xff170658),
+                      fontSize: 14,
                       fontFamily: "Archivo",
                       fontWeight: FontWeight.w700,
                     ),

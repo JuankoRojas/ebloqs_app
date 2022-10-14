@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:ebloqs_app/src/widgets/custom_appbar_pop_question.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
             padding: EdgeInsets.only(
               top: size.height * 0.0467980295566502,
             ),
-            child: const Text(
+            child: const AutoSizeText(
               "Antes de eliminar tu cuenta confirma lo siguiente:",
               style: TextStyle(
                 color: Color(0xff170658),
@@ -66,7 +67,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                         left: size.width * 0.04,
                         right: size.width * 0.04,
                       ),
-                      child: const Text(
+                      child: const AutoSizeText(
                         "1. La cuenta no se encuentra en ningún país restringido",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -79,7 +80,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                         left: size.width * 0.04,
                         right: size.width * 0.04,
                       ),
-                      child: const Text(
+                      child: const AutoSizeText(
                         "2. El saldo total es inferior a 0,0001 BTC",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -92,7 +93,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                         left: size.width * 0.04,
                         right: size.width * 0.04,
                       ),
-                      child: const Text(
+                      child: const AutoSizeText(
                         "3. No tienes préstamos",
                         style: TextStyle(
                           color: Color(0xff170658),
@@ -112,7 +113,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
             ),
             child: SizedBox(
               width: size.width * 0.92,
-              child: const Text(
+              child: const AutoSizeText(
                 "Para garantizar la seguridad de tu cuenta y proteger tus activos, Ebloqs revisará detenidamente las solicitudes de eliminación de cuentas antes de eliminarlas. Para comenzar la solicitud de eliminación de cuentas, ponte en contacto con servicio al cliente.",
                 style: TextStyle(
                   color: Color(0xffeb4040),

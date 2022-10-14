@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/screens/benefits/exchange_screen.dart';
 import 'package:ebloqs_app/src/screens/benefits/my_referrals_screen.dart';
 import 'package:ebloqs_app/src/screens/benefits/my_rewards_screen.dart';
@@ -37,7 +39,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
               const Expanded(child: SizedBox()),
               Padding(
                 padding: EdgeInsets.only(right: size.width * 0.373333333333333),
-                child: Text(
+                child: AutoSizeText(
                   "Beneficios",
                   style: TextStyle(
                     color: const Color(0xff170658),
@@ -51,7 +53,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(top: size.height * 0.00985221674876847),
-            child: Text(
+            child: AutoSizeText(
               "Para la comunidad ebloqs",
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -101,7 +103,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                         Navigator.pushNamed(context, MyRewardsScreen.routeName);
                       },
                     ),
-                    Text(
+                    AutoSizeText(
                       "Recompensas",
                       style: TextStyle(
                         color: const Color(0xff170658),
@@ -122,7 +124,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                             context, MyReferralsScreen.routeName);
                       },
                     ),
-                    Text(
+                    AutoSizeText(
                       "Referidos",
                       style: TextStyle(
                         color: const Color(0xff170658),
@@ -142,7 +144,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                         Navigator.pushNamed(context, ExchangeScreen.routeName);
                       },
                     ),
-                    Text(
+                    AutoSizeText(
                       "Canje",
                       style: TextStyle(
                         color: const Color(0xff170658),
@@ -156,7 +158,7 @@ class _BenefitsScreenState extends State<BenefitsScreen> {
                 Column(
                   children: [
                     SvgPicture.asset('assets/Vectores/Iconos/QRig.svg'),
-                    Text(
+                    AutoSizeText(
                       "QR",
                       style: TextStyle(
                         color: const Color(0xff170658),

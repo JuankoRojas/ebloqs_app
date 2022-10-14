@@ -1,4 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
+
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +100,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          AutoSizeText(
                             "Precio edificio",
                             style: TextStyle(
                               color: const Color(0xff170658),
@@ -107,7 +109,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          Text(
+                          AutoSizeText(
                             "USD \$4.700.000",
                             style: TextStyle(
                               color: const Color(0xff170658),
@@ -134,7 +136,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          AutoSizeText(
                             "Tokens emitidos",
                             style: TextStyle(
                               color: const Color(0xff170658),
@@ -143,7 +145,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          Text(
+                          AutoSizeText(
                             "9.400",
                             style: TextStyle(
                               color: const Color(0xff170658),
@@ -170,7 +172,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          AutoSizeText(
                             "Tokens disponibles",
                             style: TextStyle(
                               color: const Color(0xff170658),
@@ -179,7 +181,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          Text(
+                          AutoSizeText(
                             "7.857",
                             style: TextStyle(
                               color: const Color(0xff170658),
@@ -254,7 +256,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 left: size.width * (134 / size.width),
                                 child: SizedBox(
                                   width: UtilSize.width(200, context),
-                                  child: Text(
+                                  child: AutoSizeText(
                                     "Únete y sé dueño de las  mejores oportunidades  de inversión inmobiliarias",
                                     style: TextStyle(
                                       color: const Color(0xff170658),
@@ -294,7 +296,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    AutoSizeText(
                                       "Datos del proyecto",
                                       style: TextStyle(
                                         color: const Color(0xff2504ca),
@@ -326,7 +328,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   padding: EdgeInsets.only(
                                                       left: size.width *
                                                           (8 / size.width)),
-                                                  child: Text(
+                                                  child: AutoSizeText(
                                                     "Tipo de proyecto",
                                                     style: TextStyle(
                                                       color: const Color(
@@ -352,7 +354,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Edificio superficie (m2)",
                                                   style: TextStyle(
                                                     color:
@@ -361,7 +363,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   " 3.437",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -384,7 +386,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Número departamentos",
                                                   style: TextStyle(
                                                     color:
@@ -393,7 +395,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "34",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -416,14 +418,14 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                const Text(
+                                                const AutoSizeText(
                                                   "Número amenidades",
                                                   style: TextStyle(
                                                     color: Color(0xff170658),
                                                     fontSize: 14,
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "10",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -446,7 +448,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Electrolineras",
                                                   style: TextStyle(
                                                     color:
@@ -455,7 +457,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "2",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -478,7 +480,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Vehículo eléctrico comunal",
                                                   style: TextStyle(
                                                     color:
@@ -487,7 +489,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "1",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -510,7 +512,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Concierge edificio",
                                                   style: TextStyle(
                                                     color:
@@ -519,7 +521,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "1",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -545,7 +547,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   padding: EdgeInsets.only(
                                                       left: size.width *
                                                           (8 / size.width)),
-                                                  child: Text(
+                                                  child: AutoSizeText(
                                                     "Validación",
                                                     style: TextStyle(
                                                       color: const Color(
@@ -571,7 +573,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Certificación EDGE",
                                                   style: TextStyle(
                                                     color:
@@ -580,7 +582,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "Ok",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -603,7 +605,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Fideicomiso ",
                                                   style: TextStyle(
                                                     color:
@@ -612,7 +614,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "Ok",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -635,7 +637,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Planos aprobados",
                                                   style: TextStyle(
                                                     color:
@@ -644,7 +646,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "Ok",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -667,7 +669,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Licencia de construcción",
                                                   style: TextStyle(
                                                     color:
@@ -676,7 +678,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "Ok",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -729,7 +731,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    AutoSizeText(
                                       "Tokenomics del proyecto",
                                       style: TextStyle(
                                         color: const Color(0xff2504ca),
@@ -757,7 +759,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Interés durante construcción",
                                                   style: TextStyle(
                                                     color:
@@ -766,7 +768,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "USD \$215.000",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -790,7 +792,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                 padding: EdgeInsets.only(
                                                     left: size.width *
                                                         (8 / size.width)),
-                                                child: Text(
+                                                child: AutoSizeText(
                                                   "Alquiler",
                                                   style: TextStyle(
                                                     color:
@@ -813,7 +815,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Renting anual",
                                                   style: TextStyle(
                                                     color:
@@ -822,7 +824,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "\$430.000",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -844,7 +846,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Gasto anual",
                                                   style: TextStyle(
                                                     color:
@@ -853,7 +855,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   " \$100.000",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -875,7 +877,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Beneficio neto anual",
                                                   style: TextStyle(
                                                     color:
@@ -884,7 +886,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   " \$330.000",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -908,7 +910,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                 padding: EdgeInsets.only(
                                                     left: size.width *
                                                         (8 / size.width)),
-                                                child: Text(
+                                                child: AutoSizeText(
                                                   "Rentabilidad estimada",
                                                   style: TextStyle(
                                                     color:
@@ -931,7 +933,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Interés construcción (1 año)",
                                                   style: TextStyle(
                                                     color:
@@ -940,7 +942,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "\$215.000",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -962,7 +964,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Renting neto (2 años)",
                                                   style: TextStyle(
                                                     color:
@@ -971,7 +973,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "\$660.000",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -993,7 +995,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Plusvalía (3 años)",
                                                   style: TextStyle(
                                                     color:
@@ -1002,7 +1004,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "\$435.000",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1024,7 +1026,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Neto (3 años)",
                                                   style: TextStyle(
                                                     color:
@@ -1033,7 +1035,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "\$1.310.000",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1053,7 +1055,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                             child: SizedBox(
                                               width: size.width *
                                                   (318 / size.width),
-                                              child: Text(
+                                              child: AutoSizeText(
                                                 "*Los intereses son promedios, su naturaleza es especulativa, implican un grado de riesgo. El pago es trimestral, anual y al final de la inversión.",
                                                 style: TextStyle(
                                                   color:
@@ -1103,7 +1105,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    AutoSizeText(
                                       "Descripción de la zona",
                                       style: TextStyle(
                                         color: const Color(0xff2504ca),
@@ -1133,7 +1135,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                 padding: EdgeInsets.only(
                                                     left: size.width *
                                                         (8 / size.width)),
-                                                child: Text(
+                                                child: AutoSizeText(
                                                   "Centros comerciales",
                                                   style: TextStyle(
                                                     color:
@@ -1156,7 +1158,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Mall el Jardín",
                                                   style: TextStyle(
                                                     color:
@@ -1165,7 +1167,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "5 min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1187,7 +1189,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Quicentro shopping",
                                                   style: TextStyle(
                                                     color:
@@ -1196,7 +1198,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   " 8 min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1218,7 +1220,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "CCI",
                                                   style: TextStyle(
                                                     color:
@@ -1227,7 +1229,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   " 9 min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1249,7 +1251,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "CCNU",
                                                   style: TextStyle(
                                                     color:
@@ -1258,7 +1260,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   " 9 min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1282,7 +1284,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                 padding: EdgeInsets.only(
                                                     left: size.width *
                                                         (8 / size.width)),
-                                                child: Text(
+                                                child: AutoSizeText(
                                                   "Supermercados",
                                                   style: TextStyle(
                                                     color:
@@ -1305,7 +1307,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Megamaxi",
                                                   style: TextStyle(
                                                     color:
@@ -1314,7 +1316,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "7 min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1336,7 +1338,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Mi Comisariato",
                                                   style: TextStyle(
                                                     color:
@@ -1345,7 +1347,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   " 9 min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1367,7 +1369,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Coral Hipermercado",
                                                   style: TextStyle(
                                                     color:
@@ -1376,7 +1378,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   " 12min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1400,7 +1402,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                 padding: EdgeInsets.only(
                                                     left: size.width *
                                                         (8 / size.width)),
-                                                child: Text(
+                                                child: AutoSizeText(
                                                   "Parques",
                                                   style: TextStyle(
                                                     color:
@@ -1423,7 +1425,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "La Carolina",
                                                   style: TextStyle(
                                                     color:
@@ -1432,7 +1434,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "4 min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1454,7 +1456,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Metropolitano",
                                                   style: TextStyle(
                                                     color:
@@ -1463,7 +1465,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   " 7 min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1487,7 +1489,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                 padding: EdgeInsets.only(
                                                     left: size.width *
                                                         (8 / size.width)),
-                                                child: Text(
+                                                child: AutoSizeText(
                                                   "Metrovía",
                                                   style: TextStyle(
                                                     color:
@@ -1510,7 +1512,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Text(
+                                                AutoSizeText(
                                                   "Estación la carolina",
                                                   style: TextStyle(
                                                     color:
@@ -1519,7 +1521,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                         14, context),
                                                   ),
                                                 ),
-                                                Text(
+                                                AutoSizeText(
                                                   "5 min",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
@@ -1572,7 +1574,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
+                                    AutoSizeText(
                                       "Datos del promotor",
                                       style: TextStyle(
                                         color: const Color(0xff2504ca),
@@ -1599,7 +1601,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                             padding: EdgeInsets.only(
                                                 top: size.height *
                                                     (34 / size.height)),
-                                            child: Text(
+                                            child: AutoSizeText(
                                               "MASCONSTRU SAS",
                                               style: TextStyle(
                                                 color: const Color(0xff170658),
@@ -1617,7 +1619,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                             child: SizedBox(
                                               width: size.width *
                                                   (308 / size.width),
-                                              child: Text(
+                                              child: AutoSizeText(
                                                 "La constructora se ha caracterizado por ofrecer al mercado de Quito, proyectos de vanguardia con dinámica social, moderna y sostenible.",
                                                 style: TextStyle(
                                                   color:
@@ -1674,7 +1676,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       padding: EdgeInsets.only(
                           top: size.height * (13 / size.height),
                           left: size.width * (13 / size.width)),
-                      child: Text(
+                      child: AutoSizeText(
                         "Proyecto",
                         style: TextStyle(
                           color: const Color(0xff170658),
@@ -1687,7 +1689,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                     Padding(
                       padding:
                           EdgeInsets.only(left: size.width * (13 / size.width)),
-                      child: Text(
+                      child: AutoSizeText(
                         "Heráldica",
                         style: TextStyle(
                           color: const Color(0xff2504ca),
@@ -1709,7 +1711,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 left: size.width * (11.57 / size.width)),
                             child: SizedBox(
                               width: UtilSize.width(290, context),
-                              child: Text(
+                              child: AutoSizeText(
                                 "Sector González Suárez, pasaje Juan Pareja y Jiménez de la Espada.",
                                 style: TextStyle(
                                   color: const Color(0xff170658),
@@ -1737,8 +1739,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       ),
                     ),
                     Container(
-                      width: size.width * (345 / size.width),
-                      height: UtilSize.height(89, context),
+                      width: size.width,
+                      height: UtilSize.height(115, context),
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(0),
@@ -1765,7 +1767,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 padding: EdgeInsets.only(
                                     top: size.height * (18 / size.height),
                                     left: size.width * (13 / size.width)),
-                                child: Text(
+                                child: AutoSizeText(
                                   "USD \$500",
                                   style: TextStyle(
                                     color: const Color(0xff2504ca),
@@ -1778,7 +1780,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: size.width * (13 / size.width)),
-                                child: Text(
+                                child: AutoSizeText(
                                   "Precio token",
                                   style: TextStyle(
                                     color: const Color(0xff170658),
@@ -1791,7 +1793,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                               Padding(
                                 padding: EdgeInsets.only(
                                     left: size.width * (13 / size.width)),
-                                child: Text(
+                                child: AutoSizeText(
                                   "1 EBL-HERALD-01",
                                   style: TextStyle(
                                     color: const Color(0xff170658),
@@ -1810,7 +1812,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: ButtonPrimary(
-                                  width: UtilSize.width(139, context),
+                                  width: UtilSize.width(129, context),
                                   title: 'Invertir',
                                   onPressed: () {},
                                   load: isLoading,
@@ -1851,7 +1853,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
+                      AutoSizeText(
                         "${(currentIndex + 1)}/5",
                         style: const TextStyle(
                           color: Colors.white,
