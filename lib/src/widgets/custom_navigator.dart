@@ -89,7 +89,7 @@ class _CustomNavigatorState extends State<CustomNavigator>
                         customModalBottomAlert(
                             context,
                             size,
-                            'No tienes inversiones por el momento, puedes ir a tu billetera y comprar tokens de utilidad ebloqs (EBL).',
+                            'La opción de inversiones se habilitará en la etapa 2.',
                             isLoading,
                             '', () {
                           Navigator.pop(context);

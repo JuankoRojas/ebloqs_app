@@ -716,9 +716,7 @@ class _WalletScreenState extends State<WalletScreen>
                         customModalBottomAlert(
                             context,
                             size,
-                            '''En la etapa 2 saldremos con la inversión en tokens de bienes y servicios. Aquí podrás retirar tu dinero sobre la rentabilidad de tus inversiones.
-
-Espérala pronto!!''',
+                            '''Tu inversión esta asegurada, se habilitará en la etapa 2.''',
                             isLoading,
                             '', () {
                           Navigator.pop(context);

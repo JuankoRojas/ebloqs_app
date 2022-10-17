@@ -201,7 +201,7 @@ class _ComprarScreenState extends State<ComprarScreen>
                           isDownIcon: true,
                           showEnglishName: false,
                           labelColor: const Color(0xff170658),
-                          searchText: 'Buscar',
+                          searchText: 'País',
                           searchHintText: 'Buscar país',
                           lastPickText: 'Ultima selección'),
                       // Set default value

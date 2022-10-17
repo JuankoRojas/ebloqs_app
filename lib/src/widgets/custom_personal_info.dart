@@ -1,44 +1,75 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:flutter/material.dart';
 
-class CustomPersonalInfo extends StatelessWidget {
-  const CustomPersonalInfo({
-    Key? key,
-    required this.field,
-    required this.value,
-    required this.onTap,
-  }) : super(key: key);
+class CustomPersonalInfo extends StatefulWidget {
+  CustomPersonalInfo(
+      {Key? key,
+      required this.field,
+      required this.value,
+      required this.onTap,
+      this.isEditable,
+      this.focusNode,
+      required this.firstFocus})
+      : super(key: key);
   final String field;
-  final String value;
+  TextEditingController value;
   final VoidCallback onTap;
+  bool? isEditable;
+  FocusNode? focusNode = FocusNode();
+  bool firstFocus = false;
+
+  @override
+  State<CustomPersonalInfo> createState() => _CustomPersonalInfoState();
+}
+
+class _CustomPersonalInfoState extends State<CustomPersonalInfo> {
+  @override
+  void dispose() {
+    widget.focusNode?.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Row(
       children: [
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AutoSizeText(
-              field,
+              widget.field,
               style: const TextStyle(
                 color: Color(0xff8f8b9f),
                 fontSize: 13,
               ),
             ),
-            AutoSizeText(
-              value,
-              style: const TextStyle(
-                color: Color(0xff170658),
-                fontSize: 15,
+            SizedBox(
+              width: size.width * 0.7,
+              height: UtilSize.height(52, context),
+              child: TextFormField(
+                controller: widget.value,
+                enabled: widget.isEditable,
+                focusNode: widget.focusNode,
+                autofocus: widget.firstFocus,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                ),
+                style: const TextStyle(
+                  color: Color(0xff8f8b9f),
+                  fontSize: 13,
+                ),
               ),
-            )
+            ),
           ],
         ),
         Expanded(
           child: Container(),
         ),
         GestureDetector(
-          onTap: onTap,
+          onTap: widget.onTap,
           child: const AutoSizeText(
             "Editar",
             textAlign: TextAlign.right,

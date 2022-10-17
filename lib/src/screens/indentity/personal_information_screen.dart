@@ -288,7 +288,7 @@ class _PersonalInformationState extends State<PersonalInformation>
                                   isDownIcon: true,
                                   showEnglishName: false,
                                   labelColor: const Color(0xff170658),
-                                  searchText: 'Buscar',
+                                  searchText: 'País',
                                   searchHintText: 'Buscar país',
                                   lastPickText: 'Ultima selección'),
                               // Set default value
