@@ -79,4 +79,8 @@ class Preferences {
     _local_auth = localAuth;
     _prefs.setString('local_auth', localAuth!);
   }
+
+  static void clear() {
+    _prefs.clear();
+  }
 }

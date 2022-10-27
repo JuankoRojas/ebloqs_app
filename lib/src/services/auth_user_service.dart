@@ -133,6 +133,31 @@ class AuthUserService with ChangeNotifier {
     }
   }
 
+  Future deleteDataUser({required String accesstoken}) async {
+    try {
+      final response = await http.post(
+          Uri.parse('https://www.api.ebloqs.com/user/delete/data'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': 'Bearer $accesstoken',
+          });
+      debugPrint(response.body);
+
+      if (response.statusCode == 201) {
+        Map jsonRespon = await jsonDecode(response.body);
+        debugPrint(jsonRespon['id']);
+        return jsonRespon;
+      } else {
+        return {};
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+
+      throw Exception(e);
+    }
+  }
+
 // Future documents({
   //   required String accesstoken,
   //   XFile? front,

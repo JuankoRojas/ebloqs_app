@@ -30,7 +30,7 @@
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="ebloqsurl" android:host="18.117.101.148" />
+                <data android:scheme="ebloqsurl" android:host="mail-template.ebloqs.com" />
             </intent-filter>
             <!-- <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>

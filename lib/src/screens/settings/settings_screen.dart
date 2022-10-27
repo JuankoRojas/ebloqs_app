@@ -1,10 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
+import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/screens/settings/avatar_selection_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/payments_methods_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/personal_settings.dart';
 import 'package:ebloqs_app/src/screens/settings/security_screen.dart';
+import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_setting.dart';
 import 'package:flutter/material.dart';
@@ -242,9 +244,51 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Preferences.clear();
+                  Future.delayed(const Duration(seconds: 1), () {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, OnBoardPageRoute.routeName, (route) => false);
+                  });
+                },
               ),
-            )
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                  top: 10, left: size.width * 0.04, right: size.width * 0.04),
+              child: GestureDetector(
+                child: Container(
+                  width: size.width,
+                  height: size.height * 0.0640394088669951,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: const Color(0xfff6f4fd),
+                  ),
+                  child: const Center(
+                    child: AutoSizeText(
+                      "Eliminar Usuario",
+                      style: TextStyle(
+                        color: Color(0xff2504ca),
+                        fontSize: 14,
+                        fontFamily: "Archivo",
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
+                onTap: () async {
+                  final response = await AuthUserService()
+                      .deleteDataUser(accesstoken: Preferences.token!);
+                  if (response != null) {
+                    Preferences.clear();
+                    Future.delayed(const Duration(seconds: 1), () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          OnBoardPageRoute.routeName, (route) => false);
+                    });
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),
