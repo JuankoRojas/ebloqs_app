@@ -265,4 +265,61 @@ class AuthUserService with ChangeNotifier {
       throw Exception(e);
     }
   }
+
+  Future updateAvatar(
+      {required String avatarName, required String accesstoken}) async {
+    try {
+      final response = await http.post(
+        Uri.parse('https://www.api.ebloqs.com/user/avatar'),
+        body: jsonEncode(<String, String>{
+          'avatar': avatarName,
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': 'Bearer $accesstoken',
+        },
+      );
+      print('response.statusCode');
+      print(response.statusCode);
+      if (response.statusCode == 201) {
+        Map jsonRespon = await jsonDecode(response.body);
+
+        return jsonRespon;
+      } else {
+        return {};
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+
+      throw Exception(e);
+    }
+  }
+
+  Future verifyUser({required String accesstoken}) async {
+    try {
+      final response = await http.post(
+        Uri.parse('https://www.api.ebloqs.com/user/verify'),
+        body: jsonEncode(<String, bool>{
+          "verify": true,
+        }),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': 'Bearer $accesstoken',
+        },
+      );
+      print('response.statusCode');
+      print(response.statusCode);
+      if (response.statusCode == 201) {
+        Map jsonRespon = await jsonDecode(response.body);
+
+        return jsonRespon;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+
+      throw Exception(e);
+    }
+  }
 }

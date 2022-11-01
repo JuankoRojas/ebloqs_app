@@ -81,6 +81,12 @@ class Preferences {
   }
 
   static void clear() {
-    _prefs.clear();
+    _uid = null;
+    _token = null;
+    _id_wallet = null;
+    _public_key = null;
+    _mnemonic = null;
+    _userName = null;
+    _local_auth = null;
   }
 }

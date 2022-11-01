@@ -31,10 +31,9 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                 Center(
                     child: SvgPicture.asset(
                         'assets/Vectores/Iconos/checkcircle.svg')),
-                Padding(
-                  padding:
-                      EdgeInsets.only(top: size.height * 0.018970189701897),
-                  child: const Center(
+                const Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Center(
                     child: AutoSizeText(
                       "¡En 72 horas verificaremos tu transferencia para acreditar los!",
                       textAlign: TextAlign.center,

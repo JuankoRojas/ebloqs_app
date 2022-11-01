@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:ebloqs_app/src/app/app_config.dart';
+// import 'package:ebloqs_app/src/app/app_config.dart.old';
 import 'package:ebloqs_app/src/global/util_size.dart';
 
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
@@ -24,7 +24,7 @@ class _LocalAuthState extends State<LocalAuth> {
   List<BiometricType>? _availableBiometrics;
   String _authorized = 'Not Authorized';
   bool _isAuthenticating = false;
-  Environment? environment;
+  // Environment? environment;
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _LocalAuthState extends State<LocalAuth> {
               : _SupportState.unsupported),
         );
     setState(() {
-      environment = AppConfig.of(context).environment;
+      // environment = AppConfig.of(context).environment;
     });
   }
 

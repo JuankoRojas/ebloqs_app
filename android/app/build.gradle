@@ -75,27 +75,27 @@ android {
             dimension "default"
             applicationIdSuffix ""
             manifestPlaceholders = [appName: "Ebloqs"]
-            versionCode 29
-            versionName "1.0.0"
-            signingConfig signingConfigs.release
+            // versionCode 29
+            // versionName "1.0.0"
+            // signingConfig signingConfigs.release
            
         }
         staging {
             dimension "default"
-            applicationIdSuffix ""
+            applicationIdSuffix ".stg"
             manifestPlaceholders = [appName: "[STG] Ebloqs"]
-            versionCode 1
-            versionName "1.0.0"
-            signingConfig signingConfigs.release
+            // versionCode 1
+            // versionName "1.0.0"
+            // signingConfig signingConfigs.release
             
         }
         development {
             dimension "default"
-            applicationIdSuffix ""
+            applicationIdSuffix ".dev"
             manifestPlaceholders = [appName: "[DEV] Ebloqs"]
-            versionCode 1
-            versionName "1.0.0"
-            signingConfig signingConfigs.release
+            // versionCode 1
+            // versionName "1.0.0"
+            // signingConfig signingConfigs.release
             
         }
     }    
@@ -103,7 +103,12 @@ android {
    buildTypes {
        release {
            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
        }
+       debug {
+            signingConfig signingConfigs.debug
+        }
    }
     lint {
         abortOnError false

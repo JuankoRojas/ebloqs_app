@@ -195,7 +195,7 @@ Future checkPersistenceState(BuildContext context) async {
   //       .userInfoSet(infoModel);
   // }
 
-  if (uid != null || token != null) {
+  if (uid != null && uid.isNotEmpty || token != null && token.isNotEmpty) {
     // compute<GetMyInfoModel, void>(
     //     heavyTask, await AuthUserService().getUserInfo(accesstoken: token!));
     Future.delayed(Duration.zero)

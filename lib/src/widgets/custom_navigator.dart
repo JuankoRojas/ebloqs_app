@@ -8,15 +8,16 @@ class CustomNavigator extends StatefulWidget {
 }
 
 class _CustomNavigatorState extends State<CustomNavigator>
-    with AfterLayoutMixin<CustomNavigator> {
+// with AfterLayoutMixin<CustomNavigator>
+{
   bool isLoading = false;
-  Environment? environment;
-  @override
-  FutureOr<void> afterFirstLayout(BuildContext context) {
-    setState(() {
-      environment = AppConfig.of(context).environment;
-    });
-  }
+  // Environment? environment;
+  // @override
+  // FutureOr<void> afterFirstLayout(BuildContext context) {
+  //   setState(() {
+  //     // environment = AppConfig.of(context).environment;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {

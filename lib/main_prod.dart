@@ -1,7 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:ebloqs_app/bootstrap.dart';
 import 'package:ebloqs_app/src/app/app.dart';
-import 'package:ebloqs_app/src/app/app_config.dart';
+// import 'package:ebloqs_app/src/app/app_config.dart.old';
 import 'package:ebloqs_app/src/providers/apple_sign_in_available.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/utils/tabbar.dart';
@@ -27,10 +27,7 @@ void main() async {
   bootstrap(
     () => Provider<AppleSignInAvailable>.value(
       value: appleSignInAvailable,
-      child: const AppConfig(
-        environment: Environment.prod,
-        child: MyApp(),
-      ),
+      child: const MyApp(),
     ),
   );
 }

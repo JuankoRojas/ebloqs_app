@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:camera/camera.dart';
-import 'package:ebloqs_app/src/global/util_size.dart';
 
 import 'package:ebloqs_app/src/models/camera_models.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_passport_screen.dart';
@@ -314,12 +313,16 @@ class _VerificationFrontPassportScreenState
                                 front: widget.file);
                         if (response['message'] == "documentos cargados") {
                           print('response: $response');
-                          setState(() {
-                            isLoadLogin = false;
-                          });
-                          Future.delayed(Duration.zero).then((_) =>
-                              Navigator.pushNamed(
-                                  context, UploadDocumentScreen.routeName));
+                          final responseVerify = await AuthUserService()
+                              .verifyUser(accesstoken: Preferences.token!);
+                          if (responseVerify['status'] == true) {
+                            setState(() {
+                              isLoadLogin = false;
+                            });
+                            Future.delayed(Duration.zero).then((_) =>
+                                Navigator.pushNamed(
+                                    context, UploadDocumentScreen.routeName));
+                          }
                         }
                       },
                       load: isLoadLogin!,

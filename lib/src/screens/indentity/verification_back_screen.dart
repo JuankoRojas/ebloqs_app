@@ -318,12 +318,16 @@ class _VerificationBackScreenState extends State<VerificationBackScreen> {
                                 type: 'Documento de identidad',
                                 rever: widget.file);
                         if (response['message'] == "documentos cargados") {
-                          setState(() {
-                            isLoadLogin = false;
-                          });
-                          Future.delayed(Duration.zero).then((_) =>
-                              Navigator.pushNamed(
-                                  context, UploadDocumentScreen.routeName));
+                          final responseVerify = await AuthUserService()
+                              .verifyUser(accesstoken: Preferences.token!);
+                          if (responseVerify['status'] == true) {
+                            setState(() {
+                              isLoadLogin = false;
+                            });
+                            Future.delayed(Duration.zero).then((_) =>
+                                Navigator.pushNamed(
+                                    context, UploadDocumentScreen.routeName));
+                          }
                         }
                       },
                       load: isLoadLogin!,

@@ -1,6 +1,5 @@
-import 'package:after_layout/after_layout.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:ebloqs_app/src/app/app_config.dart';
+// import 'package:ebloqs_app/src/app/app_config.dart.old';
 import 'package:ebloqs_app/src/global/util_size.dart';
 
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
@@ -19,14 +18,15 @@ class LocalAuthAndroid extends StatefulWidget {
 }
 
 class _LocalAuthAndroidState extends State<LocalAuthAndroid>
-    with AfterLayoutMixin<LocalAuthAndroid> {
+// with AfterLayoutMixin<LocalAuthAndroid>
+{
   final LocalAuthentication auth = LocalAuthentication();
   _SupportState _supportState = _SupportState.unknown;
   bool? _canCheckBiometrics;
   List<BiometricType>? _availableBiometrics;
   String _authorized = 'Not Authorized';
   bool _isAuthenticating = false;
-  Environment? environment;
+  // Environment? environment;
 
   @override
   void initState() {
@@ -38,12 +38,12 @@ class _LocalAuthAndroidState extends State<LocalAuthAndroid>
         );
   }
 
-  @override
-  void afterFirstLayout(BuildContext context) {
-    setState(() {
-      environment = AppConfig.of(context).environment;
-    });
-  }
+  // @override
+  // void afterFirstLayout(BuildContext context) {
+  //   setState(() {
+  //     // environment = AppConfig.of(context).environment;
+  //   });
+  // }
 
   Future<void> _authenticateWithBiometrics() async {
     bool authenticated = false;
