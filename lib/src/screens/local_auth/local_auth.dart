@@ -103,7 +103,8 @@ class _LocalAuthState extends State<LocalAuth> {
             padding: EdgeInsets.only(top: UtilSize.height(142, context)),
             child: Center(
               child: SvgPicture.asset(
-                  'assets/Vectores/Ilustraciones/Group 2065.svg'),
+                  'assets/Vectores/Ilustraciones/Group 2065.svg',
+                  height: UtilSize.height(370, context)),
             ),
           ),
           Padding(
