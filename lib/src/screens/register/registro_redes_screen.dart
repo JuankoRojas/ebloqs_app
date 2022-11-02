@@ -381,36 +381,37 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                         ),
                       ],
                     ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            RegistroCorreoScreen.routeName,
-                          );
-                        },
-                        icon: SvgPicture.asset(
-                          'assets/Vectores/Iconos/Group2148.svg',
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: size.height * 0.016),
-                        child: const AutoSizeText(
-                          'Correo',
-                          style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 11.26,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w400,
+                  if (Platform.isAndroid)
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              RegistroCorreoScreen.routeName,
+                            );
+                          },
+                          icon: SvgPicture.asset(
+                            'assets/Vectores/Iconos/Group2148.svg',
                           ),
                         ),
-                      ),
-                    ],
-                  ),
+                        Padding(
+                          padding: EdgeInsets.only(top: size.height * 0.016),
+                          child: const AutoSizeText(
+                            'Correo',
+                            style: TextStyle(
+                              color: Color(0xff170658),
+                              fontSize: 11.26,
+                              fontFamily: "Archivo",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             )
