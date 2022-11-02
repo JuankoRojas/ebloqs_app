@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
 
 import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
+import 'package:ebloqs_app/src/services/auth_user_service.dart';
+import 'package:ebloqs_app/src/services/transactions_service.dart';
 import 'package:ebloqs_app/src/services/transfer_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -42,10 +46,24 @@ class _IntroducirCantidadTarjetaScreenState
   String? errorValidation;
   bool setTransaction = false;
   bool? isLoadingTransfer = false;
+  String referencia = '';
+  String? randomNum1;
+  var userInfoData;
   @override
   void initState() {
     quantityController.text = widget.cantidadTarjeta!;
+    userInfo();
+    final random = Random();
+    const availableNum = '1234567890';
+    randomNum1 = List.generate(
+        9, (index) => availableNum[random.nextInt(availableNum.length)]).join();
     super.initState();
+  }
+
+  void userInfo() async {
+    userInfoData =
+        await AuthUserService().getUserInfo(accesstoken: Preferences.token!);
+    setState(() {});
   }
 
   @override
@@ -60,6 +78,9 @@ class _IntroducirCantidadTarjetaScreenState
     }
     if (recibes != null) {
       total = recibes! / 0.05;
+    }
+    if (userInfoData != null) {
+      referencia = userInfoData['idRef'];
     }
     // if (setTransaction) {
     //   return Scaffold(
@@ -559,21 +580,37 @@ class _IntroducirCantidadTarjetaScreenState
                               to: Preferences.public_key!,
                               amount: parsedAmount.toString());
                           if (response.isNotEmpty && response['data'] != null) {
-                            setState(() {
-                              setTransaction = false;
-                              isLoadingTransfer = false;
-                            });
-                            debugPrint(response.toString());
-                            Future.delayed(Duration.zero).then(
-                              (_) => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => CongratsScreen(
-                                    total: total,
+                            if (Preferences.public_key != null &&
+                                Preferences.token != null &&
+                                Preferences.userName != null) {
+                              final responseTransaction =
+                                  await TransactionsService().createTransaction(
+                                      token: Preferences.token!,
+                                      refId: randomNum1.toString(),
+                                      client: Preferences.public_key!,
+                                      amount: amount.toString(),
+                                      clientName: Preferences.userName!,
+                                      paymentNumber: bankNameController.text,
+                                      status: 1,
+                                      type: 1);
+                              if (responseTransaction.isNotEmpty) {
+                                setState(() {
+                                  setTransaction = false;
+                                  isLoadingTransfer = false;
+                                });
+                                debugPrint(response.toString());
+                                Future.delayed(Duration.zero).then(
+                                  (_) => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => CongratsScreen(
+                                        total: total,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            );
+                                );
+                              }
+                            }
                           }
                         } catch (e) {
                           debugPrint(e.toString());

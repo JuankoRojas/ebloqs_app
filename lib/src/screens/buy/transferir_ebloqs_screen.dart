@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/congrats_screen_transfer.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
+import 'package:ebloqs_app/src/services/transactions_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +25,7 @@ class TransferirEbloqsScreen extends StatefulWidget {
 
 class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
   String referencia = '';
+  String? randomNum1;
   var userInfoData;
   String? subCuenta;
   String? subCuenta2;
@@ -39,13 +43,13 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
   bool copiedBancRec = false;
   bool copiedDireccBanc = false;
   bool setTransaction = false;
-  final bool _isLoading = false;
+  bool _isLoading = false;
   @override
   void initState() {
     userInfo();
-    // final random = Random();
+    final random = Random();
     // const availableChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    // const availableNum = '1234567890';
+    const availableNum = '1234567890';
     // final randomString1 = List.generate(
     //         2, (index) => availableChars[random.nextInt(availableChars.length)])
     //     .join();
@@ -56,8 +60,8 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
     // final randomString3 = List.generate(
     //         1, (index) => availableChars[random.nextInt(availableChars.length)])
     //     .join();
-    // final randomNum1 = List.generate(
-    //     2, (index) => availableNum[random.nextInt(availableNum.length)]).join();
+    randomNum1 = List.generate(
+        9, (index) => availableNum[random.nextInt(availableNum.length)]).join();
     // final randomNum2 = List.generate(
     //     1, (index) => availableNum[random.nextInt(availableNum.length)]).join();
     // referencia = userInfoData['idRef'];
@@ -670,33 +674,43 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                       width: double.infinity,
                       title: "Terminar",
                       onPressed: () async {
+                        setState(() {
+                          _isLoading = true;
+                        });
                         var amount =
                             double.parse(widget.cantidadTransferencia!) / 0.05;
                         var parsedAmount = amount.toInt();
                         try {
-                          if (Preferences.public_key != null) {
-                            setState(() {
-                              setTransaction = true;
-                            });
-                            // final response = await TransferService().transfer(
-                            //     to: Preferences.public_key!,
-                            //     amount: parsedAmount.toString());
-                            // if (response['data'].isNotEmpty) {
-                            //   setState(() {
-                            //     setTransaction = false;
-                            //   });
-                            // debugPrint(response.toString());
-                            Future.delayed(Duration.zero).then(
-                              (_) => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => CongratsScreenTransfer(
-                                    total: amount,
+                          if (Preferences.public_key != null &&
+                              Preferences.token != null &&
+                              Preferences.userName != null) {
+                            final response = await TransactionsService()
+                                .createTransaction(
+                                    token: Preferences.token!,
+                                    refId: randomNum1.toString(),
+                                    client: Preferences.public_key!,
+                                    amount: amount.toString(),
+                                    clientName: Preferences.userName!,
+                                    paymentNumber: cuenta,
+                                    status: 0,
+                                    type: 0);
+                            if (response.isNotEmpty) {
+                              setState(() {
+                                _isLoading = true;
+                              });
+                              debugPrint('response.toString()');
+                              debugPrint(response.toString());
+                              Future.delayed(Duration.zero).then(
+                                (_) => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => CongratsScreenTransfer(
+                                      total: amount,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                            // }
+                              );
+                            }
                           }
                         } catch (e) {
                           debugPrint(e.toString());
