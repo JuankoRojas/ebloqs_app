@@ -41,7 +41,7 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
           email: user.email!,
           deviceID: user.tenantId ?? uuid.v4(),
           name: user.displayName ?? user.email!.split('@').first,
-          type_account: 'facebook',
+          type_account: 'apple',
         );
         if (register.runtimeType != String &&
             register["access_token"] != null) {
