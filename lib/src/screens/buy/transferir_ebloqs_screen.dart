@@ -684,16 +684,18 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                           if (Preferences.public_key != null &&
                               Preferences.token != null &&
                               Preferences.userName != null) {
-                            final response = await TransactionsService()
-                                .createTransaction(
-                                    token: Preferences.token!,
-                                    refId: randomNum1.toString(),
-                                    client: Preferences.public_key!,
-                                    amount: amount.toString(),
-                                    clientName: Preferences.userName!,
-                                    paymentNumber: cuenta,
-                                    status: 0,
-                                    type: 0);
+                            final response =
+                                await TransactionsService().createTransaction(
+                              token: Preferences.token!,
+                              refId: referencia,
+                              client: Preferences.public_key!,
+                              amount: widget.cantidadTransferencia!,
+                              clientName: Preferences.userName!,
+                              paymentNumber: cuenta,
+                              status: 0,
+                              type: 0,
+                              id: randomNum1.toString(),
+                            );
                             if (response.isNotEmpty) {
                               setState(() {
                                 _isLoading = true;

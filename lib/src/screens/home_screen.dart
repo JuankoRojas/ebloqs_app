@@ -5,6 +5,7 @@ import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
+import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
@@ -614,8 +615,17 @@ class _HomeScreenState extends State<HomeScreen>
                                         ),
                                       ),
                                       onTap: () {
-                                        Navigator.pushNamed(
-                                            context, WalletScreen.routeName);
+                                        final idWallet = Preferences.id_wallet;
+                                        final publicKey =
+                                            Preferences.public_key;
+                                        if (idWallet != null &&
+                                            publicKey != null) {
+                                          Navigator.pushNamed(
+                                              context, WalletScreen.routeName);
+                                        } else {
+                                          Navigator.pushNamed(context,
+                                              NationalityScreen.routeName);
+                                        }
                                       },
                                     );
                                   } else {
@@ -1438,7 +1448,7 @@ class _HomeScreenState extends State<HomeScreen>
                             customModalBottomAlert(
                                 context,
                                 size,
-                                'La tokenización de bienes y servicios se habilitará en la etapa 2',
+                                'La tokenización de bienes y servicios se habilitará en la etapa 2.',
                                 isLoading,
                                 '', () {
                               Navigator.pop(context);
@@ -1686,7 +1696,7 @@ class _HomeScreenState extends State<HomeScreen>
                             customModalBottomAlert(
                                 context,
                                 size,
-                                'La opción de inversiones se habilitará en la etapa 2.',
+                                ' La tokenización de bienes y servicios se habilitará en la etapa 2',
                                 isLoading,
                                 '', () {
                               Navigator.pop(context);
@@ -1937,7 +1947,7 @@ class _HomeScreenState extends State<HomeScreen>
                               customModalBottomAlert(
                                   context,
                                   size,
-                                  'La opción de inversiones se habilitará en la etapa 2.',
+                                  'La tokenización de bienes y servicios se habilitará en la etapa 2.',
                                   isLoading,
                                   '', () {
                                 Navigator.pop(context);
@@ -2121,7 +2131,7 @@ class _HomeScreenState extends State<HomeScreen>
                               customModalBottomAlert(
                                   context,
                                   size,
-                                  'La opción de inversiones se habilitará en la etapa 2.',
+                                  'La tokenización de bienes y servicios se habilitará en la etapa 2.',
                                   isLoading,
                                   '', () {
                                 Navigator.pop(context);
@@ -2260,7 +2270,7 @@ class _HomeScreenState extends State<HomeScreen>
                               customModalBottomAlert(
                                   context,
                                   size,
-                                  'La opción de inversiones se habilitará en la etapa 2.',
+                                  'La tokenización de bienes y servicios se habilitará en la etapa 2.',
                                   isLoading,
                                   '', () {
                                 Navigator.pop(context);
@@ -2398,7 +2408,7 @@ class _HomeScreenState extends State<HomeScreen>
                               customModalBottomAlert(
                                   context,
                                   size,
-                                  'La opción de inversiones se habilitará en la etapa 2.',
+                                  'La tokenización de bienes y servicios se habilitará en la etapa 2.',
                                   isLoading,
                                   '', () {
                                 Navigator.pop(context);

@@ -7,6 +7,7 @@ class TransactionsService with ChangeNotifier {
 
   Future createTransaction(
       {required String token,
+      required String id,
       required String refId,
       required String client,
       required String amount,
@@ -15,10 +16,11 @@ class TransactionsService with ChangeNotifier {
       required int status,
       required int type}) async {
     final transactionData = {
-      'id': refId,
+      'id': id,
       'customer': client,
       'amount': amount,
       'customer_name': clientName,
+      "customer_id_ref": refId,
       'payment_number': paymentNumber,
       'status': status,
       'type': type

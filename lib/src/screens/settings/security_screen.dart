@@ -109,6 +109,11 @@ class _SecurityScreenState extends State<SecurityScreen> {
                               Navigator.of(context)
                                   .pushNamed(LocalAuthSettings.routeName);
                             }
+                          } else if (Preferences.local_auth == "Authorized") {
+                            setState(() {
+                              Preferences.local_auth = "Not Authorized";
+                              localAuth = false;
+                            });
                           }
                         }))
               ],

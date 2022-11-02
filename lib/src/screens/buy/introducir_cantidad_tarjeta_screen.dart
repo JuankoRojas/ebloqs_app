@@ -586,13 +586,14 @@ class _IntroducirCantidadTarjetaScreenState
                               final responseTransaction =
                                   await TransactionsService().createTransaction(
                                       token: Preferences.token!,
-                                      refId: randomNum1.toString(),
+                                      refId: referencia,
                                       client: Preferences.public_key!,
-                                      amount: amount.toString(),
+                                      amount: recibes.toString(),
                                       clientName: Preferences.userName!,
                                       paymentNumber: bankNameController.text,
                                       status: 1,
-                                      type: 1);
+                                      type: 1,
+                                      id: randomNum1.toString());
                               if (responseTransaction.isNotEmpty) {
                                 setState(() {
                                   setTransaction = false;
