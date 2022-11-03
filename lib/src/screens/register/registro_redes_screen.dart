@@ -31,72 +31,72 @@ class RegistroRedesScreen extends StatefulWidget {
 
 class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
   final uuid = const Uuid();
-  Future<void> _signInWithApple(BuildContext context) async {
-    try {
-      final authService = Provider.of<AuthAppleService>(context, listen: false);
-      final user = await authService.signInWithApple();
-      print('uid: ${user.uid}');
-      if (user.email != null) {
-        final register = await AuthUserService().registerUser(
-          email: user.email!,
-          deviceID: user.tenantId ?? uuid.v4(),
-          name: user.displayName ?? user.email!.split('@').first,
-          type_account: 'apple',
-        );
-        if (register.runtimeType != String &&
-            register["access_token"] != null) {
-          setState(() {
-            Preferences.token = register['access_token'];
-            Provider.of<UserInfoProvider>(
-              context,
-              listen: false,
-            ).emailset(user.email);
-          });
-          Future.delayed(Duration.zero).then(
-            (_) {
-              return Platform.isIOS
-                  ? Navigator.pushNamed(
-                      context,
-                      LocalAuth.routeName,
-                    )
-                  : Navigator.pushNamed(
-                      context,
-                      LocalAuthAndroid.routeName,
-                    );
-            },
-          );
-        } else {
-          Future.delayed(Duration.zero).then(
-            (_) => ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: Colors.redAccent,
-                duration: const Duration(seconds: 3),
-                content: AutoSizeText(
-                  register,
-                  style: const TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          );
-        }
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.redAccent,
-          duration: Duration(seconds: 3),
-          content: AutoSizeText(
-            'Hubo un error, inténtalo nuevamente.',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        ),
-      );
-    }
-  }
+  // Future<void> _signInWithApple(BuildContext context) async {
+  //   try {
+  //     final authService = Provider.of<AuthAppleService>(context, listen: false);
+  //     final user = await authService.signInWithApple();
+  //     print('uid: ${user.uid}');
+  //     if (user.email != null) {
+  //       final register = await AuthUserService().registerUser(
+  //         email: user.email!,
+  //         deviceID: user.tenantId ?? uuid.v4(),
+  //         name: user.displayName ?? user.email!.split('@').first,
+  //         type_account: 'apple',
+  //       );
+  //       if (register.runtimeType != String &&
+  //           register["access_token"] != null) {
+  //         setState(() {
+  //           Preferences.token = register['access_token'];
+  //           Provider.of<UserInfoProvider>(
+  //             context,
+  //             listen: false,
+  //           ).emailset(user.email);
+  //         });
+  //         Future.delayed(Duration.zero).then(
+  //           (_) {
+  //             return Platform.isIOS
+  //                 ? Navigator.pushNamed(
+  //                     context,
+  //                     LocalAuth.routeName,
+  //                   )
+  //                 : Navigator.pushNamed(
+  //                     context,
+  //                     LocalAuthAndroid.routeName,
+  //                   );
+  //           },
+  //         );
+  //       } else {
+  //         Future.delayed(Duration.zero).then(
+  //           (_) => ScaffoldMessenger.of(context).showSnackBar(
+  //             SnackBar(
+  //               backgroundColor: Colors.redAccent,
+  //               duration: const Duration(seconds: 3),
+  //               content: AutoSizeText(
+  //                 register,
+  //                 style: const TextStyle(
+  //                   color: Colors.white,
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //         );
+  //       }
+  //     }
+  //   } catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(
+  //         backgroundColor: Colors.redAccent,
+  //         duration: Duration(seconds: 3),
+  //         content: AutoSizeText(
+  //           'Hubo un error, inténtalo nuevamente.',
+  //           style: TextStyle(
+  //             color: Colors.white,
+  //           ),
+  //         ),
+  //       ),
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -361,7 +361,9 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       children: [
                         IconButton(
                           padding: EdgeInsets.zero,
-                          onPressed: () => _signInWithApple(context),
+                          onPressed: () =>
+                              // _signInWithApple(context),
+                              AppleSignInService.signIn(),
                           icon: const Icon(
                             Icons.apple,
                             color: Color(0xff000000),

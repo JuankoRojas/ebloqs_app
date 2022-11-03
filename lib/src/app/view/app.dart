@@ -8,7 +8,6 @@ import 'package:ebloqs_app/src/providers/transfer_current_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
-import 'package:ebloqs_app/src/services/apple_signin_service.dart';
 import 'package:ebloqs_app/src/services/coin_market_cap_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -41,7 +40,7 @@ class _MyAppState extends State<MyApp> {
         //USER
         ChangeNotifierProvider(create: (context) => UserInfoProvider()),
         ChangeNotifierProvider(create: (context) => AccountInfoProvider()),
-        ChangeNotifierProvider(create: (context) => AuthAppleService()),
+        // ChangeNotifierProvider(create: (context) => AuthAppleService()),
         //Location
         ChangeNotifierProvider(create: (context) => LocationsProvider()),
         //CoinMarketCap
