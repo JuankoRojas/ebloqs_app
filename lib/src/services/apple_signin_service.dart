@@ -1,7 +1,9 @@
-import 'dart:io';
+import 'dart:convert';
+import 'dart:math';
 
+import 'package:crypto/crypto.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:http/http.dart' as http;
 
 // class AuthAppleService with ChangeNotifier {
 // final _firebaseAuth = FirebaseAuth.instance;
@@ -52,27 +54,76 @@ import 'package:http/http.dart' as http;
 
 class AppleSignInService {
   // https://www.api.ebloqs.com/callbacks/sign_in_with_apple
-  static void signIn() async {
+
+  /// Generates a cryptographically secure random nonce, to be included in a
+  /// credential request.
+  String generateNonce([int length = 32]) {
+    const charset =
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+    final random = Random.secure();
+    return List.generate(length, (_) => charset[random.nextInt(charset.length)])
+        .join();
+  }
+
+  /// Returns the sha256 hash of [input] in hex notation.
+  String sha256ofString(String input) {
+    final bytes = utf8.encode(input);
+    final digest = sha256.convert(bytes);
+    return digest.toString();
+  }
+
+  Future signIn() async {
+    print('Apple');
+
     try {
-      final credential = await SignInWithApple.getAppleIDCredential(scopes: [
-        AppleIDAuthorizationScopes.email,
-        AppleIDAuthorizationScopes.fullName,
-      ]);
-      final signInWithAppleEndPoint = Uri(
-          scheme: 'https',
-          host: 'api.ebloqs.com',
-          path: '/sign_in_with_apple',
-          queryParameters: {
-            'code': credential.authorizationCode,
-            'firstName': credential.givenName,
-            'lastName': credential.familyName,
-            'useBundleId': Platform.isIOS ? 'true' : 'false',
-            if (credential.state != null) 'state': credential.state,
-          });
-      final session = await http.post(signInWithAppleEndPoint);
+      final rawNonce = generateNonce();
+      final nonce = sha256ofString(rawNonce);
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        nonce: nonce,
+      );
+      final OAuthCredential oauthCredential =
+          OAuthProvider("apple.com").credential(
+        idToken: appleCredential.identityToken,
+        rawNonce: rawNonce,
+      );
+      final UserCredential credential =
+          await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+
+      return credential;
+    } on SignInWithAppleAuthorizationException catch (e) {
+      print('Error signInWithApple1 = ');
+      print('Failed with error code: ${e.code}');
+      print(e.message);
+      print('========================== ');
+      if (e.code == AuthorizationErrorCode.canceled) {
+        throw ErrorResponse(message: 'You cancel your login');
+      } else if (e.code == AuthorizationErrorCode.failed) {
+        throw ErrorResponse(message: 'You failed your login');
+      } else if (e.code == AuthorizationErrorCode.invalidResponse) {
+        throw ErrorResponse(message: 'invalidResponse');
+      } else {
+        throw ErrorResponse(message: e.message);
+      }
+    } on FirebaseAuthException catch (e) {
+      print('Error signInWithApple2 = ');
+      print('Failed with error code: ${e.code}');
+      print(e.message);
+      print('========================== ');
+      print('Failed with error code: ');
+      print(e.message);
+      print('========================== ');
+      throw ErrorResponse(message: e.message, code: e.code);
     } catch (e) {
-      print('Error en sign in with apple');
-      print(e);
+      print('Error signInWithApple3 = $e');
+      throw ErrorResponse(message: e.toString());
     }
+  }
+
+  ErrorResponse({String? message, String? code}) {
+    print('Error code: $code message: $message');
   }
 }

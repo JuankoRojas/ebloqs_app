@@ -54,6 +54,7 @@ class _CustomPersonalInfoState extends State<CustomPersonalInfo> {
                 enabled: widget.isEditable,
                 focusNode: widget.focusNode,
                 autofocus: widget.firstFocus,
+                textCapitalization: TextCapitalization.words,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
                 ),
@@ -70,11 +71,13 @@ class _CustomPersonalInfoState extends State<CustomPersonalInfo> {
         ),
         GestureDetector(
           onTap: widget.onTap,
-          child: const AutoSizeText(
+          child: AutoSizeText(
             "Editar",
             textAlign: TextAlign.right,
             style: TextStyle(
-              color: Color(0xff2504ca),
+              color: (widget.focusNode!.hasFocus)
+                  ? const Color(0xff8f8b9f)
+                  : const Color(0xff2504ca),
               fontSize: 14,
               fontFamily: "Archivo",
               fontWeight: FontWeight.w600,

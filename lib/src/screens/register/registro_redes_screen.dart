@@ -361,9 +361,11 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       children: [
                         IconButton(
                           padding: EdgeInsets.zero,
-                          onPressed: () =>
-                              // _signInWithApple(context),
-                              AppleSignInService.signIn(),
+                          onPressed: () async {
+                            // _signInWithApple(context),
+                            final response =
+                                await AppleSignInService().signIn();
+                          },
                           icon: const Icon(
                             Icons.apple,
                             color: Color(0xff000000),
