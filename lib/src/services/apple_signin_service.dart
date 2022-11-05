@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:http/http.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:http/http.dart' as http;
 
 // class AuthAppleService with ChangeNotifier {
 // final _firebaseAuth = FirebaseAuth.instance;
@@ -76,47 +77,24 @@ class AppleSignInService {
     print('Apple');
 
     try {
-      final rawNonce = generateNonce();
-      final nonce = sha256ofString(rawNonce);
-      final appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-        nonce: nonce,
-      );
-      final OAuthCredential oauthCredential =
-          OAuthProvider("apple.com").credential(
-        idToken: appleCredential.identityToken,
-        rawNonce: rawNonce,
-      );
-      final UserCredential credential =
-          await FirebaseAuth.instance.signInWithCredential(oauthCredential);
-
-      return credential;
-    } on SignInWithAppleAuthorizationException catch (e) {
-      print('Error signInWithApple1 = ');
-      print('Failed with error code: ${e.code}');
-      print(e.message);
-      print('========================== ');
-      if (e.code == AuthorizationErrorCode.canceled) {
-        throw ErrorResponse(message: 'You cancel your login');
-      } else if (e.code == AuthorizationErrorCode.failed) {
-        throw ErrorResponse(message: 'You failed your login');
-      } else if (e.code == AuthorizationErrorCode.invalidResponse) {
-        throw ErrorResponse(message: 'invalidResponse');
-      } else {
-        throw ErrorResponse(message: e.message);
-      }
-    } on FirebaseAuthException catch (e) {
-      print('Error signInWithApple2 = ');
-      print('Failed with error code: ${e.code}');
-      print(e.message);
-      print('========================== ');
-      print('Failed with error code: ');
-      print(e.message);
-      print('========================== ');
-      throw ErrorResponse(message: e.message, code: e.code);
+      final credential = await SignInWithApple.getAppleIDCredential(scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ]);
+      final signInWithAppleEndPoint = Uri(
+          scheme: 'https',
+          host: 'api.ebloqs.com',
+          path: '/auth/sign_in_with_apple',
+          queryParameters: {
+            'code': credential.authorizationCode,
+            'firstName': credential.givenName,
+            'lastName': credential.familyName,
+            'email': credential.email,
+            'useBundleId': 'true',
+          });
+      final Response session = await http.post(signInWithAppleEndPoint);
+      print(session.body);
+      return session.body;
     } catch (e) {
       print('Error signInWithApple3 = $e');
       throw ErrorResponse(message: e.toString());

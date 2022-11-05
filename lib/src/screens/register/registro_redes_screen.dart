@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -278,47 +279,6 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                                     response.email.split('@').first,
                                 type_account: 'google',
                               );
-
-                              if (register.runtimeType != String &&
-                                  register["access_token"] != null) {
-                                setState(() {
-                                  Preferences.token = register['access_token'];
-                                  Provider.of<UserInfoProvider>(
-                                    context,
-                                    listen: false,
-                                  ).emailset(response.email);
-                                });
-
-                                Future.delayed(Duration.zero).then(
-                                  (_) {
-                                    return Platform.isIOS
-                                        ? Navigator.pushNamed(
-                                            context,
-                                            LocalAuth.routeName,
-                                          )
-                                        : Navigator.pushNamed(
-                                            context,
-                                            LocalAuthAndroid.routeName,
-                                          );
-                                  },
-                                );
-                              } else {
-                                Future.delayed(Duration.zero).then(
-                                  (_) => ScaffoldMessenger.of(context)
-                                      .showSnackBar(
-                                    SnackBar(
-                                      backgroundColor: Colors.redAccent,
-                                      duration: const Duration(seconds: 3),
-                                      content: AutoSizeText(
-                                        register,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }
                             }
                           } catch (e) {
                             print('============$e=============');
@@ -363,8 +323,58 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                           padding: EdgeInsets.zero,
                           onPressed: () async {
                             // _signInWithApple(context),
-                            final response =
+                            final String response =
                                 await AppleSignInService().signIn();
+                            final jsonString = jsonDecode(response);
+                            if (jsonString['email'].isNotEmpty) {
+                              final authResponse = await AuthUserService()
+                                  .registerUser(
+                                      email: jsonString['email'],
+                                      name: jsonString['name'],
+                                      deviceID: const Uuid().v4(),
+                                      type_account: 'apple');
+                              if (authResponse.runtimeType != String &&
+                                  authResponse["access_token"] != null) {
+                                setState(() {
+                                  Preferences.token =
+                                      authResponse['access_token'];
+                                  Provider.of<UserInfoProvider>(
+                                    context,
+                                    listen: false,
+                                  ).emailset(jsonString['email']);
+                                });
+
+                                Future.delayed(Duration.zero).then(
+                                  (_) {
+                                    return Platform.isIOS
+                                        ? Navigator.pushNamed(
+                                            context,
+                                            LocalAuth.routeName,
+                                          )
+                                        : Navigator.pushNamed(
+                                            context,
+                                            LocalAuthAndroid.routeName,
+                                          );
+                                  },
+                                );
+                              } else {
+                                Future.delayed(Duration.zero).then(
+                                  (_) => ScaffoldMessenger.of(context)
+                                      .showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.redAccent,
+                                      duration: const Duration(seconds: 3),
+                                      content: AutoSizeText(
+                                        authResponse,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
                           },
                           icon: const Icon(
                             Icons.apple,

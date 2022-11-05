@@ -339,10 +339,12 @@ class _HomeScreenState extends State<HomeScreen>
                                         double.parse(snapshot.data) * 0.05;
                                     return GestureDetector(
                                       child: Container(
-                                        width: size.width * 0.95,
-                                        height: UtilSize.height(812, context),
+                                        width: size.width,
+                                        height: UtilSize.height(812, context) +
+                                            kToolbarHeight,
                                         padding: EdgeInsets.only(
-                                            top: UtilSize.height(18, context),
+                                            top: UtilSize.height(18, context) +
+                                                kToolbarHeight,
                                             left: size.width * 0.043,
                                             right: size.width * 0.034),
                                         decoration: BoxDecoration(
@@ -363,10 +365,12 @@ class _HomeScreenState extends State<HomeScreen>
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
+                                                const Spacer(),
                                                 Padding(
                                                   padding: EdgeInsets.only(
                                                       top: UtilSize.height(
-                                                          12, context)),
+                                                              12, context) +
+                                                          kToolbarHeight),
                                                   child: Container(
                                                     decoration: BoxDecoration(
                                                       borderRadius:
