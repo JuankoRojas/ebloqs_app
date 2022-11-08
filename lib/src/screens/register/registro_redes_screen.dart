@@ -266,34 +266,59 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                       IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () async {
-                          try {
-                            final GoogleSignInAccount response =
-                                await GoogleSignInService.signInWithGoogle();
+                          final GoogleSignInAccount response =
+                              await GoogleSignInService.signInWithGoogle();
 
-                            if (response.email.isNotEmpty) {
-                              final register =
-                                  await AuthUserService().registerUser(
-                                email: response.email,
-                                deviceID: response.id,
-                                name: response.displayName ??
-                                    response.email.split('@').first,
-                                type_account: 'google',
+                          if (response.email.isNotEmpty) {
+                            final register =
+                                await AuthUserService().registerUser(
+                              email: response.email,
+                              deviceID: response.id,
+                              name: response.displayName ??
+                                  response.email.split('@').first,
+                              type_account: 'google',
+                            );
+
+                            if (register.runtimeType != String &&
+                                register["access_token"] != null) {
+                              setState(() {
+                                Preferences.token = register['access_token'];
+                                Provider.of<UserInfoProvider>(
+                                  context,
+                                  listen: false,
+                                ).emailset(register['email']);
+                              });
+
+                              Future.delayed(Duration.zero).then(
+                                (_) {
+                                  return Platform.isIOS
+                                      ? Navigator.pushNamed(
+                                          context,
+                                          LocalAuth.routeName,
+                                        )
+                                      : Navigator.pushNamed(
+                                          context,
+                                          LocalAuthAndroid.routeName,
+                                        );
+                                },
                               );
-                            }
-                          } catch (e) {
-                            print('============$e=============');
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                backgroundColor: Colors.redAccent,
-                                duration: Duration(seconds: 3),
-                                content: AutoSizeText(
-                                  'Hubo un error, inténtalo nuevamente.',
-                                  style: TextStyle(
-                                    color: Colors.white,
+                            } else {
+                              Future.delayed(Duration.zero).then(
+                                (_) =>
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    backgroundColor: Colors.redAccent,
+                                    duration: const Duration(seconds: 3),
+                                    content: AutoSizeText(
+                                      register,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
+                              );
+                            }
                           }
                         },
                         icon: SvgPicture.asset(

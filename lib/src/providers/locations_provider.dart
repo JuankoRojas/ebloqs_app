@@ -83,17 +83,22 @@ class LocationsProvider with ChangeNotifier {
   // }
 
   requestPermisionLocation() async {
-    LocationPermission accepted =
-        await _geolocatorPlatform.requestPermission().then((value) {
-      return value;
-    });
+    try {
+      LocationPermission accepted =
+          await _geolocatorPlatform.requestPermission().then((value) {
+        return value;
+      });
 
-    if (accepted == LocationPermission.whileInUse ||
-        accepted == LocationPermission.always) {
-      useMyLocation();
-      return accepted;
-      // getMyCountryCode();
+      if (accepted == LocationPermission.whileInUse ||
+          accepted == LocationPermission.always) {
+        useMyLocation();
+        return accepted;
+        // getMyCountryCode();
+      }
+      // debugPrint(accepted.toString());
+
+    } catch (e) {
+      print(e);
     }
-    // debugPrint(accepted.toString());
   }
 }

@@ -148,8 +148,9 @@ class _CreateWalletScreenState extends State<CreateWalletScreen> {
                                   width: size.width * 0.740,
                                   child: const AutoSizeText(
                                     '''Guarde estas 12 palabras en un lugar seguro,
-        como un administrador de contraseñas, y 
-        nunca lo comparta con nadie.''',
+como un administrador de contraseñas, y 
+nunca lo comparta con nadie.''',
+                                    textAlign: TextAlign.left,
                                     style: TextStyle(
                                       color: Color(0xff170658),
                                       fontFamily: "Archivo",

@@ -647,7 +647,7 @@ class _HomeScreenState extends State<HomeScreen>
                                   width: size.width * 0.95,
                                   height: size.height * 0.1,
                                   padding: EdgeInsets.only(
-                                      top: size.height * 0.0184729064039409,
+                                      top: UtilSize.height(24, context),
                                       left: size.width * 0.043,
                                       right: size.width * 0.034),
                                   decoration: BoxDecoration(
@@ -863,14 +863,15 @@ class _HomeScreenState extends State<HomeScreen>
                                   ),
                                 ),
                                 onTap: () {
-                                  customModalBottomAlert(
-                                      context,
-                                      size,
-                                      'La opción de billetera se habilitará en la etapa 2',
-                                      isLoading,
-                                      '', () {
-                                    Navigator.pop(context);
-                                  });
+                                  final idWallet = Preferences.id_wallet;
+                                  final publicKey = Preferences.public_key;
+                                  if (idWallet != null && publicKey != null) {
+                                    Navigator.pushNamed(
+                                        context, WalletScreen.routeName);
+                                  } else {
+                                    Navigator.pushNamed(
+                                        context, NationalityScreen.routeName);
+                                  }
                                 },
                               ),
                             ),
