@@ -12,6 +12,7 @@ import 'package:ebloqs_app/src/widgets/custom_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const String routeName = 'SettingsScreen';
@@ -292,10 +293,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         .deleteDataUser(accesstoken: Preferences.token!);
                     print(response);
                     if (response != null) {
-                      setState(() {
-                        Preferences.uid = '';
-                        Preferences.token = '';
-                      });
+                      SharedPreferences preferences =
+                          await SharedPreferences.getInstance();
+                      await preferences.clear();
+                      setState(() {});
                       Future.delayed(const Duration(seconds: 1), () {
                         Navigator.pushNamedAndRemoveUntil(context,
                             OnBoardPageRoute.routeName, (route) => false);

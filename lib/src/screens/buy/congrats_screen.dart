@@ -1,7 +1,10 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
 
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
+import 'package:ebloqs_app/src/services/token_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -15,8 +18,22 @@ class CongratsScreen extends StatefulWidget {
   State<CongratsScreen> createState() => _CongratsScreenState();
 }
 
-class _CongratsScreenState extends State<CongratsScreen> {
+class _CongratsScreenState extends State<CongratsScreen>
+    with AfterLayoutMixin<CongratsScreen> {
   bool? isLoadLogin = false;
+  double tokenValue = 0.0;
+  @override
+  void afterFirstLayout(BuildContext context) {
+    getTokenValue();
+  }
+
+  void getTokenValue() async {
+    final dataToken = await TokenService().getToken(token: Preferences.token!);
+    setState(() {
+      tokenValue = double.parse(dataToken["ico_cost"]);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -115,7 +132,7 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               ),
                               Expanded(child: Container()),
                               AutoSizeText(
-                                "${(widget.total * 0.05)} USD",
+                                "${(widget.total * tokenValue)} USD",
                                 textAlign: TextAlign.right,
                                 style: const TextStyle(
                                   color: Color(0xff170658),
@@ -254,7 +271,7 @@ class _CongratsScreenState extends State<CongratsScreen> {
                               ),
                               Expanded(child: Container()),
                               AutoSizeText(
-                                "${(widget.total * 0.05 + 4.67)} USD",
+                                "${(widget.total * tokenValue + 4.67)} USD",
                                 textAlign: TextAlign.right,
                                 style: const TextStyle(
                                   color: Color(0xff170658),

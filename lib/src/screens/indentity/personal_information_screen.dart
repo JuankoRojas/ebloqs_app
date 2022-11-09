@@ -29,7 +29,8 @@ class PersonalInformation extends StatefulWidget {
 
 class _PersonalInformationState extends State<PersonalInformation>
     with AfterLayoutMixin<PersonalInformation> {
-  DateTime _selectedDate = DateTime.now();
+  DateTime _selectedDate = DateTime(
+      DateTime.now().year - 18, DateTime.now().month, DateTime.now().day);
   bool? isLoadLogin = false;
   final GlobalKey<FormState> _formKey11 = GlobalKey<FormState>();
   final TextEditingController nameController = TextEditingController();
@@ -474,7 +475,10 @@ class _PersonalInformationState extends State<PersonalInformation>
                                                 isLoop: false),
                                             locale: const Locale('es'),
                                             minimumDate: DateTime(1950),
-                                            maximumDate: DateTime(2004),
+                                            maximumDate: DateTime(
+                                                DateTime.now().year - 18,
+                                                DateTime.now().month,
+                                                DateTime.now().day),
                                             onDateTimeChanged:
                                                 (DateTime value) {
                                               setState(() {

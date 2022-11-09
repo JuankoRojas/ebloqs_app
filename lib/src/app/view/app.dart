@@ -9,6 +9,7 @@ import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/services/coin_market_cap_service.dart';
+import 'package:ebloqs_app/src/services/token_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
@@ -54,6 +55,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => TransferCurrentProvider()),
         //COINMARKET
         ChangeNotifierProvider(create: (context) => CoinMarketProvider()),
+        //TOKEN
+        ChangeNotifierProvider(create: (context) => TokenService()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

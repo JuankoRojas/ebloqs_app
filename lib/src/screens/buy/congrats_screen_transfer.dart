@@ -1,5 +1,8 @@
+import 'package:after_layout/after_layout.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
+import 'package:ebloqs_app/src/services/token_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,8 +17,22 @@ class CongratsScreenTransfer extends StatefulWidget {
   State<CongratsScreenTransfer> createState() => _CongratsScreenTransferState();
 }
 
-class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
+class _CongratsScreenTransferState extends State<CongratsScreenTransfer>
+    with AfterLayoutMixin<CongratsScreenTransfer> {
   bool? isLoadLogin = false;
+  double? tokenValue;
+  @override
+  void afterFirstLayout(BuildContext context) {
+    getTokenValue();
+  }
+
+  void getTokenValue() async {
+    final dataToken = await TokenService().getToken(token: Preferences.token!);
+    setState(() {
+      tokenValue = double.parse(dataToken["ico_cost"]);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -111,7 +128,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                               ),
                               Expanded(child: Container()),
                               AutoSizeText(
-                                "${(widget.total * 0.05)} USD",
+                                "${(widget.total * tokenValue!)} USD",
                                 textAlign: TextAlign.right,
                                 style: const TextStyle(
                                   color: Color(0xff170658),
@@ -250,7 +267,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer> {
                               ),
                               Expanded(child: Container()),
                               AutoSizeText(
-                                "${(widget.total * 0.05 + 4.67)} USD",
+                                "${(widget.total * tokenValue! + 4.67)} USD",
                                 textAlign: TextAlign.right,
                                 style: const TextStyle(
                                   color: Color(0xff170658),

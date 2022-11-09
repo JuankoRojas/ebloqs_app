@@ -1,10 +1,12 @@
 import 'dart:math';
 
+import 'package:after_layout/after_layout.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
 
 import 'package:ebloqs_app/src/screens/buy/congrats_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
+import 'package:ebloqs_app/src/services/token_service.dart';
 import 'package:ebloqs_app/src/services/transactions_service.dart';
 import 'package:ebloqs_app/src/services/transfer_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
@@ -26,7 +28,8 @@ class IntroducirCantidadTarjetaScreen extends StatefulWidget {
 }
 
 class _IntroducirCantidadTarjetaScreenState
-    extends State<IntroducirCantidadTarjetaScreen> {
+    extends State<IntroducirCantidadTarjetaScreen>
+    with AfterLayoutMixin<IntroducirCantidadTarjetaScreen> {
   final GlobalKey<FormState> formKey7 = GlobalKey<FormState>();
   final GlobalKey<FormState> formKey8 = GlobalKey<FormState>();
   final TextEditingController quantityController = TextEditingController();
@@ -49,6 +52,7 @@ class _IntroducirCantidadTarjetaScreenState
   String referencia = '';
   String? randomNum1;
   var userInfoData;
+  double? tokenValue;
   @override
   void initState() {
     quantityController.text = widget.cantidadTarjeta!;
@@ -67,6 +71,18 @@ class _IntroducirCantidadTarjetaScreenState
   }
 
   @override
+  void afterFirstLayout(BuildContext context) {
+    getTokenValue();
+  }
+
+  void getTokenValue() async {
+    final dataToken = await TokenService().getToken(token: Preferences.token!);
+    setState(() {
+      tokenValue = double.parse(dataToken["ico_cost"]);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     if (widget.cantidadTarjeta!.isNotEmpty &&
@@ -76,8 +92,8 @@ class _IntroducirCantidadTarjetaScreenState
       print(cantidad);
       print(recibes);
     }
-    if (recibes != null) {
-      total = recibes! / 0.05;
+    if (recibes != null && tokenValue != null) {
+      total = recibes! / tokenValue!;
     }
     if (userInfoData != null) {
       referencia = userInfoData['idRef'];
@@ -573,7 +589,7 @@ class _IntroducirCantidadTarjetaScreenState
                           isLoadingTransfer = true;
                         });
                         var amount =
-                            double.parse(quantityController.text) / 0.05;
+                            double.parse(quantityController.text) / tokenValue!;
                         var parsedAmount = amount.toInt();
                         try {
                           final response = await TransferService().transfer(

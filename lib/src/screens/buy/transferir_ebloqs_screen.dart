@@ -5,6 +5,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/congrats_screen_transfer.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
+import 'package:ebloqs_app/src/services/token_service.dart';
 import 'package:ebloqs_app/src/services/transactions_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -44,6 +45,7 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
   bool copiedDireccBanc = false;
   bool setTransaction = false;
   bool _isLoading = false;
+  double? tokenValue;
   @override
   void initState() {
     userInfo();
@@ -73,6 +75,18 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
     userInfoData =
         await AuthUserService().getUserInfo(accesstoken: Preferences.token!);
     setState(() {});
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) {
+    getTokenValue();
+  }
+
+  void getTokenValue() async {
+    final dataToken = await TokenService().getToken(token: Preferences.token!);
+    setState(() {
+      tokenValue = double.parse(dataToken["ico_cost"]);
+    });
   }
 
   @override
@@ -678,7 +692,8 @@ class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
                           _isLoading = true;
                         });
                         var amount =
-                            double.parse(widget.cantidadTransferencia!) / 0.05;
+                            double.parse(widget.cantidadTransferencia!) /
+                                tokenValue!;
                         var parsedAmount = amount.toInt();
                         try {
                           if (Preferences.public_key != null &&

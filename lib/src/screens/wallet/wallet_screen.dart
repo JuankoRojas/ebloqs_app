@@ -11,6 +11,7 @@ import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
+import 'package:ebloqs_app/src/services/token_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
@@ -34,10 +35,12 @@ class _WalletScreenState extends State<WalletScreen>
     with AfterLayoutMixin<WalletScreen> {
   String? ebl;
   bool isLoading = false;
+  double? tokenValue;
 
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) async {
     getBalance();
+    getTokenValue();
     var userInfo =
         await AuthUserService().getUserInfo(accesstoken: Preferences.token!);
     Future.delayed(Duration.zero).then((_) =>
@@ -51,6 +54,13 @@ class _WalletScreenState extends State<WalletScreen>
         accesstoken: Preferences.token!, publicKey: Preferences.public_key!);
     setState(() {
       ebl = balance;
+    });
+  }
+
+  void getTokenValue() async {
+    final dataToken = await TokenService().getToken(token: Preferences.token!);
+    setState(() {
+      tokenValue = double.parse(dataToken["ico_cost"]);
     });
   }
 
@@ -140,7 +150,7 @@ class _WalletScreenState extends State<WalletScreen>
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.hasData && snapshot.data != null) {
                         print(snapshot.data);
-                        final usd = double.parse(snapshot.data) * 0.05;
+                        final usd = double.parse(snapshot.data) * tokenValue!;
 
                         ebl = snapshot.data;
 

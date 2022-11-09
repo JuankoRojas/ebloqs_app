@@ -6,6 +6,8 @@ import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/locations_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_tarjeta_screen.dart';
 import 'package:ebloqs_app/src/screens/buy/introducir_cantidad_transferencia_screen.dart';
+import 'package:ebloqs_app/src/services/token_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 
 import 'package:flutter/material.dart';
@@ -30,10 +32,11 @@ class _ComprarScreenState extends State<ComprarScreen>
   bool transferSelect = false;
   bool bankSelect = false;
   bool _isLoading = false;
-
+  double? tokenValue;
   @override
   void afterFirstLayout(BuildContext context) {
     useLocation();
+    getTokenValue();
   }
 
   void useLocation() async {
@@ -42,16 +45,24 @@ class _ComprarScreenState extends State<ComprarScreen>
     await locationProvider.requestPermisionLocation();
   }
 
+  void getTokenValue() async {
+    final dataToken = await TokenService().getToken(token: Preferences.token!);
+    setState(() {
+      tokenValue = double.parse(dataToken["ico_cost"]);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
     // String? isoCountryCode = systemLocales.first.countryCode;
     // print(isoCountryCode);
-
+    print('tokenValue');
+    print(tokenValue);
     if (text != '') {
       ingr = double.parse(text);
-      total = ingr / 0.05;
+      total = ingr / (tokenValue ?? 0.0);
     }
     final locationValue =
         Provider.of<LocationsProvider>(context).countryCode.text;

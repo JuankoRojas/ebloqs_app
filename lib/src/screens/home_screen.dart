@@ -10,6 +10,7 @@ import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
+import 'package:ebloqs_app/src/services/token_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
@@ -29,16 +30,25 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen>
     with AfterLayoutMixin<HomeScreen> {
+  double? tokenValue;
   // Environment? environment;
   @override
   void afterFirstLayout(BuildContext context) async {
     var userInfo =
         await AuthUserService().getUserInfo(accesstoken: Preferences.token!);
+    getTokenValue();
     Future.delayed(Duration.zero).then((_) =>
         Provider.of<UserInfoProvider>(context, listen: false)
             .userInfoSet(userInfo));
     setState(() {
       // environment = AppConfig.of(context).environment;
+    });
+  }
+
+  void getTokenValue() async {
+    final dataToken = await TokenService().getToken(token: Preferences.token!);
+    setState(() {
+      tokenValue = double.parse(dataToken["ico_cost"]);
     });
   }
 
@@ -335,16 +345,14 @@ class _HomeScreenState extends State<HomeScreen>
                                   if (snapshot.hasData &&
                                       snapshot.data != null) {
                                     print(snapshot.data);
-                                    final usd =
-                                        double.parse(snapshot.data) * 0.05;
+                                    final usd = double.parse(snapshot.data) *
+                                        tokenValue!;
                                     return GestureDetector(
                                       child: Container(
                                         width: size.width,
-                                        height: UtilSize.height(812, context) +
-                                            kToolbarHeight,
+                                        height: UtilSize.height(812, context),
                                         padding: EdgeInsets.only(
-                                            top: UtilSize.height(18, context) +
-                                                kToolbarHeight,
+                                            top: UtilSize.height(18, context),
                                             left: size.width * 0.043,
                                             right: size.width * 0.034),
                                         decoration: BoxDecoration(
@@ -365,12 +373,10 @@ class _HomeScreenState extends State<HomeScreen>
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                const Spacer(),
                                                 Padding(
                                                   padding: EdgeInsets.only(
                                                       top: UtilSize.height(
-                                                              12, context) +
-                                                          kToolbarHeight),
+                                                          24, context)),
                                                   child: Container(
                                                     decoration: BoxDecoration(
                                                       borderRadius:

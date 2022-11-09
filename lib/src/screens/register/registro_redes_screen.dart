@@ -268,7 +268,8 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
                         onPressed: () async {
                           final GoogleSignInAccount response =
                               await GoogleSignInService.signInWithGoogle();
-
+                          print('Goolge Response');
+                          print(response);
                           if (response.email.isNotEmpty) {
                             final register =
                                 await AuthUserService().registerUser(
@@ -281,6 +282,8 @@ class _RegistroRedesScreenState extends State<RegistroRedesScreen> {
 
                             if (register.runtimeType != String &&
                                 register["access_token"] != null) {
+                              print(
+                                  'Usuario token: ${register['access_token']}');
                               setState(() {
                                 Preferences.token = register['access_token'];
                                 Provider.of<UserInfoProvider>(

@@ -44,8 +44,12 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen>
     final user =
         Provider.of<UserInfoProvider>(context, listen: false).userInfoget;
     setState(() {
-      nameController.text = user["name"] ?? '';
-      lastNameController.text = user["lastName"] ?? '';
+      nameController.text = user["name"][0].toUpperCase() +
+              user["name"].substring(1).toLowerCase() ??
+          '';
+      lastNameController.text = user["lastName"][0].toUpperCase() +
+              user["lastName"].substring(1).toLowerCase() ??
+          '';
       emailController.text = user["email"] ?? '';
       phoneController.text = user["phone"] ?? '';
       nationality = user["nationality"] ?? '';
