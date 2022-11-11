@@ -54,238 +54,245 @@ class _TransferScreenState extends State<TransferScreen>
     // walletToController.text = Provider.of<QrInfoProvider>(context).getQr();
     return Scaffold(
       extendBodyBehindAppBar: true,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(top: size.height * 0.073509485094851),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                    left: size.width * 0.0729166666666667,
-                    right: size.width * 0.0461805555555556),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      child: SvgPicture.asset(
-                          'assets/Vectores/Iconos/Arrow left.svg'),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    Expanded(child: Container()),
-                    const AutoSizeText(
-                      "Transferir",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 17,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Expanded(child: Container()),
-                    GestureDetector(
-                        child: SvgPicture.asset(
-                            'assets/Vectores/Iconos/Question.svg')),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: size.height * 0.0379403794037941),
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      child: Container(
-                        width: size.width * 0.5,
-                        height: size.height * 0.0640243902439025,
-                        color: (current == 0)
-                            ? const Color(0xfff6f4fd)
-                            : const Color(0xfff9f9fa),
-                        child: const Center(
-                          child: AutoSizeText(
-                            "Dinero",
-                            style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 15,
-                              fontFamily: "Archivo",
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                      onTap: () {
-                        if (current == 1) {
-                          setState(() {
-                            current = 0;
-                            Provider.of<TransferCurrentProvider>(context,
-                                    listen: false)
-                                .setCurrent(0);
-                          });
-                          pageController.jumpToPage(
-                              Provider.of<TransferCurrentProvider>(context,
-                                      listen: false)
-                                  .getCurrent());
-                        }
-                      },
-                    ),
-                    GestureDetector(
-                      child: Container(
-                        width: size.width * 0.5,
-                        height: size.height * 0.0640243902439025,
-                        color: (current == 1)
-                            ? const Color(0xfff6f4fd)
-                            : const Color(0xfff9f9fa),
-                        child: const Center(
-                          child: AutoSizeText(
-                            "Tokens",
-                            style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 15,
-                              fontFamily: "Archivo",
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                      ),
-                      onTap: () {
-                        if (current == 0) {
-                          setState(() {
-                            current = 1;
-                            Provider.of<TransferCurrentProvider>(context,
-                                    listen: false)
-                                .setCurrent(1);
-                          });
-                          pageController.jumpToPage(
-                              Provider.of<TransferCurrentProvider>(context,
-                                      listen: false)
-                                  .getCurrent());
-                        }
-                      },
-                    )
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: size.height * 0.0260840108401084,
-                  left: size.width * 0.0413194444444445,
-                  right: size.width * 0.0413194444444445,
-                ),
-                child: ConstrainedBox(
-                  constraints:
-                      const BoxConstraints(maxHeight: 650, minHeight: 375),
-                  child: PageView(
-                    controller: pageController,
-                    physics: const NeverScrollableScrollPhysics(),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(top: size.height * 0.073509485094851),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: size.width * 0.0729166666666667,
+                      right: size.width * 0.0461805555555556),
+                  child: Row(
                     children: [
-                      Dinero(
-                        formKey13: _formKey13,
-                        quantityController: quantityController,
-                        errorValidation: errorValidation,
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                            'assets/Vectores/Iconos/Arrow left.svg'),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                       ),
-                      Tokens(
-                        formKey14: _formKey14,
-                        fromController: fromController,
-                        toController: walletToController,
-                        quantity2Controller: quantity2Controller,
-                        errorValidation: errorValidation,
+                      Expanded(child: Container()),
+                      const AutoSizeText(
+                        "Transferir",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xff170658),
+                          fontSize: 17,
+                          fontFamily: "Archivo",
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Expanded(child: Container()),
+                      GestureDetector(
+                          child: SvgPicture.asset(
+                              'assets/Vectores/Iconos/Question.svg')),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: size.height * 0.0379403794037941),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        child: Container(
+                          width: size.width * 0.5,
+                          height: size.height * 0.0640243902439025,
+                          color: (current == 0)
+                              ? const Color(0xfff6f4fd)
+                              : const Color(0xfff9f9fa),
+                          child: const Center(
+                            child: AutoSizeText(
+                              "Dinero",
+                              style: TextStyle(
+                                color: Color(0xff170658),
+                                fontSize: 15,
+                                fontFamily: "Archivo",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          if (current == 1) {
+                            setState(() {
+                              current = 0;
+                              Provider.of<TransferCurrentProvider>(context,
+                                      listen: false)
+                                  .setCurrent(0);
+                            });
+                            pageController.jumpToPage(
+                                Provider.of<TransferCurrentProvider>(context,
+                                        listen: false)
+                                    .getCurrent());
+                          }
+                        },
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          width: size.width * 0.5,
+                          height: size.height * 0.0640243902439025,
+                          color: (current == 1)
+                              ? const Color(0xfff6f4fd)
+                              : const Color(0xfff9f9fa),
+                          child: const Center(
+                            child: AutoSizeText(
+                              "Tokens",
+                              style: TextStyle(
+                                color: Color(0xff170658),
+                                fontSize: 15,
+                                fontFamily: "Archivo",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          if (current == 0) {
+                            setState(() {
+                              current = 1;
+                              Provider.of<TransferCurrentProvider>(context,
+                                      listen: false)
+                                  .setCurrent(1);
+                            });
+                            pageController.jumpToPage(
+                                Provider.of<TransferCurrentProvider>(context,
+                                        listen: false)
+                                    .getCurrent());
+                          }
+                        },
                       )
                     ],
                   ),
                 ),
-              ),
-              (current == 0)
-                  ? Padding(
-                      padding: EdgeInsets.only(
-                          left: size.width * 0.0364583333333334,
-                          right: size.width * 0.0364583333333334,
-                          bottom: size.height * 0.0569105691056911),
-                      child: ButtonPrimary(
-                          width: size.width,
-                          title: 'Continuar',
-                          onPressed: () {
-                            if (_formKey13.currentState != null &&
-                                    _formKey13.currentState!.validate() ||
-                                _formKey14.currentState != null &&
-                                    _formKey14.currentState!.validate()) {
-                              customModalBottomAlert(
-                                  context,
-                                  size,
-                                  'Se ha procedido a enviar ${quantityController.text}  USD',
-                                  isLoadLogin!,
-                                  'assets/Vectores/Iconos/checkcircle.svg', () {
-                                Navigator.pushNamed(
-                                    context, WalletScreen.routeName);
-                              });
-                            } else {
-                              customModalBottomAlert(
-                                  context,
-                                  size,
-                                  'Por favor,  debes completar todos los registros para continuar',
-                                  isLoadLogin!,
-                                  '', () {
-                                Navigator.pop(context);
-                              });
-                            }
-                          },
-                          load: isLoadLogin!,
-                          disabled: isLoadLogin!),
-                    )
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: size.height * 0.0260840108401084,
+                    left: size.width * 0.0413194444444445,
+                    right: size.width * 0.0413194444444445,
+                  ),
+                  child: ConstrainedBox(
+                    constraints:
+                        const BoxConstraints(maxHeight: 650, minHeight: 375),
+                    child: PageView(
+                      controller: pageController,
+                      physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        Padding(
-                            padding: EdgeInsets.only(
-                              top: size.height * 0.0130420054200542,
-                              left: size.width * 0.0413194444444445,
-                              right: size.width * 0.0413194444444445,
-                            ),
-                            child: const AutoSizeText(
-                              "Tiempo estimado de 1 hora",
-                              style: TextStyle(
-                                color: Color(0xff2504ca),
-                                fontSize: 13,
-                              ),
-                            )),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: size.width * 0.0413194444444445,
-                              right: size.width * 0.0413194444444445,
-                              bottom: size.height * 0.0569105691056911),
-                          child: ButtonPrimary(
-                              width: size.width,
-                              title: 'Continuar',
-                              onPressed: () {
-                                if (_formKey14.currentState!.validate()) {
-                                  customModalBottomAlert(
-                                      context,
-                                      size,
-                                      'Se ha procedido a enviar ${quantity2Controller.text} EBL',
-                                      isLoadLogin!,
-                                      'assets/Vectores/Iconos/checkcircle.svg',
-                                      () {
-                                    Navigator.pushNamed(
-                                        context, WalletScreen.routeName);
-                                  });
-                                } else {
-                                  setState(() {
-                                    errorValidation =
-                                        'Por favor,  debes completar todos los registros para continuar';
-                                  });
-                                  customModalBottomAlert(context, size,
-                                      errorValidation, isLoadLogin!, '', () {
-                                    Navigator.pop(context);
-                                  });
-                                }
-                              },
-                              load: isLoadLogin!,
-                              disabled: isLoadLogin!),
+                        Dinero(
+                          formKey13: _formKey13,
+                          quantityController: quantityController,
+                          errorValidation: errorValidation,
+                        ),
+                        Tokens(
+                          formKey14: _formKey14,
+                          fromController: fromController,
+                          toController: walletToController,
+                          quantity2Controller: quantity2Controller,
+                          errorValidation: errorValidation,
                         )
                       ],
                     ),
-            ],
+                  ),
+                ),
+                (current == 0)
+                    ? Padding(
+                        padding: EdgeInsets.only(
+                            left: size.width * 0.0364583333333334,
+                            right: size.width * 0.0364583333333334,
+                            bottom: size.height * 0.0569105691056911),
+                        child: ButtonPrimary(
+                            width: size.width,
+                            title: 'Continuar',
+                            onPressed: () {
+                              if (_formKey13.currentState != null &&
+                                      _formKey13.currentState!.validate() ||
+                                  _formKey14.currentState != null &&
+                                      _formKey14.currentState!.validate()) {
+                                customModalBottomAlert(
+                                    context,
+                                    size,
+                                    'Se ha procedido a enviar ${quantityController.text}  USD',
+                                    isLoadLogin!,
+                                    'assets/Vectores/Iconos/checkcircle.svg',
+                                    () {
+                                  Navigator.pushNamed(
+                                      context, WalletScreen.routeName);
+                                });
+                              } else {
+                                customModalBottomAlert(
+                                    context,
+                                    size,
+                                    'Por favor,  debes completar todos los registros para continuar',
+                                    isLoadLogin!,
+                                    '', () {
+                                  Navigator.pop(context);
+                                });
+                              }
+                            },
+                            load: isLoadLogin!,
+                            disabled: isLoadLogin!),
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.only(
+                                top: size.height * 0.0130420054200542,
+                                left: size.width * 0.0413194444444445,
+                                right: size.width * 0.0413194444444445,
+                              ),
+                              child: const AutoSizeText(
+                                "Tiempo estimado de 1 hora",
+                                style: TextStyle(
+                                  color: Color(0xff2504ca),
+                                  fontSize: 13,
+                                ),
+                              )),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: size.width * 0.0413194444444445,
+                                right: size.width * 0.0413194444444445,
+                                bottom: size.height * 0.0569105691056911),
+                            child: ButtonPrimary(
+                                width: size.width,
+                                title: 'Continuar',
+                                onPressed: () {
+                                  if (_formKey14.currentState!.validate()) {
+                                    customModalBottomAlert(
+                                        context,
+                                        size,
+                                        'Se ha procedido a enviar ${quantity2Controller.text} EBL',
+                                        isLoadLogin!,
+                                        'assets/Vectores/Iconos/checkcircle.svg',
+                                        () {
+                                      Navigator.pushNamed(
+                                          context, WalletScreen.routeName);
+                                    });
+                                  } else {
+                                    setState(() {
+                                      errorValidation =
+                                          'Por favor,  debes completar todos los registros para continuar';
+                                    });
+                                    customModalBottomAlert(context, size,
+                                        errorValidation, isLoadLogin!, '', () {
+                                      Navigator.pop(context);
+                                    });
+                                  }
+                                },
+                                load: isLoadLogin!,
+                                disabled: isLoadLogin!),
+                          )
+                        ],
+                      ),
+              ],
+            ),
           ),
         ),
       ),

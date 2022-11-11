@@ -36,6 +36,7 @@ class _CongratsScreenTransferState extends State<CongratsScreenTransfer>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    (tokenValue == null) ? tokenValue = 0 : tokenValue = tokenValue;
     return Scaffold(
       body: Stack(
         children: [

@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:after_layout/after_layout.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import 'package:ebloqs_app/src/providers/account_info_provider.dart';
@@ -24,7 +25,8 @@ class TransferirEbloqsScreen extends StatefulWidget {
   State<TransferirEbloqsScreen> createState() => _TransferirEbloqsScreenState();
 }
 
-class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen> {
+class _TransferirEbloqsScreenState extends State<TransferirEbloqsScreen>
+    with AfterLayoutMixin {
   String referencia = '';
   String? randomNum1;
   var userInfoData;

@@ -64,325 +64,331 @@ class _IntroducirCantidadTransferenciaScreenState
       //   systemOverlayStyle: systemBarDark,
       //   automaticallyImplyLeading: false,
       // ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: size.width * (16 / size.width),
-              right: size.width * (16 / size.width),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    GestureDetector(
-                      child: SvgPicture.asset(
-                          'assets/Vectores/Iconos/Arrow left.svg'),
-                      onTap: () {
-                        Navigator.pushNamed(context, ComprarScreen.routeName);
-                      },
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: size.width * (16 / size.width),
+                right: size.width * (16 / size.width),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      GestureDetector(
+                        child: SvgPicture.asset(
+                            'assets/Vectores/Iconos/Arrow left.svg'),
+                        onTap: () {
+                          Navigator.pushNamed(context, ComprarScreen.routeName);
+                        },
+                      ),
+                      Expanded(child: Container()),
+                      const AutoSizeText(
+                        "Introduce la cantidad",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xff170658),
+                          fontSize: 17,
+                          fontFamily: "Archivo",
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Expanded(child: Container()),
+                      GestureDetector(
+                          child: SvgPicture.asset(
+                              'assets/Vectores/Iconos/Question.svg')),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: size.height * (15 / size.height),
                     ),
-                    Expanded(child: Container()),
-                    const AutoSizeText(
-                      "Introduce la cantidad",
+                    child: const AutoSizeText(
+                      "Cantidad",
+                      style: TextStyle(
+                        color: Color(0xff170658),
+                        fontSize: 13,
+                        fontFamily: "Archivo",
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: size.height * (8 / size.height),
+                    ),
+                    child: Form(
+                      key: formKey9,
+                      child: TextFormField(
+                        controller: quantityController,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          suffixIcon: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: 1,
+                                height: size.height * (32 / size.height),
+                                color: const Color(0xffCDCCD1),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  left: size.width * (10 / size.width),
+                                  right: size.width * (19 / size.width),
+                                ),
+                                child: const AutoSizeText(
+                                  "USD",
+                                  textAlign: TextAlign.right,
+                                  style: TextStyle(
+                                    color: Color(0xff2504ca),
+                                    fontSize: 14,
+                                    fontFamily: "Archivo",
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          labelStyle: TextStyle(
+                            color: const Color(0xff9B99A3),
+                            fontSize: UtilSize.width(14, context),
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w400,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        // onEditingComplete: () {
+                        //   setState(() {
+                        //     cantidad = double.parse(quantityController.text);
+                        //   });
+                        // },
+                        onChanged: (value) {
+                          setState(() {
+                            if (value.isNotEmpty) {
+                              cantidad = double.parse(value);
+                              recibes = cantidad;
+                            }
+                          });
+                        },
+                        validator: (value) {
+                          if (quantityController.text.isEmpty) {
+                            if (value!.isEmpty) {
+                              setState(() {
+                                errorValidation =
+                                    'Por favor,  debes completar todos los registros para continuar';
+                              });
+
+                              return '';
+                            }
+                            return null;
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: size.height * (19 / size.height),
+                    ),
+                    child: const AutoSizeText(
+                      "Recibes:",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color(0xff170658),
-                        fontSize: 17,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w700,
+                        fontSize: 13,
                       ),
                     ),
-                    Expanded(child: Container()),
-                    GestureDetector(
-                        child: SvgPicture.asset(
-                            'assets/Vectores/Iconos/Question.svg')),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * (15 / size.height),
                   ),
-                  child: const AutoSizeText(
-                    "Cantidad",
-                    style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
-                      fontFamily: "Archivo",
-                      fontWeight: FontWeight.w600,
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: size.height * (6 / size.height),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * (8 / size.height),
-                  ),
-                  child: Form(
-                    key: formKey9,
-                    child: TextFormField(
-                      controller: quantityController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
-                        suffixIcon: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              width: 1,
-                              height: size.height * (32 / size.height),
-                              color: const Color(0xffCDCCD1),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: size.width * (10 / size.width),
-                                right: size.width * (19 / size.width),
-                              ),
-                              child: const AutoSizeText(
-                                "USD",
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  color: Color(0xff2504ca),
-                                  fontSize: 14,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        labelStyle: TextStyle(
-                          color: const Color(0xff9B99A3),
-                          fontSize: UtilSize.width(14, context),
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w400,
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                      ),
-                      // onEditingComplete: () {
-                      //   setState(() {
-                      //     cantidad = double.parse(quantityController.text);
-                      //   });
-                      // },
-                      onChanged: (value) {
-                        setState(() {
-                          if (value.isNotEmpty) {
-                            cantidad = double.parse(value);
-                            recibes = cantidad;
-                          }
-                        });
-                      },
-                      validator: (value) {
-                        if (quantityController.text.isEmpty) {
-                          if (value!.isEmpty) {
-                            setState(() {
-                              errorValidation =
-                                  'Por favor,  debes completar todos los registros para continuar';
-                            });
-
-                            return '';
-                          }
-                          return null;
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * (19 / size.height),
-                  ),
-                  child: const AutoSizeText(
-                    "Recibes:",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xff170658),
-                      fontSize: 13,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * (6 / size.height),
-                  ),
-                  child: Row(
-                    children: [
-                      AutoSizeText(
-                        recibes.toString(),
-                        style: const TextStyle(
-                          color: Color(0xff2504ca),
-                          fontSize: 28,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const AutoSizeText(
-                        " USD",
-                        style: TextStyle(
-                          color: Color(0xff2504ca),
-                          fontSize: 28,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w700,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * (10 / size.height),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      AutoSizeText(
-                        "Método de transacción:",
-                        style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 14,
-                        ),
-                      ),
-                      AutoSizeText(
-                        "Banco (SWIFT)",
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 14,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * (14 / size.height),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const AutoSizeText(
-                        "Comisión transacción:",
-                        style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 14,
-                        ),
-                      ),
-                      AutoSizeText(
-                        "${comision.toString()} USD",
-                        textAlign: TextAlign.right,
-                        style: const TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 14,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: size.height * (28 / size.height),
-                  ),
-                  child: SizedBox(
-                    width: size.width,
-                    height: size.height * (459 / size.height),
-                    child: PageView(
-                      controller: controller,
-                      scrollDirection: Axis.horizontal,
-                      physics: const NeverScrollableScrollPhysics(),
+                    child: Row(
                       children: [
-                        Center(
-                          child: SizedBox(
-                            width: size.width * (342 / size.width),
-                            height: size.height * (194 / size.height),
+                        AutoSizeText(
+                          recibes.toString(),
+                          style: const TextStyle(
+                            color: Color(0xff2504ca),
+                            fontSize: 28,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
-                        PageForm(
-                          controller: controller,
-                          formKey10: formKey10,
-                        ),
-                        const PageConfirm(),
+                        const AutoSizeText(
+                          " USD",
+                          style: TextStyle(
+                            color: Color(0xff2504ca),
+                            fontSize: 28,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w700,
+                          ),
+                        )
                       ],
-                      onPageChanged: (page) {
-                        setState(() {
-                          _current = page;
-                        });
-                      },
                     ),
                   ),
-                ),
-                Padding(
+                  Padding(
                     padding: EdgeInsets.only(
-                      top: size.height * (20 / size.height),
-                      bottom: size.height * (56 / size.height),
+                      top: size.height * (10 / size.height),
                     ),
-                    child: ButtonPrimary(
-                      width: double.infinity,
-                      title: "Continuar",
-                      onPressed: () {
-                        if (_current == 2 &&
-                            Provider.of<AccountInfoProvider>(context,
-                                        listen: false)
-                                    .checkedBankInfo ==
-                                true &&
-                            Provider.of<AccountInfoProvider>(context,
-                                        listen: false)
-                                    .checkedtransactInfo ==
-                                true) {
-                          if (formKey9.currentState!.validate()) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => TransferirEbloqsScreen(
-                                    cantidadTransferencia: recibes.toString()),
-                              ),
-                            );
-                          } else {
-                            setState(() {
-                              errorValidation =
-                                  'Por favor,  debes completar todos los registros para continuar';
-                            });
-                            customModalBottomAlert(
-                                context, size, errorValidation, isLoading, '',
-                                () {
-                              Navigator.pop(context);
-                            });
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        AutoSizeText(
+                          "Método de transacción:",
+                          style: TextStyle(
+                            color: Color(0xff170658),
+                            fontSize: 14,
+                          ),
+                        ),
+                        AutoSizeText(
+                          "Banco (SWIFT)",
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Color(0xff170658),
+                            fontSize: 14,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: size.height * (14 / size.height),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const AutoSizeText(
+                          "Comisión transacción:",
+                          style: TextStyle(
+                            color: Color(0xff170658),
+                            fontSize: 14,
+                          ),
+                        ),
+                        AutoSizeText(
+                          "${comision.toString()} USD",
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
+                            color: Color(0xff170658),
+                            fontSize: 14,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: size.height * (28 / size.height),
+                    ),
+                    child: SizedBox(
+                      width: size.width,
+                      height: size.height * (459 / size.height),
+                      child: PageView(
+                        controller: controller,
+                        scrollDirection: Axis.horizontal,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: [
+                          Center(
+                            child: SizedBox(
+                              width: size.width * (342 / size.width),
+                              height: size.height * (194 / size.height),
+                            ),
+                          ),
+                          PageForm(
+                            controller: controller,
+                            formKey10: formKey10,
+                          ),
+                          const PageConfirm(),
+                        ],
+                        onPageChanged: (page) {
+                          setState(() {
+                            _current = page;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(
+                        top: size.height * (20 / size.height),
+                        bottom: size.height * (56 / size.height),
+                      ),
+                      child: ButtonPrimary(
+                        width: double.infinity,
+                        title: "Continuar",
+                        onPressed: () {
+                          if (_current == 2 &&
+                              Provider.of<AccountInfoProvider>(context,
+                                          listen: false)
+                                      .checkedBankInfo ==
+                                  true &&
+                              Provider.of<AccountInfoProvider>(context,
+                                          listen: false)
+                                      .checkedtransactInfo ==
+                                  true) {
+                            if (formKey9.currentState!.validate()) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => TransferirEbloqsScreen(
+                                      cantidadTransferencia:
+                                          recibes.toString()),
+                                ),
+                              );
+                            } else {
+                              setState(() {
+                                errorValidation =
+                                    'Por favor,  debes completar todos los registros para continuar';
+                              });
+                              customModalBottomAlert(
+                                  context, size, errorValidation, isLoading, '',
+                                  () {
+                                Navigator.pop(context);
+                              });
+                            }
                           }
-                        }
-                        if (_current == 1) {
-                          if (formKey10.currentState!.validate()) {
+                          if (_current == 1) {
+                            if (formKey10.currentState!.validate()) {
+                              setState(() {
+                                controller.jumpToPage(_current + 1);
+                              });
+                            } else {
+                              setState(() {
+                                errorValidation =
+                                    'Por favor,  debes completar todos los registros para continuar';
+                              });
+                              customModalBottomAlert(
+                                  context, size, errorValidation, isLoading, '',
+                                  () {
+                                Navigator.pop(context);
+                              });
+                            }
+                          }
+                          if (_current == 0) {
                             setState(() {
                               controller.jumpToPage(_current + 1);
                             });
-                          } else {
-                            setState(() {
-                              errorValidation =
-                                  'Por favor,  debes completar todos los registros para continuar';
-                            });
-                            customModalBottomAlert(
-                                context, size, errorValidation, isLoading, '',
-                                () {
-                              Navigator.pop(context);
-                            });
                           }
-                        }
-                        if (_current == 0) {
-                          setState(() {
-                            controller.jumpToPage(_current + 1);
-                          });
-                        }
-                      },
-                      load: isLoading,
-                      disabled: isLoading,
-                    )),
-              ],
+                        },
+                        load: isLoading,
+                        disabled: isLoading,
+                      )),
+                ],
+              ),
             ),
           ),
         ),

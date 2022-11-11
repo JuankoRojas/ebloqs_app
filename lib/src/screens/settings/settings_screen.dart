@@ -257,6 +257,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     setState(() {
                       Preferences.uid = '';
                       Preferences.token = '';
+                      Provider.of<AvatarUserProvider>(context, listen: false)
+                          .avatarSetUser = 'assets/avatares/mascota/pet-4.svg';
                     });
                     Future.delayed(const Duration(seconds: 1), () {
                       Navigator.pushNamedAndRemoveUntil(context,
@@ -296,8 +298,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       SharedPreferences preferences =
                           await SharedPreferences.getInstance();
                       await preferences.clear();
+
                       setState(() {});
                       Future.delayed(const Duration(seconds: 1), () {
+                        Provider.of<AvatarUserProvider>(context, listen: false)
+                                .avatarSetUser =
+                            'assets/avatares/mascota/pet-4.svg';
                         Navigator.pushNamedAndRemoveUntil(context,
                             OnBoardPageRoute.routeName, (route) => false);
                       });

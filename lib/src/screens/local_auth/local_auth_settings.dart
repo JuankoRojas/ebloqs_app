@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
+import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -69,7 +69,7 @@ class _LocalAuthSettingsState extends State<LocalAuthSettings> {
     if (message == 'Authorized') {
       Preferences.local_auth = message;
       Navigator.of(context)
-          .pushNamed(SettingsScreen.routeName)
+          .pushNamed(HomeScreen.routeName)
           .whenComplete(_cancelAuthentication);
     }
   }
@@ -182,7 +182,7 @@ class _LocalAuthSettingsState extends State<LocalAuthSettings> {
               ),
               onTap: () {
                 Preferences.local_auth = 'Not Authorized';
-                Navigator.pushNamed(context, SettingsScreen.routeName);
+                Navigator.pushNamed(context, HomeScreen.routeName);
               },
             ),
           )

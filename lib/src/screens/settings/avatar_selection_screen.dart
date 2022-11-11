@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
-import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
+import 'package:ebloqs_app/src/screens/home_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
@@ -591,7 +591,7 @@ class _AvatarSelectionScreenState extends State<AvatarSelectionScreen> {
                       width: size.width,
                       title: 'Continuar',
                       onPressed: () {
-                        Navigator.pushNamed(context, WalletScreen.routeName);
+                        Navigator.pushNamed(context, HomeScreen.routeName);
                       },
                       load: load),
                 )

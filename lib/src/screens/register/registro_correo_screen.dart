@@ -37,157 +37,163 @@ class _RegistroCorreoScreenState extends State<RegistroCorreoScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.only(
-            left: size.width * 0.05,
-            right: size.width * 0.05,
-            top: size.height * 0.035,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    icon: SvgPicture.asset(
-                      'assets/Vectores/Iconos/Arrow left.svg',
-                      allowDrawingOutsideViewBox: true,
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15.5),
-                    child: AutoSizeText(
-                      'Regresar',
-                      style: TextStyle(
-                        color: Color(0xff170658),
-                        fontSize: 14,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w400,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(
+              left: size.width * 0.05,
+              right: size.width * 0.05,
+              top: size.height * 0.035,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: SvgPicture.asset(
+                        'assets/Vectores/Iconos/Arrow left.svg',
+                        allowDrawingOutsideViewBox: true,
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: size.height * 0.072),
-                child: Center(
-                  child: SvgPicture.asset(
-                    'assets/Vectores/Ilustraciones/Group1825.svg',
+                    const Padding(
+                      padding: EdgeInsets.only(left: 15.5),
+                      child: AutoSizeText(
+                        'Regresar',
+                        style: TextStyle(
+                          color: Color(0xff170658),
+                          fontSize: 14,
+                          fontFamily: "Archivo",
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: size.height * 0.072),
+                  child: Center(
+                    child: SvgPicture.asset(
+                      'assets/Vectores/Ilustraciones/Group1825.svg',
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: size.height * 0.115,
-                  bottom: size.height * 0.007,
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: size.height * 0.115,
+                    bottom: size.height * 0.007,
+                  ),
+                  child: const AutoSizeText(
+                    'Regístrate',
+                    style: TextStyle(
+                      color: Color(0xff170658),
+                      fontSize: 17,
+                      fontFamily: "Archivo",
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                 ),
-                child: const AutoSizeText(
-                  'Regístrate',
+                const AutoSizeText(
+                  'Inicia sesión en ebloqs con tu correo',
                   style: TextStyle(
                     color: Color(0xff170658),
-                    fontSize: 17,
+                    fontSize: 13,
                     fontFamily: "Archivo",
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
-              ),
-              const AutoSizeText(
-                'Inicia sesión en ebloqs con tu correo',
-                style: TextStyle(
-                  color: Color(0xff170658),
-                  fontSize: 13,
-                  fontFamily: "Archivo",
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: size.height * 0.038),
-                child: Form(
-                  key: formKey,
-                  child: TextFormField(
-                    controller: emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: const TextStyle(
-                        color: Color(0xff9B99A3),
-                        fontSize: 14,
-                        fontFamily: "Archivo",
-                        fontWeight: FontWeight.w400,
+                Padding(
+                  padding: EdgeInsets.only(top: size.height * 0.038),
+                  child: Form(
+                    key: formKey,
+                    child: TextFormField(
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                        labelStyle: const TextStyle(
+                          color: Color(0xff9B99A3),
+                          fontSize: 14,
+                          fontFamily: "Archivo",
+                          fontWeight: FontWeight.w400,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
                       ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Por favor ingresa un email';
-                      } else if (!validarEstructuraEmail(value)) {
-                        return 'Por favor ingresa un email válido';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: size.height * 0.018970189701897),
-                child: ButtonPrimary(
-                  width: size.width,
-                  title: 'Enviar',
-                  onPressed: () async {
-                    try {
-                      if (emailController.text.isNotEmpty) {
-                        setState(() {
-                          isLoadLogin = true;
-                        });
-                        final register = await AuthUserService().registerUser(
-                          email: emailController.text,
-                          name: emailController.text.split('@').first,
-                          deviceID: uuid.v4(),
-                          type_account: 'email',
-                        );
-
-                        if (register["access_token"] != null) {
-                          setState(() {
-                            Preferences.token = register['access_token'];
-                            Provider.of<UserInfoProvider>(context,
-                                    listen: false)
-                                .emailset(emailController.text);
-                            isLoadLogin = false;
-                          });
-
-                          Future.delayed(Duration.zero).then(
-                            (_) => Navigator.pushNamed(
-                              context,
-                              RegistroLinkScreen.routeName,
-                            ),
-                          );
-                        } else {
-                          print(register);
-                          setState(() {
-                            isLoadLogin = false;
-                          });
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Por favor ingresa un email';
+                        } else if (!validarEstructuraEmail(value)) {
+                          return 'Por favor ingresa un email válido';
                         }
-                      }
-                    } catch (e) {
-                      setState(() {
-                        isLoadLogin = false;
-                      });
-
-                      throw Exception(e);
-                    }
-                  },
-                  load: isLoadLogin!,
-                  disabled: isLoadLogin!,
+                        return null;
+                      },
+                    ),
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: size.height * 0.018970189701897),
+                  child: ButtonPrimary(
+                    width: size.width,
+                    title: 'Enviar',
+                    onPressed: () async {
+                      try {
+                        if (emailController.text.isNotEmpty) {
+                          setState(() {
+                            isLoadLogin = true;
+                          });
+                          final register = await AuthUserService().registerUser(
+                            email: emailController.text,
+                            name: emailController.text.split('@').first,
+                            deviceID: uuid.v4(),
+                            type_account: 'email',
+                          );
+
+                          if (register["access_token"] != null) {
+                            setState(() {
+                              Preferences.token = register['access_token'];
+                              Provider.of<UserInfoProvider>(context,
+                                      listen: false)
+                                  .emailset(emailController.text);
+                              isLoadLogin = false;
+                            });
+
+                            Future.delayed(Duration.zero).then(
+                              (_) => Navigator.pushNamed(
+                                context,
+                                RegistroLinkScreen.routeName,
+                              ),
+                            );
+                          } else {
+                            print(register);
+                            setState(() {
+                              isLoadLogin = false;
+                            });
+                          }
+                        }
+                      } catch (e) {
+                        setState(() {
+                          isLoadLogin = false;
+                        });
+
+                        throw Exception(e);
+                      }
+                    },
+                    load: isLoadLogin!,
+                    disabled: isLoadLogin!,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

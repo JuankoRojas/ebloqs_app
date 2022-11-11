@@ -47,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   void getTokenValue() async {
     final dataToken = await TokenService().getToken(token: Preferences.token!);
+    print(dataToken["ico_cost"]);
     setState(() {
       tokenValue = double.parse(dataToken["ico_cost"]);
     });
@@ -58,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen>
     final avatarSelected = Provider.of<AvatarUserProvider>(context).avatarUser;
     bool isLoading = false;
     print('token: ${Preferences.token}');
+
     List<Map<String, dynamic>> inversiones = [
       {
         'imagen': 'assets/Imagenes/heraldica.png',
@@ -478,10 +480,11 @@ class _HomeScreenState extends State<HomeScreen>
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsets.only(
-                                                      top: size.height *
-                                                          0.00985221674876847,
-                                                      left: size.width *
-                                                          0.0106666666666667),
+                                                    top: size.height *
+                                                        0.00985221674876847,
+                                                    // left: size.width *
+                                                    //     0.0106666666666667
+                                                  ),
                                                   child: const AutoSizeText(
                                                     "BALANCE DISPONIBLE",
                                                     style: TextStyle(
@@ -653,7 +656,7 @@ class _HomeScreenState extends State<HomeScreen>
                                   width: size.width * 0.95,
                                   height: size.height * 0.1,
                                   padding: EdgeInsets.only(
-                                      top: UtilSize.height(24, context),
+                                      top: UtilSize.height(28, context),
                                       left: size.width * 0.043,
                                       right: size.width * 0.034),
                                   decoration: BoxDecoration(
@@ -1099,10 +1102,10 @@ class _HomeScreenState extends State<HomeScreen>
                                                 MainAxisAlignment.start,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
-                                            children: const [
+                                            children: [
                                               AutoSizeText(
-                                                "\$0,07 USD",
-                                                style: TextStyle(
+                                                "\$$tokenValue USD",
+                                                style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 16.44,
                                                   fontFamily: "Archivo",
@@ -1128,8 +1131,15 @@ class _HomeScreenState extends State<HomeScreen>
                             ),
                           ),
                           onTap: () {
-                            Navigator.pushNamed(
-                                context, ComprarScreen.routeName);
+                            final idWallet = Preferences.id_wallet;
+                            final publicKey = Preferences.public_key;
+                            if (idWallet != null && publicKey != null) {
+                              Navigator.pushNamed(
+                                  context, ComprarScreen.routeName);
+                            } else {
+                              Navigator.pushNamed(
+                                  context, NationalityScreen.routeName);
+                            }
                           },
                         ),
                       )

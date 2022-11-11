@@ -47,97 +47,176 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
         //   elevation: 0,
         //   automaticallyImplyLeading: false,
         // ),
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Image.asset('assets/png/02 1.png'),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: size.height * 0.075, left: size.width * 0.037),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: SvgPicture.asset(
-                              'assets/Vectores/Iconos/Arrow left.svg'),
-                        ),
-                        Expanded(child: Container()),
-                        const Align(
-                          alignment: Alignment.center,
-                          child: Center(
-                            child: AutoSizeText(
-                              "Crea tu billetera",
-                              style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 17,
-                                fontFamily: "Archivo",
-                                fontWeight: FontWeight.w700,
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: SingleChildScrollView(
+            child: Stack(
+              children: [
+                Image.asset('assets/png/02 1.png'),
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.075, left: size.width * 0.037),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: SvgPicture.asset(
+                                'assets/Vectores/Iconos/Arrow left.svg'),
+                          ),
+                          Expanded(child: Container()),
+                          const Align(
+                            alignment: Alignment.center,
+                            child: Center(
+                              child: AutoSizeText(
+                                "Crea tu billetera",
+                                style: TextStyle(
+                                  color: Color(0xff170658),
+                                  fontSize: 17,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w700,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Expanded(child: Container()),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: size.height * 0.055),
-                      child: const AutoSizeText(
-                        "Crear contraseña",
-                        style: TextStyle(
-                          color: Color(0xff170658),
-                          fontSize: 20,
-                          fontFamily: "Archivo",
-                          fontWeight: FontWeight.w700,
-                        ),
+                          Expanded(child: Container()),
+                        ],
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: size.height * 0.013),
-                      child: SizedBox(
-                        width: size.width * 0.91,
-                        height: UtilSize.height(85, context),
+                      Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.055),
                         child: const AutoSizeText(
-                          "Establezca una contraseña para su copia de seguridad en la nube y guárdela en un lugar seguro. No podemos restablecer la contraseña por usted. No reutilices tu contraseña de la nube.",
+                          "Crear contraseña",
                           style: TextStyle(
-                              color: Color(0xff170658),
-                              fontSize: 14,
-                              fontFamily: "Archivo",
-                              fontWeight: FontWeight.w400,
-                              height: 1.2),
+                            color: Color(0xff170658),
+                            fontSize: 20,
+                            fontFamily: "Archivo",
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: size.height * 0.035, right: size.width * 0.037),
-                      child: Form(
-                        key: formKey3,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const AutoSizeText(
-                              "Ingresa tu contraseña",
-                              style: TextStyle(
+                      Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.013),
+                        child: SizedBox(
+                          width: size.width * 0.91,
+                          height: UtilSize.height(85, context),
+                          child: const AutoSizeText(
+                            "Establezca una contraseña para su copia de seguridad en la nube y guárdela en un lugar seguro. No podemos restablecer la contraseña por usted. No reutilices tu contraseña de la nube.",
+                            style: TextStyle(
                                 color: Color(0xff170658),
-                                fontSize: 13,
+                                fontSize: 14,
                                 fontFamily: "Archivo",
                                 fontWeight: FontWeight.w400,
+                                height: 1.2),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                            top: size.height * 0.035,
+                            right: size.width * 0.037),
+                        child: Form(
+                          key: formKey3,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const AutoSizeText(
+                                "Ingresa tu contraseña",
+                                style: TextStyle(
+                                  color: Color(0xff170658),
+                                  fontSize: 13,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(top: size.height * 0.005),
-                              child: TextFormField(
-                                  controller: passController,
-                                  obscureText: _showPassword,
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(top: size.height * 0.005),
+                                child: TextFormField(
+                                    controller: passController,
+                                    obscureText: _showPassword,
+                                    style: TextStyle(
+                                      color: const Color(0xff170658),
+                                      fontSize: UtilSize.width(16, context),
+                                      fontFamily: "Archivo",
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    keyboardType: TextInputType.visiblePassword,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                      suffixIcon: Padding(
+                                        padding: const EdgeInsets.all(14.0),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              _showPassword = !_showPassword;
+                                            });
+                                          },
+                                          child: Container(
+                                            width: size.width * 0.065,
+                                            padding: const EdgeInsets.all(4),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                              color: const Color(0xfff9f9fa),
+                                            ),
+                                            child: SvgPicture.asset(
+                                              'assets/Vectores/Iconos/eye.svg',
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    validator: (value) {
+                                      print(value);
+                                      if (value!.isEmpty) {
+                                        setState(() {
+                                          errorValidation =
+                                              'Por favor,  debes completar todos los registros para continuar';
+                                        });
+
+                                        return '';
+                                      } else if (!validarEstructuraContrasena(
+                                          value)) {
+                                        setState(() {
+                                          errorValidation =
+                                              '''Ingresar al menos 8 caracteres, una mayúscula,
+        una minúscula, un número y un carácter especial''';
+                                        });
+                                        return '';
+                                      }
+                                      return null;
+                                    }),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(top: size.height * 0.035),
+                                child: const AutoSizeText(
+                                  "Ingresa una vez más tu contraseña",
+                                  style: TextStyle(
+                                    color: Color(0xff170658),
+                                    fontSize: 13,
+                                    fontFamily: "Archivo",
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(top: size.height * 0.005),
+                                child: TextFormField(
+                                  controller: passConfirmController,
+                                  obscureText: _showConfirmPassword,
                                   style: TextStyle(
                                     color: const Color(0xff170658),
                                     fontSize: UtilSize.width(16, context),
@@ -154,7 +233,8 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                       child: GestureDetector(
                                         onTap: () {
                                           setState(() {
-                                            _showPassword = !_showPassword;
+                                            _showConfirmPassword =
+                                                !_showConfirmPassword;
                                           });
                                         },
                                         child: Container(
@@ -181,227 +261,153 @@ class _CreateWalletPassScreenState extends State<CreateWalletPassScreen> {
                                       });
 
                                       return '';
+                                    } else if (passController.text !=
+                                        passConfirmController.text) {
+                                      setState(() {
+                                        errorValidation =
+                                            'Las contraseñas no coinciden';
+                                      });
+                                      return '';
                                     } else if (!validarEstructuraContrasena(
                                         value)) {
                                       setState(() {
                                         errorValidation =
                                             '''Ingresar al menos 8 caracteres, una mayúscula,
-una minúscula, un número y un carácter especial''';
+        una minúscula, un número y un carácter especial''';
                                       });
                                       return '';
                                     }
                                     return null;
-                                  }),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(top: size.height * 0.035),
-                              child: const AutoSizeText(
-                                "Ingresa una vez más tu contraseña",
-                                style: TextStyle(
-                                  color: Color(0xff170658),
-                                  fontSize: 13,
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w400,
+                                  },
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(top: size.height * 0.005),
-                              child: TextFormField(
-                                controller: passConfirmController,
-                                obscureText: _showConfirmPassword,
-                                style: TextStyle(
-                                  color: const Color(0xff170658),
-                                  fontSize: UtilSize.width(16, context),
-                                  fontFamily: "Archivo",
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                keyboardType: TextInputType.visiblePassword,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  suffixIcon: Padding(
-                                    padding: const EdgeInsets.all(14.0),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          _showConfirmPassword =
-                                              !_showConfirmPassword;
-                                        });
-                                      },
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(top: size.height * 0.035),
+                                child: Row(
+                                  children: [
+                                    GestureDetector(
                                       child: Container(
                                         width: size.width * 0.065,
-                                        padding: const EdgeInsets.all(4),
+                                        height: size.width * 0.065,
+                                        padding: EdgeInsets.only(
+                                            top: size.height * 0.006,
+                                            bottom: size.height * 0.006,
+                                            left: size.width * 0.0097,
+                                            right: size.width * 0.0077),
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                          color: const Color(0xfff9f9fa),
+                                          border: Border.all(
+                                            color: const Color(0xffeae4fc),
+                                            width: 1,
+                                          ),
+                                          color: const Color(0xfff6f4fd),
                                         ),
-                                        child: SvgPicture.asset(
-                                          'assets/Vectores/Iconos/eye.svg',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                validator: (value) {
-                                  print(value);
-                                  if (value!.isEmpty) {
-                                    setState(() {
-                                      errorValidation =
-                                          'Por favor,  debes completar todos los registros para continuar';
-                                    });
-
-                                    return '';
-                                  } else if (passController.text !=
-                                      passConfirmController.text) {
-                                    setState(() {
-                                      errorValidation =
-                                          'Las contraseñas no coinciden';
-                                    });
-                                    return '';
-                                  } else if (!validarEstructuraContrasena(
-                                      value)) {
-                                    setState(() {
-                                      errorValidation =
-                                          '''Ingresar al menos 8 caracteres, una mayúscula,
-una minúscula, un número y un carácter especial''';
-                                    });
-                                    return '';
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(top: size.height * 0.035),
-                              child: Row(
-                                children: [
-                                  GestureDetector(
-                                    child: Container(
-                                      width: size.width * 0.065,
-                                      height: size.width * 0.065,
-                                      padding: EdgeInsets.only(
-                                          top: size.height * 0.006,
-                                          bottom: size.height * 0.006,
-                                          left: size.width * 0.0097,
-                                          right: size.width * 0.0077),
-                                      decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: const Color(0xffeae4fc),
-                                          width: 1,
-                                        ),
-                                        color: const Color(0xfff6f4fd),
-                                      ),
-                                      child: (visible == true)
-                                          ? SvgPicture.asset(
-                                              'assets/Vectores/Iconos/Checktherm.svg',
-                                            )
-                                          : Container(),
-                                    ),
-                                    onTap: () {
-                                      setState(() {
-                                        if (visible == false) {
-                                          visible = true;
-                                          errorValidation =
-                                              'Debes aceptar los términos y condiciones';
-                                        } else {
-                                          visible = false;
-                                        }
-                                      });
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        left: size.width * 0.03),
-                                    child: GestureDetector(
-                                      child: const AutoSizeText(
-                                        "Acepto términos y condiciones ebloqs",
-                                        style: TextStyle(
-                                          color: Color(0xff170658),
-                                          fontSize: 13,
-                                          fontFamily: "Archivo",
-                                          fontWeight: FontWeight.w400,
-                                        ),
+                                        child: (visible == true)
+                                            ? SvgPicture.asset(
+                                                'assets/Vectores/Iconos/Checktherm.svg',
+                                              )
+                                            : Container(),
                                       ),
                                       onTap: () {
-                                        Navigator.pushNamed(context,
-                                            ThermsConditionsScreen.routeName);
+                                        setState(() {
+                                          if (visible == false) {
+                                            visible = true;
+                                            errorValidation =
+                                                'Debes aceptar los términos y condiciones';
+                                          } else {
+                                            visible = false;
+                                          }
+                                        });
                                       },
                                     ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: size.width * 0.03),
+                                      child: GestureDetector(
+                                        child: const AutoSizeText(
+                                          "Acepto términos y condiciones ebloqs",
+                                          style: TextStyle(
+                                            color: Color(0xff170658),
+                                            fontSize: 13,
+                                            fontFamily: "Archivo",
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        onTap: () {
+                                          Navigator.pushNamed(context,
+                                              ThermsConditionsScreen.routeName);
+                                        },
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                        padding: EdgeInsets.only(
-                            top: size.height * 0.255,
-                            right: size.width * 0.037),
-                        child: ButtonPrimary(
-                          width: double.infinity,
-                          title: "Continuar",
-                          onPressed: () async {
-                            print('walle5t');
-                            if (formKey3.currentState!.validate() &&
-                                passController.text ==
-                                    passConfirmController.text &&
-                                visible == true) {
-                              print(formKey3.currentState!.validate());
-                              setState(() {
-                                isLoading = true;
-                              });
-                              try {
-                                final Map response = await CreateWallet()
-                                    .createWallet(pass: passController.text);
-                                print(response);
-                                if (response.isNotEmpty) {
-                                  Preferences.id_wallet = response['id_wallet'];
-                                  Preferences.public_key =
-                                      response['public_key'];
-                                  Preferences.mnemonic = response['mnemonic'];
-                                  Future.delayed(Duration.zero).then((_) =>
-                                      Navigator.pushNamed(context,
-                                          CreateWalletScreen.routeName));
+                      Padding(
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.255,
+                              right: size.width * 0.037),
+                          child: ButtonPrimary(
+                            width: double.infinity,
+                            title: "Continuar",
+                            onPressed: () async {
+                              print('walle5t');
+                              if (formKey3.currentState!.validate() &&
+                                  passController.text ==
+                                      passConfirmController.text &&
+                                  visible == true) {
+                                print(formKey3.currentState!.validate());
+                                setState(() {
+                                  isLoading = true;
+                                });
+                                try {
+                                  final Map response = await CreateWallet()
+                                      .createWallet(pass: passController.text);
+                                  print(response);
+                                  if (response.isNotEmpty) {
+                                    Preferences.id_wallet =
+                                        response['id_wallet'];
+                                    Preferences.public_key =
+                                        response['public_key'];
+                                    Preferences.mnemonic = response['mnemonic'];
+                                    Future.delayed(Duration.zero).then((_) =>
+                                        Navigator.pushNamed(context,
+                                            CreateWalletScreen.routeName));
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                  }
+                                } catch (e) {
+                                  print(e);
+                                }
+                              } else {
+                                if (visible == false) {
                                   setState(() {
-                                    isLoading = false;
+                                    errorValidation =
+                                        'Debes aceptar los términos y condiciones';
+                                  });
+                                  customModalBottomAlert(context, size,
+                                      errorValidation, isLoading, '', () {
+                                    Navigator.pop(context);
                                   });
                                 }
-                              } catch (e) {
-                                print(e);
-                              }
-                            } else {
-                              if (visible == false) {
-                                setState(() {
-                                  errorValidation =
-                                      'Debes aceptar los términos y condiciones';
-                                });
                                 customModalBottomAlert(context, size,
                                     errorValidation, isLoading, '', () {
                                   Navigator.pop(context);
                                 });
                               }
-                              customModalBottomAlert(
-                                  context, size, errorValidation, isLoading, '',
-                                  () {
-                                Navigator.pop(context);
-                              });
-                            }
-                          },
-                          load: isLoading,
-                          disabled: isLoading,
-                        )),
-                  ],
-                ),
-              )
-            ],
+                            },
+                            load: isLoading,
+                            disabled: isLoading,
+                          )),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ));
   }

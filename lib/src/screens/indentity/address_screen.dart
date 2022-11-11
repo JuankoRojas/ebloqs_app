@@ -102,296 +102,306 @@ class _AddressScreenState extends State<AddressScreen>
           ),
           centerTitle: true,
         ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(
-              top: size.height * 0.0288540807914262,
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding:
-                      EdgeInsets.only(left: size.width * 0.0361072902338377),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset('assets/Vectores/Iconos/id.svg'),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: size.width * 0.0384219554030875),
-                        child: const AutoSizeText(
-                          "Domicilio",
-                          style: TextStyle(
-                            color: Color(0xff170658),
-                            fontSize: 13,
-                            fontFamily: "Archivo",
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: size.height * 0.0311264822134388,
-                      left: size.width * 0.0361072902338377,
-                      right: size.width * 0.0361072902338377),
-                  child: Container(
-                    width: size.width,
-                    height: UtilSize.height(4, context),
-                    padding: EdgeInsets.only(right: size.width * 0.4),
-                    decoration: const BoxDecoration(
-                        color: Color(0xffeae4fc),
-                        borderRadius: BorderRadius.all(Radius.circular(3))),
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxWidth: UtilSize.height(94, context),
-                      ),
-                      child: Container(
-                          width: size.width * 0.220953660174614,
-                          height: UtilSize.height(4, context),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: size.height * 0.0288540807914262,
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: size.width * 0.0361072902338377),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset('assets/Vectores/Iconos/id.svg'),
+                        Padding(
                           padding: EdgeInsets.only(
-                              right: size.width * 0.591383372601818),
-                          decoration: const BoxDecoration(
+                              left: size.width * 0.0384219554030875),
+                          child: const AutoSizeText(
+                            "Domicilio",
+                            style: TextStyle(
                               color: Color(0xff170658),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(3)))),
+                              fontSize: 13,
+                              fontFamily: "Archivo",
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding:
-                      EdgeInsets.only(top: size.height * 0.0281218613993974),
-                  child: Form(
-                      key: _formKey12,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: size.height * 0.0311264822134388,
+                        left: size.width * 0.0361072902338377,
+                        right: size.width * 0.0361072902338377),
+                    child: Container(
+                      width: size.width,
+                      height: UtilSize.height(4, context),
+                      padding: EdgeInsets.only(right: size.width * 0.4),
+                      decoration: const BoxDecoration(
+                          color: Color(0xffeae4fc),
+                          borderRadius: BorderRadius.all(Radius.circular(3))),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxWidth: UtilSize.height(94, context),
+                        ),
+                        child: Container(
+                            width: size.width * 0.220953660174614,
+                            height: UtilSize.height(4, context),
                             padding: EdgeInsets.only(
-                              top: UtilSize.height(16, context),
-                              left: UtilSize.width(15, context),
-                            ),
-                            child: const AutoSizeText(
-                              "País",
-                              style: TextStyle(
+                                right: size.width * 0.591383372601818),
+                            decoration: const BoxDecoration(
                                 color: Color(0xff170658),
-                                fontSize: 13,
-                                fontFamily: "Archivo",
-                                fontWeight: FontWeight.w600,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(3)))),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: size.height * 0.0281218613993974),
+                    child: Form(
+                        key: _formKey12,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                top: UtilSize.height(16, context),
+                                left: UtilSize.width(15, context),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.00947386229064457,
-                                left: size.width * 0.0361072902338377,
-                                right: size.width * 0.0361072902338377),
-                            child: TextFormField(
-                              controller: locationProvider.countryController,
-                              keyboardType: TextInputType.text,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[a-zA-Z ]')),
-                              ],
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),
+                              child: const AutoSizeText(
+                                "País",
+                                style: TextStyle(
+                                  color: Color(0xff170658),
+                                  fontSize: 13,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  setState(() {
-                                    errorValidation =
-                                        'Por favor,  debes completar todos los registros para continuar';
-                                  });
-
-                                  return '';
-                                }
-                                return null;
-                              },
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.0188140433394927,
-                                left: size.width * 0.0361072902338377),
-                            child: const AutoSizeText(
-                              "Ciudad",
-                              style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 13,
-                                fontFamily: "Archivo",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.00947386229064457,
-                                left: size.width * 0.0361072902338377,
-                                right: size.width * 0.0361072902338377),
-                            child: TextFormField(
-                              controller: locationProvider.cityController,
-                              keyboardType: TextInputType.text,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[a-zA-Z ]')),
-                              ],
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.00947386229064457,
+                                  left: size.width * 0.0361072902338377,
+                                  right: size.width * 0.0361072902338377),
+                              child: TextFormField(
+                                controller: locationProvider.countryController,
+                                keyboardType: TextInputType.text,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'[a-zA-Z ]')),
+                                ],
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
                                 ),
-                              ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  setState(() {
-                                    errorValidation =
-                                        'Por favor,  debes completar todos los registros para continuar';
-                                  });
-
-                                  return '';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.0188140433394927,
-                                left: size.width * 0.0361072902338377),
-                            child: const AutoSizeText(
-                              "Dirección de domicilio",
-                              style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 13,
-                                fontFamily: "Archivo",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.00947386229064457,
-                                left: size.width * 0.0361072902338377,
-                                right: size.width * 0.0361072902338377),
-                            child: TextFormField(
-                              controller: locationProvider.addressController,
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                              ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  setState(() {
-                                    errorValidation =
-                                        'Por favor,  debes completar todos los registros para continuar';
-                                  });
-
-                                  return '';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.0188140433394927,
-                                left: size.width * 0.0361072902338377),
-                            child: const AutoSizeText(
-                              "Código Postal",
-                              style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 13,
-                                fontFamily: "Archivo",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.00947386229064457,
-                                left: size.width * 0.0361072902338377,
-                                right: size.width * 0.0361072902338377),
-                            child: TextFormField(
-                              controller: locationProvider.postalCodeController,
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.allow(
-                                    RegExp(r'[0-9]')),
-                              ],
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                              ),
-                              validator: (value) {
-                                if (value!.isEmpty) {
-                                  setState(() {
-                                    errorValidation =
-                                        'Por favor,  debes completar todos los registros para continuar';
-                                  });
-
-                                  return '';
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: size.height * 0.200361901628557,
-                                left: size.width * 0.0361072902338377,
-                                right: size.width * 0.0361072902338377,
-                                bottom: size.height * 0.0557213930348259),
-                            child: ButtonPrimary(
-                                width: size.width,
-                                title: 'Continuar',
-                                onPressed: () async {
-                                  if (_formKey12.currentState!.validate()) {
-                                    setState(() {
-                                      isLoadLogin = true;
-                                    });
-                                    final response = await AddresServices()
-                                        .saveNewAddress(
-                                            country: locationProvider
-                                                .countryController.text,
-                                            city: locationProvider
-                                                .cityController.text,
-                                            address1: locationProvider
-                                                .addressController.text,
-                                            postalCode: locationProvider
-                                                .postalCodeController.text,
-                                            token: Preferences.token!);
-                                    if (response.runtimeType != String) {
-                                      Future.delayed(Duration.zero).then(
-                                          (value) => Navigator.pushNamed(
-                                              context,
-                                              IdDocumentScreen.routeName));
-                                      setState(() {
-                                        isLoadLogin = false;
-                                      });
-                                    }
-                                  } else {
+                                validator: (value) {
+                                  if (value!.isEmpty) {
                                     setState(() {
                                       errorValidation =
                                           'Por favor,  debes completar todos los registros para continuar';
                                     });
-                                    customModalBottomAlert(context, size,
-                                        errorValidation, isLoadLogin!, '', () {
-                                      Navigator.pop(context);
-                                    });
+
+                                    return '';
                                   }
+                                  return null;
                                 },
-                                load: isLoadLogin!,
-                                disabled: isLoadLogin!),
-                          )
-                        ],
-                      )),
-                )
-              ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.0188140433394927,
+                                  left: size.width * 0.0361072902338377),
+                              child: const AutoSizeText(
+                                "Ciudad",
+                                style: TextStyle(
+                                  color: Color(0xff170658),
+                                  fontSize: 13,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.00947386229064457,
+                                  left: size.width * 0.0361072902338377,
+                                  right: size.width * 0.0361072902338377),
+                              child: TextFormField(
+                                controller: locationProvider.cityController,
+                                keyboardType: TextInputType.text,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'[a-zA-Z ]')),
+                                ],
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    setState(() {
+                                      errorValidation =
+                                          'Por favor,  debes completar todos los registros para continuar';
+                                    });
+
+                                    return '';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.0188140433394927,
+                                  left: size.width * 0.0361072902338377),
+                              child: const AutoSizeText(
+                                "Dirección de domicilio",
+                                style: TextStyle(
+                                  color: Color(0xff170658),
+                                  fontSize: 13,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.00947386229064457,
+                                  left: size.width * 0.0361072902338377,
+                                  right: size.width * 0.0361072902338377),
+                              child: TextFormField(
+                                controller: locationProvider.addressController,
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    setState(() {
+                                      errorValidation =
+                                          'Por favor,  debes completar todos los registros para continuar';
+                                    });
+
+                                    return '';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.0188140433394927,
+                                  left: size.width * 0.0361072902338377),
+                              child: const AutoSizeText(
+                                "Código Postal",
+                                style: TextStyle(
+                                  color: Color(0xff170658),
+                                  fontSize: 13,
+                                  fontFamily: "Archivo",
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.00947386229064457,
+                                  left: size.width * 0.0361072902338377,
+                                  right: size.width * 0.0361072902338377),
+                              child: TextFormField(
+                                controller:
+                                    locationProvider.postalCodeController,
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp(r'[0-9]')),
+                                ],
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    setState(() {
+                                      errorValidation =
+                                          'Por favor,  debes completar todos los registros para continuar';
+                                    });
+
+                                    return '';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: size.height * 0.200361901628557,
+                                  left: size.width * 0.0361072902338377,
+                                  right: size.width * 0.0361072902338377,
+                                  bottom: size.height * 0.0557213930348259),
+                              child: ButtonPrimary(
+                                  width: size.width,
+                                  title: 'Continuar',
+                                  onPressed: () async {
+                                    if (_formKey12.currentState!.validate()) {
+                                      setState(() {
+                                        isLoadLogin = true;
+                                      });
+                                      final response = await AddresServices()
+                                          .saveNewAddress(
+                                              country: locationProvider
+                                                  .countryController.text,
+                                              city: locationProvider
+                                                  .cityController.text,
+                                              address1: locationProvider
+                                                  .addressController.text,
+                                              postalCode: locationProvider
+                                                  .postalCodeController.text,
+                                              token: Preferences.token!);
+                                      if (response.runtimeType != String) {
+                                        Future.delayed(Duration.zero).then(
+                                            (value) => Navigator.pushNamed(
+                                                context,
+                                                IdDocumentScreen.routeName));
+                                        setState(() {
+                                          isLoadLogin = false;
+                                        });
+                                      }
+                                    } else {
+                                      setState(() {
+                                        errorValidation =
+                                            'Por favor,  debes completar todos los registros para continuar';
+                                      });
+                                      customModalBottomAlert(
+                                          context,
+                                          size,
+                                          errorValidation,
+                                          isLoadLogin!,
+                                          '', () {
+                                        Navigator.pop(context);
+                                      });
+                                    }
+                                  },
+                                  load: isLoadLogin!,
+                                  disabled: isLoadLogin!),
+                            )
+                          ],
+                        )),
+                  )
+                ],
+              ),
             ),
           ),
         ),
