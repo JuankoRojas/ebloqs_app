@@ -9,6 +9,7 @@ import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/routes/get_application_routes.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
 import 'package:ebloqs_app/src/services/coin_market_cap_service.dart';
+import 'package:ebloqs_app/src/services/investments_service.dart';
 import 'package:ebloqs_app/src/services/token_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -57,12 +58,15 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => CoinMarketProvider()),
         //TOKEN
         ChangeNotifierProvider(create: (context) => TokenService()),
+        //INVESTMENTS
+        ChangeNotifierProvider(create: (context) => InvestmentsService()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Ebloqs',
         theme: ThemeData(
             fontFamily: 'Archivo', scaffoldBackgroundColor: Colors.white),
+        // initialRoute: PreviewInvestScreen.routeName,
         initialRoute: OnBoardPageRoute.routeName,
         routes: getApplicationRoutes(),
       ),

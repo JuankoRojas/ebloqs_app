@@ -18,6 +18,8 @@ import 'package:ebloqs_app/src/screens/indentity/take_picture_back_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_passport_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/upload_document_screen.dart';
+import 'package:ebloqs_app/src/screens/invest/invest_screen.dart';
+import 'package:ebloqs_app/src/screens/invest/preview_invest_screen.dart';
 import 'package:ebloqs_app/src/screens/legal/privacy_policy_screen.dart';
 import 'package:ebloqs_app/src/screens/legal/therms_conditions_screen.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android.dart';
@@ -70,7 +72,9 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
         const TransferirEbloqsScreen(),
     WalletScreen.routeName: (BuildContext context) => const WalletScreen(),
     ProjectViewScreen.routeName: (BuildContext context) =>
-        const ProjectViewScreen(),
+        const ProjectViewScreen(
+          idProyect: '',
+        ),
 
     NationalityScreen.routeName: (BuildContext context) =>
         const NationalityScreen(),
@@ -141,5 +145,10 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     ExchangeScreen.routeName: (BuildContext context) => const ExchangeScreen(),
     AccumulatedPointsScreen.routeName: (BuildContext context) =>
         const AccumulatedPointsScreen(),
+
+    //INVESTMENTS
+    InvestScreen.routeName: (BuildContext context) => const InvestScreen(),
+    PreviewInvestScreen.routeName: (BuildContext context) =>
+        const PreviewInvestScreen(),
   };
 }

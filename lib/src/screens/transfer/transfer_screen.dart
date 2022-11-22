@@ -91,8 +91,9 @@ class _TransferScreenState extends State<TransferScreen>
                       ),
                       Expanded(child: Container()),
                       GestureDetector(
-                          child: SvgPicture.asset(
-                              'assets/Vectores/Iconos/Question.svg')),
+                        child: SvgPicture.asset(
+                            'assets/Vectores/Iconos/Question.svg'),
+                      ),
                     ],
                   ),
                 ),

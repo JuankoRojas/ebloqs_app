@@ -8,7 +8,9 @@ import 'package:flutter_svg/svg.dart';
 
 class ProjectViewScreen extends StatefulWidget {
   static const routeName = 'ProjectViewScreen';
-  const ProjectViewScreen({Key? key}) : super(key: key);
+  final String idProyect;
+  const ProjectViewScreen({Key? key, required this.idProyect})
+      : super(key: key);
 
   @override
   State<ProjectViewScreen> createState() => _ProjectViewScreenState();

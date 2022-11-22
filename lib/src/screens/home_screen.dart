@@ -31,6 +31,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with AfterLayoutMixin<HomeScreen> {
   double? tokenValue;
+  List inversiones = [];
   // Environment? environment;
   @override
   void afterFirstLayout(BuildContext context) async {
@@ -40,6 +41,8 @@ class _HomeScreenState extends State<HomeScreen>
     Future.delayed(Duration.zero).then((_) =>
         Provider.of<UserInfoProvider>(context, listen: false)
             .userInfoSet(userInfo));
+
+    // getAllInvestments();
     setState(() {
       // environment = AppConfig.of(context).environment;
     });
@@ -53,6 +56,12 @@ class _HomeScreenState extends State<HomeScreen>
     });
   }
 
+  // getAllInvestments() async {
+  //   inversiones = await InvestmentsService()
+  //       .getAllInvestments(accesstoken: Preferences.token!);
+  //   // print(investments);
+  // }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -62,15 +71,16 @@ class _HomeScreenState extends State<HomeScreen>
 
     List<Map<String, dynamic>> inversiones = [
       {
-        'imagen': 'assets/Imagenes/heraldica.png',
-        'inversion': 'Heráldica',
-        'sector':
+        'pic_1': 'assets/Imagenes/heraldica.png',
+        'name': 'Heráldica',
+        'address':
             'Sector González Suárez, pasaje Juan Pareja y Jiménez de la Espada.',
-        'precio': '500',
+        'token_price': '500',
         'pisos': '6',
         'rentabilidad': '31,5'
       },
     ];
+
     List<Map<String, dynamic>> inversionesQuito = [
       {
         'imagen': 'assets/Imagenes/quito1.png',
@@ -1196,8 +1206,11 @@ class _HomeScreenState extends State<HomeScreen>
                                 children: [
                                   Stack(
                                     children: [
-                                      Image.asset(inversiones[index]['imagen'],
-                                          width: UtilSize.width(375, context)),
+                                      Image.asset(
+                                        inversiones[index]['pic_1'],
+                                        width: UtilSize.width(375, context),
+                                        height: UtilSize.width(172, context),
+                                      ),
                                       Positioned(
                                           top: size.height * 0.015,
                                           right: size.width * 0.03,
@@ -1221,7 +1234,7 @@ class _HomeScreenState extends State<HomeScreen>
                                               CrossAxisAlignment.start,
                                           children: [
                                             AutoSizeText(
-                                              inversiones[index]['inversion'],
+                                              inversiones[index]['name'],
                                               style: const TextStyle(
                                                 color: Color(0xff170658),
                                                 fontSize: 15,
@@ -1232,7 +1245,7 @@ class _HomeScreenState extends State<HomeScreen>
                                             SizedBox(
                                               width: size.width * 0.37,
                                               child: AutoSizeText(
-                                                inversiones[index]['sector'],
+                                                inversiones[index]['address'],
                                                 overflow: TextOverflow.ellipsis,
                                                 maxLines: 2,
                                                 style: const TextStyle(
@@ -1262,7 +1275,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                 CrossAxisAlignment.end,
                                             children: [
                                               AutoSizeText(
-                                                "Precio x Token \$${inversiones[index]['precio']}",
+                                                "Precio x Token \$${inversiones[index]['token_price']}",
                                                 textAlign: TextAlign.center,
                                                 style: const TextStyle(
                                                   color: Color(0xff2504ca),
