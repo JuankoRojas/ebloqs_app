@@ -9,11 +9,13 @@ import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
+import 'package:ebloqs_app/src/screens/withdraw/withdraw_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
 import 'package:ebloqs_app/src/services/token_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
-import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
+import 'package:ebloqs_app/src/utils/format_ebl.dart';
+import 'package:ebloqs_app/src/utils/format_money.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -72,6 +74,10 @@ class _WalletScreenState extends State<WalletScreen>
 
     print('ebl: $ebl');
     final avatarSelected = Provider.of<AvatarUserProvider>(context).avatarUser;
+
+    if (tokenValue == null) {
+      return const Scaffold();
+    }
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -150,9 +156,10 @@ class _WalletScreenState extends State<WalletScreen>
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.hasData && snapshot.data != null) {
                         print(snapshot.data);
-                        final usd = double.parse(snapshot.data) * tokenValue!;
+                        final usd = moneyFormated(
+                            value: double.parse(snapshot.data) * tokenValue!);
 
-                        ebl = snapshot.data;
+                        ebl = eblFormatted(ebl: snapshot.data);
 
                         return Container(
                           width: size.width * 0.95,
@@ -224,7 +231,7 @@ class _WalletScreenState extends State<WalletScreen>
                                                 ),
                                               ),
                                               AutoSizeText(
-                                                snapshot.data ?? '',
+                                                ebl ?? '',
                                                 style: const TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 11,
@@ -270,7 +277,7 @@ class _WalletScreenState extends State<WalletScreen>
                                           CrossAxisAlignment.end,
                                       children: [
                                         AutoSizeText(
-                                          snapshot.data ?? '',
+                                          ebl ?? '',
                                           style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 36,
@@ -677,38 +684,40 @@ class _WalletScreenState extends State<WalletScreen>
                   ),
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.only(top: size.height * (16 / size.height)),
+                  padding: EdgeInsets.only(
+                      top: size.height * (16 / size.height),
+                      left: UtilSize.width(45, context),
+                      right: UtilSize.width(45, context)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        child: Column(
-                          children: [
-                            SvgPicture.asset(
-                                'assets/Vectores/Iconos/Depositar.svg'),
-                            const AutoSizeText(
-                              "Depositar",
-                              style: TextStyle(
-                                color: Color(0xff170658),
-                                fontSize: 12,
-                                fontFamily: "Archivo",
-                                fontWeight: FontWeight.w400,
-                              ),
-                            )
-                          ],
-                        ),
-                        onTap: () {
-                          customModalBottomAlert(
-                              context,
-                              size,
-                              "Pronto podrás depositar dinero en tu billetera.",
-                              isLoading,
-                              '', () {
-                            Navigator.pop(context);
-                          });
-                        },
-                      ),
+                      // GestureDetector(
+                      //   child: Column(
+                      //     children: [
+                      //       SvgPicture.asset(
+                      //           'assets/Vectores/Iconos/Depositar.svg'),
+                      //       const AutoSizeText(
+                      //         "Depositar",
+                      //         style: TextStyle(
+                      //           color: Color(0xff170658),
+                      //           fontSize: 12,
+                      //           fontFamily: "Archivo",
+                      //           fontWeight: FontWeight.w400,
+                      //         ),
+                      //       )
+                      //     ],
+                      //   ),
+                      //   onTap: () {
+                      //     customModalBottomAlert(
+                      //         context,
+                      //         size,
+                      //         "Pronto podrás depositar dinero en tu billetera.",
+                      //         isLoading,
+                      //         '', () {
+                      //       Navigator.pop(context);
+                      //     });
+                      //   },
+                      // ),
                       GestureDetector(
                         child: Column(
                           children: [
@@ -726,14 +735,16 @@ class _WalletScreenState extends State<WalletScreen>
                           ],
                         ),
                         onTap: () {
-                          customModalBottomAlert(
-                              context,
-                              size,
-                              '''Tu inversión esta asegurada, se habilitará en la etapa 2.''',
-                              isLoading,
-                              '', () {
-                            Navigator.pop(context);
-                          });
+                          // customModalBottomAlert(
+                          //     context,
+                          //     size,
+                          //     '''Tu inversión esta asegurada, se habilitará en la etapa 2.''',
+                          //     isLoading,
+                          //     '', () {
+                          //   Navigator.pop(context);
+                          // });
+                          Navigator.pushNamed(
+                              context, WithDrawScreen.routeName);
                         },
                       ),
                       GestureDetector(
@@ -929,8 +940,8 @@ class _WalletScreenState extends State<WalletScreen>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     // Padding(
-                    //   padding:
-                    //       EdgeInsets.only(top: size.height * (16 / size.height)),
+                    //   padding: EdgeInsets.only(
+                    //       top: size.height * (16 / size.height)),
                     //   child: const AutoSizeText(
                     //     "Dinero",
                     //     style: TextStyle(
@@ -950,7 +961,8 @@ class _WalletScreenState extends State<WalletScreen>
                     //       SizedBox(
                     //           width: size.width * (42 / size.width),
                     //           height: size.height * (42 / size.height),
-                    //           child: Image.asset('assets/Imagenes/Dolares.png')),
+                    //           child:
+                    //               Image.asset('assets/Imagenes/Dolares.png')),
                     //       Padding(
                     //         padding: EdgeInsets.only(
                     //             left: size.width * (12 / size.width)),
@@ -993,8 +1005,8 @@ class _WalletScreenState extends State<WalletScreen>
                     //   ),
                     // ),
                     // Padding(
-                    //   padding:
-                    //       EdgeInsets.only(top: size.height * (16 / size.height)),
+                    //   padding: EdgeInsets.only(
+                    //       top: size.height * (16 / size.height)),
                     //   child: Row(
                     //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     //     children: [

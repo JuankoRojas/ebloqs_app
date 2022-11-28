@@ -1,3 +1,5 @@
+import 'package:ebloqs_app/src/screens/GAuthenticator/download_gauthenticator_screen.dart';
+import 'package:ebloqs_app/src/screens/GAuthenticator/otp_gauthenticator_screen.dart';
 import 'package:ebloqs_app/src/screens/benefits/accumulated_points_screen.dart';
 import 'package:ebloqs_app/src/screens/benefits/benefits_screen.dart';
 import 'package:ebloqs_app/src/screens/benefits/exchange_screen.dart';
@@ -18,8 +20,6 @@ import 'package:ebloqs_app/src/screens/indentity/take_picture_back_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_passport_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/take_picture_front_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/upload_document_screen.dart';
-import 'package:ebloqs_app/src/screens/invest/invest_screen.dart';
-import 'package:ebloqs_app/src/screens/invest/preview_invest_screen.dart';
 import 'package:ebloqs_app/src/screens/legal/privacy_policy_screen.dart';
 import 'package:ebloqs_app/src/screens/legal/therms_conditions_screen.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android.dart';
@@ -29,7 +29,6 @@ import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth_settings.dart';
 import 'package:ebloqs_app/src/screens/market/market_screen.dart';
 import 'package:ebloqs_app/src/screens/onBoard/on_board_screen_route.dart';
-import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_correo_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_link_screen.dart';
 import 'package:ebloqs_app/src/screens/register/registro_redes_screen.dart';
@@ -46,6 +45,8 @@ import 'package:ebloqs_app/src/screens/transfer/transfer_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_pass_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/create_wallet_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
+import 'package:ebloqs_app/src/screens/withdraw/input_quantity_screen.dart';
+import 'package:ebloqs_app/src/screens/withdraw/withdraw_screen.dart';
 import 'package:flutter/material.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
@@ -71,10 +72,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     TransferirEbloqsScreen.routeName: (BuildContext context) =>
         const TransferirEbloqsScreen(),
     WalletScreen.routeName: (BuildContext context) => const WalletScreen(),
-    ProjectViewScreen.routeName: (BuildContext context) =>
-        const ProjectViewScreen(
-          idProyect: '',
-        ),
 
     NationalityScreen.routeName: (BuildContext context) =>
         const NationalityScreen(),
@@ -147,8 +144,29 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
         const AccumulatedPointsScreen(),
 
     //INVESTMENTS
-    InvestScreen.routeName: (BuildContext context) => const InvestScreen(),
-    PreviewInvestScreen.routeName: (BuildContext context) =>
-        const PreviewInvestScreen(),
+    // InvestScreen.routeName: (BuildContext context) => const InvestScreen(invest: {},),
+    // PreviewInvestScreen.routeName: (BuildContext context) =>
+    //     const PreviewInvestScreen(),
+
+    //PAYMENT
+    // PaymentStep1Screen.routeName: (BuildContext context) =>
+    //     const PaymentStep1Screen(),
+    // PaymentStep2Screen.routeName: (BuildContext context) =>
+    //     const PaymentStep2Screen(),
+    // PaymentStep3Screen.routeName: (BuildContext context) =>
+    //     const PaymentStep3Screen(),
+    // PaymentCongratsScreen.routeName: (BuildContext context) =>
+    //     const PaymentCongratsScreen(),
+
+    //WITHDRAW
+    WithDrawScreen.routeName: (BuildContext context) => const WithDrawScreen(),
+    InputQuantityScreen.routeName: (BuildContext context) =>
+        const InputQuantityScreen(),
+
+    //GOOGLE AUTHENTICATOR
+    DownloadGAuthenticatorScreen.routeName: (BuildContext context) =>
+        const DownloadGAuthenticatorScreen(),
+    OtpGAuthenticatorScreen.routeName: (BuildContext context) =>
+        const OtpGAuthenticatorScreen(),
   };
 }

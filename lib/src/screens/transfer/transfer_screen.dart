@@ -826,7 +826,7 @@ class _TokensState extends State<Tokens> {
                 keyboardType: TextInputType.text,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
-                  hintText: "Ingresa tu frase secreta",
+                  hintText: "Private Key Wallet",
                 ),
                 validator: (value) {
                   if (value == null) {

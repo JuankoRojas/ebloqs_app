@@ -1,12 +1,30 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:ebloqs_app/src/global/util_size.dart';
-import 'package:ebloqs_app/src/widgets/button_primary.dart';
+import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
+import 'package:ebloqs_app/src/screens/payment/payment_step1_screen.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'package:ebloqs_app/src/global/util_size.dart';
+import 'package:ebloqs_app/src/utils/format_money.dart';
+import 'package:ebloqs_app/src/widgets/button_primary.dart';
+
 class PreviewInvestScreen extends StatefulWidget {
   static const routeName = 'PreviewInvestScreen';
-  const PreviewInvestScreen({super.key});
+  const PreviewInvestScreen({
+    Key? key,
+    required this.isToken,
+    required this.invest,
+    required this.value,
+    required this.usdValue,
+    required this.eblValue,
+  }) : super(key: key);
+  final bool isToken;
+  final Map invest;
+  final String value;
+  final String usdValue;
+  final String eblValue;
 
   @override
   State<PreviewInvestScreen> createState() => _PreviewInvestScreenState();
@@ -67,10 +85,10 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                     Padding(
                       padding:
                           EdgeInsets.only(top: UtilSize.height(19, context)),
-                      child: const Center(
+                      child: Center(
                         child: AutoSizeText(
-                          "25,000",
-                          style: TextStyle(
+                          widget.value,
+                          style: const TextStyle(
                             color: Color(0xff2504CA),
                             fontSize: 58,
                             fontFamily: "Archivo",
@@ -79,10 +97,12 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                         ),
                       ),
                     ),
-                    const Center(
+                    Center(
                       child: AutoSizeText(
-                        'USD',
-                        style: TextStyle(
+                        (widget.isToken == false)
+                            ? 'USD'
+                            : widget.invest['proyects'][0]['name'],
+                        style: const TextStyle(
                           color: Color(0xff170658),
                           fontSize: 15,
                           fontFamily: "Archivo",
@@ -132,9 +152,9 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                                     color: const Color(0xfff6f4fd),
                                   ),
                                   padding: const EdgeInsets.all(8),
-                                  child: const AutoSizeText(
-                                    "25,000 USD",
-                                    style: TextStyle(
+                                  child: AutoSizeText(
+                                    "${widget.usdValue} USD",
+                                    style: const TextStyle(
                                       color: Color(0xff2504CA),
                                       fontSize: 14,
                                       fontFamily: "Archivo",
@@ -167,9 +187,9 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                                     color: const Color(0xfff6f4fd),
                                   ),
                                   padding: const EdgeInsets.all(8),
-                                  child: const AutoSizeText(
-                                    "50 EBL-HERALD-01",
-                                    style: TextStyle(
+                                  child: AutoSizeText(
+                                    widget.eblValue,
+                                    style: const TextStyle(
                                       color: Color(0xff2504CA),
                                       fontSize: 14,
                                       fontFamily: "Archivo",
@@ -260,8 +280,8 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                           bottom: UtilSize.height(17, context)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          AutoSizeText(
+                        children: [
+                          const AutoSizeText(
                             "Interés construcción (1 año )",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -271,8 +291,8 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                             ),
                           ),
                           AutoSizeText(
-                            "\$925,00",
-                            style: TextStyle(
+                            "\$${moneyFormated(value: double.parse(widget.invest['tokenomic'][0]['construction_interest']))}",
+                            style: const TextStyle(
                               color: Color(0xff170658),
                               fontSize: 14,
                               fontFamily: "Archivo",
@@ -292,8 +312,8 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                           bottom: UtilSize.height(17, context)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          AutoSizeText(
+                        children: [
+                          const AutoSizeText(
                             "Renting (2 años)",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -303,8 +323,8 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                             ),
                           ),
                           AutoSizeText(
-                            "\$3.800,00",
-                            style: TextStyle(
+                            "\$${moneyFormated(value: double.parse(widget.invest['tokenomic'][0]['net_leasing']))}",
+                            style: const TextStyle(
                               color: Color(0xff170658),
                               fontSize: 14,
                               fontFamily: "Archivo",
@@ -324,8 +344,8 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                           bottom: UtilSize.height(17, context)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          AutoSizeText(
+                        children: [
+                          const AutoSizeText(
                             "Plusvalía (3 años)",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -335,8 +355,8 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                             ),
                           ),
                           AutoSizeText(
-                            "\$3.100,00",
-                            style: TextStyle(
+                            "\$${moneyFormated(value: double.parse(widget.invest['tokenomic'][0]['plusvalia']))}",
+                            style: const TextStyle(
                               color: Color(0xff170658),
                               fontSize: 14,
                               fontFamily: "Archivo",
@@ -356,8 +376,8 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                           bottom: UtilSize.height(17, context)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          AutoSizeText(
+                        children: [
+                          const AutoSizeText(
                             "Utilidad bruta (3 años)",
                             style: TextStyle(
                               color: Color(0xff170658),
@@ -366,9 +386,10 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
+                          //TODO:sumatoria
                           AutoSizeText(
-                            "\$ 7.825,00",
-                            style: TextStyle(
+                            "\$${moneyFormated(value: (double.parse(widget.invest['tokenomic'][0]['construction_interest']) + double.parse(widget.invest['tokenomic'][0]['net_leasing']) + double.parse(widget.invest['tokenomic'][0]['plusvalia'])))}",
+                            style: const TextStyle(
                               color: Color(0xff170658),
                               fontSize: 14,
                               fontFamily: "Archivo",
@@ -428,7 +449,25 @@ class _PreviewInvestScreenState extends State<PreviewInvestScreen> {
                       child: ButtonPrimary(
                         width: size.width,
                         title: "Continuar",
-                        onPressed: () {},
+                        onPressed: () {
+                          final idWallet = Preferences.id_wallet;
+                          final publicKey = Preferences.public_key;
+                          if (idWallet != null && publicKey != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PaymentStep1Screen(
+                                  usdValue: widget.usdValue,
+                                  eblValue: widget.eblValue,
+                                  invest: widget.invest,
+                                ),
+                              ),
+                            );
+                          } else {
+                            Navigator.pushNamed(
+                                context, NationalityScreen.routeName);
+                          }
+                        },
                         load: loading,
                         disabled: loading,
                       ),

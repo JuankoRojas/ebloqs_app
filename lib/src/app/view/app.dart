@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
         title: 'Ebloqs',
         theme: ThemeData(
             fontFamily: 'Archivo', scaffoldBackgroundColor: Colors.white),
-        // initialRoute: PreviewInvestScreen.routeName,
+        // initialRoute: InputQuantityScreen.routeName,
         initialRoute: OnBoardPageRoute.routeName,
         routes: getApplicationRoutes(),
       ),

@@ -6,12 +6,16 @@ import 'package:ebloqs_app/src/providers/avatar_user_provider.dart';
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
 import 'package:ebloqs_app/src/screens/buy/comprar_screen.dart';
 import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
+import 'package:ebloqs_app/src/screens/project/project_view_screen.dart';
 import 'package:ebloqs_app/src/screens/settings/settings_screen.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/services/balance_service.dart';
+import 'package:ebloqs_app/src/services/investments_service.dart';
 import 'package:ebloqs_app/src/services/token_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/utils/format_ebl.dart';
+import 'package:ebloqs_app/src/utils/format_money.dart';
 import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:ebloqs_app/src/widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +35,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with AfterLayoutMixin<HomeScreen> {
   double? tokenValue;
-  List inversiones = [];
+
+  List inversionesPorCity = [];
   // Environment? environment;
   @override
   void afterFirstLayout(BuildContext context) async {
@@ -42,10 +47,16 @@ class _HomeScreenState extends State<HomeScreen>
         Provider.of<UserInfoProvider>(context, listen: false)
             .userInfoSet(userInfo));
 
-    // getAllInvestments();
     setState(() {
       // environment = AppConfig.of(context).environment;
     });
+  }
+
+  @override
+  void initState() {
+    // getAllInvestments();
+    getInvestByCity();
+    super.initState();
   }
 
   void getTokenValue() async {
@@ -57,10 +68,15 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   // getAllInvestments() async {
-  //   inversiones = await InvestmentsService()
+  //   inversionesQuito = await InvestmentsService()
   //       .getAllInvestments(accesstoken: Preferences.token!);
-  //   // print(investments);
+  //   // print(inversionesQuito);
   // }
+
+  getInvestByCity() async {
+    inversionesPorCity = await InvestmentsService()
+        .getInvestByCity(accesstoken: Preferences.token!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +135,7 @@ class _HomeScreenState extends State<HomeScreen>
         'rentabilidad': '12.01'
       },
     ];
+
     List<Map<String, dynamic>> inversionesMiami = [
       {
         'imagen': 'assets/Imagenes/guayaquil1.png',
@@ -199,6 +216,10 @@ class _HomeScreenState extends State<HomeScreen>
         'oferta': 'Inversiones eventos',
       },
     ];
+    List filterList = inversionesQuito
+        .where((element) => element['city'] == 'Manizales')
+        .toList();
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       // appBar: AppBar(
@@ -357,8 +378,11 @@ class _HomeScreenState extends State<HomeScreen>
                                   if (snapshot.hasData &&
                                       snapshot.data != null) {
                                     print(snapshot.data);
-                                    final usd = double.parse(snapshot.data) *
-                                        tokenValue!;
+                                    String balanceEBL =
+                                        eblFormatted(ebl: snapshot.data);
+                                    final usd = moneyFormated(
+                                        value: double.parse(snapshot.data) *
+                                            tokenValue!);
                                     return GestureDetector(
                                       child: Container(
                                         width: size.width,
@@ -455,8 +479,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                               ),
                                                             ),
                                                             AutoSizeText(
-                                                              snapshot.data ??
-                                                                  '',
+                                                              balanceEBL,
                                                               style:
                                                                   const TextStyle(
                                                                 color: Colors
@@ -516,7 +539,7 @@ class _HomeScreenState extends State<HomeScreen>
                                                         CrossAxisAlignment.end,
                                                     children: [
                                                       AutoSizeText(
-                                                        snapshot.data ?? '',
+                                                        balanceEBL,
                                                         style: const TextStyle(
                                                           color: Colors.white,
                                                           fontSize: 36,
@@ -1493,7 +1516,298 @@ class _HomeScreenState extends State<HomeScreen>
                     ),
                   ),
                 ),
-
+                ListView.builder(
+                  itemCount: inversionesPorCity.length,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: size.height * 0.105,
+                              bottom: size.height * 0.015),
+                          child: AutoSizeText(
+                            'Inversión ${inversionesPorCity[index]['city']}',
+                            style: const TextStyle(
+                              color: Color(0xff170658),
+                              fontSize: 15,
+                              fontFamily: "Archivo",
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(
+                              maxHeight: 375, minHeight: 339.0),
+                          child: ListView.builder(
+                            itemCount:
+                                inversionesPorCity[index]["proyects"].length,
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (BuildContext context, int index2) {
+                              return Padding(
+                                padding:
+                                    EdgeInsets.only(right: size.width * 0.04),
+                                child: GestureDetector(
+                                  child: Container(
+                                    width: size.width * 0.46,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(
+                                        color: const Color(0xffeae4fc),
+                                        width: 0.88,
+                                      ),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Color(0x0f000000),
+                                          blurRadius: 17.62,
+                                          offset: Offset(0, 0),
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Stack(
+                                          children: [
+                                            Image.network(
+                                              inversionesPorCity[index]
+                                                  ["proyects"][index2]['pic_1'],
+                                              width:
+                                                  UtilSize.width(171, context),
+                                              height:
+                                                  UtilSize.width(128, context),
+                                              fit: BoxFit.cover,
+                                            ),
+                                            Positioned(
+                                              top: size.height * 0.008,
+                                              right: size.width * 0.015,
+                                              child: SvgPicture.asset(
+                                                'assets/Vectores/Iconos/Hearth.svg',
+                                                width:
+                                                    UtilSize.width(30, context),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: size.height * 0.012,
+                                              bottom: size.height * 0.003,
+                                              left: size.width * 0.032,
+                                              right: size.width * 0.032),
+                                          child: AutoSizeText(
+                                            inversionesPorCity[index]
+                                                ["proyects"][index2]['name'],
+                                            style: const TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 14,
+                                              fontFamily: "Archivo",
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: size.width * 0.032,
+                                              right: size.width * 0.032,
+                                              bottom: size.height * 0.01),
+                                          child: AutoSizeText(
+                                            inversionesPorCity[index]
+                                                ["proyects"][index2]['address'],
+                                            style: const TextStyle(
+                                              color: Color(0xff170658),
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.0098),
+                                          child: Container(
+                                            width: size.width * 0.5,
+                                            height: UtilSize.width(52, context),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: size.width * 0.03,
+                                                vertical: size.height * 0.007),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(4.40),
+                                              color: const Color(0xfff9f9fa),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                const AutoSizeText(
+                                                  "Precio token",
+                                                  textAlign: TextAlign.right,
+                                                  style: TextStyle(
+                                                    color: Color(0xff170658),
+                                                    fontSize: 8,
+                                                  ),
+                                                ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    AutoSizeText(
+                                                      "USD\$ ${inversionesPorCity[index]["proyects"][index2]['token_price']}",
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                      style: const TextStyle(
+                                                        color:
+                                                            Color(0xff2504ca),
+                                                        fontSize: 13,
+                                                        fontFamily: "Archivo",
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                    const AutoSizeText(
+                                                      "1 Token",
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                      style: TextStyle(
+                                                        color:
+                                                            Color(0xff170658),
+                                                        fontSize: 13,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.03,
+                                              vertical: size.height * 0.02),
+                                          child: Row(
+                                            children: [
+                                              SvgPicture.asset(
+                                                'assets/Vectores/Iconos/Building.svg',
+                                                width:
+                                                    UtilSize.width(16, context),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: size.width * 0.02),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    AutoSizeText(
+                                                      "${inversionesPorCity[index]["proyects"][index2]['number_departaments']} Pisos ",
+                                                      style: const TextStyle(
+                                                        color:
+                                                            Color(0xff170658),
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
+                                                    AutoSizeText(
+                                                      "${inversionesPorCity[index]["proyects"][index2]['number_amenities']} Apartamentos ",
+                                                      style: const TextStyle(
+                                                        color:
+                                                            Color(0xff170658),
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Expanded(child: Container()),
+                                              SvgPicture.asset(
+                                                'assets/Vectores/Iconos/Plus.svg',
+                                                width:
+                                                    UtilSize.width(16, context),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: size.width * 0.03,
+                                              vertical: size.height * 0.015),
+                                          child: Center(
+                                            child: Container(
+                                              height: size.height * 0.001,
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color:
+                                                      const Color(0xff170658),
+                                                  width: 0.12,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: size.width * 0.03,
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              const AutoSizeText(
+                                                "Rentabilidad",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Color(0xff170658)),
+                                              ),
+                                              Expanded(child: Container()),
+                                              AutoSizeText(
+                                                "${inversionesPorCity[index]["proyects"][index2]['rentabilidad']}%",
+                                                style: const TextStyle(
+                                                    fontSize: 12,
+                                                    color: Color(0xff170658)),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    // customModalBottomAlert(
+                                    //     context,
+                                    //     size,
+                                    //     ' La tokenización de bienes y servicios se habilitará en la etapa 2',
+                                    //     isLoading,
+                                    //     '', () {
+                                    //   Navigator.pop(context);
+                                    // });
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ProjectViewScreen(
+                                                    idProyect:
+                                                        inversionesPorCity[
+                                                                    index]
+                                                                ["proyects"]
+                                                            [index2]['id'])));
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      ],
+                    );
+                  },
+                ),
                 //INVERSIONES CIUDAD QUITO
                 Padding(
                   padding: EdgeInsets.only(
@@ -1546,6 +1860,8 @@ class _HomeScreenState extends State<HomeScreen>
                                     Image.asset(
                                       inversionesQuito[index2]['imagen'],
                                       width: UtilSize.width(171, context),
+                                      height: UtilSize.width(128, context),
+                                      fit: BoxFit.cover,
                                     ),
                                     Positioned(
                                       top: size.height * 0.008,
@@ -1727,14 +2043,20 @@ class _HomeScreenState extends State<HomeScreen>
                             ),
                           ),
                           onTap: () {
-                            customModalBottomAlert(
+                            // customModalBottomAlert(
+                            //     context,
+                            //     size,
+                            //     ' La tokenización de bienes y servicios se habilitará en la etapa 2',
+                            //     isLoading,
+                            //     '', () {
+                            //   Navigator.pop(context);
+                            // });
+                            Navigator.push(
                                 context,
-                                size,
-                                ' La tokenización de bienes y servicios se habilitará en la etapa 2',
-                                isLoading,
-                                '', () {
-                              Navigator.pop(context);
-                            });
+                                MaterialPageRoute(
+                                    builder: (context) => ProjectViewScreen(
+                                        idProyect: inversionesQuito[index2]
+                                            ['id'])));
                           },
                         ),
                       );

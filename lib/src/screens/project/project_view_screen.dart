@@ -1,16 +1,22 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:ebloqs_app/src/global/util_size.dart';
-
-import 'package:ebloqs_app/src/widgets/button_primary.dart';
+import 'package:ebloqs_app/src/screens/invest/invest_screen.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import 'package:ebloqs_app/src/global/util_size.dart';
+import 'package:ebloqs_app/src/screens/home_screen.dart';
+import 'package:ebloqs_app/src/services/investments_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/widgets/button_primary.dart';
+
 class ProjectViewScreen extends StatefulWidget {
-  static const routeName = 'ProjectViewScreen';
   final String idProyect;
-  const ProjectViewScreen({Key? key, required this.idProyect})
-      : super(key: key);
+  const ProjectViewScreen({
+    Key? key,
+    required this.idProyect,
+  }) : super(key: key);
 
   @override
   State<ProjectViewScreen> createState() => _ProjectViewScreenState();
@@ -25,10 +31,60 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
   bool showTokenomics = false;
   bool showDescription = false;
   bool showPromoterData = false;
+  Map actualInvestmentResponse = {};
+  List images = [];
+
+  // @override
+  // void initState() {
+  //   getActualInvestment();
+  //   super.initState();
+  // }
+
+  getActualInvestment() async {
+    print('id del proyecto a consultar: ${widget.idProyect}');
+    actualInvestmentResponse = await InvestmentsService().getActualInvestment(
+        accesstoken: Preferences.token!, idProyect: widget.idProyect);
+    print('proyecto: ${actualInvestmentResponse['proyects']}');
+    setState(() {});
+    getImages();
+  }
+
+  getImages() {
+    if (actualInvestmentResponse['proyects'] != null) {
+      images = [
+        "${actualInvestmentResponse['proyects'][0]["pic_1"]}" != "null"
+            ? "${actualInvestmentResponse['proyects'][0]["pic_1"]}"
+            : "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/meme-boy-gets-paid-4140-196a182847d3123a0e377b1059e07ceb@1x.jpg",
+        "${actualInvestmentResponse['proyects'][0]["pic_2"]}" != "null"
+            ? "${actualInvestmentResponse['proyects'][0]["pic_2"]}"
+            : "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/meme-boy-gets-paid-4140-196a182847d3123a0e377b1059e07ceb@1x.jpg",
+        "${actualInvestmentResponse['proyects'][0]["pic_3"]}" != "null"
+            ? "${actualInvestmentResponse['proyects'][0]["pic_3"]}"
+            : "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/meme-boy-gets-paid-4140-196a182847d3123a0e377b1059e07ceb@1x.jpg",
+        "${actualInvestmentResponse['proyects'][0]["pic_4"]}" != "null"
+            ? "${actualInvestmentResponse['proyects'][0]["pic_4"]}"
+            : "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/meme-boy-gets-paid-4140-196a182847d3123a0e377b1059e07ceb@1x.jpg",
+        "${actualInvestmentResponse['proyects'][0]["pic_5"]}" != "null"
+            ? "${actualInvestmentResponse['proyects'][0]["pic_5"]}"
+            : "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/meme-boy-gets-paid-4140-196a182847d3123a0e377b1059e07ceb@1x.jpg",
+      ];
+      setState(() {});
+      print('images: $images');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    print(size.height);
+
+    // print(size.height);
+    if (actualInvestmentResponse.isEmpty) {
+      getActualInvestment();
+      return const Scaffold();
+    }
+    double emitted =
+        double.parse(actualInvestmentResponse['proyects'][0]['tokens_emitted']);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -38,57 +94,63 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
-                  // width: double.infinity,
-                  height: (size.height < 750)
-                      ? UtilSize.height(590, context)
-                      : UtilSize.height(498, context),
-                  child: ExtendedImageGesturePageView.builder(
-                    itemBuilder: (BuildContext context, int index) {
-                      List imagenes = [
-                        'assets/Imagenes/Group 2149.jpg',
-                        'assets/Imagenes/Group 2149.jpg',
-                        'assets/Imagenes/Group 2149.jpg',
-                        'assets/Imagenes/Group 2149.jpg',
-                        'assets/Imagenes/Group 2149.jpg',
-                        'assets/Imagenes/Group 2149.jpg',
-                      ];
-                      item = imagenes[index];
-                      image = ExtendedImage.asset(
-                        item,
-                        fit: BoxFit.contain,
-                        mode: ExtendedImageMode.gesture,
-                        initGestureConfigHandler: (ExtendedImageState state) {
-                          return GestureConfig(
-                            inPageView: true,
-                            initialScale: 1,
-                            cacheGesture: false,
-                          );
-                        },
-                      );
-                      image = Container(
-                        child: image,
-                      );
-                      if (index == currentIndex) {
-                        return Hero(
-                          tag: item + index.toString(),
-                          child: image!,
-                        );
-                      } else {
-                        return image!;
-                      }
-                    },
-                    itemCount: 5,
-                    scrollDirection: Axis.horizontal,
-                    controller:
-                        ExtendedPageController(initialPage: currentIndex),
-                    onPageChanged: (int index) {
-                      setState(() {
-                        currentIndex = index;
-                      });
-                    },
-                  ),
-                ),
+                (images.isNotEmpty)
+                    ? SizedBox(
+                        // width: double.infinity,
+                        height: (size.height < 750)
+                            ? UtilSize.height(590, context)
+                            : UtilSize.height(498, context),
+                        child: ExtendedImageGesturePageView.builder(
+                          itemBuilder: (BuildContext context, int index) {
+                            // List imagenes = [
+                            //   'assets/Imagenes/Group 2149.jpg',
+                            //   'assets/Imagenes/Group 2149.jpg',
+                            //   'assets/Imagenes/Group 2149.jpg',
+                            //   'assets/Imagenes/Group 2149.jpg',
+                            //   'assets/Imagenes/Group 2149.jpg',
+                            //   'assets/Imagenes/Group 2149.jpg',
+                            // ];
+                            item = images[index];
+                            image = ExtendedImage.network(
+                              item,
+                              fit: BoxFit.contain,
+                              mode: ExtendedImageMode.gesture,
+                              initGestureConfigHandler:
+                                  (ExtendedImageState state) {
+                                return GestureConfig(
+                                  inPageView: true,
+                                  initialScale: 1,
+                                  cacheGesture: false,
+                                );
+                              },
+                            );
+                            image = Container(
+                              child: image,
+                            );
+                            if (index == currentIndex) {
+                              return Hero(
+                                tag: item + index.toString(),
+                                child: image!,
+                              );
+                            } else {
+                              return image!;
+                            }
+                          },
+                          itemCount: 5,
+                          scrollDirection: Axis.horizontal,
+                          controller:
+                              ExtendedPageController(initialPage: currentIndex),
+                          onPageChanged: (int index) {
+                            setState(() {
+                              currentIndex = index;
+                            });
+                          },
+                        ),
+                      )
+                    : SizedBox(
+                        height: (size.height < 750)
+                            ? UtilSize.height(590, context)
+                            : UtilSize.height(498, context)),
                 Padding(
                   padding: EdgeInsets.only(
                     top: UtilSize.height(128, context),
@@ -112,7 +174,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                           ),
                           AutoSizeText(
-                            "USD \$4.700.000",
+                            "USD \$ ${actualInvestmentResponse['proyects'][0]['building_price'] ?? ''}",
                             style: TextStyle(
                               color: const Color(0xff170658),
                               fontSize: UtilSize.width(14, context),
@@ -148,7 +210,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                           ),
                           AutoSizeText(
-                            "9.400",
+                            ((double.parse(actualInvestmentResponse['proyects']
+                                        [0]['tokens_emitted'])) /
+                                    1000000000000000000)
+                                .toString(),
                             style: TextStyle(
                               color: const Color(0xff170658),
                               fontSize: UtilSize.width(14, context),
@@ -184,7 +249,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                           ),
                           AutoSizeText(
-                            "7.857",
+                            ((double.parse(actualInvestmentResponse['proyects']
+                                        [0]['tokens_available'])) /
+                                    1000000000000000000)
+                                .toString(),
                             style: TextStyle(
                               color: const Color(0xff170658),
                               fontSize: UtilSize.width(14, context),
@@ -366,7 +434,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  " 3.437",
+                                                  actualInvestmentResponse[
+                                                              'data'][0][
+                                                          'surface_building'] ??
+                                                      '',
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -398,7 +469,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "34",
+                                                  actualInvestmentResponse[
+                                                              'data'][0][
+                                                          'number_departaments'] ??
+                                                      '',
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -428,7 +502,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "10",
+                                                  actualInvestmentResponse[
+                                                              'data'][0][
+                                                          'number_amenities'] ??
+                                                      '',
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -440,102 +517,102 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                               ],
                                             ),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              top: size.height *
-                                                  (9 / size.height),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Electrolineras",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  "2",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              top: size.height *
-                                                  (9 / size.height),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Vehículo eléctrico comunal",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  "1",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              top: size.height *
-                                                  (9 / size.height),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Concierge edificio",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  "1",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
+                                          // Padding(
+                                          //   padding: EdgeInsets.only(
+                                          //     top: size.height *
+                                          //         (9 / size.height),
+                                          //   ),
+                                          //   child: Row(
+                                          //     mainAxisAlignment:
+                                          //         MainAxisAlignment
+                                          //             .spaceBetween,
+                                          //     children: [
+                                          //       AutoSizeText(
+                                          //         "Electrolineras",
+                                          //         style: TextStyle(
+                                          //           color:
+                                          //               const Color(0xff170658),
+                                          //           fontSize: UtilSize.width(
+                                          //               14, context),
+                                          //         ),
+                                          //       ),
+                                          //       AutoSizeText(
+                                          //         "2",
+                                          //         textAlign: TextAlign.right,
+                                          //         style: TextStyle(
+                                          //           color:
+                                          //               const Color(0xff170658),
+                                          //           fontSize: UtilSize.width(
+                                          //               14, context),
+                                          //         ),
+                                          //       )
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          // Padding(
+                                          //   padding: EdgeInsets.only(
+                                          //     top: size.height *
+                                          //         (9 / size.height),
+                                          //   ),
+                                          //   child: Row(
+                                          //     mainAxisAlignment:
+                                          //         MainAxisAlignment
+                                          //             .spaceBetween,
+                                          //     children: [
+                                          //       AutoSizeText(
+                                          //         "Vehículo eléctrico comunal",
+                                          //         style: TextStyle(
+                                          //           color:
+                                          //               const Color(0xff170658),
+                                          //           fontSize: UtilSize.width(
+                                          //               14, context),
+                                          //         ),
+                                          //       ),
+                                          //       AutoSizeText(
+                                          //         "1",
+                                          //         textAlign: TextAlign.right,
+                                          //         style: TextStyle(
+                                          //           color:
+                                          //               const Color(0xff170658),
+                                          //           fontSize: UtilSize.width(
+                                          //               14, context),
+                                          //         ),
+                                          //       )
+                                          //     ],
+                                          //   ),
+                                          // ),
+                                          // Padding(
+                                          //   padding: EdgeInsets.only(
+                                          //     top: size.height *
+                                          //         (9 / size.height),
+                                          //   ),
+                                          //   child: Row(
+                                          //     mainAxisAlignment:
+                                          //         MainAxisAlignment
+                                          //             .spaceBetween,
+                                          //     children: [
+                                          //       AutoSizeText(
+                                          //         "Concierge edificio",
+                                          //         style: TextStyle(
+                                          //           color:
+                                          //               const Color(0xff170658),
+                                          //           fontSize: UtilSize.width(
+                                          //               14, context),
+                                          //         ),
+                                          //       ),
+                                          //       AutoSizeText(
+                                          //         "1",
+                                          //         textAlign: TextAlign.right,
+                                          //         style: TextStyle(
+                                          //           color:
+                                          //               const Color(0xff170658),
+                                          //           fontSize: UtilSize.width(
+                                          //               14, context),
+                                          //         ),
+                                          //       )
+                                          //     ],
+                                          //   ),
+                                          // ),
                                           Padding(
                                             padding: EdgeInsets.only(
                                               top: size.height *
@@ -565,38 +642,38 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                               ],
                                             ),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                              top: size.height *
-                                                  (11 / size.height),
-                                            ),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Certificación EDGE",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  "Ok",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
+                                          // Padding(
+                                          //   padding: EdgeInsets.only(
+                                          //     top: size.height *
+                                          //         (11 / size.height),
+                                          //   ),
+                                          //   child: Row(
+                                          //     mainAxisAlignment:
+                                          //         MainAxisAlignment
+                                          //             .spaceBetween,
+                                          //     children: [
+                                          //       AutoSizeText(
+                                          //         "Certificación EDGE",
+                                          //         style: TextStyle(
+                                          //           color:
+                                          //               const Color(0xff170658),
+                                          //           fontSize: UtilSize.width(
+                                          //               14, context),
+                                          //         ),
+                                          //       ),
+                                          //       AutoSizeText(
+                                          //         "Ok",
+                                          //         textAlign: TextAlign.right,
+                                          //         style: TextStyle(
+                                          //           color:
+                                          //               const Color(0xff170658),
+                                          //           fontSize: UtilSize.width(
+                                          //               14, context),
+                                          //         ),
+                                          //       )
+                                          //     ],
+                                          //   ),
+                                          // ),
                                           Padding(
                                             padding: EdgeInsets.only(
                                               top: size.height *
@@ -617,7 +694,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "Ok",
+                                                  actualInvestmentResponse[
+                                                              'data'][0]
+                                                          ['escrow'] ??
+                                                      '',
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -649,7 +729,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "Ok",
+                                                  actualInvestmentResponse[
+                                                              'data'][0]
+                                                          ['approved_plans'] ??
+                                                      '',
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -681,7 +764,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "Ok",
+                                                  actualInvestmentResponse[
+                                                              'data'][0][
+                                                          'construction_license'] ??
+                                                      '',
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -771,7 +857,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "USD \$215.000",
+                                                  "USD \$${actualInvestmentResponse['tokenomic'][0]['construction_interest'] ?? ''}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -827,7 +913,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "\$430.000",
+                                                  "\$${actualInvestmentResponse['tokenomic'][0]['annual_rental'] ?? ''}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -858,7 +944,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  " \$100.000",
+                                                  " \$${actualInvestmentResponse['tokenomic'][0]['annual_expenditure'] ?? ''}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -889,7 +975,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  " \$330.000",
+                                                  " \$${actualInvestmentResponse['tokenomic'][0]['annual_net_profit'] ?? ''}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -945,7 +1031,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "\$215.000",
+                                                  "\$${actualInvestmentResponse['tokenomic'][0]['construction_interest'] ?? ''}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -976,7 +1062,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "\$660.000",
+                                                  "\$${actualInvestmentResponse['tokenomic'][0]['net_leasing'] ?? ''}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -1007,7 +1093,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "\$435.000",
+                                                  "\$${actualInvestmentResponse['tokenomic'][0]['plusvalia'] ?? ''}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -1599,21 +1685,21 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (34 / size.height)),
-                                            child: AutoSizeText(
-                                              "MASCONSTRU SAS",
-                                              style: TextStyle(
-                                                color: const Color(0xff170658),
-                                                fontSize:
-                                                    UtilSize.width(14, context),
-                                                fontFamily: "Archivo",
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ),
+                                          // Padding(
+                                          //   padding: EdgeInsets.only(
+                                          //       top: size.height *
+                                          //           (34 / size.height)),
+                                          //   child: AutoSizeText(
+                                          //     "MASCONSTRU SAS",
+                                          //     style: TextStyle(
+                                          //       color: const Color(0xff170658),
+                                          //       fontSize:
+                                          //           UtilSize.width(14, context),
+                                          //       fontFamily: "Archivo",
+                                          //       fontWeight: FontWeight.w600,
+                                          //     ),
+                                          //   ),
+                                          // ),
                                           Padding(
                                             padding: EdgeInsets.only(
                                                 top: size.height *
@@ -1622,7 +1708,9 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                               width: size.width *
                                                   (308 / size.width),
                                               child: AutoSizeText(
-                                                "La constructora se ha caracterizado por ofrecer al mercado de Quito, proyectos de vanguardia con dinámica social, moderna y sostenible.",
+                                                actualInvestmentResponse['data']
+                                                        [0]['builder_data'] ??
+                                                    '',
                                                 style: TextStyle(
                                                   color:
                                                       const Color(0xff170658),
@@ -1692,7 +1780,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                       padding:
                           EdgeInsets.only(left: size.width * (13 / size.width)),
                       child: AutoSizeText(
-                        "Heráldica",
+                        actualInvestmentResponse['proyects'][0]['name'] ?? '',
                         style: TextStyle(
                           color: const Color(0xff2504ca),
                           fontSize: UtilSize.width(22, context),
@@ -1714,7 +1802,9 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             child: SizedBox(
                               width: UtilSize.width(290, context),
                               child: AutoSizeText(
-                                "Sector González Suárez, pasaje Juan Pareja y Jiménez de la Espada.",
+                                actualInvestmentResponse['proyects'][0]
+                                        ['address'] ??
+                                    '',
                                 style: TextStyle(
                                   color: const Color(0xff170658),
                                   fontSize: UtilSize.width(12, context),
@@ -1770,7 +1860,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                     top: size.height * (18 / size.height),
                                     left: size.width * (13 / size.width)),
                                 child: AutoSizeText(
-                                  "USD \$500",
+                                  "USD \$ ${actualInvestmentResponse['proyects'][0]['token_price'] ?? ''}",
                                   style: TextStyle(
                                     color: const Color(0xff2504ca),
                                     fontSize: UtilSize.width(15, context),
@@ -1796,7 +1886,9 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 padding: EdgeInsets.only(
                                     left: size.width * (13 / size.width)),
                                 child: AutoSizeText(
-                                  "1 EBL-HERALD-01",
+                                  actualInvestmentResponse['proyects'][0]
+                                          ['name'] ??
+                                      '',
                                   style: TextStyle(
                                     color: const Color(0xff170658),
                                     fontSize: UtilSize.width(12, context),
@@ -1816,7 +1908,14 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                 child: ButtonPrimary(
                                   width: UtilSize.width(129, context),
                                   title: 'Invertir',
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => InvestScreen(
+                                              invest: actualInvestmentResponse),
+                                        ));
+                                  },
                                   load: isLoading,
                                   disabled: isLoading,
                                 ),
@@ -1834,7 +1933,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
               child: GestureDetector(
                 child: SvgPicture.asset('assets/Vectores/Iconos/Group 199.svg'),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()),
+                      (route) => false);
                 },
               ),
             ),
@@ -1885,7 +1988,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             return Dialog(
                               backgroundColor: Colors.transparent,
                               elevation: 0,
-                              child: ExtendedImage.asset(
+                              child: ExtendedImage.network(
                                 item,
                                 fit: BoxFit.contain,
                                 //enableLoadState: false,
