@@ -1,21 +1,28 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:ebloqs_app/src/screens/invest/invest_screen.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/home_screen.dart';
+import 'package:ebloqs_app/src/screens/invest/invest_screen.dart';
 import 'package:ebloqs_app/src/services/investments_service.dart';
+import 'package:ebloqs_app/src/services/nft_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/utils/format_ebl.dart';
+import 'package:ebloqs_app/src/utils/format_money.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 
 class ProjectViewScreen extends StatefulWidget {
   final String idProyect;
+  final String? nftAddress;
   const ProjectViewScreen({
     Key? key,
     required this.idProyect,
+    this.nftAddress,
   }) : super(key: key);
 
   @override
@@ -33,6 +40,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
   bool showPromoterData = false;
   Map actualInvestmentResponse = {};
   List images = [];
+  List malls = [];
+  List markets = [];
+  List parks = [];
+  List subways = [];
+  String nftAvailable = "0";
 
   // @override
   // void initState() {
@@ -47,6 +59,11 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
     print('proyecto: ${actualInvestmentResponse['proyects']}');
     setState(() {});
     getImages();
+    getMalls();
+    getMarkets();
+    getParks();
+    getSubway();
+    getNftAvailable(nftAddress: widget.nftAddress!);
   }
 
   getImages() {
@@ -73,6 +90,74 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
     }
   }
 
+  getMalls() {
+    print("zone_malls: ");
+    print(actualInvestmentResponse['data'][0]["zone_malls"].runtimeType);
+    if (actualInvestmentResponse['data'][0]["zone_malls"] != null &&
+        actualInvestmentResponse['data'][0]["zone_malls"].isNotEmpty) {
+      try {
+        malls = json
+            .decode(actualInvestmentResponse['data'][0]["zone_malls"])
+            .cast<String>()
+            .toList();
+      } on Exception catch (e) {
+        print(e);
+      }
+    }
+    setState(() {});
+    print('malls: $malls');
+  }
+
+  getMarkets() {
+    if (actualInvestmentResponse['data'][0]["zone_markets"] != null) {
+      try {
+        markets = json
+            .decode(actualInvestmentResponse['data'][0]["zone_markets"])
+            .cast<String>()
+            .toList();
+      } on Exception catch (e) {
+        print(e);
+      }
+    }
+    setState(() {});
+    print('markets: $markets');
+  }
+
+  getParks() {
+    if (actualInvestmentResponse['data'][0]["zone_parks"] != null) {
+      try {
+        parks = json
+            .decode(actualInvestmentResponse['data'][0]["zone_parks"])
+            .cast<String>()
+            .toList();
+      } on Exception catch (e) {
+        print(e);
+      }
+    }
+    setState(() {});
+    print('parks: $parks');
+  }
+
+  getSubway() {
+    if (actualInvestmentResponse['data'][0]["zone_subway"] != null) {
+      try {
+        subways = json
+            .decode(actualInvestmentResponse['data'][0]["zone_subway"])
+            .cast<String>()
+            .toList();
+      } on Exception catch (e) {
+        print(e);
+      }
+    }
+    setState(() {});
+    print('subways: $subways');
+  }
+
+  getNftAvailable({required String nftAddress}) async {
+    nftAvailable = await NftServices().getNftAvailable(nft: nftAddress);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -84,7 +169,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
     }
     double emitted =
         double.parse(actualInvestmentResponse['proyects'][0]['tokens_emitted']);
-
+    print("public key");
+    print(Preferences.public_key);
     return Scaffold(
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
@@ -174,7 +260,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                           ),
                           AutoSizeText(
-                            "USD \$ ${actualInvestmentResponse['proyects'][0]['building_price'] ?? ''}",
+                            "USD \$  ${moneyFormated(value: double.parse(actualInvestmentResponse['proyects'][0]['building_price']))}",
                             style: TextStyle(
                               color: const Color(0xff170658),
                               fontSize: UtilSize.width(14, context),
@@ -210,10 +296,12 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                           ),
                           AutoSizeText(
-                            ((double.parse(actualInvestmentResponse['proyects']
-                                        [0]['tokens_emitted'])) /
-                                    1000000000000000000)
-                                .toString(),
+                            eblFormatted(
+                                ebl: ((double.parse(
+                                            actualInvestmentResponse['proyects']
+                                                [0]['tokens_emitted'])) /
+                                        1000000000000000000)
+                                    .toString()),
                             style: TextStyle(
                               color: const Color(0xff170658),
                               fontSize: UtilSize.width(14, context),
@@ -249,10 +337,10 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                             ),
                           ),
                           AutoSizeText(
-                            ((double.parse(actualInvestmentResponse['proyects']
-                                        [0]['tokens_available'])) /
-                                    1000000000000000000)
-                                .toString(),
+                            eblFormatted(
+                                ebl: ((double.parse(nftAvailable)) /
+                                        1000000000000000000)
+                                    .toString()),
                             style: TextStyle(
                               color: const Color(0xff170658),
                               fontSize: UtilSize.width(14, context),
@@ -857,7 +945,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "USD \$${actualInvestmentResponse['tokenomic'][0]['construction_interest'] ?? ''}",
+                                                  "USD \$ ${moneyFormated(value: double.parse(actualInvestmentResponse['tokenomic'][0]['construction_interest'] ?? ''))}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -913,7 +1001,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "\$${actualInvestmentResponse['tokenomic'][0]['annual_rental'] ?? ''}",
+                                                  "\$${moneyFormated(value: double.parse(actualInvestmentResponse['tokenomic'][0]['annual_rental'] ?? ''))}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -944,7 +1032,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  " \$${actualInvestmentResponse['tokenomic'][0]['annual_expenditure'] ?? ''}",
+                                                  " \$${moneyFormated(value: double.parse(actualInvestmentResponse['tokenomic'][0]['annual_expenditure'] ?? ''))}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -975,7 +1063,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  " \$${actualInvestmentResponse['tokenomic'][0]['annual_net_profit'] ?? ''}",
+                                                  " \$${moneyFormated(value: double.parse(actualInvestmentResponse['tokenomic'][0]['annual_net_profit'] ?? ''))}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -1031,7 +1119,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "\$${actualInvestmentResponse['tokenomic'][0]['construction_interest'] ?? ''}",
+                                                  "\$${moneyFormated(value: double.parse(actualInvestmentResponse['tokenomic'][0]['construction_interest'] ?? ''))}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -1062,7 +1150,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "\$${actualInvestmentResponse['tokenomic'][0]['net_leasing'] ?? ''}",
+                                                  "\$${moneyFormated(value: double.parse(actualInvestmentResponse['tokenomic'][0]['net_leasing'] ?? ''))}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -1093,7 +1181,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "\$${actualInvestmentResponse['tokenomic'][0]['plusvalia'] ?? ''}",
+                                                  "\$${moneyFormated(value: double.parse(actualInvestmentResponse['tokenomic'][0]['plusvalia'] ?? ''))}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -1124,7 +1212,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                   ),
                                                 ),
                                                 AutoSizeText(
-                                                  "\$1.310.000",
+                                                  "\$${moneyFormated(value: ((double.parse(actualInvestmentResponse['tokenomic'][0]['construction_interest'])) + (double.parse(actualInvestmentResponse['tokenomic'][0]['net_leasing'])) + (double.parse(actualInvestmentResponse['tokenomic'][0]['plusvalia']))))}",
                                                   textAlign: TextAlign.right,
                                                   style: TextStyle(
                                                     color:
@@ -1142,7 +1230,7 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                                     (30 / size.height)),
                                             child: SizedBox(
                                               width: size.width *
-                                                  (318 / size.width),
+                                                  (328 / size.width),
                                               child: AutoSizeText(
                                                 "*Los intereses son promedios, su naturaleza es especulativa, implican un grado de riesgo. El pago es trimestral, anual y al final de la inversión.",
                                                 style: TextStyle(
@@ -1237,391 +1325,197 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                               ),
                                             ]),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (11 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Mall el Jardín",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  "5 min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
+                                          (malls.isNotEmpty)
+                                              ? ListView.builder(
+                                                  itemCount: malls.length,
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: UtilSize.height(
+                                                              11, context)),
+                                                      child: AutoSizeText(
+                                                        malls[index],
+                                                        style: TextStyle(
+                                                          color: const Color(
+                                                              0xff170658),
+                                                          fontSize:
+                                                              UtilSize.width(
+                                                                  14, context),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
                                                 )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (6 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Quicentro shopping",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  " 8 min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
+                                              : const SizedBox(),
+                                          (markets.isNotEmpty)
+                                              ? Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: size.height *
+                                                          (33 / size.height)),
+                                                  child: Row(children: [
+                                                    SvgPicture.asset(
+                                                        'assets/Vectores/Iconos/trending up.svg'),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: size.width *
+                                                              (8 / size.width)),
+                                                      child: AutoSizeText(
+                                                        "Supermercados",
+                                                        style: TextStyle(
+                                                          color: const Color(
+                                                              0xff170658),
+                                                          fontSize:
+                                                              UtilSize.width(
+                                                                  14, context),
+                                                          fontFamily: "Archivo",
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ]),
                                                 )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (6 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "CCI",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  " 9 min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
+                                              : const SizedBox(),
+                                          (markets.isNotEmpty)
+                                              ? ListView.builder(
+                                                  itemCount: markets.length,
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: UtilSize.height(
+                                                              11, context)),
+                                                      child: AutoSizeText(
+                                                        markets[index],
+                                                        style: TextStyle(
+                                                          color: const Color(
+                                                              0xff170658),
+                                                          fontSize:
+                                                              UtilSize.width(
+                                                                  14, context),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
                                                 )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (6 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "CCNU",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  " 9 min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
+                                              : const SizedBox(),
+                                          (parks.isNotEmpty)
+                                              ? Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: size.height *
+                                                          (33 / size.height)),
+                                                  child: Row(children: [
+                                                    SvgPicture.asset(
+                                                        'assets/Vectores/Iconos/trending up.svg'),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: size.width *
+                                                              (8 / size.width)),
+                                                      child: AutoSizeText(
+                                                        "Parques",
+                                                        style: TextStyle(
+                                                          color: const Color(
+                                                              0xff170658),
+                                                          fontSize:
+                                                              UtilSize.width(
+                                                                  14, context),
+                                                          fontFamily: "Archivo",
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ]),
                                                 )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (33 / size.height)),
-                                            child: Row(children: [
-                                              SvgPicture.asset(
-                                                  'assets/Vectores/Iconos/trending up.svg'),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: size.width *
-                                                        (8 / size.width)),
-                                                child: AutoSizeText(
-                                                  "Supermercados",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                    fontFamily: "Archivo",
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ]),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (11 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Megamaxi",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  "7 min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
+                                              : const SizedBox(),
+                                          (parks.isNotEmpty)
+                                              ? ListView.builder(
+                                                  itemCount: parks.length,
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: UtilSize.height(
+                                                              11, context)),
+                                                      child: AutoSizeText(
+                                                        parks[index],
+                                                        style: TextStyle(
+                                                          color: const Color(
+                                                              0xff170658),
+                                                          fontSize:
+                                                              UtilSize.width(
+                                                                  14, context),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
                                                 )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (6 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Mi Comisariato",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  " 9 min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
+                                              : const SizedBox(),
+                                          (subways.isNotEmpty)
+                                              ? Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: size.height *
+                                                          (33 / size.height)),
+                                                  child: Row(children: [
+                                                    SvgPicture.asset(
+                                                        'assets/Vectores/Iconos/trending up.svg'),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: size.width *
+                                                              (8 / size.width)),
+                                                      child: AutoSizeText(
+                                                        "Metrovía",
+                                                        style: TextStyle(
+                                                          color: const Color(
+                                                              0xff170658),
+                                                          fontSize:
+                                                              UtilSize.width(
+                                                                  14, context),
+                                                          fontFamily: "Archivo",
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ]),
                                                 )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (6 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Coral Hipermercado",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  " 12min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
+                                              : const SizedBox(),
+                                          (subways.isNotEmpty)
+                                              ? ListView.builder(
+                                                  itemCount: subways.length,
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: UtilSize.height(
+                                                              11, context)),
+                                                      child: AutoSizeText(
+                                                        subways[index],
+                                                        style: TextStyle(
+                                                          color: const Color(
+                                                              0xff170658),
+                                                          fontSize:
+                                                              UtilSize.width(
+                                                                  14, context),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
                                                 )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (33 / size.height)),
-                                            child: Row(children: [
-                                              SvgPicture.asset(
-                                                  'assets/Vectores/Iconos/trending up.svg'),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: size.width *
-                                                        (8 / size.width)),
-                                                child: AutoSizeText(
-                                                  "Parques",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                    fontFamily: "Archivo",
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ]),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (11 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "La Carolina",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  "4 min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (6 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Metropolitano",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  " 7 min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (33 / size.height)),
-                                            child: Row(children: [
-                                              SvgPicture.asset(
-                                                  'assets/Vectores/Iconos/trending up.svg'),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: size.width *
-                                                        (8 / size.width)),
-                                                child: AutoSizeText(
-                                                  "Metrovía",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                    fontFamily: "Archivo",
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ]),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                top: size.height *
-                                                    (11 / size.height)),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                AutoSizeText(
-                                                  "Estación la carolina",
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                ),
-                                                AutoSizeText(
-                                                  "5 min",
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    color:
-                                                        const Color(0xff170658),
-                                                    fontSize: UtilSize.width(
-                                                        14, context),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
+                                              : const SizedBox(),
                                         ],
                                       )
                                     : const SizedBox()
@@ -1913,7 +1807,8 @@ class _ProjectViewScreenState extends State<ProjectViewScreen> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => InvestScreen(
-                                              invest: actualInvestmentResponse),
+                                              invest: actualInvestmentResponse,
+                                              nftAddress: widget.nftAddress),
                                         ));
                                   },
                                   load: isLoading,

@@ -3,6 +3,7 @@ import 'package:clipboard/clipboard.dart';
 import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/withdraw/input_quantity_screen.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -20,6 +21,7 @@ class _OtpGAuthenticatorScreenState extends State<OtpGAuthenticatorScreen> {
   final TextEditingController otpController = TextEditingController();
   String? errorValidation;
   bool loading = false;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -106,7 +108,18 @@ class _OtpGAuthenticatorScreenState extends State<OtpGAuthenticatorScreen> {
                         controller: otpController,
                         keyboardType: TextInputType.number,
                         maxLength: 6,
+                        style: const TextStyle(
+                          color: Color(0xff2504ca),
+                          fontSize: 14,
+                          fontFamily: "Archivo",
+                          fontWeight: FontWeight.w600,
+                        ),
                         decoration: InputDecoration(
+                          suffixIconConstraints: BoxConstraints(
+                            maxHeight: 20,
+                            maxWidth: UtilSize.width(60, context),
+                          ),
+                          filled: false,
                           suffixIcon: Align(
                             alignment: Alignment.centerRight,
                             child: Padding(
@@ -140,6 +153,13 @@ class _OtpGAuthenticatorScreenState extends State<OtpGAuthenticatorScreen> {
                             borderRadius: BorderRadius.circular(4),
                           ),
                         ),
+                        onChanged: (value) {
+                          print("OTP");
+                          print(value);
+                          setState(() {
+                            if (value.isNotEmpty) {}
+                          });
+                        },
                         validator: (value) {
                           if (value!.isEmpty) {
                             setState(() {
@@ -168,7 +188,20 @@ class _OtpGAuthenticatorScreenState extends State<OtpGAuthenticatorScreen> {
                   width: size.width,
                   title: "Enviar",
                   onPressed: () {
-                    Navigator.pushNamed(context, InputQuantityScreen.routeName);
+                    if (otpController.text.isNotEmpty &&
+                        otpController.text.length == 6) {
+                      Navigator.pushNamed(
+                          context, InputQuantityScreen.routeName);
+                    } else {
+                      customModalBottomAlert(
+                          context,
+                          size,
+                          'Por favor,  debes completar el código otp para continuar',
+                          isLoading,
+                          '', () {
+                        Navigator.pop(context);
+                      });
+                    }
                   },
                   load: loading,
                   disabled: loading,

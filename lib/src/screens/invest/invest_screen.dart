@@ -1,24 +1,28 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:ebloqs_app/src/screens/invest/preview_invest_screen.dart';
-import 'package:ebloqs_app/src/services/token_service.dart';
-import 'package:ebloqs_app/src/shared/shared_preferences.dart';
-import 'package:ebloqs_app/src/utils/format_ebl.dart';
-import 'package:ebloqs_app/src/utils/format_money.dart';
+import 'package:ebloqs_app/src/services/nft_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:numeric_keyboard/numeric_keyboard.dart';
 
 import 'package:ebloqs_app/src/global/util_size.dart';
+import 'package:ebloqs_app/src/screens/invest/preview_invest_screen.dart';
+import 'package:ebloqs_app/src/services/token_service.dart';
+import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/utils/format_ebl.dart';
+import 'package:ebloqs_app/src/utils/format_money.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
+import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 
 class InvestScreen extends StatefulWidget {
   static const routeName = 'InvestScreen';
   const InvestScreen({
     Key? key,
     required this.invest,
+    required this.nftAddress,
   }) : super(key: key);
   final Map invest;
+  final String? nftAddress;
 
   @override
   State<InvestScreen> createState() => _InvestScreenState();
@@ -28,7 +32,10 @@ class _InvestScreenState extends State<InvestScreen> {
   String text = '';
   bool loading = false;
   double? tokenValue;
-  bool isToken = false;
+  bool isToken = true;
+  String? errorValidation;
+  bool isLoading = false;
+  String nftAvailable = "0";
 
   void getTokenValue() async {
     final dataToken = await TokenService().getToken(token: Preferences.token!);
@@ -40,7 +47,13 @@ class _InvestScreenState extends State<InvestScreen> {
   @override
   void initState() {
     getTokenValue();
+    getNftAvailable(nftAddress: widget.nftAddress!);
     super.initState();
+  }
+
+  getNftAvailable({required String nftAddress}) async {
+    nftAvailable = await NftServices().getNftAvailable(nft: nftAddress);
+    setState(() {});
   }
 
   @override
@@ -110,11 +123,14 @@ class _InvestScreenState extends State<InvestScreen> {
                             ),
                             padding: const EdgeInsets.all(8),
                             child: AutoSizeText(
-                              (isToken == false)
-                                  ? (text.isNotEmpty)
-                                      ? '${eblFormatted(ebl: ((double.parse(text)) / double.parse(widget.invest['proyects'][0]['token_price'])).toString())} ${widget.invest['proyects'][0]['name']}'
-                                      : widget.invest['proyects'][0]['name']
-                                  : text,
+                              // (isToken == false)
+                              //     ?
+                              (text.isNotEmpty)
+                                  //         ? '${eblFormatted(ebl: ((double.parse(text)) / double.parse(widget.invest['proyects'][0]['token_price'])).toString())} ${widget.invest['proyects'][0]['name']}'
+                                  //         : widget.invest['proyects'][0]['name']
+                                  //     :
+                                  ? "\$ ${moneyFormated(value: (double.parse(text) * double.parse(widget.invest['proyects'][0]['token_price'])))} USD"
+                                  : "0,00 USD",
                               style: const TextStyle(
                                 color: Color(0xff2504ca),
                                 fontSize: 14,
@@ -151,29 +167,32 @@ class _InvestScreenState extends State<InvestScreen> {
                       children: [
                         AutoSizeText(
                             (text.isNotEmpty)
-                                ? (isToken == false)
-                                    ? text
-                                    : eblFormatted(
-                                        ebl: ((double.parse(text)) /
-                                                double.parse(
-                                                    widget.invest['proyects'][0]
-                                                        ['token_price']))
-                                            .toString())
-                                : "0,00",
+                                ?
+                                //  (isToken == false)
+                                // ?
+                                text
+                                //     :
+                                // eblFormatted(
+                                //     ebl: ((double.parse(text)) /
+                                //             double.parse(
+                                //                 widget.invest['proyects'][0]
+                                //                     ['token_price']))
+                                //         .toString())
+                                : "0",
                             style: const TextStyle(
                               color: Color(0xff2504ca),
                               fontSize: 58,
                               fontFamily: "Archivo",
                               fontWeight: FontWeight.w400,
                             )),
-                        GestureDetector(
-                            child: SvgPicture.asset(
-                                'assets/Vectores/Iconos/Group 1749.svg'),
-                            onTap: () {
-                              setState(() {
-                                isToken = !isToken;
-                              });
-                            })
+                        // GestureDetector(
+                        //     child: SvgPicture.asset(
+                        //         'assets/Vectores/Iconos/Group 1749.svg'),
+                        //     onTap: () {
+                        //       setState(() {
+                        //         isToken = !isToken;
+                        //       });
+                        //     })
                       ],
                     ),
                     AutoSizeText(
@@ -208,18 +227,20 @@ class _InvestScreenState extends State<InvestScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const AutoSizeText("Inviertes",
-                                    style: TextStyle(
+                                AutoSizeText(
+                                    (isToken == false)
+                                        ? "Inviertes"
+                                        : "Tokens disponibles",
+                                    style: const TextStyle(
                                       color: Color(0xff170658),
                                       fontSize: 13,
                                       fontFamily: "Archivo",
                                       fontWeight: FontWeight.w400,
                                     )),
                                 AutoSizeText(
-                                  ((double.parse(widget.invest['proyects'][0]
-                                              ['tokens_available']) /
-                                          1000000000000000000))
-                                      .toString(),
+                                  moneyFormated(
+                                      value: ((double.parse(nftAvailable) /
+                                          1000000000000000000))),
                                   textAlign: TextAlign.right,
                                   style: const TextStyle(
                                     color: Color(0xff2504ca),
@@ -262,8 +283,9 @@ class _InvestScreenState extends State<InvestScreen> {
                     Padding(
                       padding:
                           EdgeInsets.only(top: UtilSize.height(8, context)),
-                      child: const AutoSizeText("Monto mínimo: \$500",
-                          style: TextStyle(
+                      child: AutoSizeText(
+                          "Monto mínimo: \$${widget.invest['proyects'][0]['token_price']}",
+                          style: const TextStyle(
                             color: Color(0xff170658),
                             fontSize: 12,
                             fontFamily: "Archivo",
@@ -308,28 +330,44 @@ class _InvestScreenState extends State<InvestScreen> {
                         width: size.width,
                         title: 'Previsualizar inversión',
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  PreviewInvestScreen(
-                                isToken: isToken,
-                                invest: widget.invest,
-                                value: (isToken == false)
-                                    ? moneyFormated(value: double.parse(text))
-                                    : eblFormatted(
-                                        ebl: ((double.parse(text)) /
-                                                double.parse(
-                                                    widget.invest['proyects'][0]
-                                                        ['token_price']))
-                                            .toString()),
-                                usdValue:
-                                    moneyFormated(value: double.parse(text)),
-                                eblValue:
-                                    '${eblFormatted(ebl: ((double.parse(text)) / double.parse(widget.invest['proyects'][0]['token_price'])).toString())} ${widget.invest['proyects'][0]['name']}',
+                          if (text.isNotEmpty &&
+                              double.parse(text) > double.parse("0") &&
+                              double.parse(text) <=
+                                  (double.parse(nftAvailable) /
+                                      1000000000000000000)) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    PreviewInvestScreen(
+                                  isToken: isToken,
+                                  invest: widget.invest,
+                                  value: (isToken == false)
+                                      ? moneyFormated(value: double.parse(text))
+                                      : eblFormatted(
+                                          ebl: ((double.parse(text)) /
+                                                  double.parse(
+                                                      widget.invest['proyects']
+                                                          [0]['token_price']))
+                                              .toString()),
+                                  usdValue:
+                                      moneyFormated(value: double.parse(text)),
+                                  eblValue:
+                                      '${eblFormatted(ebl: ((double.parse(text)) / double.parse(widget.invest['proyects'][0]['token_price'])).toString())} ${widget.invest['proyects'][0]['name']}',
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                          } else {
+                            setState(() {
+                              errorValidation =
+                                  'Por favor,  la inversión debe ser mayor a 0 y menor a los tokens disponibles';
+                            });
+                            customModalBottomAlert(
+                                context, size, errorValidation, isLoading, '',
+                                () {
+                              Navigator.pop(context);
+                            });
+                          }
                         },
                         load: loading,
                         disabled: loading,
@@ -348,6 +386,7 @@ class _InvestScreenState extends State<InvestScreen> {
   _onKeyboardTap(String value) {
     setState(() {
       print(text);
+
       text = text + value;
     });
   }

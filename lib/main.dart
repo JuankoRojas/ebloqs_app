@@ -7,6 +7,7 @@ import 'package:ebloqs_app/src/utils/tabbar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,12 @@ void main() async {
   // locationProvider.useMyLocation();
   Provider.debugCheckInvalidValueType = null;
   final appleSignInAvailable = await AppleSignInAvailable.check();
-
+  if (Preferences.uid == null ||
+      Preferences.token == null ||
+      Preferences.uid!.isEmpty ||
+      Preferences.token!.isEmpty) {
+    await DefaultCacheManager().emptyCache();
+  }
   bootstrap(() => Provider<AppleSignInAvailable>.value(
         value: appleSignInAvailable,
         child: const MyApp(),

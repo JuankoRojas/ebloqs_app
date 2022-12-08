@@ -21,7 +21,7 @@ class _DepositMethodsScreenState extends State<DepositMethodsScreen> {
     List<DropdownMenuItem<String>> menuItems = [
       const DropdownMenuItem(value: "USD", child: AutoSizeText("USD")),
       const DropdownMenuItem(value: "Euros", child: AutoSizeText("Euros")),
-      const DropdownMenuItem(value: "Pesos", child: AutoSizeText("Pesos")),
+      // const DropdownMenuItem(value: "Pesos", child: AutoSizeText("Pesos")),
     ];
     return menuItems;
   }

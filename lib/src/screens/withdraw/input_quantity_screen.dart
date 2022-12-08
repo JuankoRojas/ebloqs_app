@@ -12,6 +12,7 @@ import 'package:ebloqs_app/src/widgets/custom_modal_bottom_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 class InputQuantityScreen extends StatefulWidget {
@@ -53,6 +54,7 @@ class _InputQuantityScreenState extends State<InputQuantityScreen> {
   getBalance() async {
     var balance = await BalanceService().getBalanceOf(
         accesstoken: Preferences.token!, publicKey: Preferences.public_key!);
+    if (!mounted) return;
     setState(() {
       ebl = balance;
     });
@@ -73,8 +75,10 @@ class _InputQuantityScreenState extends State<InputQuantityScreen> {
     print(_current);
 
     if (ebl != null && tokenValue != null) {
-      cantidadTransferencia =
-          (double.parse(ebl!) * tokenValue!).toStringAsFixed(2);
+      cantidadTransferencia = (double.parse(ebl!)
+          //  * tokenValue!
+          )
+          .toStringAsFixed(2);
 
       if (quantityController.text.isEmpty && cantidadTransferencia != null) {
         quantityController.text = cantidadTransferencia!;
@@ -364,7 +368,7 @@ class _InputQuantityScreenState extends State<InputQuantityScreen> {
                         width: double.infinity,
                         title: "Continuar",
                         onPressed: () {
-                          if (_current == 1) {
+                          if (_current == 0) {
                             if (formKey10.currentState!.validate()) {
                               Navigator.push(
                                 context,
@@ -436,11 +440,31 @@ class _PageFormState extends State<PageForm> {
       TextEditingController();
   final TextEditingController beneficiaryProvinceController =
       TextEditingController();
+
+  @override
+  void initState() {
+    useLocation();
+    super.initState();
+  }
+
+  void useLocation() async {
+    var locationProvider =
+        Provider.of<LocationsProvider>(context, listen: false);
+    await locationProvider.requestPermisionLocation();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final locationValue =
         Provider.of<LocationsProvider>(context).countryCode.text;
+    if (locationValue.isEmpty) {
+      return Scaffold(
+        body: Center(
+          child: Lottie.asset('assets/lottie/X2lNy3zK9f.json'),
+        ),
+      );
+    }
     return Container(
       width: size.width,
       // height: size.height * (421 / size.height),

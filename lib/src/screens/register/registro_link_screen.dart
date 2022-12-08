@@ -5,7 +5,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:device_apps/device_apps.dart';
 
 import 'package:ebloqs_app/src/providers/user_info_provider.dart';
-import 'package:ebloqs_app/src/screens/indentity/nationality_screen.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth-Android.dart';
 import 'package:ebloqs_app/src/screens/local_auth/local_auth.dart';
 import 'package:ebloqs_app/src/services/auth_user_service.dart';
@@ -83,7 +82,7 @@ class _RegistroLinkScreenState extends State<RegistroLinkScreen>
         Future.delayed(Duration.zero).then(
           (_) => Navigator.pushNamed(
             context,
-            NationalityScreen.routeName,
+            LocalAuthAndroid.routeName,
           ),
         );
         setState(() {

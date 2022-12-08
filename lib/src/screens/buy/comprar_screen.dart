@@ -55,7 +55,7 @@ class _ComprarScreenState extends State<ComprarScreen>
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
+    // final List<Locale> systemLocales = WidgetsBinding.instance.window.locales;
     // String? isoCountryCode = systemLocales.first.countryCode;
     // print(isoCountryCode);
     print('tokenValue');

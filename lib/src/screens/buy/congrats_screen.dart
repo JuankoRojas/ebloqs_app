@@ -5,6 +5,7 @@ import 'package:ebloqs_app/src/global/util_size.dart';
 import 'package:ebloqs_app/src/screens/wallet/wallet_screen.dart';
 import 'package:ebloqs_app/src/services/token_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
+import 'package:ebloqs_app/src/utils/format_ebl.dart';
 import 'package:ebloqs_app/src/widgets/button_primary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -72,7 +73,7 @@ class _CongratsScreenState extends State<CongratsScreen>
                       EdgeInsets.only(top: size.height * 0.0142276422764228),
                   child: Center(
                     child: AutoSizeText(
-                      "${widget.total.toString()} EBL",
+                      "${eblFormatted(ebl: widget.total.toString())} EBL",
                       style: const TextStyle(
                         color: Color(0xff2504ca),
                         fontSize: 20,

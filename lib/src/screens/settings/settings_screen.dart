@@ -10,6 +10,7 @@ import 'package:ebloqs_app/src/services/auth_user_service.dart';
 import 'package:ebloqs_app/src/shared/shared_preferences.dart';
 import 'package:ebloqs_app/src/widgets/custom_setting.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -295,6 +296,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         .deleteDataUser(accesstoken: Preferences.token!);
                     print(response);
                     if (response != null) {
+                      await DefaultCacheManager().emptyCache();
                       SharedPreferences preferences =
                           await SharedPreferences.getInstance();
                       await preferences.clear();

@@ -56,10 +56,13 @@ class _ButtonPrimaryState extends State<ButtonPrimary> {
                     : [],
               ),
               child: !widget.disabled
-                  ? Image.asset(
-                      'assets/png/buttongradient.png',
-                      width: UtilSize.width(348, context),
-                      fit: BoxFit.cover,
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        'assets/png/buttongradient.png',
+                        width: UtilSize.width(348, context),
+                        fit: BoxFit.cover,
+                      ),
                     )
                   : const SizedBox(),
             ),

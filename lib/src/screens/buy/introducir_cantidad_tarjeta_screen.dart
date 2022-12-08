@@ -466,111 +466,261 @@ class _IntroducirCantidadTarjetaScreenState
                                       },
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: size.height * 0.00985221674876847),
-                                    child: const AutoSizeText(
-                                      "F. Vencimiento",
-                                      style: TextStyle(
-                                        color: Color(0xff170658),
-                                        fontSize: 13,
-                                        fontFamily: "Archivo",
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: size.height * 0.00985221674876847),
-                                    child: TextFormField(
-                                      keyboardType: TextInputType.text,
-                                      inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.allow(
-                                            RegExp("[0-9/]"))
-                                      ],
-                                      controller: expirationDateController,
-                                      maxLength: 5,
-                                      decoration: InputDecoration(
-                                        hintText: "MM/AA",
-                                        labelStyle: TextStyle(
-                                          color: const Color(0xff9B99A3),
-                                          fontSize: UtilSize.width(14, context),
-                                          fontFamily: "Archivo",
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                      ),
-                                      onChanged: (String? value) {
-                                        // if (value!.length < dateExpired.length) {
-                                        //   value = '';
-                                        // } else if (value.length == 1 &&
-                                        //     (int.parse(value) < 10 &&
-                                        //         int.parse(value) >= 1)) {
-                                        //   Future.delayed(
-                                        //       const Duration(milliseconds: 100),
-                                        //       () {
-                                        //     expirationDateController.text =
-                                        //         '0$value/';
-                                        //     expirationDateController.selection =
-                                        //         TextSelection.fromPosition(
-                                        //             TextPosition(
-                                        //                 offset:
-                                        //                     expirationDateController
-                                        //                         .text.length));
-                                        //   });
-                                        //   // value = '0$value/';
-                                        // } else if (value.length == 2 &&
-                                        //     (value == '10' ||
-                                        //         value == '11' ||
-                                        //         value == '12')) {
-                                        //   value += '/';
-                                        // } else if (!value.contains('/') &&
-                                        //     value.length == 2) {
-                                        //   if (int.parse(value) > 12) {
-                                        //     value = '${value[0]}/${value[1]}';
-                                        //   }
-                                        // }
-                                        // value.replaceAll('//', '/');
-                                        // setState(() {
-                                        //   expirationDateController.text = value!;
-                                        //   dateExpired = value;
-                                        //   expirationDateController.selection =
-                                        //       TextSelection.fromPosition(
-                                        //           TextPosition(
-                                        //               offset:
-                                        //                   expirationDateController
-                                        //                       .text.length));
-                                        // });
-                                        // if (expirationDateController.text.length ==
-                                        //     5) {
-                                        //   try {
-                                        //     DateTime date = DateFormat("MM/yyyy")
-                                        //         .parseStrict(value);
-                                        //     if (date.isBefore(DateTime.now())) {
-                                        //       setState(() {
-                                        //         errorValidation = 'Fecha vencida';
-                                        //       });
-                                        //       print(errorValidation);
-                                        //     }
-                                        //   } catch (e) {
-                                        //     return print(e);
-                                        //   }
-                                        // }
-                                      },
-                                      validator: (value) {
-                                        if (value!.isEmpty) {
-                                          setState(() {
-                                            errorValidation =
-                                                'Por favor,  debes completar todos los registros para continuar';
-                                          });
+                                  SizedBox(
+                                    width: size.width,
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: size.height *
+                                                        0.00985221674876847),
+                                                child: const AutoSizeText(
+                                                  "F. Vencimiento",
+                                                  style: TextStyle(
+                                                    color: Color(0xff170658),
+                                                    fontSize: 13,
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: size.height *
+                                                        0.00985221674876847),
+                                                child: TextFormField(
+                                                  keyboardType:
+                                                      TextInputType.text,
+                                                  inputFormatters: <
+                                                      TextInputFormatter>[
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp("[0-9/]"))
+                                                  ],
+                                                  controller:
+                                                      expirationDateController,
+                                                  maxLength: 5,
+                                                  decoration: InputDecoration(
+                                                    hintText: "MM/AA",
+                                                    labelStyle: TextStyle(
+                                                      color: const Color(
+                                                          0xff9B99A3),
+                                                      fontSize: UtilSize.width(
+                                                          14, context),
+                                                      fontFamily: "Archivo",
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                    border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                  ),
+                                                  onChanged: (String? value) {
+                                                    // if (value!.length < dateExpired.length) {
+                                                    //   value = '';
+                                                    // } else if (value.length == 1 &&
+                                                    //     (int.parse(value) < 10 &&
+                                                    //         int.parse(value) >= 1)) {
+                                                    //   Future.delayed(
+                                                    //       const Duration(milliseconds: 100),
+                                                    //       () {
+                                                    //     expirationDateController.text =
+                                                    //         '0$value/';
+                                                    //     expirationDateController.selection =
+                                                    //         TextSelection.fromPosition(
+                                                    //             TextPosition(
+                                                    //                 offset:
+                                                    //                     expirationDateController
+                                                    //                         .text.length));
+                                                    //   });
+                                                    //   // value = '0$value/';
+                                                    // } else if (value.length == 2 &&
+                                                    //     (value == '10' ||
+                                                    //         value == '11' ||
+                                                    //         value == '12')) {
+                                                    //   value += '/';
+                                                    // } else if (!value.contains('/') &&
+                                                    //     value.length == 2) {
+                                                    //   if (int.parse(value) > 12) {
+                                                    //     value = '${value[0]}/${value[1]}';
+                                                    //   }
+                                                    // }
+                                                    // value.replaceAll('//', '/');
+                                                    // setState(() {
+                                                    //   expirationDateController.text = value!;
+                                                    //   dateExpired = value;
+                                                    //   expirationDateController.selection =
+                                                    //       TextSelection.fromPosition(
+                                                    //           TextPosition(
+                                                    //               offset:
+                                                    //                   expirationDateController
+                                                    //                       .text.length));
+                                                    // });
+                                                    // if (expirationDateController.text.length ==
+                                                    //     5) {
+                                                    //   try {
+                                                    //     DateTime date = DateFormat("MM/yyyy")
+                                                    //         .parseStrict(value);
+                                                    //     if (date.isBefore(DateTime.now())) {
+                                                    //       setState(() {
+                                                    //         errorValidation = 'Fecha vencida';
+                                                    //       });
+                                                    //       print(errorValidation);
+                                                    //     }
+                                                    //   } catch (e) {
+                                                    //     return print(e);
+                                                    //   }
+                                                    // }
+                                                  },
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      setState(() {
+                                                        errorValidation =
+                                                            'Por favor,  debes completar todos los registros para continuar';
+                                                      });
 
-                                          return '';
-                                        }
-                                        return null;
-                                      },
+                                                      return '';
+                                                    }
+                                                    return null;
+                                                  },
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: UtilSize.width(23, context),
+                                        ),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: size.height *
+                                                        0.00985221674876847),
+                                                child: const AutoSizeText(
+                                                  "CVV",
+                                                  style: TextStyle(
+                                                    color: Color(0xff170658),
+                                                    fontSize: 13,
+                                                    fontFamily: "Archivo",
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    top: size.height *
+                                                        0.00985221674876847),
+                                                child: TextFormField(
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  inputFormatters: <
+                                                      TextInputFormatter>[
+                                                    FilteringTextInputFormatter
+                                                        .allow(RegExp("[0-9/]"))
+                                                  ],
+                                                  controller: cvvController,
+                                                  maxLength: 3,
+                                                  decoration: InputDecoration(
+                                                    hintText: "000",
+                                                    labelStyle: TextStyle(
+                                                      color: const Color(
+                                                          0xff9B99A3),
+                                                      fontSize: UtilSize.width(
+                                                          14, context),
+                                                      fontFamily: "Archivo",
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                    border: OutlineInputBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                    ),
+                                                  ),
+                                                  onChanged: (String? value) {
+                                                    // if (value!.length < dateExpired.length) {
+                                                    //   value = '';
+                                                    // } else if (value.length == 1 &&
+                                                    //     (int.parse(value) < 10 &&
+                                                    //         int.parse(value) >= 1)) {
+                                                    //   Future.delayed(
+                                                    //       const Duration(milliseconds: 100),
+                                                    //       () {
+                                                    //     expirationDateController.text =
+                                                    //         '0$value/';
+                                                    //     expirationDateController.selection =
+                                                    //         TextSelection.fromPosition(
+                                                    //             TextPosition(
+                                                    //                 offset:
+                                                    //                     expirationDateController
+                                                    //                         .text.length));
+                                                    //   });
+                                                    //   // value = '0$value/';
+                                                    // } else if (value.length == 2 &&
+                                                    //     (value == '10' ||
+                                                    //         value == '11' ||
+                                                    //         value == '12')) {
+                                                    //   value += '/';
+                                                    // } else if (!value.contains('/') &&
+                                                    //     value.length == 2) {
+                                                    //   if (int.parse(value) > 12) {
+                                                    //     value = '${value[0]}/${value[1]}';
+                                                    //   }
+                                                    // }
+                                                    // value.replaceAll('//', '/');
+                                                    // setState(() {
+                                                    //   expirationDateController.text = value!;
+                                                    //   dateExpired = value;
+                                                    //   expirationDateController.selection =
+                                                    //       TextSelection.fromPosition(
+                                                    //           TextPosition(
+                                                    //               offset:
+                                                    //                   expirationDateController
+                                                    //                       .text.length));
+                                                    // });
+                                                    // if (expirationDateController.text.length ==
+                                                    //     5) {
+                                                    //   try {
+                                                    //     DateTime date = DateFormat("MM/yyyy")
+                                                    //         .parseStrict(value);
+                                                    //     if (date.isBefore(DateTime.now())) {
+                                                    //       setState(() {
+                                                    //         errorValidation = 'Fecha vencida';
+                                                    //       });
+                                                    //       print(errorValidation);
+                                                    //     }
+                                                    //   } catch (e) {
+                                                    //     return print(e);
+                                                    //   }
+                                                    // }
+                                                  },
+                                                  validator: (value) {
+                                                    if (value!.isEmpty) {
+                                                      setState(() {
+                                                        errorValidation =
+                                                            'Por favor,  debes completar todos los registros para continuar';
+                                                      });
+
+                                                      return '';
+                                                    }
+                                                    return null;
+                                                  },
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ],

@@ -216,9 +216,9 @@ class _HomeScreenState extends State<HomeScreen>
         'oferta': 'Inversiones eventos',
       },
     ];
-    List filterList = inversionesQuito
-        .where((element) => element['city'] == 'Manizales')
-        .toList();
+    // List filterList = inversionesQuito
+    //     .where((element) => element['city'] == 'Manizales')
+    //     .toList();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -1793,6 +1793,11 @@ class _HomeScreenState extends State<HomeScreen>
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 ProjectViewScreen(
+                                                    nftAddress:
+                                                        inversionesPorCity[index]
+                                                                    ["proyects"]
+                                                                [index2][
+                                                            'address_id'],
                                                     idProyect:
                                                         inversionesPorCity[
                                                                     index]
